@@ -31,10 +31,12 @@ const config = {
         },
       },
     ),
-    resolverMainFields: ['browser', 'main'],
+    resolverMainFields: ['react-native', 'browser', 'main'],
     sourceExts: ['jsx', 'js', 'ts', 'tsx', 'json', 'cjs'],
   },
   watchFolders: [path.resolve(__dirname, 'src')],
 };
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+const defaultConfig = getDefaultConfig(__dirname);
+
+module.exports = mergeConfig(defaultConfig, config);
