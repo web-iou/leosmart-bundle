@@ -3,7 +3,7 @@ import { BottomNavigation, useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { useFocusEffect } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import DevicePage from './Device';
 import StatisticsPage from './Statistics';
 import ProfilePage from './Profile';
@@ -40,20 +40,20 @@ const OwnerMainScreen: React.FC<OwnerMainScreenProps> = ({ navigation }) => {
     { 
       key: 'devices', 
       title: t('ownerMain.devices', { defaultValue: '设备' }),
-      focusedIcon: 'devices', 
-      unfocusedIcon: 'devices' 
+      focusedIcon: 'appstore1', 
+      unfocusedIcon: 'appstore-o' 
     },
     { 
       key: 'statistics', 
       title: t('ownerMain.statistics', { defaultValue: '统计' }),
-      focusedIcon: 'chart-bar', 
-      unfocusedIcon: 'chart-bar' 
+      focusedIcon: 'barschart', 
+      unfocusedIcon: 'barschart' 
     },
     { 
       key: 'profile', 
       title: t('ownerMain.profile', { defaultValue: '我的' }),
-      focusedIcon: 'account', 
-      unfocusedIcon: 'account-outline' 
+      focusedIcon: 'user', 
+      unfocusedIcon: 'user' 
     },
   ]);
 
@@ -66,7 +66,7 @@ const OwnerMainScreen: React.FC<OwnerMainScreenProps> = ({ navigation }) => {
   const renderIcon = ({ route, focused, color }: { route: { focusedIcon: string, unfocusedIcon: string }, focused: boolean, color: string }) => {
     // 根据选中状态显示不同的图标
     const iconName = focused ? route.focusedIcon : route.unfocusedIcon;
-    return <MaterialCommunityIcons name={iconName} size={24} color={color} />;
+    return <AntDesign name={iconName} size={24} color={color} />;
   };
 
   return (

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { userApi, RegisterParams } from '@/services/api/userApi';
 import { showToast } from '@/store/slices/toastSlice';
 import { useDispatch } from 'react-redux';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { ExtendedMD3Theme } from '@/theme';
 
 interface RegisterScreenProps {
@@ -338,8 +338,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                 {t('register.email', { defaultValue: '邮箱' })}
               </Text>
               <View style={styles.inputContainer}>
-                <Ionicons 
-                  name="mail-outline" 
+                <AntDesign 
+                  name="mail" 
                   size={22} 
                   color={theme.colors.onSurfaceVariant} 
                   style={styles.inputIcon} 
@@ -371,8 +371,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
               </Text>
               <View style={styles.verificationCodeContainer}>
                 <View style={[styles.inputContainer, { flex: 1 }]}>
-                  <Ionicons 
-                    name="key-outline" 
+                  <AntDesign 
+                    name="key" 
                     size={22} 
                     color={theme.colors.onSurfaceVariant} 
                     style={styles.inputIcon} 
@@ -421,8 +421,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                 {t('register.password', { defaultValue: '密码' })}
               </Text>
               <View style={styles.inputContainer}>
-                <Ionicons 
-                  name="lock-closed-outline" 
+                <AntDesign 
+                  name="lock" 
                   size={22} 
                   color={theme.colors.onSurfaceVariant} 
                   style={styles.inputIcon} 
@@ -459,8 +459,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                 {t('register.confirmPassword', { defaultValue: '确认密码' })}
               </Text>
               <View style={styles.inputContainer}>
-                <Ionicons 
-                  name="lock-closed-outline" 
+                <AntDesign 
+                  name="lock" 
                   size={22} 
                   color={theme.colors.onSurfaceVariant} 
                   style={styles.inputIcon} 
@@ -499,8 +499,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                     {t('register.companyName', { defaultValue: '公司名称' })}
                   </Text>
                   <View style={styles.inputContainer}>
-                    <Ionicons 
-                      name="business-outline" 
+                    <AntDesign 
+                      name="business" 
                       size={22} 
                       color={theme.colors.onSurfaceVariant} 
                       style={styles.inputIcon} 
@@ -528,8 +528,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                     {t('register.parentCode', { defaultValue: '上级安装商、轻销商代码' })}
                   </Text>
                   <View style={styles.inputContainer}>
-                    <Ionicons 
-                      name="code-outline" 
+                    <AntDesign 
+                      name="code" 
                       size={22} 
                       color={theme.colors.onSurfaceVariant} 
                       style={styles.inputIcon} 
@@ -579,7 +579,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
         {currentStep === RegisterStep.REGISTER_SUCCESS && (
           <View style={styles.successContainer}>
             <View style={styles.successIconContainer}>
-              <Ionicons name="checkmark-circle" size={72} color={theme.colors.buttonPrimary} />
+              <AntDesign name="checkcircle" size={72} color={theme.colors.buttonPrimary} />
             </View>
             
             <Text style={[styles.successTitle, { color: theme.colors.onSurface }]}>

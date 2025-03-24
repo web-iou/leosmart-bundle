@@ -19,10 +19,9 @@ class I18nApi {
     return http.get(`/admin/trm/web/${lang}`);
   }
 
-  // 获取所有语言的翻译资源
+  // 获取所有语言的翻译资源 (新接口)
   public getAllTranslations(): Promise<ApiResponse<Record<string, any>>> {
-    // 注意：这是一个示例端点，实际项目中可能需要调整
-    return http.get('/i18n', {}, { skipErrorHandler: true });
+    return http.get('/admin/trm/general');
   }
 
   // 获取默认语言列表（当API请求失败时使用）

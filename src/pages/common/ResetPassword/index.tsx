@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { userApi, ResetPasswordParams } from '@/services/api/userApi';
 import { showToast } from '@/store/slices/toastSlice';
 import { useDispatch } from 'react-redux';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { ExtendedMD3Theme } from '@/theme';
 
 interface ResetPasswordScreenProps {
@@ -175,8 +175,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
             {t('resetPassword.email', { defaultValue: '邮箱' })}
           </Text>
           <View style={styles.inputContainer}>
-            <Ionicons 
-              name="mail-outline" 
+            <AntDesign 
+              name="mail" 
               size={24} 
               color={theme.colors.onSurfaceVariant} 
               style={styles.inputIcon} 
@@ -208,8 +208,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
           </Text>
           <View style={styles.verificationCodeContainer}>
             <View style={[styles.inputContainer, { flex: 1 }]}>
-              <Ionicons 
-                name="key-outline" 
+              <AntDesign 
+                name="key" 
                 size={24} 
                 color={theme.colors.onSurfaceVariant} 
                 style={styles.inputIcon} 
@@ -258,8 +258,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
             {t('resetPassword.newPassword', { defaultValue: '新密码' })}
           </Text>
           <View style={styles.inputContainer}>
-            <Ionicons 
-              name="lock-closed-outline" 
+            <AntDesign 
+              name="lock" 
               size={24} 
               color={theme.colors.onSurfaceVariant} 
               style={styles.inputIcon} 
@@ -296,8 +296,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
             {t('resetPassword.confirmPassword', { defaultValue: '再次输入新密码' })}
           </Text>
           <View style={styles.inputContainer}>
-            <Ionicons 
-              name="lock-closed-outline" 
+            <AntDesign 
+              name="lock" 
               size={24} 
               color={theme.colors.onSurfaceVariant} 
               style={styles.inputIcon} 

@@ -32,7 +32,7 @@ const initializeStorage = () => {
     mmkvInstance = new MMKV({
       id: 'leosmart-storage',
     });
-    
+
     // 标记为已准备好
     isReady = true;
     console.log('MMKV初始化成功!');

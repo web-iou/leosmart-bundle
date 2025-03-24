@@ -4,7 +4,7 @@ import {
   DefaultTheme as NavigationDefaultTheme 
 } from '@react-navigation/native';
 import { storage } from '../utils/storage';
-import { StyleSheet, ViewStyle, TextStyle, FlexAlignType } from 'react-native';
+import { StyleSheet, FlexAlignType } from 'react-native';
 
 // 扩展 MD3Colors 类型以包含我们的自定义颜色
 export type CustomColors = {
@@ -36,7 +36,7 @@ export type CustomColors = {
 // Custom color palettes
 const lightColors = {
   ...MD3LightTheme.colors,
-  primary: '#3498db',
+  primary: '#FF8800',
   secondary: '#f1c40f',
   tertiary: '#2ecc71',
   background: '#f5f5f5',
@@ -71,7 +71,7 @@ const lightColors = {
 
 const darkColors = {
   ...MD3DarkTheme.colors,
-  primary: '#3498db',
+  primary: '#FF8800',
   secondary: '#f1c40f',
   tertiary: '#2ecc71',
   background: '#121212',

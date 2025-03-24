@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
 import { Text, Card, useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { ExtendedMD3Theme } from '@/theme';
 import SafeAreaLayout from '@/components/SafeAreaLayout';
 
@@ -79,8 +78,8 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
         <View style={styles.header}>
           <View style={styles.deviceTitleContainer}>
             <View style={styles.deviceIconCircle}>
-              <MaterialCommunityIcons 
-                name="flash" 
+              <AntDesign 
+                name="thunderbolt" 
                 size={24} 
                 color="#FFFFFF" 
               />
@@ -90,8 +89,8 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
             </Text>
           </View>
           <TouchableOpacity onPress={onRefresh}>
-            <MaterialIcons 
-              name="refresh" 
+            <AntDesign 
+              name="reload1" 
               size={24} 
               color={theme.colors.onBackground} 
             />
@@ -163,13 +162,13 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
             <View style={styles.powerSection}>
               <View style={styles.powerHeader}>
                 <View style={styles.powerTitleContainer}>
-                  <MaterialCommunityIcons 
-                    name="white-balance-sunny" 
+                  <AntDesign 
+                    name="iconfontdesktop" 
                     size={24} 
                     color="#FF9800" 
                   />
                   <Text style={[styles.sectionTitle, { color: theme.colors.onSurface }]}>
-                    {t('device.pvPower', { defaultValue: '光伏功率' })}
+                    {t('device.pv_power', { defaultValue: '光伏功率' })}
                   </Text>
                 </View>
                 <Text style={[styles.totalPower, { color: '#FF9800' }]}>
@@ -225,8 +224,8 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
           <Card style={[styles.halfCard, { backgroundColor: theme.colors.surface }]}>
             <Card.Content>
               <View style={styles.powerCardHeader}>
-                <MaterialCommunityIcons 
-                  name="flash" 
+                <AntDesign 
+                  name="iconfontdesktop" 
                   size={24} 
                   color="#FF9800" 
                 />
@@ -241,8 +240,8 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
               
               <View style={styles.powerDetailsRow}>
                 <View style={styles.detailWithIcon}>
-                  <MaterialCommunityIcons 
-                    name="flash-circle" 
+                  <AntDesign 
+                    name="iconfontdesktop" 
                     size={16} 
                     color={theme.colors.onSurfaceVariant} 
                   />
@@ -251,8 +250,8 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
                   </Text>
                 </View>
                 <View style={styles.detailWithIcon}>
-                  <MaterialCommunityIcons 
-                    name="flash-circle" 
+                  <AntDesign 
+                    name="iconfontdesktop" 
                     size={16} 
                     color={theme.colors.onSurfaceVariant} 
                   />
@@ -268,8 +267,8 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
           <Card style={[styles.halfCard, { backgroundColor: theme.colors.surface }]}>
             <Card.Content>
               <View style={styles.powerCardHeader}>
-                <MaterialCommunityIcons 
-                  name="white-balance-sunny" 
+                <AntDesign 
+                  name="iconfontdesktop" 
                   size={24} 
                   color="#FF9800" 
                 />
@@ -284,7 +283,7 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
               
               <View style={styles.powerDetailsRow}>
                 <View style={styles.detailWithIcon}>
-                  <MaterialCommunityIcons 
+                  <AntDesign 
                     name="chart-line" 
                     size={16} 
                     color={theme.colors.onSurfaceVariant} 
@@ -303,8 +302,8 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
           <Card.Content>
             <View style={styles.controlHeader}>
               <View style={styles.controlIcon}>
-                <MaterialCommunityIcons 
-                  name="tune-vertical" 
+                <AntDesign 
+                  name="setting" 
                   size={24} 
                   color="#FF9800" 
                 />
@@ -312,11 +311,11 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
               <Text style={[styles.sectionTitle, { color: theme.colors.onSurface }]}>
                 {t('device.control', { defaultValue: '设备控制' })}
               </Text>
-              <MaterialIcons name="arrow-forward-ios" size={20} color={theme.colors.onSurfaceVariant} />
+              <AntDesign name="right" size={20} color={theme.colors.onSurfaceVariant} />
             </View>
             
             <View style={styles.signalStatus}>
-              <MaterialCommunityIcons name="wifi" size={20} color="#4CAF50" />
+              <AntDesign name="wifi" size={20} color="#4CAF50" />
               <Text style={[styles.signalText, { color: theme.colors.onSurfaceVariant }]}>
                 4G {t('device.signalStrength', { defaultValue: '信号强度' })}: {deviceData.control.signalStrength}
               </Text>
@@ -328,8 +327,8 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
         <Card style={[styles.card, { backgroundColor: theme.colors.surface }]}>
           <Card.Content>
             <View style={styles.environmentHeader}>
-              <MaterialIcons 
-                name="thermostat" 
+              <AntDesign 
+                name="dashboard" 
                 size={24} 
                 color="#FF9800" 
               />
@@ -373,7 +372,7 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
         <Card style={[styles.card, { backgroundColor: theme.colors.surface }]}>
           <Card.Content>
             <View style={styles.alertHeader}>
-              <MaterialIcons 
+              <AntDesign 
                 name="warning" 
                 size={24} 
                 color="#FF9800" 
@@ -385,7 +384,7 @@ const DevicePage: React.FC<DevicePageProps> = ({ navigation: _navigation }) => {
 
             <View style={styles.systemMessage}>
               <View style={styles.systemMessageIcon}>
-                <MaterialCommunityIcons name="information" size={20} color="#2196F3" />
+                <AntDesign name="infocirlceo" size={20} color="#2196F3" />
               </View>
               <View style={styles.systemMessageContent}>
                 <Text style={[styles.systemMessageText, { color: theme.colors.onSurface }]}>

@@ -6,7 +6,7 @@ import { storage } from '@/utils/storage';
 
 // 页面组件
 import LoginScreen from '../pages/Login';
-import MainScreen from '../pages/Main';
+// MainScreen已移除，不再需要
 import OwnerMainScreen from '../pages/OwnerMain';
 import InstallerMainScreen from '../pages/InstallerMain';
 import WebViewPage from '../pages/common/WebView';
@@ -16,7 +16,7 @@ import RegisterScreen from '../pages/Register';
 // 定义路由参数类型 - 只保留实际使用的路由
 export type RootStackParamList = {
   Login: undefined;
-  Main: undefined;
+  // Main: undefined; // 已移除，不再需要
   OwnerMain: undefined;
   InstallerMain: undefined;
   WebView: {
@@ -84,10 +84,8 @@ const AppNavigator: React.FC = () => {
   const getInitialRoute = () => {
     if (!isLoggedIn) return 'Login';
     
-    if (userType === USER_ROLE.OWNER) return 'OwnerMain';
-    if (userType !== null) return 'InstallerMain';
-    
-    return 'Main'; // 默认主页
+    // 简化逻辑：根据用户类型决定跳转到业主或安装商页面
+    return userType === USER_ROLE.OWNER ? 'OwnerMain' : 'InstallerMain';
   };
 
   // 如果登录状态尚未确定，显示加载指示器
@@ -110,9 +108,6 @@ const AppNavigator: React.FC = () => {
       >
         {/* 登录页面 */}
         <Stack.Screen name="Login" component={LoginScreen} />
-
-        {/* 主页 */}
-        <Stack.Screen name="Main" component={MainScreen} />
         
         {/* 业主主页 */}
         <Stack.Screen name="OwnerMain" component={OwnerMainScreen} />

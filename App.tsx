@@ -21,7 +21,18 @@ import { LightAppTheme, DarkAppTheme } from './src/theme';
 import './src/i18n';
 import { initializeI18n } from './src/i18n';
 import { setDarkMode } from './src/store/slices/themeSlice';
-import { initializeLanguage } from './src/store/slices/languageSlice';
+import { 
+  initializeLanguage, 
+  fetchSupportedLanguages, 
+  fetchAllTranslationsAsync 
+} from './src/store/slices/languageSlice';
+
+// Reactotron类型声明扩展
+declare global {
+  interface Console {
+    tron?: any;
+  }
+}
 
 // Wrapped App component with theme support
 const ThemedApp = () => {
@@ -53,6 +64,12 @@ const ThemedApp = () => {
         
         // 初始化Redux中的语言状态
         dispatch(initializeLanguage() as any);
+        
+        // 获取支持的语言列表
+        dispatch(fetchSupportedLanguages() as any);
+        
+        // 获取所有翻译
+        dispatch(fetchAllTranslationsAsync() as any);
       } catch (error) {
         console.error('Failed to initialize i18n:', error);
       }

@@ -3,7 +3,7 @@ import { View, StyleSheet, ScrollView, Dimensions, ActivityIndicator } from 'rea
 import { Text, Card, Button, useTheme, Menu, Divider } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from 'victory-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { ExtendedMD3Theme } from '@/theme';
 import SafeAreaLayout from '@/components/SafeAreaLayout';
 
@@ -135,7 +135,7 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({ navigation: _navigation
                 labelStyle={{ color: theme.colors.onBackground }}
                 contentStyle={{ flexDirection: 'row-reverse' }}
                 icon={({ size, color }) => (
-                  <Ionicons name="chevron-down" size={size} color={color} />
+                  <AntDesign name="down" size={size} color={color} />
                 )}
               >
                 {selectedYear} {t('common.year', { defaultValue: '年' })}

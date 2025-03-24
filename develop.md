@@ -134,5 +134,12 @@ parentCodeCollapse allstring
 
 import { Modal } from 'react-native';
 
+接下来我们优化国际化 
+从后端获取支持的所有语言包接口为
+url：/admin/trm/general
+method：get
+
+第一次打开app需要从后端获取国际化，然后进行缓存，当后面打开app时使用缓存的国际化，然后异步从后端获取最新的国际化并缓存，更新界面。
+切换语言时，不用从后端再获取语言包。
 
 
