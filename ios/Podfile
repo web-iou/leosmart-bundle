@@ -16,7 +16,7 @@ end
 
 target 'leosmart' do
   config = use_native_modules!
-
+  pod 'FTPopOverMenu', '~> 2.1'
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.

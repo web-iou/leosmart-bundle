@@ -10,6 +10,9 @@
 		0C5E180EDCB1E42260F25E30 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		0C80B921A6F3F58F76C31292 /* libPods-leosmart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-leosmart.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		42808EBB2D91325E0012DE5C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42808EBA2D91325E0012DE5C /* AVFoundation.framework */; };
+		42808EBF2D9132890012DE5C /* RCTNativeFlashLight.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42808EBE2D9132890012DE5C /* RCTNativeFlashLight.mm */; };
+		42808EC52D91334E0012DE5C /* RCTNativePopover.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42808EC42D91334E0012DE5C /* RCTNativePopover.mm */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -20,6 +23,11 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = leosmart/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = leosmart/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-leosmart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leosmart.debug.xcconfig"; path = "Target Support Files/Pods-leosmart/Pods-leosmart.debug.xcconfig"; sourceTree = "<group>"; };
+		42808EBA2D91325E0012DE5C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		42808EBD2D9132890012DE5C /* RCTNativeFlashLight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTNativeFlashLight.h; sourceTree = "<group>"; };
+		42808EBE2D9132890012DE5C /* RCTNativeFlashLight.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RCTNativeFlashLight.mm; sourceTree = "<group>"; };
+		42808EC32D91334E0012DE5C /* RCTNativePopover.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTNativePopover.h; sourceTree = "<group>"; };
+		42808EC42D91334E0012DE5C /* RCTNativePopover.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RCTNativePopover.mm; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-leosmart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leosmart.release.xcconfig"; path = "Target Support Files/Pods-leosmart/Pods-leosmart.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-leosmart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-leosmart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = leosmart/AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42808EBB2D91325E0012DE5C /* AVFoundation.framework in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-leosmart.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,10 +65,29 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42808EBA2D91325E0012DE5C /* AVFoundation.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-leosmart.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		42808EBC2D9132650012DE5C /* NativeFlashLight */ = {
+			isa = PBXGroup;
+			children = (
+				42808EBD2D9132890012DE5C /* RCTNativeFlashLight.h */,
+				42808EBE2D9132890012DE5C /* RCTNativeFlashLight.mm */,
+			);
+			path = NativeFlashLight;
+			sourceTree = "<group>";
+		};
+		42808EC22D9133280012DE5C /* NativePopover */ = {
+			isa = PBXGroup;
+			children = (
+				42808EC32D91334E0012DE5C /* RCTNativePopover.h */,
+				42808EC42D91334E0012DE5C /* RCTNativePopover.mm */,
+			);
+			path = NativePopover;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -72,6 +100,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				42808EC22D9133280012DE5C /* NativePopover */,
+				42808EBC2D9132650012DE5C /* NativeFlashLight */,
 				13B07FAE1A68108700A75B9A /* leosmart */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -133,7 +163,7 @@
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1620;
 					};
 				};
 			};
@@ -248,6 +278,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42808EBF2D9132890012DE5C /* RCTNativeFlashLight.mm in Sources */,
+				42808EC52D91334E0012DE5C /* RCTNativePopover.mm in Sources */,
 				761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,7 +309,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsun.smart;
 				PRODUCT_NAME = leosmart;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -306,7 +338,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsun.smart;
 				PRODUCT_NAME = leosmart;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
