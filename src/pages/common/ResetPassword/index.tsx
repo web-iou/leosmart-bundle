@@ -186,8 +186,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
                 styles.input, 
                 { 
                   backgroundColor: theme.colors.inputBackground,
-                  height: 60,
-                  borderRadius: 12 
+                  height: 48,
+                  borderRadius: 24 
                 }
               ]}
               mode="outlined"
@@ -196,7 +196,7 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
               onChangeText={setEmail}
               keyboardType="email-address"
               autoCapitalize="none"
-              outlineStyle={{ borderRadius: 12 }}
+              outlineStyle={{ borderRadius: 24 }}
             />
           </View>
         </View>
@@ -219,8 +219,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
                   styles.input, 
                   { 
                     backgroundColor: theme.colors.inputBackground,
-                    height: 60,
-                    borderRadius: 12
+                    height: 48,
+                    borderRadius: 24
                   }
                 ]}
                 mode="outlined"
@@ -228,7 +228,7 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
                 value={verificationCode}
                 onChangeText={setVerificationCode}
                 keyboardType="number-pad"
-                outlineStyle={{ borderRadius: 12 }}
+                outlineStyle={{ borderRadius: 24 }}
               />
             </View>
             <TouchableOpacity
@@ -269,8 +269,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
                 styles.input, 
                 { 
                   backgroundColor: theme.colors.inputBackground,
-                  height: 60,
-                  borderRadius: 12 
+                  height: 48,
+                  borderRadius: 24 
                 }
               ]}
               mode="outlined"
@@ -278,7 +278,7 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
               value={newPassword}
               onChangeText={setNewPassword}
               secureTextEntry={!showNewPassword}
-              outlineStyle={{ borderRadius: 12 }}
+              outlineStyle={{ borderRadius: 24 }}
               right={
                 <TextInput.Icon 
                   icon={showNewPassword ? "eye" : "eye-off"} 
@@ -307,8 +307,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
                 styles.input, 
                 { 
                   backgroundColor: theme.colors.inputBackground,
-                  height: 60,
-                  borderRadius: 12 
+                  height: 48,
+                  borderRadius: 24 
                 }
               ]}
               mode="outlined"
@@ -316,7 +316,7 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
               value={confirmPassword}
               onChangeText={setConfirmPassword}
               secureTextEntry={!showConfirmPassword}
-              outlineStyle={{ borderRadius: 12 }}
+              outlineStyle={{ borderRadius: 24 }}
               right={
                 <TextInput.Icon 
                   icon={showConfirmPassword ? "eye" : "eye-off"} 
@@ -386,9 +386,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   sendCodeButton: {
-    height: 56,
+    height: 48,
     marginLeft: 8,
-    borderRadius: 12,
+    borderRadius: 24,
     paddingHorizontal: 12,
     justifyContent: 'center',
     alignItems: 'center',
@@ -401,7 +401,7 @@ const styles = StyleSheet.create({
   },
   resetButton: {
     height: 56,
-    borderRadius: 12,
+    borderRadius: 28,
     marginTop: 24,
     justifyContent: 'center',
     alignItems: 'center',

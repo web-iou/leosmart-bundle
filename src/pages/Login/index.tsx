@@ -355,19 +355,18 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
           <TextInput
             style={styles.input}
             mode="outlined"
-
             value={username}
             onChangeText={setUsername}
             placeholder={t('table.email', { defaultValue: '邮箱/用户名' })}
             autoCapitalize="none"
             right={<TextInput.Icon icon="account" />}
+            outlineStyle={{ borderRadius: 24 }}
           />
           
           {/* 密码输入框 */}
           <TextInput
             style={styles.input}
             mode="outlined"
-           
             value={password}
             onChangeText={setPassword}
             secureTextEntry={!showPassword}
@@ -378,6 +377,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
                 onPress={() => setShowPassword(!showPassword)}
               />
             }
+            outlineStyle={{ borderRadius: 24 }}
           />
           
           {/* 记住账号和忘记密码 */}
@@ -432,7 +432,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
               { 
                 backgroundColor: loading || !username || !password || !agreeToTerms 
                   ? paperTheme.colors.buttonPrimary + '80' 
-                  : paperTheme.colors.buttonPrimary 
+                  : paperTheme.colors.buttonPrimary,
+                borderRadius: 24
               }
             ]}
             onPress={handleLogin}
@@ -616,6 +617,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 16,
+    height: 48,
   },
   rememberForgotContainer: {
     flexDirection: 'row',
@@ -635,7 +637,7 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     height: 48,
-    borderRadius: 8,
+    borderRadius: 24,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -654,6 +656,7 @@ const styles = StyleSheet.create({
   otherButton: {
     flex: 1,
     marginHorizontal: 8,
+    borderRadius: 24,
   },
 });
 
