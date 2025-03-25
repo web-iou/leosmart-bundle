@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
-import { storage } from '@/utils/storage';
+import React, {useEffect, useState} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {View, ActivityIndicator, StyleSheet} from 'react-native';
+import {storage} from '@/utils/storage';
 
 // 页面组件
 import LoginScreen from '../pages/Login';
@@ -25,6 +25,7 @@ export type RootStackParamList = {
   };
   ResetPassword: undefined;
   Register: undefined;
+  Scan: undefined;
 };
 
 // 创建路由栈
@@ -32,7 +33,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 // 用户角色类型常量 - 简化为只有实际使用的角色
 const USER_ROLE = {
-  OWNER: 1,      // 业主角色
+  OWNER: 1, // 业主角色
 };
 
 // 路由配置
@@ -50,22 +51,22 @@ const AppNavigator: React.FC = () => {
     try {
       // 等待存储系统准备就绪
       await storage.waitForReady();
-      
+
       // 检查用户是否已登录
       const authToken = await storage.getStringAsync('auth_token');
-      
+
       if (!authToken) {
         setIsLoggedIn(false);
         return;
       }
-      
+
       // 用户已登录，检查用户类型
       const userInfoStr = await storage.getStringAsync('user_info');
       if (!userInfoStr) {
         setIsLoggedIn(true);
         return;
       }
-      
+
       try {
         const userInfo = JSON.parse(userInfoStr);
         setIsLoggedIn(true);
@@ -83,7 +84,7 @@ const AppNavigator: React.FC = () => {
   // 获取初始路由
   const getInitialRoute = () => {
     if (!isLoggedIn) return 'Login';
-    
+
     // 简化逻辑：根据用户类型决定跳转到业主或安装商页面
     return userType === USER_ROLE.OWNER ? 'OwnerMain' : 'InstallerMain';
   };
@@ -103,24 +104,27 @@ const AppNavigator: React.FC = () => {
         initialRouteName={getInitialRoute()}
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: '#fff' },
-        }}
-      >
+          contentStyle: {backgroundColor: '#fff'},
+        }}>
         {/* 登录页面 */}
         <Stack.Screen name="Login" component={LoginScreen} />
-        
+        <Stack.Screen
+          name="Scan"
+          component={
+            require('../pages/OwnerMain/Device/components/addDevice').ScanCode
+          }></Stack.Screen>
         {/* 业主主页 */}
         <Stack.Screen name="OwnerMain" component={OwnerMainScreen} />
-        
+
         {/* 安装商/运营商主页 */}
         <Stack.Screen name="InstallerMain" component={InstallerMainScreen} />
 
         {/* 通用WebView页面 - 用于显示服务条款和隐私政策 */}
         <Stack.Screen name="WebView" component={WebViewPage} />
-        
+
         {/* 重置密码页面 */}
         <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
-        
+
         {/* 注册页面 */}
         <Stack.Screen name="Register" component={RegisterScreen} />
       </Stack.Navigator>
@@ -134,7 +138,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffffff',
-  }
+  },
 });
 
-export default AppNavigator; 
+export default AppNavigator;

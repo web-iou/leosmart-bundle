@@ -1,6 +1,7 @@
 const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
 const path = require('path');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
+const { withNativeWind } = require('nativewind/metro');
 
 /**
  * Metro configuration
@@ -39,4 +40,6 @@ const config = {
 
 const defaultConfig = getDefaultConfig(__dirname);
 
-module.exports = mergeConfig(defaultConfig, config);
+module.exports = withNativeWind(mergeConfig(defaultConfig, config),{
+  input:'./global.css',
+})

@@ -13,9 +13,9 @@ import {
   useCameraDevice,
   useCodeScanner,
 } from 'react-native-vision-camera';
-import NativeImagePicker from '~/specs/NativeImagePicker';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useThrottleFn} from 'ahooks';
+import NativeFlashLight from '~/specs/NativeFlashLight';
 const {width} = Dimensions.get('window');
 const scanBoxSize = width * 0.75; // 扫描框大小
 
@@ -23,14 +23,13 @@ export default () => {
   const isFocused = useIsFocused();
   const device = useCameraDevice('back');
   const isActive = isFocused;
-  const navigation =
-    useNavigation<RootStackScreenProps<'AddDeviceBySNCode'>['navigation']>();
+  const navigation = useNavigation();
   const codeScanner = useCodeScanner({
     codeTypes: ['ean-13', 'code-128'],
     onCodeScanned: useThrottleFn(
       codes => {
         navigation.push('AddDeviceBySNCode', {code: codes[0].value});
-        NativeImagePicker.notice();
+        NativeFlashLight.notice();
       },
       {
         wait: 1000,

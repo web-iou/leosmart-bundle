@@ -4,6 +4,7 @@ import {TurboModuleRegistry} from 'react-native';
 export interface Spec extends TurboModule {
   open: () => void;
   close: () => void;
+  notice: () => void;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>(

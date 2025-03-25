@@ -1,14 +1,29 @@
-import {Alert, Linking, View, useWindowDimensions} from 'react-native';
+import {
+  Alert,
+  Linking,
+  Pressable,
+  Text,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {useLayoutEffect, useState} from 'react';
+import {useEffect, useLayoutEffect, useState} from 'react';
 import {useCameraPermission} from 'react-native-vision-camera';
-import FlashLight from '@/components/flashLight';
+// import FlashLight from '@/components/flashLight';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useStatusBarHidden} from '@/hooks/useStatusBarHidden';
-import Photo from '@/components/photo';
+// import Photo from '@/components/photo';
 // import {addDevice, checkSNCode} from '@/apis/device';
 import ScannerOverlay from './ScannerOverlay';
+import {Button} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/AntDesign';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import NativeFlashLight from '~/specs/NativeFlashLight';
+import {launchImageLibrary} from 'react-native-image-picker';
+console.log(launchImageLibrary);
+
 // export const SNCode = ({
 //   route: {
 //     params: {code},
@@ -151,10 +166,9 @@ import ScannerOverlay from './ScannerOverlay';
 // };
 export const ScanCode = () => {
   const {hasPermission, requestPermission} = useCameraPermission();
+  const navigation = useNavigation();
   const {top, bottom} = useSafeAreaInsets();
-  const {width, height} = useWindowDimensions();
-  const navigation =
-    useNavigation<RootStackScreenProps<'AddDeviceBySNCode'>['navigation']>();
+  const [open, setOpen] = useState(false);
   useStatusBarHidden();
   useLayoutEffect(() => {
     if (!hasPermission) {
@@ -180,43 +194,84 @@ export const ScanCode = () => {
     }
   }, []);
   const onSubmit = (code: string) => {
-    NativeImagePicker.notice();
+    NativeFlashLight.notice();
     navigation.navigate({
       name: 'AddDeviceBySNCode',
       params: {code},
     });
   };
+  useEffect(() => {
+    if (open) {
+      NativeFlashLight.open();
+    } else {
+      NativeFlashLight.close();
+    }
+    return () => {
+      if (open) {
+        NativeFlashLight.close();
+      }
+    };
+  }, [open]);
   return (
-    <View
-      style={{
-        width,
-        height,
-        padding:0
-      }}>
-      <Button
+    <View className="flex-1">
+      <ScannerOverlay></ScannerOverlay>
+      <Pressable
+        style={{
+          position: 'absolute',
+          top: top + 10,
+          left: 32,
+        }}
         onPress={() => {
           navigation.goBack();
-        }}
-        className="  absolute left-8  z-40 rounded-full p-2.5"
-        style={{
-          top: top + 10,
-        }}
-        action="secondary">
-        <ButtonIcon as={ChevronLeft}></ButtonIcon>
-      </Button>
-      <ScannerOverlay></ScannerOverlay>
-
-      <Photo
-        onSubmit={onSubmit}
+        }}>
+        <Icon name="leftcircle" size={28} color={'rgb(230,230,231)'}></Icon>
+      </Pressable>
+      <Pressable
+        className=" absolute left-8 z-40 rounded-full p-2.5 gap-y-2 justify-center items-center"
         style={{
           bottom: 100,
         }}
-        className="absolute left-12 z-40"></Photo>
-      <FlashLight
-        className="absolute right-12 z-40"
+        onPress={() => {
+          launchImageLibrary({
+            mediaType: 'photo',
+            quality: 1,
+            includeBase64: false,
+          }).then(value => {
+            console.log(value);
+          });
+        }}>
+        <View className=" items-center justify-center bg-primary-400 size-12 rounded-full">
+          <EvilIcons
+            name="image"
+            style={{
+              textAlign: 'center',
+            }}
+            size={32}
+            color={'rgb(230,230,231)'}></EvilIcons>
+        </View>
+        <Text className=" text-white">相册导入</Text>
+      </Pressable>
+      <Pressable
+        className=" absolute right-8 z-40 rounded-full p-2.5 gap-y-2 justify-center items-center"
         style={{
           bottom: 100,
-        }}></FlashLight>
+        }}
+        onPress={() => {
+          setOpen(!open);
+        }}>
+        <View className=" items-center justify-center bg-primary-400 size-12 rounded-full">
+          <MaterialCommunityIcons
+            name={!open ? 'flashlight' : 'flashlight-off'}
+            style={{
+              textAlign: 'center',
+            }}
+            size={32}
+            color={'rgb(230,230,231)'}></MaterialCommunityIcons>
+        </View>
+        <Text className=" text-white">
+          {!open ? '打开手电筒' : '关闭手电筒'}
+        </Text>
+      </Pressable>
     </View>
   );
 };

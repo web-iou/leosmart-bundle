@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
-import { Text, Card, useTheme } from 'react-native-paper';
-import { useTranslation } from 'react-i18next';
+import React, {useState} from 'react';
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  RefreshControl,
+} from 'react-native';
+import {Text, Card, useTheme} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { ExtendedMD3Theme } from '@/theme';
+import {ExtendedMD3Theme} from '@/theme';
 import SafeAreaLayout from '@/components/SafeAreaLayout';
 import NativeFlashLight from '../../../../specs/NativeFlashLight';
 import {useNativePopover} from '@/hooks/usePopover';
+import {useNavigation} from '@react-navigation/native';
 interface DevicePageProps {
   navigation: any;
 }
@@ -15,6 +22,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
   const {t} = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
   const [refreshing, setRefreshing] = useState(false);
+  const {navigate} = useNavigation();
   const {showPopover, anchorRef} = useNativePopover();
   // 模拟设备数据 - 实际开发中会从API获取
   const deviceData = {
@@ -78,22 +86,28 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
         <View style={styles.header}>
           <View style={styles.deviceTitleContainer}>
             <View style={styles.deviceIconCircle}>
-              <AntDesign 
-                name="thunderbolt" 
-                size={24} 
-                color="#FFFFFF" 
-              />
+              <AntDesign name="thunderbolt" size={24} color="#FFFFFF" />
             </View>
             <Text
               style={[styles.deviceName, {color: theme.colors.onBackground}]}>
               {deviceData.name}
             </Text>
           </View>
-          <TouchableOpacity onPress={onRefresh}>
-            <AntDesign 
-              name="reload1" 
-              size={24} 
-              color={theme.colors.onBackground} 
+          <TouchableOpacity
+            onPress={() => {
+              showPopover(['扫一扫', 'SN序列号'], []).then(index => {
+                if (index === 0) {
+                  navigate({
+                    name: 'Scan',
+                  });
+                }
+              });
+            }}>
+            <AntDesign
+              name="plus"
+              ref={anchorRef}
+              size={24}
+              color={theme.colors.onBackground}
             />
           </TouchableOpacity>
         </View>
@@ -197,13 +211,13 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
             <View style={styles.powerSection}>
               <View style={styles.powerHeader}>
                 <View style={styles.powerTitleContainer}>
-                  <AntDesign 
-                    name="iconfontdesktop" 
-                    size={24} 
-                    color="#FF9800" 
-                  />
-                  <Text style={[styles.sectionTitle, { color: theme.colors.onSurface }]}>
-                    {t('device.pv_power', { defaultValue: '光伏功率' })}
+                  <AntDesign name="iconfontdesktop" size={24} color="#FF9800" />
+                  <Text
+                    style={[
+                      styles.sectionTitle,
+                      {color: theme.colors.onSurface},
+                    ]}>
+                    {t('device.pv_power', {defaultValue: '光伏功率'})}
                   </Text>
                 </View>
                 <Text style={[styles.totalPower, {color: '#FF9800'}]}>
@@ -308,11 +322,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
             style={[styles.halfCard, {backgroundColor: theme.colors.surface}]}>
             <Card.Content>
               <View style={styles.powerCardHeader}>
-                <AntDesign 
-                  name="iconfontdesktop" 
-                  size={24} 
-                  color="#FF9800" 
-                />
+                <AntDesign name="iconfontdesktop" size={24} color="#FF9800" />
                 <Text
                   style={[
                     styles.cardSubtitle,
@@ -328,10 +338,10 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
 
               <View style={styles.powerDetailsRow}>
                 <View style={styles.detailWithIcon}>
-                  <AntDesign 
-                    name="iconfontdesktop" 
-                    size={16} 
-                    color={theme.colors.onSurfaceVariant} 
+                  <AntDesign
+                    name="iconfontdesktop"
+                    size={16}
+                    color={theme.colors.onSurfaceVariant}
                   />
                   <Text
                     style={[
@@ -343,10 +353,10 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                   </Text>
                 </View>
                 <View style={styles.detailWithIcon}>
-                  <AntDesign 
-                    name="iconfontdesktop" 
-                    size={16} 
-                    color={theme.colors.onSurfaceVariant} 
+                  <AntDesign
+                    name="iconfontdesktop"
+                    size={16}
+                    color={theme.colors.onSurfaceVariant}
                   />
                   <Text
                     style={[
@@ -366,11 +376,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
             style={[styles.halfCard, {backgroundColor: theme.colors.surface}]}>
             <Card.Content>
               <View style={styles.powerCardHeader}>
-                <AntDesign 
-                  name="iconfontdesktop" 
-                  size={24} 
-                  color="#FF9800" 
-                />
+                <AntDesign name="iconfontdesktop" size={24} color="#FF9800" />
                 <Text
                   style={[
                     styles.cardSubtitle,
@@ -386,10 +392,10 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
 
               <View style={styles.powerDetailsRow}>
                 <View style={styles.detailWithIcon}>
-                  <AntDesign 
-                    name="chart-line" 
-                    size={16} 
-                    color={theme.colors.onSurfaceVariant} 
+                  <AntDesign
+                    name="chart-line"
+                    size={16}
+                    color={theme.colors.onSurfaceVariant}
                   />
                   <Text
                     style={[
@@ -410,23 +416,28 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
           <Card.Content>
             <View style={styles.controlHeader}>
               <View style={styles.controlIcon}>
-                <AntDesign 
-                  name="setting" 
-                  size={24} 
-                  color="#FF9800" 
-                />
+                <AntDesign name="setting" size={24} color="#FF9800" />
               </View>
               <Text
                 style={[styles.sectionTitle, {color: theme.colors.onSurface}]}>
                 {t('device.control', {defaultValue: '设备控制'})}
               </Text>
-              <AntDesign name="right" size={20} color={theme.colors.onSurfaceVariant} />
+              <AntDesign
+                name="right"
+                size={20}
+                color={theme.colors.onSurfaceVariant}
+              />
             </View>
 
             <View style={styles.signalStatus}>
               <AntDesign name="wifi" size={20} color="#4CAF50" />
-              <Text style={[styles.signalText, { color: theme.colors.onSurfaceVariant }]}>
-                4G {t('device.signalStrength', { defaultValue: '信号强度' })}: {deviceData.control.signalStrength}
+              <Text
+                style={[
+                  styles.signalText,
+                  {color: theme.colors.onSurfaceVariant},
+                ]}>
+                4G {t('device.signalStrength', {defaultValue: '信号强度'})}:{' '}
+                {deviceData.control.signalStrength}
               </Text>
             </View>
           </Card.Content>
@@ -436,13 +447,10 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
         <Card style={[styles.card, {backgroundColor: theme.colors.surface}]}>
           <Card.Content>
             <View style={styles.environmentHeader}>
-              <AntDesign 
-                name="dashboard" 
-                size={24} 
-                color="#FF9800" 
-              />
-              <Text style={[styles.sectionTitle, { color: theme.colors.onSurface }]}>
-                {t('device.environment', { defaultValue: '环境参数' })}
+              <AntDesign name="dashboard" size={24} color="#FF9800" />
+              <Text
+                style={[styles.sectionTitle, {color: theme.colors.onSurface}]}>
+                {t('device.environment', {defaultValue: '环境参数'})}
               </Text>
             </View>
 
@@ -505,13 +513,10 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
         <Card style={[styles.card, {backgroundColor: theme.colors.surface}]}>
           <Card.Content>
             <View style={styles.alertHeader}>
-              <AntDesign 
-                name="warning" 
-                size={24} 
-                color="#FF9800" 
-              />
-              <Text style={[styles.sectionTitle, { color: theme.colors.onSurface }]}>
-                {t('device.alerts', { defaultValue: '告警信息' })}
+              <AntDesign name="warning" size={24} color="#FF9800" />
+              <Text
+                style={[styles.sectionTitle, {color: theme.colors.onSurface}]}>
+                {t('device.alerts', {defaultValue: '告警信息'})}
               </Text>
             </View>
 
