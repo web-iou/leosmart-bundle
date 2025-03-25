@@ -355,7 +355,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
           <TextInput
             style={styles.input}
             mode="outlined"
-            label={t('login.username', { defaultValue: '账号' })}
+
             value={username}
             onChangeText={setUsername}
             placeholder={t('table.email', { defaultValue: '邮箱/用户名' })}
@@ -367,7 +367,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
           <TextInput
             style={styles.input}
             mode="outlined"
-            label={t('login.password', { defaultValue: '密码' })}
+           
             value={password}
             onChangeText={setPassword}
             secureTextEntry={!showPassword}
