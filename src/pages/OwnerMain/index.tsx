@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useCallback } from 'react';
 import { BottomNavigation, useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { useFocusEffect } from '@react-navigation/native';
@@ -11,32 +11,17 @@ import { ExtendedMD3Theme } from '@/theme';
 
 interface OwnerMainScreenProps {
   navigation: any;
+  route: any;
 }
 
-const OwnerMainScreen: React.FC<OwnerMainScreenProps> = ({ navigation }) => {
+const OwnerMainScreen: React.FC<OwnerMainScreenProps> = ({ navigation, route }) => {
   const { t } = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
   const [index, setIndex] = React.useState(0);
   const insets = useSafeAreaInsets();
   
-  // 确保在组件挂载时导航到设备选项卡
-  useEffect(() => {
-    // 将标签索引重置为设备选项卡（索引0）
-    setIndex(0);
-  }, []);
-  
-  // 监听屏幕获得焦点的事件，确保每次进入该页面时都显示设备页面
-  useFocusEffect(
-    React.useCallback(() => {
-      // 当屏幕获得焦点时，将标签索引重置为设备选项卡
-      setIndex(0);
-      return () => {
-        // 当屏幕失去焦点时的清理操作（如果需要）
-      };
-    }, [])
-  );
-
-  const [routes] = React.useState([
+  // 使用 useMemo 缓存路由配置
+  const routes = useMemo(() => [
     { 
       key: 'devices', 
       title: t('ownerMain.devices', { defaultValue: '设备' }),
@@ -55,37 +40,70 @@ const OwnerMainScreen: React.FC<OwnerMainScreenProps> = ({ navigation }) => {
       focusedIcon: 'user', 
       unfocusedIcon: 'user' 
     },
-  ]);
+  ], [t]);
 
-  const renderScene = BottomNavigation.SceneMap({
-    devices: () => <DevicePage navigation={navigation} />,
-    statistics: () => <StatisticsPage navigation={navigation} />,
-    profile: () => <ProfilePage navigation={navigation} />,
-  });
+  // 使用 useMemo 缓存场景映射
+  const renderScene = useMemo(() => 
+    BottomNavigation.SceneMap({
+      devices: () => <DevicePage navigation={navigation} route={route} />,
+      statistics: () => <StatisticsPage navigation={navigation} route={route} />,
+      profile: () => <ProfilePage navigation={navigation} route={route} />,
+    }),
+    [navigation, route]
+  );
 
-  const renderIcon = ({ route, focused, color }: { route: { focusedIcon: string, unfocusedIcon: string }, focused: boolean, color: string }) => {
-    // 根据选中状态显示不同的图标
+  // 使用 useCallback 缓存图标渲染函数
+  const renderIcon = useCallback(({ route, focused, color }: { 
+    route: { focusedIcon: string, unfocusedIcon: string }, 
+    focused: boolean, 
+    color: string 
+  }) => {
     const iconName = focused ? route.focusedIcon : route.unfocusedIcon;
     return <AntDesign name={iconName} size={24} color={color} />;
-  };
+  }, []);
+
+  // 使用 useCallback 缓存索引变化处理函数
+  const handleIndexChange = useCallback((newIndex: number) => {
+    setIndex(newIndex);
+  }, []);
+
+  // 确保在组件挂载时导航到设备选项卡
+  useEffect(() => {
+    setIndex(0);
+  }, []);
+  
+  // 监听屏幕获得焦点的事件
+  useFocusEffect(
+    useCallback(() => {
+      setIndex(0);
+    }, [])
+  );
+
+  // 使用 useMemo 缓存底部导航栏样式
+  const barStyle = useMemo(() => ({
+    backgroundColor: theme.colors.surface,
+    borderTopWidth: 1,
+    borderTopColor: theme.colors.outline + '30',
+    paddingBottom: insets.bottom,
+    height: 56 + insets.bottom,
+  }), [theme.colors.surface, theme.colors.outline, insets.bottom]);
 
   return (
     <BottomNavigation
       navigationState={{ index, routes }}
-      onIndexChange={setIndex}
+      onIndexChange={handleIndexChange}
       renderScene={renderScene}
       renderIcon={renderIcon}
-      barStyle={{
-        backgroundColor: theme.colors.surface,
-        borderTopWidth: 1,
-        borderTopColor: theme.colors.outline + '30', // 30 为透明度
-        paddingBottom: insets.bottom, // 添加底部安全区域边距
-        height: 56 + insets.bottom, // 调整高度以适应底部安全区域
-      }}
+      barStyle={barStyle}
       activeColor={theme.colors.primary}
       inactiveColor={theme.colors.onSurfaceVariant}
+      sceneAnimationEnabled={false} // 禁用场景切换动画
+      sceneAnimationType="shifting" // 使用 shifting 类型的动画
+      shifting={true} // 启用 shifting 模式
+      compact={true} // 使用紧凑模式
+      keyboardHidesNavigationBar={true} // 键盘弹出时隐藏导航栏
     />
   );
 };
 
-export default OwnerMainScreen; 
+export default React.memo(OwnerMainScreen); // 使用 React.memo 包装组件 

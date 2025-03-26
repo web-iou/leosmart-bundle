@@ -56,8 +56,7 @@ const initializeStorage = () => {
 };
 
 // 尝试初始化
-setTimeout(initializeStorage, 0);
-
+initializeStorage()
 // 存储访问对象
 export const storage = {
   // 等待存储准备好

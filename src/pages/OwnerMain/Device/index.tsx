@@ -1,71 +1,100 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
   RefreshControl,
+  ActivityIndicator,
+  Image,
 } from 'react-native';
 import {Text, Card, useTheme} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {ExtendedMD3Theme} from '@/theme';
 import SafeAreaLayout from '@/components/SafeAreaLayout';
-import NativeFlashLight from '../../../../specs/NativeFlashLight';
 import {useNativePopover} from '@/hooks/usePopover';
-import {useNavigation} from '@react-navigation/native';
-interface DevicePageProps {
-  navigation: any;
+import {
+  deviceApi,
+  InverterFirstPageDTO,
+  StationDTO,
+} from '@/services/api/deviceApi';
+import {CDN_Url} from '@/config/config';
+enum DeviceStatus {
+  '离线' = 0,
+  '运行中',
+  '告警',
 }
-
-const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
+const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
   const {t} = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
   const [refreshing, setRefreshing] = useState(false);
-  const {navigate} = useNavigation();
-  const {showPopover, anchorRef} = useNativePopover();
-  // 模拟设备数据 - 实际开发中会从API获取
-  const deviceData = {
-    name: 'Leo inverter',
-    status: {
-      running: true,
-      workingStatus: '正常工作中',
-      lastUpdate: '1分钟前',
-      runningTime: '168小时',
-      communicationStatus: '良好',
-    },
-    pvPower: {
-      total: 1200,
-      pv1: 400,
-      pv2: 400,
-      pv3: 400,
-      pv4: 400,
-    },
-    outputPower: {
-      power: 1200,
-      voltage: 220,
-      current: 5.5,
-    },
-    generation: {
-      today: 3.1,
-      total: 330,
-    },
-    control: {
-      signalStrength: '优',
-    },
-    environment: {
-      temperature: 28,
-      humidity: 65,
-      noise: 45,
-    },
-    alerts: [
-      {
-        message: '设备运行正常，无告警信息',
-        time: '12:30',
-      },
-    ],
-  };
+  const [showPopover, anchorRef] = useNativePopover();
+  const [show, devicesRef] = useNativePopover();
+  const [active, setActive] = useState(0);
+  const [deviceList, setDeviceList] = useState<StationDTO['equipments']>([]);
+  const [loading, setLoading] = useState(true);
+  const [deviceData, setDeviceData] = useState<InverterFirstPageDTO>();
+  useEffect(() => {
+    deviceApi.getStationEquipment(1).then(({data}) => {
+      setDeviceList(data.equipments);
+    });
+  }, []);
+  useEffect(() => {
+    const id = deviceList[active]?.id;
+    if (id) {
+      deviceApi.getInverterFirstPage(id).then(({data}) => {
+        console.log(data);
 
+        setDeviceData(data);
+        setLoading(false);
+      });
+    }
+  }, [active, deviceList]);
+  // 模拟设备数据 - 实际开发中会从API获取
+  // const deviceData = {
+  //   name: 'Leo inverter',
+  //   status: {
+  //     running: true,
+  //     workingStatus: '正常工作中',
+  //     lastUpdate: '1分钟前',
+  //     runningTime: '168小时',
+  //     communicationStatus: '良好',
+  //   },
+  //   pvPower: {
+  //     total: 1200,
+  //     pv1: 400,
+  //     pv2: 400,
+  //     pv3: 400,
+  //     pv4: 400,
+  //   },
+  //   outputPower: {
+  //     power: 1200,
+  //     voltage: 220,
+  //     current: 5.5,
+  //   },
+  //   generation: {
+  //     today: 3.1,
+  //     total: 330,
+  //   },
+  //   control: {
+  //     signalStrength: '优',
+  //   },
+  //   environment: {
+  //     temperature: 28,
+  //     humidity: 65,
+  //     noise: 45,
+  //   },
+  //   alerts: [
+  //     {
+  //       message: '设备运行正常，无告警信息',
+  //       time: '12:30',
+  //     },
+  //   ],
+  // };
+  // const deviceData = useMemo(() => {
+  //   return deviceList[active];
+  // }, [active, deviceList]);
   const onRefresh = () => {
     setRefreshing(true);
     // 这里应该调用API刷新设备数据
@@ -74,7 +103,13 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
       setRefreshing(false);
     }, 1000);
   };
-
+  if (loading) {
+    return (
+      <View className="flex-1 items-center justify-center">
+        <ActivityIndicator />
+      </View>
+    );
+  }
   return (
     <SafeAreaLayout>
       <ScrollView
@@ -84,21 +119,40 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
         }>
         {/* 设备标题 */}
         <View style={styles.header}>
-          <View style={styles.deviceTitleContainer}>
+          <TouchableOpacity
+            style={styles.deviceTitleContainer}
+            ref={devicesRef}
+            onPress={() => {
+              show(
+                deviceList.map(item => item.name),
+                [],
+              ).then(index => {
+                setActive(index!);
+              });
+            }}>
             <View style={styles.deviceIconCircle}>
               <AntDesign name="thunderbolt" size={24} color="#FFFFFF" />
             </View>
             <Text
               style={[styles.deviceName, {color: theme.colors.onBackground}]}>
-              {deviceData.name}
+              {deviceList[active]?.name}
             </Text>
-          </View>
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              showPopover(['扫一扫', 'SN序列号'], []).then(index => {
+              showPopover(
+                ['扫一扫', 'SN序列号'],
+                [
+                  AntDesign.getImageSourceSync('scan1', 24, '#fff').uri,
+                  AntDesign.getImageSourceSync('edit', 24, '#fff').uri,
+                ],
+              ).then(index => {
                 if (index === 0) {
-                  navigate({
-                    name: 'Scan',
+                  navigation.navigate('Scan');
+                } else {
+                  navigation.navigate({
+                    name: 'SNCode',
+                    params: {},
                   });
                 }
               });
@@ -125,20 +179,23 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                   style={[
                     styles.statusDot,
                     {
-                      backgroundColor: deviceData.status.running
-                        ? '#4CAF50'
-                        : '#F44336',
+                      backgroundColor:
+                        deviceData?.state.state === 1 ? '#4CAF50' : '#F44336',
                     },
                   ]}
                 />
                 <Text
                   style={[
                     styles.runningStatusText,
-                    {color: deviceData.status.running ? '#4CAF50' : '#F44336'},
+                    {
+                      color:
+                        deviceData?.state.state === 1 ? '#4CAF50' : '#F44336',
+                    },
                   ]}>
-                  {deviceData.status.running
+                  {DeviceStatus[deviceData?.state.state!]}
+                  {/* {deviceData?.status === 1
                     ? t('device.running', {defaultValue: '运行中'})
-                    : t('device.stopped', {defaultValue: '已停止'})}
+                    : t('device.stopped', {defaultValue: '已停止'})} */}
                 </Text>
               </View>
             </View>
@@ -147,6 +204,9 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
               <View style={styles.deviceImageContainer}>
                 <View style={styles.deviceImage}>
                   {/* 这里放置设备图片，但在示例中使用颜色块替代 */}
+                  <Image
+                    className="flex-1"
+                    source={{uri: CDN_Url + deviceList[active].image}}></Image>
                 </View>
               </View>
 
@@ -165,7 +225,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                         styles.infoValue,
                         {color: theme.colors.onSurface},
                       ]}>
-                      {deviceData.status.lastUpdate}
+                      {deviceData?.state.lastTime}
                     </Text>
                   </View>
                 </View>
@@ -184,10 +244,10 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                         styles.infoValue,
                         {color: theme.colors.onSurface},
                       ]}>
-                      {deviceData.status.runningTime}
+                      {/* {deviceData.status.runningTime} */}
                     </Text>
                   </View>
-                  <View style={styles.infoItem}>
+                  {/* <View style={styles.infoItem}>
                     <Text
                       style={[
                         styles.infoLabel,
@@ -198,13 +258,12 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                     <Text style={[styles.infoValue, {color: '#4CAF50'}]}>
                       {deviceData.status.communicationStatus}
                     </Text>
-                  </View>
+                  </View> */}
                 </View>
               </View>
             </View>
           </Card.Content>
         </Card>
-
         {/* 光伏功率 */}
         <Card style={[styles.card, {backgroundColor: theme.colors.surface}]}>
           <Card.Content>
@@ -221,7 +280,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                   </Text>
                 </View>
                 <Text style={[styles.totalPower, {color: '#FF9800'}]}>
-                  {deviceData.pvPower.total}W
+                  {deviceData?.pvPower.powerTotal}W
                 </Text>
               </View>
 
@@ -244,7 +303,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                         styles.pvValue,
                         {color: theme.colors.onSurfaceVariant},
                       ]}>
-                      {deviceData.pvPower.pv1}W
+                      {deviceData?.pvPower.powerPv1}W
                     </Text>
                   </View>
                   <View
@@ -264,7 +323,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                         styles.pvValue,
                         {color: theme.colors.onSurfaceVariant},
                       ]}>
-                      {deviceData.pvPower.pv2}W
+                      {deviceData?.pvPower.powerPv2}W
                     </Text>
                   </View>
                 </View>
@@ -286,7 +345,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                         styles.pvValue,
                         {color: theme.colors.onSurfaceVariant},
                       ]}>
-                      {deviceData.pvPower.pv3}W
+                      {deviceData?.pvPower.powerPv3}W
                     </Text>
                   </View>
                   <View
@@ -306,7 +365,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                         styles.pvValue,
                         {color: theme.colors.onSurfaceVariant},
                       ]}>
-                      {deviceData.pvPower.pv4}W
+                      {deviceData?.pvPower.powerPv4}W
                     </Text>
                   </View>
                 </View>
@@ -314,7 +373,6 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
             </View>
           </Card.Content>
         </Card>
-
         {/* 输出功率和今日发电量 */}
         <View style={styles.rowContainer}>
           {/* 输出功率 */}
@@ -333,7 +391,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
               </View>
 
               <Text style={[styles.powerValue, {color: '#FF9800'}]}>
-                {deviceData.outputPower.power}W
+                {deviceData?.out.powerTotal}W
               </Text>
 
               <View style={styles.powerDetailsRow}>
@@ -349,7 +407,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                       {color: theme.colors.onSurfaceVariant},
                     ]}>
                     {t('device.voltage', {defaultValue: '电压'})}:{' '}
-                    {deviceData.outputPower.voltage}V
+                    {deviceData?.out.voltage}V
                   </Text>
                 </View>
                 <View style={styles.detailWithIcon}>
@@ -364,7 +422,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                       {color: theme.colors.onSurfaceVariant},
                     ]}>
                     {t('device.current', {defaultValue: '电流'})}:{' '}
-                    {deviceData.outputPower.current}A
+                    {deviceData?.out.current}A
                   </Text>
                 </View>
               </View>
@@ -387,13 +445,13 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
               </View>
 
               <Text style={[styles.powerValue, {color: '#FF9800'}]}>
-                {deviceData.generation.today}kWh
+                {deviceData?.powerGen.genDay}kWh
               </Text>
 
               <View style={styles.powerDetailsRow}>
                 <View style={styles.detailWithIcon}>
                   <AntDesign
-                    name="chart-line"
+                    name="barschart"
                     size={16}
                     color={theme.colors.onSurfaceVariant}
                   />
@@ -403,14 +461,16 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                       {color: theme.colors.onSurfaceVariant},
                     ]}>
                     {t('device.totalGeneration', {defaultValue: '累计'})}:{' '}
-                    {deviceData.generation.total}kWh
+                    {deviceData?.powerGen.genTotal}kWh
                   </Text>
+                </View>
+                <View style={styles.detailWithIcon}>
+                  <Text>{''}</Text>
                 </View>
               </View>
             </Card.Content>
           </Card>
         </View>
-
         {/* 设备控制 */}
         <Card style={[styles.card, {backgroundColor: theme.colors.surface}]}>
           <Card.Content>
@@ -437,14 +497,13 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
                   {color: theme.colors.onSurfaceVariant},
                 ]}>
                 4G {t('device.signalStrength', {defaultValue: '信号强度'})}:{' '}
-                {deviceData.control.signalStrength}
+                {'优'}
               </Text>
             </View>
           </Card.Content>
         </Card>
-
         {/* 环境参数 */}
-        <Card style={[styles.card, {backgroundColor: theme.colors.surface}]}>
+        {/* <Card style={[styles.card, {backgroundColor: theme.colors.surface}]}>
           <Card.Content>
             <View style={styles.environmentHeader}>
               <AntDesign name="dashboard" size={24} color="#FF9800" />
@@ -507,8 +566,7 @@ const DevicePage: React.FC<DevicePageProps> = ({navigation: _navigation}) => {
               </View>
             </View>
           </Card.Content>
-        </Card>
-
+        </Card> */}
         {/* 告警信息 */}
         <Card style={[styles.card, {backgroundColor: theme.colors.surface}]}>
           <Card.Content>
@@ -624,7 +682,7 @@ const styles = StyleSheet.create({
   deviceImage: {
     width: 80,
     height: 120,
-    backgroundColor: '#FF9800',
+    // backgroundColor: '#FF9800',
     borderRadius: 8,
   },
   deviceInfoContainer: {
@@ -690,6 +748,7 @@ const styles = StyleSheet.create({
     width: '48%',
     borderRadius: 12,
     elevation: 1,
+    minHeight: 100,
   },
   powerCardHeader: {
     flexDirection: 'row',
@@ -793,5 +852,4 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
-
 export default DevicePage;

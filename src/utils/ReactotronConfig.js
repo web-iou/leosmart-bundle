@@ -5,20 +5,11 @@ import mmkvPlugin from 'reactotron-react-native-mmkv';
 import { storage } from './storage';  // 导入您的MMKV存储实例
 
 // 获取开发机器的IP地址
-let scriptHostname;
-if (__DEV__) {
-  const scriptURL = NativeModules.SourceCode?.scriptURL;
-  scriptHostname = scriptURL ? scriptURL.split('://')[1].split(':')[0] : 'localhost';
-}
+
 
 // 创建Reactotron实例
 const reactotron = Reactotron
-  .configure({
-    name: 'LeoSmart App',
-    host: scriptHostname || 'localhost', // 默认连接到localhost
-    // 可选: 指定端口，默认是9090
-    port: 9090,
-  })
+  .configure()
   .useReactNative({
     networking: {
       // 移除ignoreUrls规则，以便能捕获所有网络请求

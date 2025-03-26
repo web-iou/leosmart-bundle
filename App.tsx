@@ -27,6 +27,7 @@ import {
   fetchSupportedLanguages,
   fetchAllTranslationsAsync,
 } from './src/store/slices/languageSlice';
+import Toast from "@/components/Toast";
 
 // Reactotron类型声明扩展
 declare global {
@@ -104,6 +105,7 @@ const ThemedApp = () => {
             },
           ]}>
           <AppNavigator />
+          <Toast />
         </View>
       </GestureHandlerRootView>
     </PaperProvider>

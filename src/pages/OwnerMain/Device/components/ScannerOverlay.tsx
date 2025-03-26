@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {View, Dimensions, StyleSheet, Text} from 'react-native';
 import {Canvas, Rect, LinearGradient, vec} from '@shopify/react-native-skia';
 import {
@@ -15,7 +15,7 @@ import {
 } from 'react-native-vision-camera';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useThrottleFn} from 'ahooks';
-import NativeFlashLight from '~/specs/NativeFlashLight';
+import NativeRinging from '~/specs/NativeRinging';
 const {width} = Dimensions.get('window');
 const scanBoxSize = width * 0.75; // 扫描框大小
 
@@ -23,19 +23,29 @@ export default () => {
   const isFocused = useIsFocused();
   const device = useCameraDevice('back');
   const isActive = isFocused;
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<ReactNavigation.Navigation<'SNCode'>['navigation']>();
+
+  // 使用 useCallback 包装节流函数，避免重复创建
+  const handleCodeScanned = useThrottleFn(
+    (codes: any[]) => {
+      if (codes.length > 0) {
+        navigation.push('SNCode', {code: codes[0].value});
+        NativeRinging.ringing(1057);
+      }
+    },
+    {
+      leading: false,
+      wait: 1000,
+      trailing: false, // 禁用尾部执行
+    },
+  ).run;
+
   const codeScanner = useCodeScanner({
-    codeTypes: ['ean-13', 'code-128'],
-    onCodeScanned: useThrottleFn(
-      codes => {
-        navigation.push('AddDeviceBySNCode', {code: codes[0].value});
-        NativeFlashLight.notice();
-      },
-      {
-        wait: 1000,
-      },
-    ).run,
+    codeTypes: ['ean-13', 'code-128','qr'],
+    onCodeScanned: handleCodeScanned,
   });
+
   const yOffset = useSharedValue(0); // 扫描光条的 Y 轴偏移量
   // 扫描光条动画
   useEffect(() => {
@@ -44,7 +54,7 @@ export default () => {
       -1, // 无限循环
       false, // 不反向
     );
-  }, []);
+  }, [yOffset]);
 
   // 动态计算光条的 Y 位置
   const animatedYOffset = useDerivedValue(() => yOffset.value);

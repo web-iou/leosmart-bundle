@@ -13,14 +13,14 @@
     "lib": [
       "es2017"
     ],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "strict": true,
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ],
       "~/*": [
         "./*"
@@ -29,7 +29,8 @@
   },
   "include": [
     "src/**/*",
-    "nativewind-env.d.ts"
+    "nativewind-env.d.ts",
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules",

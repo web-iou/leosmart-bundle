@@ -9,7 +9,7 @@ export const VITE_VERIFY_ENABLE = true;
 export const VITE_OAUTH2_MOBILE_CLIENT = 'app:app';
 export const VITE_PWD_ENC_KEY = 'thanks,tsc2cloud';
 export const VITE_CLIENT_RSC = 'opt';
-
+export const CDN_Url="http://114.55.0.234/api";
 // 应用设置
 export const APP_SETTINGS = {
   // 应用版本

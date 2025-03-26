@@ -67,10 +67,11 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigation }) => {
 
   // 导航到皮肤设置
   const goToThemeSettings = () => {
-    Alert.alert(
-      t('profile.featureNotAvailable', { defaultValue: '功能未开放' }),
-      t('profile.comingSoon', { defaultValue: '此功能即将上线，敬请期待！' })
-    );
+    // Alert.alert(
+    //   t('profile.featureNotAvailable', { defaultValue: '功能未开放' }),
+    //   t('profile.comingSoon', { defaultValue: '此功能即将上线，敬请期待！' })
+    // );
+    
   };
 
   // 导航到关于页面

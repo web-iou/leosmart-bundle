@@ -22,6 +22,7 @@ RCT_EXPORT_MODULE()
     
     return root;
 }
+//根据unicode解析iconfont中的图标
 -(UIImage *) imageForIconName: (NSDictionary *) icon {
   
   NSString *glyph = [icon objectForKey: @"glyph"];
@@ -49,9 +50,10 @@ RCT_EXPORT_MODULE()
        }
       NSMutableArray *menuIcons = [[NSMutableArray alloc] init];
   
-      for (NSDictionary *icon in icons) {
-        UIImage *iconImage = [self imageForIconName:icon];
-        [menuIcons addObject:iconImage];
+      for (NSString *icon in icons) {
+        UIImage *image = [UIImage imageWithContentsOfFile:icon];
+//        UIImage *iconImage = [self imageForIconName:icon];
+        [menuIcons addObject:image];
           }
        [FTPopOverMenu showForSender:anchorView
                        withMenuArray:menuItems

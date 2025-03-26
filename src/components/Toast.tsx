@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store';
 import { hideToast } from '../store/slices/toastSlice';
 
-const Toast: React.FC = () => {
+const Toast = () => {
   const dispatch = useDispatch();
   const { visible, message, type, duration, position } = useSelector(
     (state: RootState) => state.toast
   );
 
-  const opacity = new Animated.Value(0);
+  const opacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     if (visible) {

@@ -35,7 +35,5 @@ RCT_EXPORT_MODULE()
      }
    }
 }
-- (void)notice{
-  AudioServicesPlaySystemSound(1057);
-}
+
 @end

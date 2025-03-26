@@ -3,6 +3,8 @@ import { VITE_API_BASE_URL, VITE_API_URL, VITE_OAUTH2_MOBILE_CLIENT } from '../c
 import { storage } from '../utils/storage';
 import { Platform, Linking } from 'react-native';
 import RNFS from 'react-native-fs';
+import store from '@/store';
+import { showToast } from '@/store/slices/toastSlice';
 var Buffer = require('buffer/').Buffer; // 添加这行
 // 定义响应数据的接口
 export interface ApiResponse<T = any> {
@@ -77,7 +79,10 @@ class Http {
     this.instance = axios.create({
       baseURL: this.baseURL,
       timeout: this.timeout,
-      headers: this.defaultHeaders
+      headers: this.defaultHeaders,
+      validateStatus(status){
+        return status>=200 && status<500
+      }
     });
 
     // 设置请求拦截器
@@ -138,8 +143,32 @@ class Http {
   private setupResponseInterceptor(): void {
     this.instance.interceptors.response.use(
       (response: AxiosResponse) => {
-        // 直接返回响应数据
-        return response.data;
+        const { data } = response;
+        
+        // 检查业务状态码
+        if (data.code === 1) {
+          // 业务处理失败
+          const errorMessage = data.msg || '操作失败';
+          // 显示错误提示
+          if (typeof __DEV__ !== 'undefined' && __DEV__) {
+            console.error('Business Error:', errorMessage);
+          }
+          // 使用 dispatch 触发 showToast action
+          store.dispatch(showToast({
+            message: errorMessage,
+            type: 'error',
+            duration: 3000
+          }));
+          return Promise.reject({
+            code: 1,
+            message: errorMessage,
+            success: false,
+            data: data.data
+          } as ApiErrorResponse);
+        }
+        
+        // 业务处理成功
+        return data;
       },
       async (error: AxiosError) => {
         const options = error.config as RequestOptions;
@@ -151,10 +180,19 @@ class Http {
 
         // 处理网络错误
         if (!error.response) {
-          console.error('Network Error:', error.message);
+          const errorMessage = '网络错误，请检查网络连接';
+          if (typeof __DEV__ !== 'undefined' && __DEV__) {
+            console.error('Network Error:', error.message);
+          }
+          // 使用 store 的 showToast 显示错误消息
+          store.dispatch(showToast({
+            message: errorMessage,
+            type: 'error',
+            duration: 3000
+          }));
           return Promise.reject({
             code: -1,
-            message: 'Network error, please check your connection',
+            message: errorMessage,
             success: false,
             data: null
           } as ApiErrorResponse);
@@ -166,8 +204,16 @@ class Http {
 
         // 处理 401 未授权错误，可能需要重新登录
         if (status === 401) {
-          console.error('Unauthorized, please login again');
-          // 可以在这里触发登出或重新登录的操作
+          const errorMessage = '登录已过期，请重新登录';
+          if (typeof __DEV__ !== 'undefined' && __DEV__) {
+            console.error('Unauthorized, please login again');
+          }
+          // 使用 store 的 showToast 显示错误消息
+          store.dispatch(showToast({
+            message: errorMessage,
+            type: 'error',
+            duration: 3000
+          }));
           try {
             await storage.deleteAsync('auth_token');
           } catch (e) {
@@ -179,23 +225,57 @@ class Http {
 
         // 处理 403 禁止访问错误
         if (status === 403) {
-          console.error('Forbidden access');
+          const errorMessage = '没有权限访问';
+          if (typeof __DEV__ !== 'undefined' && __DEV__) {
+            console.error('Forbidden access');
+          }
+          // 使用 store 的 showToast 显示错误消息
+          store.dispatch(showToast({
+            message: errorMessage,
+            type: 'error',
+            duration: 3000
+          }));
         }
 
         // 处理 404 资源不存在错误
         if (status === 404) {
-          console.error('Resource not found');
+          const errorMessage = '请求的资源不存在';
+          if (typeof __DEV__ !== 'undefined' && __DEV__) {
+            console.error('Resource not found');
+          }
+          // 使用 store 的 showToast 显示错误消息
+          store.dispatch(showToast({
+            message: errorMessage,
+            type: 'error',
+            duration: 3000
+          }));
         }
 
         // 处理 500 服务器错误
         if (status >= 500) {
-          console.error('Server error');
+          const errorMessage = '服务器错误，请稍后重试';
+          if (typeof __DEV__ !== 'undefined' && __DEV__) {
+            console.error('Server error');
+          }
+          // 使用 store 的 showToast 显示错误消息
+          store.dispatch(showToast({
+            message: errorMessage,
+            type: 'error',
+            duration: 3000
+          }));
         }
 
         // 返回格式化后的错误对象
+        const errorMessage = errorData?.message || '请求失败';
+        // 使用 store 的 showToast 显示错误消息
+        store.dispatch(showToast({
+          message: errorMessage,
+          type: 'error',
+          duration: 3000
+        }));
         return Promise.reject({
           code: status,
-          message: errorData?.message || 'Request failed',
+          message: errorMessage,
           success: false,
           data: errorData
         } as ApiErrorResponse);

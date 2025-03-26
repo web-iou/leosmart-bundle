@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  NativeStackScreenProps,
+  createNativeStackNavigator,
+} from '@react-navigation/native-stack';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import {storage} from '@/utils/storage';
 
@@ -26,8 +29,16 @@ export type RootStackParamList = {
   ResetPassword: undefined;
   Register: undefined;
   Scan: undefined;
+  SNCode: {
+    code?: string;
+  };
 };
-
+declare global {
+  namespace ReactNavigation {
+    type Navigation<T extends keyof RootStackParamList> =
+      NativeStackScreenProps<RootStackParamList, T>;
+  }
+}
 // 创建路由栈
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -112,7 +123,18 @@ const AppNavigator: React.FC = () => {
           name="Scan"
           component={
             require('../pages/OwnerMain/Device/components/addDevice').ScanCode
-          }></Stack.Screen>
+            }
+          />
+          <Stack.Screen
+            name="SNCode"
+            options={{
+              headerShown: true,
+              headerBackButtonDisplayMode: 'minimal',
+            }}
+            component={
+              require('../pages/OwnerMain/Device/components/addDevice').SNCode
+            }
+          />
         {/* 业主主页 */}
         <Stack.Screen name="OwnerMain" component={OwnerMainScreen} />
 

@@ -44,5 +44,5 @@ export const useNativePopover = () => {
     [],
   );
 
-  return {anchorRef, showPopover};
+  return [showPopover,anchorRef] as const;
 };
