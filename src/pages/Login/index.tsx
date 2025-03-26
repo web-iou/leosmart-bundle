@@ -254,7 +254,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
   // 处理隐私政策点击
   const handlePrivacyPress = () => {
     const url = `http://114.55.0.234/private/privacy_${i18n.language}.html`;
-    
+
     navigation?.navigate('WebView', {
       title: t('password.privacyPolicy', { defaultValue: '隐私政策' }),
       url
@@ -386,13 +386,13 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
                 onPress={() => setRememberMe(!rememberMe)}
                 color={paperTheme.colors.primary}
               />
-              <Text style={{ color: paperTheme.colors.onSurface, marginLeft: 8 }}>
+              <Text style={{ color: paperTheme.colors.onSurface, marginLeft: 8, fontSize: 12, lineHeight: 14 }}>
                 {t('login.rememberMe', { defaultValue: '记住账号' })}
               </Text>
             </View>
             
             <TouchableOpacity onPress={() => navigation?.navigate('ResetPassword')}>
-              <Text style={{ color: paperTheme.colors.forgotPasswordColor }}>
+              <Text style={{ color: paperTheme.colors.forgotPasswordColor, fontSize: 12, lineHeight: 14 }}>
                 {t('login.forgotPassword', { defaultValue: '忘记密码' })}
               </Text>
             </TouchableOpacity>
@@ -405,17 +405,17 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
               onPress={() => setAgreeToTerms(!agreeToTerms)}
               color={paperTheme.colors.primary}
             />
-            <Text style={{ color: paperTheme.colors.termsTextColor, marginLeft: 8, fontSize: 13, flex: 1 }}>
+            <Text style={{ color: paperTheme.colors.termsTextColor, marginLeft: 8, fontSize: 12, flex: 1, lineHeight: 14 }}>
               {t('login.agreeTerms', { defaultValue: '我已阅读并同意' })}{' '}
               <Text 
-                style={{ color: paperTheme.colors.termsLinkColor, fontWeight: '500' }}
+                style={{ color: paperTheme.colors.termsLinkColor, fontWeight: '500', fontSize: 12, lineHeight: 14 }}
                 onPress={handleTermsPress}
               >
                 {t('login.termsOfService', { defaultValue: '服务条款' })}{' '}
               </Text>
               {t('common.and', { defaultValue: '和' })}{' '}
               <Text 
-                style={{ color: paperTheme.colors.termsLinkColor, fontWeight: '500' }}
+                style={{ color: paperTheme.colors.termsLinkColor, fontWeight: '500', fontSize: 12, lineHeight: 14 }}
                 onPress={handlePrivacyPress}
               >
                 {t('password.privacyPolicy', { defaultValue: '隐私政策' })}
@@ -431,7 +431,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
                 backgroundColor: loading || !username || !password || !agreeToTerms 
                   ? paperTheme.colors.buttonPrimary + '80' 
                   : paperTheme.colors.buttonPrimary,
-                borderRadius: 24
+                borderRadius: 20
               }
             ]}
             onPress={handleLogin}
@@ -583,12 +583,12 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   logoText: {
-    fontSize: 36,
+    fontSize: 32,
     fontWeight: 'bold',
     marginBottom: 16,
   },
   welcomeText: {
-    fontSize: 18,
+    fontSize: 16,
     textAlign: 'center',
     marginBottom: 8,
   },
@@ -611,18 +611,18 @@ const styles = StyleSheet.create({
   },
   errorText: {
     flex: 1,
-    fontSize: 14,
+    fontSize: 13,
   },
   input: {
     marginBottom: 16,
-    height: 48,
+    height: 40,
   },
   rememberForgotContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 8,
-    marginBottom: 16,
+    marginTop: 2,
+    marginBottom: 10,
   },
   checkboxContainer: {
     flexDirection: 'row',
@@ -631,11 +631,11 @@ const styles = StyleSheet.create({
   termsContainer: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 24,
+    marginBottom: 16,
   },
   loginButton: {
-    height: 48,
-    borderRadius: 24,
+    height: 40,
+    borderRadius: 20,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -643,7 +643,7 @@ const styles = StyleSheet.create({
   },
   loginButtonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '600',
   },
   otherLoginContainer: {

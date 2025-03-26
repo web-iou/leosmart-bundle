@@ -318,7 +318,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                 <Text style={{ 
                   color: theme.dark ? '#FF6B6B' : '#D32F2F', 
                   fontSize: 14,
-                  fontWeight: '500'
+                  fontWeight: '500',
+                  lineHeight: 16
                 }}>
                   {errorMessage}
                 </Text>
@@ -349,8 +350,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                     styles.input, 
                     { 
                       backgroundColor: theme.colors.inputBackground,
-                      height: 48,
-                      borderRadius: 24 
+                      height: 40,
+                      borderRadius: 20 
                     }
                   ]}
                   mode="outlined"
@@ -359,7 +360,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                   onChangeText={setEmail}
                   keyboardType="email-address"
                   autoCapitalize="none"
-                  outlineStyle={{ borderRadius: 24 }}
+                  outlineStyle={{ borderRadius: 20 }}
                 />
               </View>
             </View>
@@ -382,9 +383,9 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                       styles.input, 
                       { 
                         backgroundColor: theme.colors.inputBackground,
-                        height: 48,
-                        borderTopLeftRadius: 24,
-                        borderBottomLeftRadius: 24,
+                        height: 40,
+                        borderTopLeftRadius: 20,
+                        borderBottomLeftRadius: 20,
                         borderTopRightRadius: 0,
                         borderBottomRightRadius: 0,
                         flex: 1,
@@ -396,8 +397,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                     onChangeText={setVerificationCode}
                     keyboardType="number-pad"
                     outlineStyle={{ 
-                      borderTopLeftRadius: 24,
-                      borderBottomLeftRadius: 24,
+                      borderTopLeftRadius: 20,
+                      borderBottomLeftRadius: 20,
                       borderTopRightRadius: 0,
                       borderBottomRightRadius: 0
                     }}
@@ -441,8 +442,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                     styles.input, 
                     { 
                       backgroundColor: theme.colors.inputBackground,
-                      height: 48,
-                      borderRadius: 24 
+                      height: 40,
+                      borderRadius: 20 
                     }
                   ]}
                   mode="outlined"
@@ -450,7 +451,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                   value={password}
                   onChangeText={setPassword}
                   secureTextEntry={!showPassword}
-                  outlineStyle={{ borderRadius: 24 }}
+                  outlineStyle={{ borderRadius: 20 }}
                   right={
                     <TextInput.Icon 
                       icon={showPassword ? "eye" : "eye-off"} 
@@ -479,8 +480,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                     styles.input, 
                     { 
                       backgroundColor: theme.colors.inputBackground,
-                      height: 48,
-                      borderRadius: 24 
+                      height: 40,
+                      borderRadius: 20 
                     }
                   ]}
                   mode="outlined"
@@ -488,7 +489,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                   value={confirmPassword}
                   onChangeText={setConfirmPassword}
                   secureTextEntry={!showConfirmPassword}
-                  outlineStyle={{ borderRadius: 24 }}
+                  outlineStyle={{ borderRadius: 20 }}
                   right={
                     <TextInput.Icon 
                       icon={showConfirmPassword ? "eye" : "eye-off"} 
@@ -519,15 +520,15 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                         styles.input, 
                         { 
                           backgroundColor: theme.colors.inputBackground,
-                          height: 48,
-                          borderRadius: 24 
+                          height: 40,
+                          borderRadius: 20 
                         }
                       ]}
                       mode="outlined"
                       placeholder={t('register.enterCompanyName', { defaultValue: '请输入公司名称' })}
                       value={companyName}
                       onChangeText={setCompanyName}
-                      outlineStyle={{ borderRadius: 24 }}
+                      outlineStyle={{ borderRadius: 20 }}
                     />
                   </View>
                 </View>
@@ -548,15 +549,15 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                         styles.input, 
                         { 
                           backgroundColor: theme.colors.inputBackground,
-                          height: 48,
-                          borderRadius: 24 
+                          height: 40,
+                          borderRadius: 20 
                         }
                       ]}
                       mode="outlined"
                       placeholder={t('register.enterParentCode', { defaultValue: '请输入' })}
                       value={parentCode}
                       onChangeText={setParentCode}
-                      outlineStyle={{ borderRadius: 24 }}
+                      outlineStyle={{ borderRadius: 20 }}
                     />
                   </View>
                 </View>
@@ -626,9 +627,10 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   sectionTitle: {
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: '600',
-    marginBottom: 16,
+    marginBottom: 12,
+    lineHeight: 18,
   },
   roleContainer: {
     marginBottom: 20,
@@ -647,17 +649,18 @@ const styles = StyleSheet.create({
     top: 14,
   },
   roleTitle: {
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: '600',
-    marginBottom: 6,
+    marginBottom: 2,
+    lineHeight: 18,
   },
   roleDescription: {
-    fontSize: 14,
-    lineHeight: 20,
+    fontSize: 13,
+    lineHeight: 15,
   },
   nextButton: {
-    height: 50,
-    borderRadius: 25,
+    height: 40,
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
@@ -670,19 +673,21 @@ const styles = StyleSheet.create({
   nextButtonText: {
     color: '#FFFFFF',
     fontWeight: '600',
-    fontSize: 16,
+    fontSize: 15,
+    lineHeight: 16,
   },
   sectionHeader: {
     marginBottom: 12,
     marginTop: 6,
   },
   inputGroup: {
-    marginBottom: 14,
+    marginBottom: 10,
   },
   label: {
-    marginBottom: 6,
-    fontSize: 15,
+    marginBottom: 4,
+    fontSize: 14,
     fontWeight: '500',
+    lineHeight: 16,
   },
   inputContainer: {
     position: 'relative',
@@ -701,12 +706,12 @@ const styles = StyleSheet.create({
   verificationCodeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 48,
+    height: 40,
   },
   codeButton: {
-    height: 48,
-    borderTopRightRadius: 24,
-    borderBottomRightRadius: 24,
+    height: 40,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
     paddingHorizontal: 16,
     justifyContent: 'center',
     alignItems: 'center',
@@ -715,11 +720,12 @@ const styles = StyleSheet.create({
   codeButtonText: {
     color: '#FFFFFF',
     fontWeight: '600',
-    fontSize: 14,
+    fontSize: 13,
+    lineHeight: 14,
   },
   registerButton: {
-    height: 50,
-    borderRadius: 25,
+    height: 40,
+    borderRadius: 20,
     marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -733,7 +739,8 @@ const styles = StyleSheet.create({
   registerButtonText: {
     color: '#FFFFFF',
     fontWeight: '600',
-    fontSize: 16,
+    fontSize: 15,
+    lineHeight: 16,
   },
   successContainer: {
     flex: 1,
@@ -745,19 +752,21 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   successTitle: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 14,
+    marginBottom: 10,
+    lineHeight: 22,
   },
   successText: {
-    fontSize: 15,
+    fontSize: 14,
     textAlign: 'center',
-    marginBottom: 32,
+    marginBottom: 24,
+    lineHeight: 16,
   },
   loginButton: {
-    height: 50,
-    borderRadius: 25,
+    height: 40,
+    borderRadius: 20,
     paddingHorizontal: 28,
     justifyContent: 'center',
     alignItems: 'center',
@@ -770,7 +779,8 @@ const styles = StyleSheet.create({
   loginButtonText: {
     color: '#FFFFFF',
     fontWeight: '600',
-    fontSize: 16,
+    fontSize: 15,
+    lineHeight: 16,
   },
 });
 

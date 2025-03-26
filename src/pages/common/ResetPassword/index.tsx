@@ -162,7 +162,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
             <Text style={{ 
               color: theme.dark ? '#FF6B6B' : '#D32F2F', 
               fontSize: 14,
-              fontWeight: '500'
+              fontWeight: '500',
+              lineHeight: 16
             }}>
               {errorMessage}
             </Text>
@@ -186,8 +187,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
                 styles.input, 
                 { 
                   backgroundColor: theme.colors.inputBackground,
-                  height: 48,
-                  borderRadius: 24 
+                  height: 40,
+                  borderRadius: 20 
                 }
               ]}
               mode="outlined"
@@ -196,7 +197,7 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
               onChangeText={setEmail}
               keyboardType="email-address"
               autoCapitalize="none"
-              outlineStyle={{ borderRadius: 24 }}
+              outlineStyle={{ borderRadius: 20 }}
             />
           </View>
         </View>
@@ -219,9 +220,9 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
                   styles.input, 
                   { 
                     backgroundColor: theme.colors.inputBackground,
-                    height: 48,
-                    borderTopLeftRadius: 24,
-                    borderBottomLeftRadius: 24,
+                    height: 40,
+                    borderTopLeftRadius: 20,
+                    borderBottomLeftRadius: 20,
                     borderTopRightRadius: 0,
                     borderBottomRightRadius: 0,
                     flex: 1,
@@ -233,8 +234,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
                 onChangeText={setVerificationCode}
                 keyboardType="number-pad"
                 outlineStyle={{ 
-                  borderTopLeftRadius: 24,
-                  borderBottomLeftRadius: 24,
+                  borderTopLeftRadius: 20,
+                  borderBottomLeftRadius: 20,
                   borderTopRightRadius: 0,
                   borderBottomRightRadius: 0
                 }}
@@ -278,8 +279,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
                 styles.input, 
                 { 
                   backgroundColor: theme.colors.inputBackground,
-                  height: 48,
-                  borderRadius: 24 
+                  height: 40,
+                  borderRadius: 20 
                 }
               ]}
               mode="outlined"
@@ -287,7 +288,7 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
               value={newPassword}
               onChangeText={setNewPassword}
               secureTextEntry={!showNewPassword}
-              outlineStyle={{ borderRadius: 24 }}
+              outlineStyle={{ borderRadius: 20 }}
               right={
                 <TextInput.Icon 
                   icon={showNewPassword ? "eye" : "eye-off"} 
@@ -316,8 +317,8 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
                 styles.input, 
                 { 
                   backgroundColor: theme.colors.inputBackground,
-                  height: 48,
-                  borderRadius: 24 
+                  height: 40,
+                  borderRadius: 20 
                 }
               ]}
               mode="outlined"
@@ -325,7 +326,7 @@ const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = ({ navigation })
               value={confirmPassword}
               onChangeText={setConfirmPassword}
               secureTextEntry={!showConfirmPassword}
-              outlineStyle={{ borderRadius: 24 }}
+              outlineStyle={{ borderRadius: 20 }}
               right={
                 <TextInput.Icon 
                   icon={showConfirmPassword ? "eye" : "eye-off"} 
@@ -368,12 +369,13 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   inputGroup: {
-    marginBottom: 20,
+    marginBottom: 14,
   },
   label: {
-    marginBottom: 8,
-    fontSize: 16,
+    marginBottom: 4,
+    fontSize: 14,
     fontWeight: '500',
+    lineHeight: 16,
   },
   inputContainer: {
     position: 'relative',
@@ -392,12 +394,12 @@ const styles = StyleSheet.create({
   verificationCodeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 48,
+    height: 40,
   },
   codeButton: {
-    height: 48,
-    borderTopRightRadius: 24,
-    borderBottomRightRadius: 24,
+    height: 40,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
     paddingHorizontal: 16,
     justifyContent: 'center',
     alignItems: 'center',
@@ -406,11 +408,12 @@ const styles = StyleSheet.create({
   codeButtonText: {
     color: '#FFFFFF',
     fontWeight: '600',
-    fontSize: 14,
+    fontSize: 13,
+    lineHeight: 14,
   },
   resetButton: {
-    height: 56,
-    borderRadius: 28,
+    height: 40,
+    borderRadius: 20,
     marginTop: 24,
     justifyContent: 'center',
     alignItems: 'center',
@@ -424,7 +427,8 @@ const styles = StyleSheet.create({
   resetButtonText: {
     color: '#FFFFFF',
     fontWeight: '600',
-    fontSize: 16,
+    fontSize: 15,
+    lineHeight: 16,
   },
 });
 
