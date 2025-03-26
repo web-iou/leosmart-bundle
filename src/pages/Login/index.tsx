@@ -241,10 +241,10 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
 
   // 处理服务条款点击
   const handleTermsPress = () => {
-    const url = i18n.language === 'en-US' 
-      ? 'http://114.55.0.234/private/agreement_en.html'
-      : 'http://114.55.0.234/private/agreement_zh.html';
-    
+    const url =
+
+      `http://114.55.0.234/private/agreement_${i18n.language}.html`;
+
     navigation?.navigate('WebView', {
       title: t('login.termsOfService', { defaultValue: '服务条款' }),
       url
@@ -253,9 +253,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
 
   // 处理隐私政策点击
   const handlePrivacyPress = () => {
-    const url = i18n.language === 'en-US' 
-      ? 'http://114.55.0.234/private/privacy_en.html'
-      : 'http://114.55.0.234/private/privacy_zh.html';
+    const url = `http://114.55.0.234/private/privacy_${i18n.language}.html`;
     
     navigation?.navigate('WebView', {
       title: t('password.privacyPolicy', { defaultValue: '隐私政策' }),
@@ -339,7 +337,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
           {/* 错误消息 */}
           {errorMessage ? (
             <View style={styles.errorContainer}>
-              <AntDesign 
+              <AntDesign
                 name="exclamationcircleo" 
                 size={20} 
                 color={paperTheme.colors.error} 

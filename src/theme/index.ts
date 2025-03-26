@@ -36,7 +36,7 @@ export type CustomColors = {
 // Custom color palettes
 const lightColors = {
   ...MD3LightTheme.colors,
-  primary: '#FF8800',
+  primary: '#FF7D00',
   secondary: '#f1c40f',
   tertiary: '#2ecc71',
   background: '#f5f5f5',
@@ -44,7 +44,7 @@ const lightColors = {
   error: '#e74c3c',
   
   // 添加登录页面特定颜色
-  logoColor: '#FF8800',
+  logoColor: '#FF7D00',
   welcomeTextColor: '#333',
   subTextColor: '#666',
   languageSelectorBg: 'rgba(255, 255, 255, 0.2)',
@@ -54,7 +54,7 @@ const lightColors = {
   forgotPasswordColor: '#777',
   termsTextColor: '#666',
   termsLinkColor: '#FF9500',
-  buttonPrimary: '#FF8800',
+  buttonPrimary: '#FF7D00',
   buttonPrimaryText: '#FFFFFF',
   buttonDisabled: '#DDDDDD',
   otherLoginTextColor: '#555',
@@ -71,7 +71,7 @@ const lightColors = {
 
 const darkColors = {
   ...MD3DarkTheme.colors,
-  primary: '#FF8800',
+  primary: '#FF7D00',
   secondary: '#f1c40f',
   tertiary: '#2ecc71',
   background: '#121212',
@@ -79,7 +79,7 @@ const darkColors = {
   error: '#e74c3c',
   
   // 添加登录页面特定颜色 - 暗色主题
-  logoColor: '#FF8800',
+  logoColor: '#FF7D00',
   welcomeTextColor: '#fff',
   subTextColor: '#aaa',
   languageSelectorBg: 'rgba(255, 255, 255, 0.1)',
@@ -89,7 +89,7 @@ const darkColors = {
   forgotPasswordColor: '#aaa',
   termsTextColor: '#aaa',
   termsLinkColor: '#FF9500',
-  buttonPrimary: '#FF8800',
+  buttonPrimary: '#FF7D00',
   buttonPrimaryText: '#FFFFFF',
   buttonDisabled: '#444444',
   otherLoginTextColor: '#aaa',

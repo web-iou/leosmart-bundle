@@ -370,7 +370,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                 {t('register.verificationCode', { defaultValue: '验证码' })}
               </Text>
               <View style={styles.verificationCodeContainer}>
-                <View style={[styles.inputContainer, { flex: 1 }]}>
+                <View style={[styles.inputContainer, { flex: 1, position: 'relative' }]}>
                   <AntDesign 
                     name="key" 
                     size={22} 
@@ -383,7 +383,11 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                       { 
                         backgroundColor: theme.colors.inputBackground,
                         height: 48,
-                        borderRadius: 24
+                        borderTopLeftRadius: 24,
+                        borderBottomLeftRadius: 24,
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0,
+                        flex: 1,
                       }
                     ]}
                     mode="outlined"
@@ -391,12 +395,17 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                     value={verificationCode}
                     onChangeText={setVerificationCode}
                     keyboardType="number-pad"
-                    outlineStyle={{ borderRadius: 24 }}
+                    outlineStyle={{ 
+                      borderTopLeftRadius: 24,
+                      borderBottomLeftRadius: 24,
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0
+                    }}
                   />
                 </View>
                 <TouchableOpacity
                   style={[
-                    styles.sendCodeButton,
+                    styles.codeButton,
                     { backgroundColor: countdown > 0 ? theme.colors.buttonDisabled : theme.colors.buttonPrimary }
                   ]}
                   onPress={handleSendVerificationCode}
@@ -405,7 +414,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                   {sending ? (
                     <ActivityIndicator size="small" color="#FFFFFF" />
                   ) : (
-                    <Text style={styles.sendCodeButtonText}>
+                    <Text style={styles.codeButtonText}>
                       {countdown > 0 
                         ? `${countdown}s` 
                         : t('register.sendCode', { defaultValue: '发送验证码' })}
@@ -692,18 +701,18 @@ const styles = StyleSheet.create({
   verificationCodeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  sendCodeButton: {
     height: 48,
-    marginLeft: 8,
-    borderRadius: 24,
-    paddingHorizontal: 10,
+  },
+  codeButton: {
+    height: 48,
+    borderTopRightRadius: 24,
+    borderBottomRightRadius: 24,
+    paddingHorizontal: 16,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 100
+    minWidth: 110
   },
-  sendCodeButtonText: {
+  codeButtonText: {
     color: '#FFFFFF',
     fontWeight: '600',
     fontSize: 14,
