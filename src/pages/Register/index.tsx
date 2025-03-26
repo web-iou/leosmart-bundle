@@ -1,12 +1,81 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { Text, TextInput, Appbar, useTheme, RadioButton } from 'react-native-paper';
+import { Text, TextInput, Appbar, useTheme, RadioButton, Menu, Divider } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { userApi, RegisterParams } from '@/services/api/userApi';
 import { showToast } from '@/store/slices/toastSlice';
 import { useDispatch } from 'react-redux';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { ExtendedMD3Theme } from '@/theme';
+
+// 定义国家和时区类型
+interface Country {
+  code: string;
+  name: string;
+}
+
+interface Timezone {
+  id: string;
+  name: string;
+}
+
+// 定义站点类型
+interface Site {
+  code: string;
+  name: string;
+}
+
+// 临时数据 - 后面会替换为API调用
+const SITES: Site[] = [
+  { code: 'CN', name: '中国站' },
+  { code: 'US', name: '美国站' },
+  { code: 'EU', name: '欧洲站' },
+];
+
+// 临时数据 - 后面会替换为API调用
+const COUNTRIES: Country[] = [
+  { code: 'CN', name: '中国' },
+  { code: 'US', name: '美国' },
+  { code: 'GB', name: '英国' },
+  { code: 'JP', name: '日本' },
+  { code: 'KR', name: '韩国' },
+  { code: 'AU', name: '澳大利亚' },
+  { code: 'CA', name: '加拿大' },
+  { code: 'DE', name: '德国' },
+  { code: 'FR', name: '法国' },
+];
+
+const TIMEZONES: Record<string, Timezone[]> = {
+  'CN': [
+    { id: 'Asia/Shanghai', name: '北京 (UTC+8:00)' },
+    { id: 'Asia/Urumqi', name: '乌鲁木齐 (UTC+6:00)' }
+  ],
+  'US': [
+    { id: 'America/New_York', name: '纽约 (UTC-5:00)' },
+    { id: 'America/Chicago', name: '芝加哥 (UTC-6:00)' },
+    { id: 'America/Denver', name: '丹佛 (UTC-7:00)' },
+    { id: 'America/Los_Angeles', name: '洛杉矶 (UTC-8:00)' },
+    { id: 'America/Anchorage', name: '安克雷奇 (UTC-9:00)' },
+    { id: 'Pacific/Honolulu', name: '檀香山 (UTC-10:00)' }
+  ],
+  'GB': [{ id: 'Europe/London', name: '伦敦 (UTC+0:00)' }],
+  'JP': [{ id: 'Asia/Tokyo', name: '东京 (UTC+9:00)' }],
+  'KR': [{ id: 'Asia/Seoul', name: '首尔 (UTC+9:00)' }],
+  'AU': [
+    { id: 'Australia/Sydney', name: '悉尼 (UTC+10:00)' },
+    { id: 'Australia/Perth', name: '珀斯 (UTC+8:00)' },
+    { id: 'Australia/Darwin', name: '达尔文 (UTC+9:30)' },
+    { id: 'Australia/Brisbane', name: '布里斯班 (UTC+10:00)' }
+  ],
+  'CA': [
+    { id: 'America/Toronto', name: '多伦多 (UTC-5:00)' },
+    { id: 'America/Vancouver', name: '温哥华 (UTC-8:00)' },
+    { id: 'America/Edmonton', name: '埃德蒙顿 (UTC-7:00)' }
+  ],
+  'DE': [{ id: 'Europe/Berlin', name: '柏林 (UTC+1:00)' }],
+  'FR': [{ id: 'Europe/Paris', name: '巴黎 (UTC+1:00)' }]
+};
 
 interface RegisterScreenProps {
   navigation: any;
@@ -24,11 +93,21 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
   const theme = useTheme() as ExtendedMD3Theme;
   const dispatch = useDispatch();
 
+  // 站点选择
+  const [selectedSite, setSelectedSite] = useState<string>('CN');  // 默认中国站
+  const [siteMenuVisible, setSiteMenuVisible] = useState<boolean>(false);
+  
   // 注册步骤状态
   const [currentStep, setCurrentStep] = useState<RegisterStep>(RegisterStep.ROLE_SELECTION);
   
   // 第一步：角色选择
   const [userType, setUserType] = useState<number>(1); // 默认业主角色
+  
+  // 国家和时区
+  const [countryCode, setCountryCode] = useState<string>('CN'); // 默认中国
+  const [timezone, setTimezone] = useState<string>('Asia/Shanghai'); // 默认北京
+  const [countryMenuVisible, setCountryMenuVisible] = useState<boolean>(false);
+  const [timezoneMenuVisible, setTimezoneMenuVisible] = useState<boolean>(false);
   
   // 第二步：表单输入
   const [email, setEmail] = useState('');
@@ -48,6 +127,21 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
   
   // 第三步：自动跳转登录倒计时
   const [redirectCountdown, setRedirectCountdown] = useState(3);
+
+  // 尝试获取用户的国家和设置默认值
+  useEffect(() => {
+    // 这里可以使用地理位置API获取用户当前国家
+    // 暂时使用默认值，这部分后续可以替换为API调用
+    setCountryCode('CN');
+    setTimezone('Asia/Shanghai');
+  }, []);
+
+  // 当国家改变时更新时区
+  useEffect(() => {
+    if (countryCode && TIMEZONES[countryCode] && TIMEZONES[countryCode].length > 0) {
+      setTimezone(TIMEZONES[countryCode][0].id);
+    }
+  }, [countryCode]);
 
   // 验证码倒计时逻辑
   useEffect(() => {
@@ -167,14 +261,16 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
       setLoading(true);
       setErrorMessage('');
       
-      // 准备注册参数 - 移除国家和时区字段
+      // 准备注册参数 - 包含国家和时区以及站点
       const registerParams: RegisterParams = {
         email,
         code: verificationCode,
         password,
         userType,
         lng: i18n.language,
-        center:'CN'
+        center: selectedSite, // Use the selected site as the data center
+        countyCollapse: countryCode,
+        timeZone: timezone
       };
       
       // 如果是安装商/运营商，添加额外的参数
@@ -215,6 +311,42 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
     navigation.navigate('Login');
   };
 
+  // 选择国家
+  const handleSelectCountry = (code: string) => {
+    setCountryCode(code);
+    setCountryMenuVisible(false);
+    
+    // 当选择新国家时，默认选择该国家的第一个时区
+    if (TIMEZONES[code]?.length > 0) {
+      setTimezone(TIMEZONES[code][0].id);
+    }
+  };
+
+  // 选择时区
+  const handleSelectTimezone = (tz: string) => {
+    setTimezone(tz);
+    setTimezoneMenuVisible(false);
+  };
+
+  // 获取当前选择的站点名称
+  const getCurrentSiteName = () => {
+    const site = SITES.find(s => s.code === selectedSite);
+    return site ? site.name : '';
+  };
+
+  // 获取当前选择的国家名称
+  const getCurrentCountryName = () => {
+    const country = COUNTRIES.find(c => c.code === countryCode);
+    return country ? country.name : '';
+  };
+
+  // 获取当前选择的时区名称
+  const getCurrentTimezoneName = () => {
+    const timezones = TIMEZONES[countryCode] || [];
+    const tz = timezones.find((t: Timezone) => t.id === timezone);
+    return tz ? tz.name : '';
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <Appbar.Header>
@@ -236,7 +368,57 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
         {/* 步骤1：选择角色 */}
         {currentStep === RegisterStep.ROLE_SELECTION && (
           <View>
-            <Text style={[styles.sectionTitle, { color: theme.colors.onSurface }]}>
+            {/* 站点选择 */}
+            <View style={styles.inputGroup}>
+              <Text style={[styles.label, { color: theme.colors.onSurface }]}>
+                {t('register.site', { defaultValue: '站点' })}
+              </Text>
+              <Menu
+                visible={siteMenuVisible}
+                onDismiss={() => setSiteMenuVisible(false)}
+                anchor={
+                  <View style={styles.inputContainer}>
+                    <AntDesign 
+                      name="global" 
+                      size={22} 
+                      color={theme.colors.onSurfaceVariant} 
+                      style={styles.inputIcon} 
+                    />
+                    <TouchableOpacity
+                      style={[
+                        styles.dropdownButton,
+                        { 
+                          backgroundColor: theme.colors.inputBackground,
+                          borderColor: theme.colors.outline,
+                          borderWidth: 1,
+                          borderRadius: 20,
+                          height: 40
+                        }
+                      ]}
+                      onPress={() => setSiteMenuVisible(true)}
+                    >
+                      <Text style={{ flex: 1, color: theme.colors.onSurface, paddingLeft: 36 }}>
+                        {getCurrentSiteName() || t('register.selectSite', { defaultValue: '选择站点' })}
+                      </Text>
+                      <MaterialIcons name="arrow-drop-down" size={24} color={theme.colors.onSurfaceVariant} />
+                    </TouchableOpacity>
+                  </View>
+                }
+              >
+                {SITES.map((site) => (
+                  <Menu.Item
+                    key={site.code}
+                    onPress={() => {
+                      setSelectedSite(site.code);
+                      setSiteMenuVisible(false);
+                    }}
+                    title={site.name}
+                  />
+                ))}
+              </Menu>
+            </View>
+            
+            <Text style={[styles.sectionTitle, { color: theme.colors.onSurface, marginTop: 12 }]}>
               {t('register.selectRole', { defaultValue: '请选择您的角色' })}
             </Text>
             
@@ -325,6 +507,102 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({ navigation }) => {
                 </Text>
               </View>
             ) : null}
+
+            {/* 国家/地区选择 */}
+            <View style={styles.inputGroup}>
+              <Text style={[styles.label, { color: theme.colors.onSurface }]}>
+                {t('register.country', { defaultValue: '国家/地区' })}
+              </Text>
+              <Menu
+                visible={countryMenuVisible}
+                onDismiss={() => setCountryMenuVisible(false)}
+                anchor={
+                  <View style={styles.inputContainer}>
+                    <AntDesign 
+                      name="flag" 
+                      size={22} 
+                      color={theme.colors.onSurfaceVariant} 
+                      style={styles.inputIcon} 
+                    />
+                    <TouchableOpacity
+                      style={[
+                        styles.dropdownButton,
+                        { 
+                          backgroundColor: theme.colors.inputBackground,
+                          borderColor: theme.colors.outline,
+                          borderWidth: 1,
+                          borderRadius: 20,
+                          height: 40
+                        }
+                      ]}
+                      onPress={() => setCountryMenuVisible(true)}
+                    >
+                      <Text style={{ flex: 1, color: theme.colors.onSurface, paddingLeft: 36 }}>
+                        {getCurrentCountryName()}
+                      </Text>
+                      <MaterialIcons name="arrow-drop-down" size={24} color={theme.colors.onSurfaceVariant} />
+                    </TouchableOpacity>
+                  </View>
+                }
+              >
+                {COUNTRIES.map((country) => (
+                  <Menu.Item
+                    key={country.code}
+                    onPress={() => handleSelectCountry(country.code)}
+                    title={country.name}
+                  />
+                ))}
+              </Menu>
+            </View>
+
+            {/* 时区选择 */}
+            <View style={styles.inputGroup}>
+              <Text style={[styles.label, { color: theme.colors.onSurface }]}>
+                {t('register.timezone', { defaultValue: '时区' })}
+              </Text>
+              <Menu
+                visible={timezoneMenuVisible}
+                onDismiss={() => setTimezoneMenuVisible(false)}
+                anchor={
+                  <View style={styles.inputContainer}>
+                    <AntDesign 
+                      name="clockcircleo" 
+                      size={22} 
+                      color={theme.colors.onSurfaceVariant} 
+                      style={styles.inputIcon} 
+                    />
+                    <TouchableOpacity
+                      style={[
+                        styles.dropdownButton,
+                        { 
+                          backgroundColor: theme.colors.inputBackground,
+                          borderColor: theme.colors.outline,
+                          borderWidth: 1,
+                          borderRadius: 20,
+                          height: 40
+                        }
+                      ]}
+                      onPress={() => setTimezoneMenuVisible(true)}
+                    >
+                      <Text style={{ flex: 1, color: theme.colors.onSurface, paddingLeft: 36 }}>
+                        {getCurrentTimezoneName()}
+                      </Text>
+                      <MaterialIcons name="arrow-drop-down" size={24} color={theme.colors.onSurfaceVariant} />
+                    </TouchableOpacity>
+                  </View>
+                }
+              >
+                {(TIMEZONES[countryCode] || []).map((tz: Timezone) => (
+                  <Menu.Item
+                    key={tz.id}
+                    onPress={() => handleSelectTimezone(tz.id)}
+                    title={tz.name}
+                  />
+                ))}
+              </Menu>
+            </View>
+
+            <Divider style={{ marginVertical: 12, backgroundColor: theme.colors.outlineVariant }} />
 
             {/* 邮箱注册标题 */}
             <View style={styles.sectionHeader}>
@@ -697,11 +975,11 @@ const styles = StyleSheet.create({
   inputIcon: {
     position: 'absolute',
     left: 12,
-    zIndex: 1,
+    zIndex: 2,
   },
   input: {
     flex: 1,
-    paddingLeft: 44,
+    paddingLeft: 36,
   },
   verificationCodeContainer: {
     flexDirection: 'row',
@@ -781,6 +1059,34 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 15,
     lineHeight: 16,
+  },
+  dropdownButton: {
+    height: 40,
+    borderRadius: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingRight: 12,
+    justifyContent: 'space-between',
+    backgroundColor: 'transparent',
+    width: '100%'
+  },
+  selectedTimezone: {
+    height: 40,
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderWidth: 1,
+    fontSize: 14,
+    fontWeight: '400',
+  },
+  siteSelector: {
+    height: 44,
+    borderRadius: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    justifyContent: 'center',
+    marginBottom: 20,
   },
 });
 
