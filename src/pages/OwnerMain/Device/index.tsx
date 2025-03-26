@@ -243,7 +243,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                         styles.infoValue,
                         {color: theme.colors.onSurface},
                       ]}>
-                      {/* {deviceData.status.runningTime} */}
+                      {'168小时'}
                     </Text>
                   </View>
                   {/* <View style={styles.infoItem}>
@@ -269,7 +269,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
             <View style={styles.powerSection}>
               <View style={styles.powerHeader}>
                 <View style={styles.powerTitleContainer}>
-                  <AntDesign name="iconfontdesktop" size={24} color="#FF9800" />
+                  <AntDesign name="dashboard" size={24} color="#FF9800" />
                   <Text
                     style={[
                       styles.sectionTitle,
@@ -405,7 +405,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
             style={[styles.halfCard, {backgroundColor: theme.colors.surface}]}>
             <Card.Content>
               <View style={styles.powerCardHeader}>
-                <AntDesign name="iconfontdesktop" size={24} color="#FF9800" />
+                <AntDesign name="dashboard" size={24} color="#FF9800" />
                 <Text
                   style={[
                     styles.cardSubtitle,
@@ -422,7 +422,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
               <View style={styles.powerDetailsRow}>
                 <View style={styles.detailWithIcon}>
                   <AntDesign
-                    name="iconfontdesktop"
+                    name="linechart"
                     size={16}
                     color={theme.colors.onSurfaceVariant}
                   />
@@ -437,7 +437,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                 </View>
                 <View style={styles.detailWithIcon}>
                   <AntDesign
-                    name="iconfontdesktop"
+                    name="linechart"
                     size={16}
                     color={theme.colors.onSurfaceVariant}
                   />
@@ -459,7 +459,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
             style={[styles.halfCard, {backgroundColor: theme.colors.surface}]}>
             <Card.Content>
               <View style={styles.powerCardHeader}>
-                <AntDesign name="iconfontdesktop" size={24} color="#FF9800" />
+                <AntDesign name="dashboard" size={24} color="#FF9800" />
                 <Text
                   style={[
                     styles.cardSubtitle,
@@ -476,7 +476,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
               <View style={styles.powerDetailsRow}>
                 <View style={styles.detailWithIcon}>
                   <AntDesign
-                    name="barschart"
+                    name="linechart"
                     size={16}
                     color={theme.colors.onSurfaceVariant}
                   />
@@ -497,32 +497,66 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
           </Card>
         </View>
         {/* 设备控制 */}
-        <Card style={[styles.card, {backgroundColor: theme.colors.surface}]}>
+        <Card 
+          style={[styles.card, {backgroundColor: theme.colors.surface}]}
+          onPress={() => {
+            if (deviceList[active]) {
+              navigation.navigate('DeviceControl', {
+                deviceId: deviceList[active].id,
+                deviceSn: deviceList[active].sn,
+                deviceName: deviceList[active].name
+              });
+            }
+          }}>
           <Card.Content>
             <View style={styles.controlHeader}>
-              <View style={styles.controlIcon}>
-                <AntDesign name="setting" size={24} color="#FF9800" />
+              <View style={styles.controlTitleContainer}>
+                <View style={[styles.controlIcon, {
+                  backgroundColor: theme.dark ? theme.colors.surfaceVariant : theme.colors.primaryContainer
+                }]}>
+                  <AntDesign 
+                    name="setting" 
+                    size={22} 
+                    color={theme.colors.primary}
+                    style={{alignSelf: 'center'}} 
+                  />
+                </View>
+                <Text
+                  style={[styles.sectionTitle, {
+                    color: theme.colors.onSurface, 
+                    textAlign: 'left',
+                    marginLeft: 10
+                  }]}>
+                  {t('device.control', {defaultValue: '设备控制'})}
+                </Text>
               </View>
-              <Text
-                style={[styles.sectionTitle, {color: theme.colors.onSurface}]}>
-                {t('device.control', {defaultValue: '设备控制'})}
-              </Text>
               <AntDesign
                 name="right"
-                size={20}
+                size={18}
                 color={theme.colors.onSurfaceVariant}
+                style={{alignSelf: 'center'}}
               />
             </View>
 
             <View style={styles.signalStatus}>
-              <AntDesign name="wifi" size={20} color="#4CAF50" />
+              <View style={[styles.signalIconContainer, {
+                backgroundColor: theme.dark ? 'rgba(255, 255, 255, 0.1)' : theme.colors.surfaceVariant,
+                marginLeft: 5
+              }]}>
+                <AntDesign 
+                  name="wifi" 
+                  size={16} 
+                  color="#4CAF50"
+                  style={{alignSelf: 'center'}} 
+                />
+              </View>
               <Text
                 style={[
                   styles.signalText,
                   {color: theme.colors.onSurfaceVariant},
                 ]}>
                 4G {t('device.signalStrength', {defaultValue: '信号强度'})}:{' '}
-                {'优'}
+                <Text style={{color: "#4CAF50", fontWeight: '600'}}>优</Text>
               </Text>
             </View>
           </Card.Content>
@@ -605,7 +639,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
 
             <View style={styles.systemMessage}>
               <View style={styles.systemMessageIcon}>
-                <AntDesign name="infocirlceo" size={20} color="#2196F3" />
+                <AntDesign name="infocircleo" size={20} color="#2196F3" />
               </View>
               <View style={styles.systemMessageContent}>
                 <Text
@@ -806,11 +840,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingVertical: 8,
+  },
+  controlTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   controlIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 42,
+    height: 42,
+    borderRadius: 21,
     backgroundColor: '#FFF0E0',
     justifyContent: 'center',
     alignItems: 'center',
@@ -818,11 +857,15 @@ const styles = StyleSheet.create({
   signalStatus: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 12,
+    marginTop: 10,
+    paddingLeft: 5,
+    paddingBottom: 4,
+    height: 30,
   },
   signalText: {
     fontSize: 14,
     marginLeft: 8,
+    lineHeight: 18,
   },
   environmentHeader: {
     flexDirection: 'row',
@@ -875,6 +918,14 @@ const styles = StyleSheet.create({
   },
   alertTime: {
     fontSize: 12,
+  },
+  signalIconContainer: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 6,
   },
 });
 export default DevicePage;

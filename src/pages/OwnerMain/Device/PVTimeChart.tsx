@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import {
   View,
   StyleSheet,
   ScrollView,
   Dimensions,
   ActivityIndicator,
+  StatusBar,
 } from 'react-native';
 import {Text, Card, useTheme, SegmentedButtons} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
@@ -17,9 +18,10 @@ import {
   VictoryGroup,
 } from 'victory-native';
 import {ExtendedMD3Theme} from '@/theme';
-import SafeAreaLayout from '@/components/SafeAreaLayout';
 import {deviceApi} from '@/services/api/deviceApi';
 import dayjs from 'dayjs';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
 interface PVTimeChartProps {
   route: {
@@ -62,6 +64,30 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
     voltage: [],
     current: [],
   });
+  const navigation = useNavigation();
+
+  // 设置标题栏样式
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: t('device.pvTimeData', {defaultValue: 'PV时间数据'}),
+      headerStyle: {
+        backgroundColor: theme.colors.background,
+      },
+      headerTintColor: theme.colors.onBackground,
+      headerShadowVisible: false,
+    });
+  }, [navigation, theme.colors.background, theme.colors.onBackground, t]);
+
+  // 设置状态栏样式
+  useEffect(() => {
+    StatusBar.setBarStyle(theme.dark ? 'light-content' : 'dark-content');
+    StatusBar.setBackgroundColor(theme.colors.background);
+    
+    // 返回清理函数
+    return () => {
+      StatusBar.setBarStyle('default');
+    };
+  }, [theme.dark, theme.colors.background]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,14 +116,15 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
     title: string,
     unit: string,
   ) => {
-    const maxValue = Math.max(
-      ...data.flatMap(item => [
-        item.pv1Indicator || 0,
-        item.pv2Indicator || 0,
-        item.pv3Indicator || 0,
-        item.pv4Indicator || 0,
-      ]),
-    );
+    // 使用更兼容的方式计算最大值
+    let allValues: number[] = [];
+    data.forEach(item => {
+      if (item.pv1Indicator !== undefined) allValues.push(item.pv1Indicator);
+      if (item.pv2Indicator !== undefined) allValues.push(item.pv2Indicator);
+      if (item.pv3Indicator !== undefined) allValues.push(item.pv3Indicator);
+      if (item.pv4Indicator !== undefined) allValues.push(item.pv4Indicator);
+    });
+    const maxValue = Math.max(...allValues, 0);
 
     const dataPointWidth = 60;
     const calculatedWidth = Math.max(
@@ -105,20 +132,45 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
       data.length * dataPointWidth
     );
 
+    // 定义图表线条颜色，使用主题中的颜色或兼容的固定颜色
+    const lineColors = {
+      pv1: theme.dark ? '#FFA726' : '#FF9800', // 橙色
+      pv2: theme.dark ? '#42A5F5' : '#2196F3', // 蓝色
+      pv3: theme.dark ? '#66BB6A' : '#4CAF50', // 绿色
+      pv4: theme.dark ? '#AB47BC' : '#9C27B0'  // 紫色
+    };
+
+    // 自定义图表主题，基于应用主题
+    const chartTheme = {
+      ...VictoryTheme.material,
+      background: { fill: theme.colors.surface },
+      axis: {
+        style: {
+          axis: { stroke: theme.colors.outline },
+          grid: { stroke: 'transparent' },
+          ticks: { stroke: theme.colors.outline, size: 5 },
+          tickLabels: { fill: theme.colors.onSurfaceVariant, fontSize: 10 }
+        }
+      }
+    };
+
     return (
-      <Card style={[styles.chartCard, {backgroundColor: theme.colors.surface}]}>
+      <Card style={[styles.chartCard, {backgroundColor: theme.colors.surface, borderColor: theme.colors.outline, borderWidth: 1}]}>
         <Card.Content>
           <Text style={[styles.chartTitle, {color: theme.colors.onSurface}]}>
             {title}
           </Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={true}>
-            <View style={{width: calculatedWidth}}>
+            <View style={{width: calculatedWidth, backgroundColor: theme.colors.surface}}>
               <VictoryChart
-                theme={VictoryTheme.material}
+                theme={chartTheme}
                 height={300}
                 width={calculatedWidth}
                 padding={{top: 50, bottom: 50, left: 60, right: 50}}
-                domainPadding={{x: 20}}>
+                domainPadding={{x: 20}}
+                style={{
+                  background: { fill: theme.colors.surface }
+                }}>
                 <VictoryAxis
                   tickFormat={time => dayjs(time).format('HH:mm')}
                   style={{
@@ -151,39 +203,42 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
                   orientation="horizontal"
                   gutter={20}
                   data={[
-                    {name: 'PV1', symbol: {fill: '#FF9800'}},
-                    {name: 'PV2', symbol: {fill: '#2196F3'}},
-                    {name: 'PV3', symbol: {fill: '#4CAF50'}},
-                    {name: 'PV4', symbol: {fill: '#9C27B0'}},
+                    {name: 'PV1', symbol: {fill: lineColors.pv1}},
+                    {name: 'PV2', symbol: {fill: lineColors.pv2}},
+                    {name: 'PV3', symbol: {fill: lineColors.pv3}},
+                    {name: 'PV4', symbol: {fill: lineColors.pv4}},
                   ]}
+                  style={{
+                    labels: { fill: theme.colors.onSurface }
+                  }}
                 />
                 <VictoryGroup>
                   <VictoryLine
                     data={data}
                     x="time"
                     y="pv1Indicator"
-                    style={{data: {stroke: '#FF9800', strokeWidth: 2}}}
+                    style={{data: {stroke: lineColors.pv1, strokeWidth: 2}}}
                     interpolation="monotoneX"
                   />
                   <VictoryLine
                     data={data}
                     x="time"
                     y="pv2Indicator"
-                    style={{data: {stroke: '#2196F3', strokeWidth: 2}}}
+                    style={{data: {stroke: lineColors.pv2, strokeWidth: 2}}}
                     interpolation="monotoneX"
                   />
                   <VictoryLine
                     data={data}
                     x="time"
                     y="pv3Indicator"
-                    style={{data: {stroke: '#4CAF50', strokeWidth: 2}}}
+                    style={{data: {stroke: lineColors.pv3, strokeWidth: 2}}}
                     interpolation="monotoneX"
                   />
                   <VictoryLine
                     data={data}
                     x="time"
                     y="pv4Indicator"
-                    style={{data: {stroke: '#9C27B0', strokeWidth: 2}}}
+                    style={{data: {stroke: lineColors.pv4, strokeWidth: 2}}}
                     interpolation="monotoneX"
                   />
                 </VictoryGroup>
@@ -220,12 +275,14 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
     const chart = chartTypes.find(type => type.value === selected);
     return {
       data: data[selected as keyof typeof data],
-      ...chart,
+      title: chart?.title || '数据曲线',
+      unit: chart?.unit || '',
     };
   };
 
   return (
-      <ScrollView style={styles.container}>
+    <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
+      <ScrollView style={[styles.container, { backgroundColor: theme.colors.background }]}>
         <View style={styles.header}>
           <Text style={[styles.pageTitle, {color: theme.colors.onBackground}]}>
             {t('device.pvTimeData', {defaultValue: 'PV时间数据'})}
@@ -243,7 +300,7 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
         </View>
 
         {loading ? (
-          <View style={styles.loadingContainer}>
+          <View style={[styles.loadingContainer, {backgroundColor: theme.colors.surface}]}>
             <ActivityIndicator size="large" color={theme.colors.primary} />
             <Text style={{color: theme.colors.onSurfaceVariant, marginTop: 10}}>
               {t('common.loading', {defaultValue: '加载中...'})}
@@ -259,6 +316,7 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
           </>
         )}
       </ScrollView>
+    </SafeAreaView>
   );
 };
 

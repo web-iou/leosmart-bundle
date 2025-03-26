@@ -1,27 +1,36 @@
-import {Alert, Linking, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Alert, Linking, Pressable, StyleSheet, Text, View, StatusBar} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {useEffect, useLayoutEffect, useState} from 'react';
 import {useCameraPermission} from 'react-native-vision-camera';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useStatusBarHidden} from '@/hooks/useStatusBarHidden';
 import ScannerOverlay from './ScannerOverlay';
-import {Button} from 'react-native-paper';
+import {Button, useTheme} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {launchImageLibrary} from 'react-native-image-picker';
 import NativeFlashLight from '~/specs/NativeFlashLight';
 import NativeScan from '~/specs/NativeScan';
-import {TextInput, useTheme} from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
 import {showToast} from '@/store/slices/toastSlice';
 import {deviceApi} from '@/services/api/deviceApi';
 import {useDispatch} from 'react-redux';
+import {ExtendedMD3Theme} from '@/theme';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 export const ScanCode = ({navigation}: ReactNavigation.Navigation<'Scan'>) => {
   const {hasPermission, requestPermission} = useCameraPermission();
-  const {top} = useSafeAreaInsets();
   const [open, setOpen] = useState(false);
-  useStatusBarHidden();
+  const theme = useTheme() as ExtendedMD3Theme;
+  
+  // 设置状态栏样式
+  useEffect(() => {
+    StatusBar.setBarStyle(theme.dark ? 'light-content' : 'dark-content');
+    StatusBar.setBackgroundColor(theme.colors.background);
+    return () => {
+      StatusBar.setBarStyle('default');
+    };
+  }, [theme.dark, theme.colors.background]);
+  
   useLayoutEffect(() => {
     if (!hasPermission) {
       requestPermission().then(value => {
@@ -58,80 +67,82 @@ export const ScanCode = ({navigation}: ReactNavigation.Navigation<'Scan'>) => {
     };
   }, [open]);
   return (
-    <View className="flex-1">
-      <ScannerOverlay />
-      <Pressable
-        className=" absolute left-8"
-        style={{
-          top: top + 10,
-        }}
-        onPress={() => {
-          navigation.goBack();
-        }}>
-        <Icon name="leftcircle" size={28} color={'rgb(230,230,231)'} />
-      </Pressable>
-      <Pressable
-        className=" absolute left-8 z-40 rounded-full p-2.5 gap-y-2 justify-center items-center bottom-24"
-        onPress={() => {
-          launchImageLibrary({
-            mediaType: 'photo',
-            quality: 1,
-            includeBase64: false,
-            includeExtra: true,
-          }).then(value => {
-            if (value?.errorCode === 'permission') {
-              Alert.alert(
-                'Permission Denied',
-                'You need to enable permission to use this feature.',
-                [
-                  {
-                    text: 'Cancel',
-                  },
-                  {
-                    text: 'Open Settings',
-                    onPress: () => {
-                      Linking.openSettings();
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top', 'bottom']}>
+      <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+        <ScannerOverlay />
+        <Pressable
+          className=" absolute left-8"
+          style={{
+            top: 16,
+          }}
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <Icon name="leftcircle" size={28} color={theme.colors.onSurfaceVariant} />
+        </Pressable>
+        <Pressable
+          className=" absolute left-8 z-40 rounded-full p-2.5 gap-y-2 justify-center items-center bottom-24"
+          onPress={() => {
+            launchImageLibrary({
+              mediaType: 'photo',
+              quality: 1,
+              includeBase64: false,
+              includeExtra: true,
+            }).then(value => {
+              if (value?.errorCode === 'permission') {
+                Alert.alert(
+                  'Permission Denied',
+                  'You need to enable permission to use this feature.',
+                  [
+                    {
+                      text: 'Cancel',
                     },
+                    {
+                      text: 'Open Settings',
+                      onPress: () => {
+                        Linking.openSettings();
+                      },
+                    },
+                  ],
+                );
+              } else if (value.assets?.[0].uri) {
+                NativeScan.scanBarcodeFromImage(value.assets[0].uri).then(
+                  code => {
+                    navigation.navigate('SNCode', {code});
                   },
-                ],
-              );
-            } else if (value.assets?.[0].uri) {
-              NativeScan.scanBarcodeFromImage(value.assets[0].uri).then(
-                code => {
-                  navigation.navigate('SNCode', {code});
-                },
-              );
-            }
-          });
-        }}>
-        <View className=" items-center justify-center bg-primary-400 size-12 rounded-full">
-          <EvilIcons
-            name="image"
-            className="text-center"
-            size={32}
-            color={'rgb(230,230,231)'}
-          />
-        </View>
-        <Text className=" text-white">相册导入</Text>
-      </Pressable>
-      <Pressable
-        className=" absolute right-8 z-40 rounded-full p-2.5 gap-y-2 justify-center items-center bottom-24"
-        onPress={() => {
-          setOpen(!open);
-        }}>
-        <View className=" items-center justify-center bg-primary-400 size-12 rounded-full">
-          <MaterialCommunityIcons
-            name={!open ? 'flashlight' : 'flashlight-off'}
-            className=" text-center"
-            size={32}
-            color={'rgb(230,230,231)'}
-          />
-        </View>
-        <Text className=" text-white">
-          {!open ? '打开手电筒' : '关闭手电筒'}
-        </Text>
-      </Pressable>
-    </View>
+                );
+              }
+            });
+          }}>
+          <View className=" items-center justify-center bg-primary-400 size-12 rounded-full" style={{ backgroundColor: theme.colors.primary }}>
+            <EvilIcons
+              name="image"
+              className="text-center"
+              size={32}
+              color={theme.colors.onPrimary}
+            />
+          </View>
+          <Text className=" text-white" style={{ color: theme.colors.onSurface }}>相册导入</Text>
+        </Pressable>
+        <Pressable
+          className=" absolute right-8 z-40 rounded-full p-2.5 gap-y-2 justify-center items-center bottom-24"
+          onPress={() => {
+            setOpen(!open);
+          }}>
+          <View className=" items-center justify-center bg-primary-400 size-12 rounded-full" style={{ backgroundColor: theme.colors.primary }}>
+            <MaterialCommunityIcons
+              name={!open ? 'flashlight' : 'flashlight-off'}
+              className=" text-center"
+              size={32}
+              color={theme.colors.onPrimary}
+            />
+          </View>
+          <Text className=" text-white" style={{ color: theme.colors.onSurface }}>
+            {!open ? '打开手电筒' : '关闭手电筒'}
+          </Text>
+        </Pressable>
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -143,7 +154,7 @@ export const SNCode = ({
 }: ReactNavigation.Navigation<'SNCode'>) => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
-  const theme = useTheme();
+  const theme = useTheme() as ExtendedMD3Theme;
   const [formData, setFormData] = useState({
     code: code ?? '',
     name: '',
@@ -153,6 +164,27 @@ export const SNCode = ({
     name: '',
   });
   const [loading, setLoading] = useState(false);
+
+  // 设置状态栏样式
+  useEffect(() => {
+    StatusBar.setBarStyle(theme.dark ? 'light-content' : 'dark-content');
+    StatusBar.setBackgroundColor(theme.colors.background);
+    return () => {
+      StatusBar.setBarStyle('default');
+    };
+  }, [theme.dark, theme.colors.background]);
+
+  // 设置标题栏样式
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: 'SNCode',
+      headerStyle: {
+        backgroundColor: theme.colors.background,
+      },
+      headerTintColor: theme.colors.onBackground,
+      headerShadowVisible: false,
+    });
+  }, [navigation, theme.colors.background, theme.colors.onBackground]);
 
   // 表单验证
   const validateForm = () => {
@@ -224,64 +256,74 @@ export const SNCode = ({
   };
 
   return (
-    <View className="px-8 mt-4">
-      {/* SN码输入框 */}
-      <TextInput
-        style={styles.input}
-        mode="outlined"
-        label={t('device.snCode', {defaultValue: 'SN序列号'})}
-        value={formData.code}
-        onChangeText={text => {
-          setFormData(prev => ({...prev, code: text}));
-          setErrors(prev => ({...prev, code: ''}));
-        }}
-        error={!!errors.code}
-        disabled={!!code}
-      />
-      {errors.code ? (
-        <Text style={[styles.errorText, {color: theme.colors.error}]}>
-          {errors.code}
-        </Text>
-      ) : null}
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top', 'bottom']}>
+      <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+        <View style={[styles.formContainer, { backgroundColor: theme.colors.background, paddingHorizontal: 32, marginTop: 16 }]}>
+          {/* SN码输入框 */}
+          <TextInput
+            style={[styles.input, { backgroundColor: theme.colors.inputBackground }]}
+            mode="outlined"
+            label={t('device.snCode', {defaultValue: 'SN序列号'})}
+            value={formData.code}
+            onChangeText={text => {
+              setFormData(prev => ({...prev, code: text}));
+              setErrors(prev => ({...prev, code: ''}));
+            }}
+            error={!!errors.code}
+            disabled={!!code}
+            outlineStyle={{ borderRadius: 20 }}
+          />
+          {errors.code ? (
+            <Text style={[styles.errorText, {color: theme.colors.error}]}>
+              {errors.code}
+            </Text>
+          ) : null}
 
-      {/* 设备名称输入框 */}
-      <TextInput
-        style={styles.input}
-        mode="outlined"
-        label={t('device.name', {defaultValue: '设备名称'})}
-        value={formData.name}
-        onChangeText={text => {
-          setFormData(prev => ({...prev, name: text}));
-          setErrors(prev => ({...prev, name: ''}));
-        }}
-        error={!!errors.name}
-      />
-      {errors.name ? (
-        <Text style={[styles.errorText, {color: theme.colors.error}]}>
-          {errors.name}
-        </Text>
-      ) : null}
+          {/* 设备名称输入框 */}
+          <TextInput
+            style={[styles.input, { backgroundColor: theme.colors.inputBackground }]}
+            mode="outlined"
+            label={t('device.name', {defaultValue: '设备名称'})}
+            value={formData.name}
+            onChangeText={text => {
+              setFormData(prev => ({...prev, name: text}));
+              setErrors(prev => ({...prev, name: ''}));
+            }}
+            error={!!errors.name}
+            outlineStyle={{ borderRadius: 20 }}
+          />
+          {errors.name ? (
+            <Text style={[styles.errorText, {color: theme.colors.error}]}>
+              {errors.name}
+            </Text>
+          ) : null}
 
-      {/* 提交按钮 */}
-      <Button
-        mode="contained"
-        style={styles.button}
-        loading={loading}
-        disabled={loading}
-        onPress={handleSubmit}>
-        {t('common.submit', {defaultValue: '提交'})}
-      </Button>
-    </View>
+          {/* 提交按钮 */}
+          <Button
+            mode="contained"
+            style={[styles.button, { backgroundColor: loading ? theme.colors.buttonDisabled : theme.colors.buttonPrimary }]}
+            loading={loading}
+            disabled={loading}
+            onPress={handleSubmit}>
+            {t('common.submit', {defaultValue: '提交'})}
+          </Button>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+  },
+  formContainer: {
+    flex: 1,
   },
   input: {
     marginBottom: 8,
+    height: 40,
+    borderRadius: 20,
   },
   errorText: {
     fontSize: 12,
@@ -291,7 +333,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 24,
-    height: 48,
+    height: 40,
     justifyContent: 'center',
+    borderRadius: 20,
   },
 });

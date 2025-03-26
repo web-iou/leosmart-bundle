@@ -6,6 +6,8 @@ import {
 } from '@react-navigation/native-stack';
 import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import {storage} from '@/utils/storage';
+import {useTheme} from 'react-native-paper';
+import {ExtendedMD3Theme} from '@/theme';
 
 // 页面组件
 import LoginScreen from '../pages/Login';
@@ -38,6 +40,12 @@ export type RootStackParamList = {
   EquipTimeChart: {
     id: string | number;
   };
+  DeviceControl: {
+    deviceId: number;
+    deviceSn: string;
+    deviceName?: string;
+  };
+  [key: string]: any; // 添加索引签名
 };
 declare global {
   namespace ReactNavigation {
@@ -55,6 +63,7 @@ const USER_ROLE = {
 
 // 路由配置
 const AppNavigator: React.FC = () => {
+  const theme = useTheme() as ExtendedMD3Theme;
   // 登录状态
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const [userType, setUserType] = useState<number | null>(null);
@@ -109,8 +118,8 @@ const AppNavigator: React.FC = () => {
   // 如果登录状态尚未确定，显示加载指示器
   if (isLoggedIn === null) {
     return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3498db" />
+      <View style={[styles.loadingContainer, { backgroundColor: theme.colors.background }]}>
+        <ActivityIndicator size="large" color={theme.colors.primary} />
       </View>
     );
   }
@@ -121,7 +130,13 @@ const AppNavigator: React.FC = () => {
         initialRouteName={getInitialRoute()}
         screenOptions={{
           headerShown: false,
-          contentStyle: {backgroundColor: '#fff'},
+          contentStyle: {backgroundColor: theme.colors.background},
+          // 为所有显示标题栏的页面提供默认样式
+          headerStyle: {
+            backgroundColor: theme.colors.background,
+          },
+          headerTintColor: theme.colors.onBackground,
+          headerShadowVisible: false,
         }}>
         {/* 登录页面 */}
         <Stack.Screen name="Login" component={LoginScreen} />
@@ -157,6 +172,14 @@ const AppNavigator: React.FC = () => {
             headerBackButtonDisplayMode: 'minimal',
           }}
         />
+        <Stack.Screen
+          name="DeviceControl"
+          component={require('@/pages/OwnerMain/Device/DeviceControl').default}
+          options={{
+            headerShown: true,
+            headerBackButtonDisplayMode: 'minimal',
+          }}
+        />
         {/* 业主主页 */}
         <Stack.Screen name="OwnerMain" component={OwnerMainScreen} />
 
@@ -181,7 +204,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
   },
 });
 
