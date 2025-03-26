@@ -32,6 +32,12 @@ export type RootStackParamList = {
   SNCode: {
     code?: string;
   };
+  PVChart: {
+    id: string | number;
+  };
+  EquipTimeChart: {
+    id: string | number;
+  };
 };
 declare global {
   namespace ReactNavigation {
@@ -123,18 +129,34 @@ const AppNavigator: React.FC = () => {
           name="Scan"
           component={
             require('../pages/OwnerMain/Device/components/addDevice').ScanCode
-            }
-          />
-          <Stack.Screen
-            name="SNCode"
-            options={{
-              headerShown: true,
-              headerBackButtonDisplayMode: 'minimal',
-            }}
-            component={
-              require('../pages/OwnerMain/Device/components/addDevice').SNCode
-            }
-          />
+          }
+        />
+        <Stack.Screen
+          name="SNCode"
+          options={{
+            headerShown: true,
+            headerBackButtonDisplayMode: 'minimal',
+          }}
+          component={
+            require('../pages/OwnerMain/Device/components/addDevice').SNCode
+          }
+        />
+        <Stack.Screen
+          name="PVChart"
+          options={{
+            headerShown: true,
+            headerBackButtonDisplayMode: 'minimal',
+          }}
+          component={require('@/pages/OwnerMain/Device/PVTimeChart').default}
+        />
+        <Stack.Screen
+          name="EquipTimeChart"
+          component={require('@/pages/OwnerMain/Device/EquipTimeChart').default}
+          options={{
+            headerShown: true,
+            headerBackButtonDisplayMode: 'minimal',
+          }}
+        />
         {/* 业主主页 */}
         <Stack.Screen name="OwnerMain" component={OwnerMainScreen} />
 

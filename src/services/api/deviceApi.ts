@@ -170,7 +170,7 @@ export const deviceApi = {
    * GET /v1/biz/station/gen/{id}
    */
   queryGenEle: (id: number, params?: GenEleQueryParams) => {
-    return http.get<GenEleDTO[]>(`/biz/v1/biz/station/gen/${id}`, {params});
+    return http.get<GenEleDTO[]>(`/biz/v1/biz/station/gen/${id}`, params);
   },
 
   /**

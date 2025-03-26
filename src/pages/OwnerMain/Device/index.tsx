@@ -7,6 +7,7 @@ import {
   RefreshControl,
   ActivityIndicator,
   Image,
+  Pressable,
 } from 'react-native';
 import {Text, Card, useTheme} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
@@ -44,8 +45,6 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
     const id = deviceList[active]?.id;
     if (id) {
       deviceApi.getInverterFirstPage(id).then(({data}) => {
-        console.log(data);
-
         setDeviceData(data);
         setLoading(false);
       });
@@ -286,7 +285,12 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
 
               <View style={styles.pvGrid}>
                 <View style={styles.pvRow}>
-                  <View
+                  <Pressable
+                    onPress={() => {
+                      navigation.push('PVChart', {
+                        id: deviceList[active].id,
+                      });
+                    }}
                     style={[
                       styles.pvItem,
                       {backgroundColor: theme.colors.surfaceVariant},
@@ -305,8 +309,13 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                       ]}>
                       {deviceData?.pvPower.powerPv1}W
                     </Text>
-                  </View>
-                  <View
+                  </Pressable>
+                  <Pressable
+                    onPress={() => {
+                      navigation.push('PVChart', {
+                        id: deviceList[active].id,
+                      });
+                    }}
                     style={[
                       styles.pvItem,
                       {backgroundColor: theme.colors.surfaceVariant},
@@ -325,10 +334,15 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                       ]}>
                       {deviceData?.pvPower.powerPv2}W
                     </Text>
-                  </View>
+                  </Pressable>
                 </View>
                 <View style={styles.pvRow}>
-                  <View
+                  <Pressable
+                    onPress={() => {
+                      navigation.push('PVChart', {
+                        id: deviceList[active].id,
+                      });
+                    }}
                     style={[
                       styles.pvItem,
                       {backgroundColor: theme.colors.surfaceVariant},
@@ -347,8 +361,13 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                       ]}>
                       {deviceData?.pvPower.powerPv3}W
                     </Text>
-                  </View>
-                  <View
+                  </Pressable>
+                  <Pressable
+                    onPress={() => {
+                      navigation.push('PVChart', {
+                        id: deviceList[active].id,
+                      });
+                    }}
                     style={[
                       styles.pvItem,
                       {backgroundColor: theme.colors.surfaceVariant},
@@ -367,7 +386,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                       ]}>
                       {deviceData?.pvPower.powerPv4}W
                     </Text>
-                  </View>
+                  </Pressable>
                 </View>
               </View>
             </View>
@@ -377,6 +396,12 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
         <View style={styles.rowContainer}>
           {/* 输出功率 */}
           <Card
+            onPress={() => {
+              // 在路由导航时传入设备ID
+              navigation.navigate('EquipTimeChart', {
+                id: deviceList[active].id,
+              });
+            }}
             style={[styles.halfCard, {backgroundColor: theme.colors.surface}]}>
             <Card.Content>
               <View style={styles.powerCardHeader}>

@@ -18,6 +18,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {ExtendedMD3Theme} from '@/theme';
 import SafeAreaLayout from '@/components/SafeAreaLayout';
 import {deviceApi} from '@/services/api/deviceApi';
+import dayjs from 'dayjs';
 
 interface StatisticsPageProps {
   navigation: any;
@@ -39,7 +40,7 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
   const [loading, setLoading] = useState(false);
 
   // 数据状态
-  const [monthlyData, setMonthlyData] = useState([]);
+  const [monthlyData, setMonthlyData] = useState<Array<{power: number; time: string}>>([]);
 
   // 计算Y轴最大值，给顶部留出一些空间
   const maxPower = Math.max(...monthlyData.map(item => item.power)) * 1.1;
@@ -71,14 +72,23 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
     },
   ];
 
-  // 当年份变化时，更新数据
+  // 当选择变化时，更新数据
   useEffect(() => {
+    setLoading(true);
     deviceApi
       .queryGenEle(1, {
-        grain: yearOptions.findIndex(item => item.title === selected) + 2,
+        grain: yearOptions.findIndex(item => item.title === selected) + 1,
       })
-      .then(value => {
-        console.log(value);
+      .then(({data}) => {
+        setMonthlyData(
+          data.map(({powerGen, time}) => ({
+            power: powerGen,
+            time: time,
+          })),
+        );
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [selected]);
 
@@ -87,6 +97,23 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
   const closeYearMenu = () => setYearMenuVisible(false);
 
   // 选择年份
+
+  // 格式化时间显示
+  const formatTime = (time: string) => {
+    switch (selected) {
+      case '月':
+        // 显示具体日期，格式如：1日
+        return dayjs(time).format('D日');
+      case '年':
+        // 显示月份，格式如：1月
+        return dayjs(time).format('M月');
+      case '总':
+        // 显示年份，格式如：2024年
+        return dayjs(time).format('YYYY年');
+      default:
+        return time;
+    }
+  };
 
   return (
     <SafeAreaLayout>
@@ -190,9 +217,10 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
                     domain={{y: [0, maxPower]}}>
                     <VictoryAxis
                       crossAxis
-                      tickFormat={month =>
-                        `${month}${t('statistics.month', {defaultValue: '月'})}`
-                      }
+                      tickFormat={(_, index) => {
+                        const item = monthlyData[index];
+                        return item ? formatTime(item.time) : '';
+                      }}
                       style={{
                         axis: {stroke: theme.colors.outline},
                         ticks: {stroke: theme.colors.outline, size: 5},
@@ -228,7 +256,7 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
                     />
                     <VictoryBar
                       data={monthlyData}
-                      x="month"
+                      x="time"
                       y="power"
                       barWidth={25}
                       cornerRadius={{top: 6}}
@@ -237,7 +265,7 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
                           fill: '#FF9800',
                         },
                       }}
-                      barRatio={0.7} // 控制柱子宽度与间距的比例
+                      barRatio={0.7}
                       animate={{
                         duration: 500,
                         onLoad: {duration: 500},
@@ -262,7 +290,7 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
               {loading ? (
                 <ActivityIndicator size="small" color={theme.colors.primary} />
               ) : (
-                `${monthlyData.reduce((sum, item) => sum + item.power, 0)} kWh`
+                `${monthlyData.reduce((sum, item) => sum + item.power, 0).toFixed(2)} kWh`
               )}
             </Text>
 
@@ -283,7 +311,7 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
               ) : (
                 `${Math.round(
                   monthlyData.reduce((sum, item) => sum + item.power, 0) /
-                    monthlyData.length,
+                    (monthlyData.length || 1),
                 )} kWh`
               )}
             </Text>
@@ -302,13 +330,15 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
             <Text style={[styles.summaryValue, {color: theme.colors.primary}]}>
               {loading ? (
                 <ActivityIndicator size="small" color={theme.colors.primary} />
-              ) : (
-                `${
+              ) : monthlyData.length > 0 ? (
+                formatTime(
                   monthlyData.reduce(
                     (max, item) => (max.power > item.power ? max : item),
-                    {month: 0, power: 0},
-                  ).month
-                }${t('statistics.month', {defaultValue: '月'})}`
+                    monthlyData[0],
+                  ).time,
+                )
+              ) : (
+                '-'
               )}
             </Text>
           </Card.Content>

@@ -1,48 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  View, 
-  ScrollView, 
-  TouchableOpacity, 
-  StyleSheet, 
-  StatusBar, 
-  Platform, 
-  useColorScheme, 
-  ActivityIndicator 
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+  StatusBar,
+  Platform,
+  useColorScheme,
+  ActivityIndicator,
 } from 'react-native';
-import { 
-  Text, 
-  TextInput, 
-  Button, 
-  Checkbox, 
-  Portal, 
-  Dialog, 
-  RadioButton, 
-  Menu, 
-  useTheme 
+import {
+  Text,
+  TextInput,
+  Button,
+  Checkbox,
+  Portal,
+  Dialog,
+  RadioButton,
+  Menu,
+  useTheme,
 } from 'react-native-paper';
-import { useTranslation } from 'react-i18next';
-import { userApi, LoginParams } from '@/services/api/userApi';
-import { storage } from '@/utils/storage';
-import { APP_SETTINGS } from '@/config/config';
-import { useDispatch, useSelector } from 'react-redux';
-import { setLanguageAsync } from '@/store/slices/languageSlice';
-import { setTheme } from '@/store/slices/themeSlice';
-import { showToast } from '@/store/slices/toastSlice';
+import {useTranslation} from 'react-i18next';
+import {userApi, LoginParams} from '@/services/api/userApi';
+import {storage} from '@/utils/storage';
+import {APP_SETTINGS} from '@/config/config';
+import {useDispatch, useSelector} from 'react-redux';
+import {setLanguageAsync} from '@/store/slices/languageSlice';
+import {setTheme} from '@/store/slices/themeSlice';
+import {showToast} from '@/store/slices/toastSlice';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { ThemeType, ExtendedMD3Theme } from '@/theme';
+import {ThemeType, ExtendedMD3Theme} from '@/theme';
+import ThemePortal from '@/components/ThemePortal';
 
 interface LoginScreenProps {
   navigation?: any;
 }
 
-const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
-  const { t, i18n } = useTranslation();
+const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
+  const {t, i18n} = useTranslation();
   const dispatch = useDispatch();
   const paperTheme = useTheme() as ExtendedMD3Theme;
   const currentTheme = useSelector((state: any) => state.theme.themeType);
   const systemColorScheme = useColorScheme();
-  const isDarkMode = currentTheme === 'dark' || (currentTheme === 'system' && systemColorScheme === 'dark');
-  
+  const isDarkMode =
+    currentTheme === 'dark' ||
+    (currentTheme === 'system' && systemColorScheme === 'dark');
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -50,29 +53,30 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [languageDialogVisible, setLanguageDialogVisible] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState<string>(APP_SETTINGS.defaultLanguage);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>(
+    APP_SETTINGS.defaultLanguage,
+  );
   const [supportedLanguages] = useState(APP_SETTINGS.supportedLanguages);
   const [isInitializing, setIsInitializing] = useState(true);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [moreMenuVisible, setMoreMenuVisible] = useState(false);
   const [themeDialogVisible, setThemeDialogVisible] = useState(false);
-  const [selectedTheme, setSelectedTheme] = useState<ThemeType>('light');
 
   // 初始化
   useEffect(() => {
     const initialize = async () => {
       try {
         setIsInitializing(true);
-        
+
         // 等待存储系统准备好
         await storage.waitForReady();
-        
+
         // 获取保存的语言
         const savedLanguage = await storage.getStringAsync('language');
         if (savedLanguage) {
           setSelectedLanguage(savedLanguage);
         }
-        
+
         // 加载保存的用户名和密码（如果启用了记住账号）
         const savedUsername = await storage.getStringAsync('username');
         const savedPassword = await storage.getStringAsync('password');
@@ -99,8 +103,10 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
       try {
         // 等待存储系统准备好
         await storage.waitForReady();
-        
-        const storedTheme = await storage.getStringAsync('theme') as ThemeType;
+
+        const storedTheme = (await storage.getStringAsync(
+          'theme',
+        )) as ThemeType;
         if (storedTheme) {
           setSelectedTheme(storedTheme);
           dispatch(setTheme(storedTheme));
@@ -117,23 +123,31 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
     try {
       // 表单验证
       if (!username.trim()) {
-        setErrorMessage(t('login.usernameRequired', { defaultValue: '用户名不能为空' }));
+        setErrorMessage(
+          t('login.usernameRequired', {defaultValue: '用户名不能为空'}),
+        );
         return;
       }
-      
+
       if (!password.trim()) {
-        setErrorMessage(t('login.passwordRequired', { defaultValue: '密码不能为空' }));
+        setErrorMessage(
+          t('login.passwordRequired', {defaultValue: '密码不能为空'}),
+        );
         return;
       }
 
       if (!agreeToTerms) {
-        setErrorMessage(t('login.termsRequired', { defaultValue: '请阅读并同意服务条款和隐私政策' }));
+        setErrorMessage(
+          t('login.termsRequired', {
+            defaultValue: '请阅读并同意服务条款和隐私政策',
+          }),
+        );
         return;
       }
-      
+
       setLoading(true);
       setErrorMessage('');
-      
+
       // 调用登录接口
       const loginParams: LoginParams = {
         username: username.trim(),
@@ -141,28 +155,31 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
       };
 
       const response = await userApi.login(loginParams);
-      
+
       // 检查返回的数据是否有效
       if (response && response.access_token) {
         const loginData = response;
-        
+
         // 保存授权信息
         await storage.setAsync('auth_token', loginData.access_token);
-        
+
         if (loginData.refresh_token) {
           await storage.setAsync('refresh_token', loginData.refresh_token);
         }
 
         // 缓存用户信息
         if (loginData.use_info) {
-          await storage.setAsync('user_info', JSON.stringify(loginData.use_info));
+          await storage.setAsync(
+            'user_info',
+            JSON.stringify(loginData.use_info),
+          );
         }
 
         // 保存用户ID
         if (loginData.user_id) {
           await storage.setAsync('user_id', loginData.user_id);
         }
-        
+
         // 如果选择了记住账号，则同时保存用户名和密码
         if (rememberMe) {
           await storage.setAsync('username', username.trim());
@@ -171,10 +188,10 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
           await storage.delete('username');
           await storage.delete('password');
         }
-        
+
         // 根据角色类型跳转到不同页面
         const userType = loginData.use_info?.userType || 1;
-        
+
         if (userType === 1) {
           // 业主角色
           navigation?.replace('OwnerMain');
@@ -183,11 +200,18 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
           navigation?.replace('InstallerMain');
         }
       } else {
-        setErrorMessage(response.message || t('login.failMessage', { defaultValue: '登录失败，请检查用户名或密码' }));
+        setErrorMessage(
+          response.message ||
+            t('login.failMessage', {
+              defaultValue: '登录失败，请检查用户名或密码',
+            }),
+        );
       }
     } catch (error) {
       console.error('Login error:', error);
-      setErrorMessage(t('common.networkError', { defaultValue: '网络请求异常，请稍后重试' }));
+      setErrorMessage(
+        t('common.networkError', {defaultValue: '网络请求异常，请稍后重试'}),
+      );
     } finally {
       setLoading(false);
     }
@@ -197,57 +221,34 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
   const handleLanguageChange = async (lang: string) => {
     try {
       setLanguageDialogVisible(false);
-      
+
       if (lang === selectedLanguage) return;
-      
+
       setSelectedLanguage(lang);
       await dispatch(setLanguageAsync(lang) as any);
       await storage.setAsync('language', lang);
-      
+
       dispatch(
         showToast({
-          message: t('common.languageChangedSuccess', { defaultValue: '语言切换成功' }),
+          message: t('common.languageChangedSuccess', {
+            defaultValue: '语言切换成功',
+          }),
           type: 'success',
-          duration: 2000
-        })
+          duration: 2000,
+        }),
       );
     } catch (error) {
       console.error('Failed to change language:', error);
     }
   };
 
-  // 主题切换处理
-  const handleThemeChange = async (theme: ThemeType) => {
-    try {
-      setThemeDialogVisible(false);
-      
-      if (theme === selectedTheme) return;
-      
-      setSelectedTheme(theme);
-      await storage.setAsync('theme', theme);
-      dispatch(setTheme(theme));
-      
-      dispatch(
-        showToast({
-          message: t('common.themeChangedSuccess', { defaultValue: '主题切换成功' }),
-          type: 'success',
-          duration: 2000
-        })
-      );
-    } catch (error) {
-      console.error('Failed to change theme:', error);
-    }
-  };
-
   // 处理服务条款点击
   const handleTermsPress = () => {
-    const url =
-
-      `http://114.55.0.234/private/agreement_${i18n.language}.html`;
+    const url = `http://114.55.0.234/private/agreement_${i18n.language}.html`;
 
     navigation?.navigate('WebView', {
-      title: t('login.termsOfService', { defaultValue: '服务条款' }),
-      url
+      title: t('login.termsOfService', {defaultValue: '服务条款'}),
+      url,
     });
   };
 
@@ -256,8 +257,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
     const url = `http://114.55.0.234/private/privacy_${i18n.language}.html`;
 
     navigation?.navigate('WebView', {
-      title: t('password.privacyPolicy', { defaultValue: '隐私政策' }),
-      url
+      title: t('password.privacyPolicy', {defaultValue: '隐私政策'}),
+      url,
     });
   };
 
@@ -266,21 +267,33 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color={paperTheme.colors.primary} />
-        <Text style={[styles.loadingText, { color: paperTheme.colors.onBackground }]}>
-          {t('login.loading', { defaultValue: '加载中...' })}
+        <Text
+          style={[styles.loadingText, {color: paperTheme.colors.onBackground}]}>
+          {t('login.loading', {defaultValue: '加载中...'})}
         </Text>
       </View>
     );
   }
 
   return (
-    <View style={[styles.container, { backgroundColor: isDarkMode ? paperTheme.colors.background : '#FAFAFA' }]}>
-      <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} backgroundColor="transparent" translucent />
-      
-      <ScrollView 
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: isDarkMode
+            ? paperTheme.colors.background
+            : '#FAFAFA',
+        },
+      ]}>
+      <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        backgroundColor="transparent"
+        translucent
+      />
+
+      <ScrollView
         contentContainerStyle={styles.scrollContent}
-        keyboardShouldPersistTaps="handled"
-      >
+        keyboardShouldPersistTaps="handled">
         {/* 顶部按钮区域 */}
         <View style={styles.topBar}>
           <View />
@@ -288,79 +301,90 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
             visible={moreMenuVisible}
             onDismiss={() => setMoreMenuVisible(false)}
             anchor={
-              <TouchableOpacity 
-                style={[styles.moreButton, { backgroundColor: paperTheme.colors.surface }]} 
-                onPress={() => setMoreMenuVisible(true)}
-              >
-                <AntDesign 
-                  name="ellipsis1" 
-                  size={20} 
-                  color={paperTheme.colors.onSurface} 
+              <TouchableOpacity
+                style={[
+                  styles.moreButton,
+                  {backgroundColor: paperTheme.colors.surface},
+                ]}
+                onPress={() => setMoreMenuVisible(true)}>
+                <AntDesign
+                  name="ellipsis1"
+                  size={20}
+                  color={paperTheme.colors.onSurface}
                 />
-                <Text style={{ color: paperTheme.colors.onSurface, marginLeft: 4 }}>
-                  {t('common.more', { defaultValue: '更多' })}
+                <Text
+                  style={{color: paperTheme.colors.onSurface, marginLeft: 4}}>
+                  {t('common.more', {defaultValue: '更多'})}
                 </Text>
               </TouchableOpacity>
-            }
-          >
-            <Menu.Item 
-              leadingIcon="translate" 
+            }>
+            <Menu.Item
+              leadingIcon="translate"
               onPress={() => {
                 setMoreMenuVisible(false);
                 setLanguageDialogVisible(true);
-              }} 
-              title={t('login.switchLanguage', { defaultValue: '切换语言' })} 
+              }}
+              title={t('login.switchLanguage', {defaultValue: '切换语言'})}
             />
-            <Menu.Item 
-              leadingIcon="theme-light-dark" 
+            <Menu.Item
+              leadingIcon="theme-light-dark"
               onPress={() => {
                 setMoreMenuVisible(false);
                 setThemeDialogVisible(true);
-              }} 
-              title={t('settings.appearance', { defaultValue: '主题切换' })} 
+              }}
+              title={t('settings.appearance', {defaultValue: '主题切换'})}
             />
           </Menu>
         </View>
-        
+
         {/* 标题区域 */}
         <View style={styles.headerContainer}>
-          <Text style={[styles.logoText, { color: paperTheme.colors.logoColor }]}>
+          <Text style={[styles.logoText, {color: paperTheme.colors.logoColor}]}>
             LEOSMART
           </Text>
-          <Text style={[styles.welcomeText, { color: paperTheme.colors.onBackground }]}>
-            {t('login.title', { defaultValue: '欢迎使用智慧能源EMS系统' })}
+          <Text
+            style={[
+              styles.welcomeText,
+              {color: paperTheme.colors.onBackground},
+            ]}>
+            {t('login.title', {defaultValue: '欢迎使用智慧能源EMS系统'})}
           </Text>
         </View>
-        
+
         {/* 登录表单 */}
-        <View style={[styles.formContainer, { backgroundColor: paperTheme.colors.surface }]}>
+        <View
+          style={[
+            styles.formContainer,
+            {backgroundColor: paperTheme.colors.surface},
+          ]}>
           {/* 错误消息 */}
           {errorMessage ? (
             <View style={styles.errorContainer}>
               <AntDesign
-                name="exclamationcircleo" 
-                size={20} 
-                color={paperTheme.colors.error} 
-                style={{ marginRight: 8 }}
+                name="exclamationcircleo"
+                size={20}
+                color={paperTheme.colors.error}
+                style={{marginRight: 8}}
               />
-              <Text style={[styles.errorText, { color: paperTheme.colors.error }]}>
+              <Text
+                style={[styles.errorText, {color: paperTheme.colors.error}]}>
                 {errorMessage}
               </Text>
             </View>
           ) : null}
-          
+
           {/* 用户名输入框 */}
           <TextInput
             style={styles.input}
             mode="outlined"
             value={username}
             onChangeText={setUsername}
-            placeholder={t('table.email', { defaultValue: '邮箱/用户名' })}
+            placeholder={t('table.email', {defaultValue: '邮箱/用户名'})}
             autoCapitalize="none"
             right={<TextInput.Icon icon="account" />}
-            outlineStyle={{ borderRadius: 24 }}
+            outlineStyle={{borderRadius: 24}}
           />
-          
+
           {/* 密码输入框 */}
           <TextInput
             style={styles.input}
@@ -368,16 +392,18 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
             value={password}
             onChangeText={setPassword}
             secureTextEntry={!showPassword}
-            placeholder={t('datasourceconf.password', { defaultValue: '请输入密码' })}
+            placeholder={t('datasourceconf.password', {
+              defaultValue: '请输入密码',
+            })}
             right={
-              <TextInput.Icon 
-                icon={showPassword ? "eye" : "eye-off"} 
+              <TextInput.Icon
+                icon={showPassword ? 'eye' : 'eye-off'}
                 onPress={() => setShowPassword(!showPassword)}
               />
             }
-            outlineStyle={{ borderRadius: 24 }}
+            outlineStyle={{borderRadius: 24}}
           />
-          
+
           {/* 记住账号和忘记密码 */}
           <View style={styles.rememberForgotContainer}>
             <View style={styles.checkboxContainer}>
@@ -397,7 +423,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
               </Text>
             </TouchableOpacity>
           </View>
-          
+
           {/* 服务条款 */}
           <View style={styles.termsContainer}>
             <Checkbox
@@ -422,7 +448,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
               </Text>
             </Text>
           </View>
-          
+
           {/* 登录按钮 */}
           <TouchableOpacity
             style={[
@@ -435,57 +461,59 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
               }
             ]}
             onPress={handleLogin}
-            disabled={loading || !username || !password || !agreeToTerms}
-          >
+            disabled={loading || !username || !password || !agreeToTerms}>
             {loading && (
-              <ActivityIndicator size="small" color={paperTheme.colors.buttonPrimaryText} style={{ marginRight: 10 }} />
+              <ActivityIndicator
+                size="small"
+                color={paperTheme.colors.buttonPrimaryText}
+                style={{marginRight: 10}}
+              />
             )}
-            <Text style={[styles.loginButtonText, { color: paperTheme.colors.buttonPrimaryText }]}>
-              {loading 
-                ? t('common.loading', { defaultValue: '登录中...' }) 
-                : t('login.loginButton', { defaultValue: '登录' })
-              }
+            <Text
+              style={[
+                styles.loginButtonText,
+                {color: paperTheme.colors.buttonPrimaryText},
+              ]}>
+              {loading
+                ? t('common.loading', {defaultValue: '登录中...'})
+                : t('login.loginButton', {defaultValue: '登录'})}
             </Text>
           </TouchableOpacity>
-          
+
           {/* 其他登录选项 */}
           <View style={styles.otherLoginContainer}>
-            <Button 
-              mode="outlined" 
+            <Button
+              mode="outlined"
               icon="account-off"
-              style={styles.otherButton}
-            >
-              {t('login.guestLogin', { defaultValue: '游客登录' })}
+              style={styles.otherButton}>
+              {t('login.guestLogin', {defaultValue: '游客登录'})}
             </Button>
-            
-            <Button 
+
+            <Button
               mode="outlined"
               icon="account-plus"
               style={styles.otherButton}
-              onPress={() => navigation?.navigate('Register')}
-            >
-              {t('login.register', { defaultValue: '立即注册' })}
+              onPress={() => navigation?.navigate('Register')}>
+              {t('login.register', {defaultValue: '立即注册'})}
             </Button>
           </View>
         </View>
       </ScrollView>
-      
+
       {/* 语言选择对话框 */}
       <Portal>
         <Dialog
           visible={languageDialogVisible}
-          onDismiss={() => setLanguageDialogVisible(false)}
-        >
+          onDismiss={() => setLanguageDialogVisible(false)}>
           <Dialog.Title>
-            {t('common.selectLanguage', { defaultValue: '选择语言' })}
+            {t('common.selectLanguage', {defaultValue: '选择语言'})}
           </Dialog.Title>
-          
+
           <Dialog.Content>
             <RadioButton.Group
               onValueChange={handleLanguageChange}
-              value={selectedLanguage}
-            >
-              {supportedLanguages.map((lang) => (
+              value={selectedLanguage}>
+              {supportedLanguages.map(lang => (
                 <RadioButton.Item
                   key={lang.value}
                   label={lang.label}
@@ -494,52 +522,19 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
               ))}
             </RadioButton.Group>
           </Dialog.Content>
-          
+
           <Dialog.Actions>
             <Button onPress={() => setLanguageDialogVisible(false)}>
-              {t('common.cancel', { defaultValue: '取消' })}
+              {t('common.cancel', {defaultValue: '取消'})}
             </Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>
-      
+
       {/* 主题选择对话框 */}
-      <Portal>
-        <Dialog
-          visible={themeDialogVisible}
-          onDismiss={() => setThemeDialogVisible(false)}
-        >
-          <Dialog.Title>
-            {t('settings.appearance', { defaultValue: '选择主题' })}
-          </Dialog.Title>
-          
-          <Dialog.Content>
-            <RadioButton.Group
-              onValueChange={(value) => handleThemeChange(value as ThemeType)}
-              value={selectedTheme}
-            >
-              <RadioButton.Item
-                label={t('settings.theme.light', { defaultValue: '浅色模式' })}
-                value="light"
-              />
-              <RadioButton.Item
-                label={t('settings.theme.dark', { defaultValue: '深色模式' })}
-                value="dark"
-              />
-              <RadioButton.Item
-                label={t('settings.theme.system', { defaultValue: '跟随系统' })}
-                value="system"
-              />
-            </RadioButton.Group>
-          </Dialog.Content>
-          
-          <Dialog.Actions>
-            <Button onPress={() => setThemeDialogVisible(false)}>
-              {t('common.cancel', { defaultValue: '取消' })}
-            </Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
+      <ThemePortal
+        themeDialogVisible={themeDialogVisible}
+        setThemeDialogVisible={setThemeDialogVisible}></ThemePortal>
     </View>
   );
 };
@@ -597,7 +592,7 @@ const styles = StyleSheet.create({
     padding: 24,
     elevation: 2,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 8,
   },
@@ -658,4 +653,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen; 
+export default LoginScreen;
