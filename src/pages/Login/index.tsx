@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   ScrollView,
@@ -56,6 +56,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
   const [selectedLanguage, setSelectedLanguage] = useState<string>(
     APP_SETTINGS.defaultLanguage,
   );
+  const themeDialogRef = useRef();
   const [supportedLanguages] = useState(APP_SETTINGS.supportedLanguages);
   const [isInitializing, setIsInitializing] = useState(true);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
@@ -108,7 +109,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
           'theme',
         )) as ThemeType;
         if (storedTheme) {
-          setSelectedTheme(storedTheme);
+          themeDialogRef.current?.setSelectedTheme(storedTheme);
           dispatch(setTheme(storedTheme));
         }
       } catch (error) {
@@ -412,14 +413,26 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
                 onPress={() => setRememberMe(!rememberMe)}
                 color={paperTheme.colors.primary}
               />
-              <Text style={{ color: paperTheme.colors.onSurface, marginLeft: 8, fontSize: 12, lineHeight: 14 }}>
-                {t('login.rememberMe', { defaultValue: '记住账号' })}
+              <Text
+                style={{
+                  color: paperTheme.colors.onSurface,
+                  marginLeft: 8,
+                  fontSize: 12,
+                  lineHeight: 14,
+                }}>
+                {t('login.rememberMe', {defaultValue: '记住账号'})}
               </Text>
             </View>
-            
-            <TouchableOpacity onPress={() => navigation?.navigate('ResetPassword')}>
-              <Text style={{ color: paperTheme.colors.forgotPasswordColor, fontSize: 12, lineHeight: 14 }}>
-                {t('login.forgotPassword', { defaultValue: '忘记密码' })}
+
+            <TouchableOpacity
+              onPress={() => navigation?.navigate('ResetPassword')}>
+              <Text
+                style={{
+                  color: paperTheme.colors.forgotPasswordColor,
+                  fontSize: 12,
+                  lineHeight: 14,
+                }}>
+                {t('login.forgotPassword', {defaultValue: '忘记密码'})}
               </Text>
             </TouchableOpacity>
           </View>
@@ -431,20 +444,35 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
               onPress={() => setAgreeToTerms(!agreeToTerms)}
               color={paperTheme.colors.primary}
             />
-            <Text style={{ color: paperTheme.colors.termsTextColor, marginLeft: 8, fontSize: 12, flex: 1, lineHeight: 14 }}>
-              {t('login.agreeTerms', { defaultValue: '我已阅读并同意' })}{' '}
-              <Text 
-                style={{ color: paperTheme.colors.termsLinkColor, fontWeight: '500', fontSize: 12, lineHeight: 14 }}
-                onPress={handleTermsPress}
-              >
-                {t('login.termsOfService', { defaultValue: '服务条款' })}{' '}
+            <Text
+              style={{
+                color: paperTheme.colors.termsTextColor,
+                marginLeft: 8,
+                fontSize: 12,
+                flex: 1,
+                lineHeight: 14,
+              }}>
+              {t('login.agreeTerms', {defaultValue: '我已阅读并同意'})}{' '}
+              <Text
+                style={{
+                  color: paperTheme.colors.termsLinkColor,
+                  fontWeight: '500',
+                  fontSize: 12,
+                  lineHeight: 14,
+                }}
+                onPress={handleTermsPress}>
+                {t('login.termsOfService', {defaultValue: '服务条款'})}{' '}
               </Text>
-              {t('common.and', { defaultValue: '和' })}{' '}
-              <Text 
-                style={{ color: paperTheme.colors.termsLinkColor, fontWeight: '500', fontSize: 12, lineHeight: 14 }}
-                onPress={handlePrivacyPress}
-              >
-                {t('password.privacyPolicy', { defaultValue: '隐私政策' })}
+              {t('common.and', {defaultValue: '和'})}{' '}
+              <Text
+                style={{
+                  color: paperTheme.colors.termsLinkColor,
+                  fontWeight: '500',
+                  fontSize: 12,
+                  lineHeight: 14,
+                }}
+                onPress={handlePrivacyPress}>
+                {t('password.privacyPolicy', {defaultValue: '隐私政策'})}
               </Text>
             </Text>
           </View>
@@ -452,13 +480,14 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
           {/* 登录按钮 */}
           <TouchableOpacity
             style={[
-              styles.loginButton, 
-              { 
-                backgroundColor: loading || !username || !password || !agreeToTerms 
-                  ? paperTheme.colors.buttonPrimary + '80' 
-                  : paperTheme.colors.buttonPrimary,
-                borderRadius: 20
-              }
+              styles.loginButton,
+              {
+                backgroundColor:
+                  loading || !username || !password || !agreeToTerms
+                    ? paperTheme.colors.buttonPrimary + '80'
+                    : paperTheme.colors.buttonPrimary,
+                borderRadius: 20,
+              },
             ]}
             onPress={handleLogin}
             disabled={loading || !username || !password || !agreeToTerms}>
