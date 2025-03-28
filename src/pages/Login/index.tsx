@@ -13,7 +13,6 @@ import {
   Text,
   TextInput,
   Button,
-  Checkbox,
   Portal,
   Dialog,
   RadioButton,
@@ -31,7 +30,7 @@ import {showToast} from '@/store/slices/toastSlice';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {ThemeType, ExtendedMD3Theme} from '@/theme';
 import ThemePortal from '@/components/ThemePortal';
-
+import Checkbox from '@/components/Checkbox';
 interface LoginScreenProps {
   navigation?: any;
 }
@@ -407,11 +406,16 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
           {/* 记住账号和忘记密码 */}
           <View style={styles.rememberForgotContainer}>
             <View style={styles.checkboxContainer}>
-              <Checkbox
+              {/* <Checkbox
                 status={rememberMe ? 'checked' : 'unchecked'}
                 onPress={() => setRememberMe(!rememberMe)}
                 color={paperTheme.colors.primary}
-              />
+              /> */}
+              <Checkbox
+                value={rememberMe}
+                onPress={() => {
+                  setRememberMe(!rememberMe);
+                }}></Checkbox>
               <Text
                 style={{
                   color: paperTheme.colors.onSurface,
@@ -437,11 +441,11 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
           </View>
 
           {/* 服务条款 */}
-          <View style={styles.termsContainer}>
+          <View className='mb-4 flex-row items-center'>
             <Checkbox
-              status={agreeToTerms ? 'checked' : 'unchecked'}
+              value={agreeToTerms}
               onPress={() => setAgreeToTerms(!agreeToTerms)}
-              color={paperTheme.colors.primary}
+              // color={paperTheme.colors.primary}
             />
             <Text
               style={{
