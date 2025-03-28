@@ -45,7 +45,7 @@ export type RootStackParamList = {
     deviceSn: string;
     deviceName?: string;
   };
-  [key: string]: any; // 添加索引签名
+  // [key: string]: any; // 添加索引签名
 };
 declare global {
   namespace ReactNavigation {

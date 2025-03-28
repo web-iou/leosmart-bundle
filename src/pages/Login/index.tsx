@@ -167,12 +167,11 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
         if (loginData.refresh_token) {
           await storage.setAsync('refresh_token', loginData.refresh_token);
         }
-
         // 缓存用户信息
-        if (loginData.use_info) {
+        if (loginData.user_info) {
           await storage.setAsync(
             'user_info',
-            JSON.stringify(loginData.use_info),
+            JSON.stringify(loginData.user_info),
           );
         }
 

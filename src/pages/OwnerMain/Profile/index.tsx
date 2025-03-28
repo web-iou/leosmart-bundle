@@ -6,12 +6,13 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import {Text, List, Switch, Divider, useTheme} from 'react-native-paper';
+import {Text, List, Switch, Divider, useTheme, Avatar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {storage} from '@/utils/storage';
 import {ExtendedMD3Theme} from '@/theme';
 import SafeAreaLayout from '@/components/SafeAreaLayout';
 import ThemePortal from '@/components/ThemePortal';
+import {useMMKVObject} from 'react-native-mmkv';
 
 interface ProfilePageProps {
   navigation: any;
@@ -20,6 +21,10 @@ interface ProfilePageProps {
 const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
   const {t} = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
+  const [userInfo, setUserInfo] = useMMKVObject(
+    'user_info',
+    storage.getInstance()!,
+  );
 
   // 全局景观模式开关状态
   const [globalMode, setGlobalMode] = useState<boolean>(false);
@@ -74,7 +79,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
 
   // 导航到皮肤设置
   const goToThemeSettings = () => {
-    setShow(true)
+    setShow(true);
     // Alert.alert(
     //   t('profile.featureNotAvailable', { defaultValue: '功能未开放' }),
     //   t('profile.comingSoon', { defaultValue: '此功能即将上线，敬请期待！' })
@@ -95,11 +100,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
         style={[styles.container, {backgroundColor: theme.colors.background}]}>
         {/* 顶部用户名 */}
         <View style={styles.header}>
-          <Text style={[styles.title, {color: theme.colors.onSurfaceVariant}]}>
-            Neo
-          </Text>
+          <Avatar.Icon size={60} icon="account" style={{marginBottom: 10}} />
           <Text style={[styles.title2, {color: theme.colors.onBackground}]}>
-            Neo
+            {userInfo?.username}
           </Text>
         </View>
 
@@ -202,7 +205,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
             {t('profile.logout', {defaultValue: '退出登录'})}
           </Text>
         </TouchableOpacity>
-        <ThemePortal setThemeDialogVisible={setShow} themeDialogVisible={show}></ThemePortal>
+        <ThemePortal
+          setThemeDialogVisible={setShow}
+          themeDialogVisible={show}></ThemePortal>
       </ScrollView>
     </SafeAreaLayout>
   );
