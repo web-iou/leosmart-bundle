@@ -351,11 +351,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
         </View>
 
         {/* 登录表单 */}
-        <View
-          style={[
-            styles.formContainer,
-            {backgroundColor: paperTheme.colors.surface},
-          ]}>
+        <View style={styles.formContainer}>
           {/* 错误消息 */}
           {errorMessage ? (
             <View style={styles.errorContainer}>
@@ -407,11 +403,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
           {/* 记住账号和忘记密码 */}
           <View style={styles.rememberForgotContainer}>
             <View style={styles.checkboxContainer}>
-              {/* <Checkbox
-                status={rememberMe ? 'checked' : 'unchecked'}
-                onPress={() => setRememberMe(!rememberMe)}
-                color={paperTheme.colors.primary}
-              /> */}
               <Checkbox
                 value={rememberMe}
                 onPress={() => {
@@ -446,7 +437,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
             <Checkbox
               value={agreeToTerms}
               onPress={() => setAgreeToTerms(!agreeToTerms)}
-              // color={paperTheme.colors.primary}
             />
             <Text
               style={{
@@ -590,13 +580,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   formContainer: {
-    borderRadius: 16,
-    padding: 24,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
+    paddingHorizontal: 24,
   },
   errorContainer: {
     flexDirection: 'row',
@@ -612,7 +596,8 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 16,
-    height: 40,
+    height: 48,
+    backgroundColor: 'transparent',
   },
   rememberForgotContainer: {
     flexDirection: 'row',
@@ -631,16 +616,17 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   loginButton: {
-    height: 40,
-    borderRadius: 20,
+    height: 48,
+    borderRadius: 24,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 2,
+    marginTop: 24,
   },
   loginButtonText: {
     color: 'white',
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: '600',
   },
   otherLoginContainer: {
@@ -652,6 +638,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 8,
     borderRadius: 24,
+    height: 48,
   },
 });
 
