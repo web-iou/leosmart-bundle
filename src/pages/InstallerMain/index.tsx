@@ -14,6 +14,7 @@ import {useTranslation} from 'react-i18next';
 
 // 导入页面组件
 import Overview from './Overview';
+import Monitor from './Monitor';
 import Profile from '../common/Profile';
 
 const Tab = createBottomTabNavigator();
@@ -52,7 +53,7 @@ const InstallerMainScreen: React.FC<InstallerMainScreenProps> = () => {
       />
       <Tab.Screen
         name="Monitor"
-        component={Overview} // 临时使用Overview组件，后续替换为Monitor组件
+        component={Monitor}
         options={{
           title: t('installer.monitor', {defaultValue: '监控'}),
           tabBarIcon: ({color, size}) => (
