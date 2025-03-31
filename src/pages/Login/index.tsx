@@ -189,7 +189,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
         }
 
         // 根据角色类型跳转到不同页面
-        const userType = loginData.use_info?.userType || 1;
+        const userType = loginData.user_info?.userType || 1;
 
         if (userType === 1) {
           // 业主角色
