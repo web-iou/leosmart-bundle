@@ -308,7 +308,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
                 onPress={() => setMoreMenuVisible(true)}>
                 <AntDesign
                   name="ellipsis1"
-                  size={20}
+                  size={14}
                   color={paperTheme.colors.onSurface}
                 />
                 <Text
@@ -361,7 +361,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
             <View style={styles.errorContainer}>
               <AntDesign
                 name="exclamationcircleo"
-                size={20}
+                size={14}
                 color={paperTheme.colors.error}
                 style={{marginRight: 8}}
               />
@@ -380,7 +380,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
             onChangeText={setUsername}
             placeholder={t('table.email', {defaultValue: '邮箱/用户名'})}
             autoCapitalize="none"
-            right={<TextInput.Icon icon="account" />}
+            right={<TextInput.Icon icon="account" size={14} />}
             outlineStyle={{borderRadius: 24}}
           />
 
@@ -397,6 +397,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
             right={
               <TextInput.Icon
                 icon={showPassword ? 'eye' : 'eye-off'}
+                size={14}
                 onPress={() => setShowPassword(!showPassword)}
               />
             }

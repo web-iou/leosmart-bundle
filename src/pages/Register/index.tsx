@@ -446,8 +446,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
               </Text>
               <View style={styles.inputContainer}>
                 <AntDesign
-                  name="global"
-                  size={22}
+                  name="earth"
+                  size={14}
                   color={theme.colors.onSurfaceVariant}
                   style={styles.inputIcon}
                 />
@@ -618,7 +618,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
               <View style={styles.inputContainer}>
                 <AntDesign
                   name="flag"
-                  size={22}
+                  size={14}
                   color={theme.colors.onSurfaceVariant}
                   style={styles.inputIcon}
                 />
@@ -673,7 +673,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
               <View style={styles.inputContainer}>
                 <AntDesign
                   name="clockcircleo"
-                  size={22}
+                  size={14}
                   color={theme.colors.onSurfaceVariant}
                   style={styles.inputIcon}
                 />
@@ -744,7 +744,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
               <View style={styles.inputContainer}>
                 <AntDesign
                   name="mail"
-                  size={22}
+                  size={14}
                   color={theme.colors.onSurfaceVariant}
                   style={styles.inputIcon}
                 />
@@ -783,7 +783,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                   ]}>
                   <AntDesign
                     name="key"
-                    size={22}
+                    size={14}
                     color={theme.colors.onSurfaceVariant}
                     style={styles.inputIcon}
                   />
@@ -848,7 +848,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
               <View style={styles.inputContainer}>
                 <AntDesign
                   name="lock"
-                  size={22}
+                  size={14}
                   color={theme.colors.onSurfaceVariant}
                   style={styles.inputIcon}
                 />
@@ -873,7 +873,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                     <TextInput.Icon
                       icon={showPassword ? 'eye' : 'eye-off'}
                       onPress={() => setShowPassword(!showPassword)}
-                      size={22}
+                      size={14}
                     />
                   }
                 />
@@ -888,7 +888,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
               <View style={styles.inputContainer}>
                 <AntDesign
                   name="lock"
-                  size={22}
+                  size={14}
                   color={theme.colors.onSurfaceVariant}
                   style={styles.inputIcon}
                 />
@@ -915,7 +915,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                       onPress={() =>
                         setShowConfirmPassword(!showConfirmPassword)
                       }
-                      size={22}
+                      size={14}
                     />
                   }
                 />
@@ -932,7 +932,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                   <View style={styles.inputContainer}>
                     <AntDesign
                       name="business"
-                      size={22}
+                      size={14}
                       color={theme.colors.onSurfaceVariant}
                       style={styles.inputIcon}
                     />
@@ -965,7 +965,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                   <View style={styles.inputContainer}>
                     <AntDesign
                       name="code"
-                      size={22}
+                      size={14}
                       color={theme.colors.onSurfaceVariant}
                       style={styles.inputIcon}
                     />
