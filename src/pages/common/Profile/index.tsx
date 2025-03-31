@@ -63,10 +63,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
 
   // 导航到通用设置
   const goToGeneralSettings = () => {
-    Alert.alert(
-      t('profile.featureNotAvailable', {defaultValue: '功能未开放'}),
-      t('profile.comingSoon', {defaultValue: '此功能即将上线，敬请期待！'}),
-    );
+    navigation.navigate('General');
   };
 
   // 导航到账号安全

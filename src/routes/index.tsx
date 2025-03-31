@@ -17,6 +17,7 @@ import InstallerMainScreen from '../pages/InstallerMain';
 import WebViewPage from '../pages/common/WebView';
 import ResetPasswordScreen from '../pages/common/ResetPassword';
 import RegisterScreen from '../pages/Register';
+import { useTranslation } from 'react-i18next';
 
 // 定义路由参数类型 - 只保留实际使用的路由
 export type RootStackParamList = {
@@ -45,7 +46,7 @@ export type RootStackParamList = {
     deviceSn: string;
     deviceName?: string;
   };
-  // [key: string]: any; // 添加索引签名
+  [key: string]: any; // 添加索引签名
 };
 declare global {
   namespace ReactNavigation {
@@ -64,6 +65,7 @@ const USER_ROLE = {
 // 路由配置
 const AppNavigator: React.FC = () => {
   const theme = useTheme() as ExtendedMD3Theme;
+  const {t} = useTranslation();
   // 登录状态
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const [userType, setUserType] = useState<number | null>(null);
@@ -155,6 +157,24 @@ const AppNavigator: React.FC = () => {
           component={
             require('../pages/OwnerMain/Device/components/addDevice').SNCode
           }
+        />
+        <Stack.Screen
+          name="General"
+          options={{
+            headerBackButtonDisplayMode: 'minimal',
+            headerShown: true,
+            headerTitle: t('common.general', {defaultValue: '通用'}),
+          }}
+          component={require('@/pages/common/General').default}
+        />
+        <Stack.Screen
+          name="LanguageSettings"
+          options={{
+            headerBackButtonDisplayMode: 'minimal',
+            headerShown: true,
+            headerTitle: t('user.title1'),
+          }}
+          component={require('@/pages/LanguageSettings').default}
         />
         <Stack.Screen
           name="PVChart"

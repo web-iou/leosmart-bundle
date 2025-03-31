@@ -1,12 +1,11 @@
-import React, { useEffect, useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { BottomNavigation, useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
-import { useFocusEffect } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import DevicePage from './Device';
 import StatisticsPage from './Statistics';
-import ProfilePage from './Profile';
+import ProfilePage from '../common/Profile';
 import { ExtendedMD3Theme } from '@/theme';
 
 interface OwnerMainScreenProps {
@@ -66,19 +65,8 @@ const OwnerMainScreen: React.FC<OwnerMainScreenProps> = ({ navigation, route }) 
   const handleIndexChange = useCallback((newIndex: number) => {
     setIndex(newIndex);
   }, []);
-
-  // 确保在组件挂载时导航到设备选项卡
-  useEffect(() => {
-    setIndex(0);
-  }, []);
   
   // 监听屏幕获得焦点的事件
-  useFocusEffect(
-    useCallback(() => {
-      setIndex(0);
-    }, [])
-  );
-
   // 使用 useMemo 缓存底部导航栏样式
   const barStyle = useMemo(() => ({
     backgroundColor: theme.colors.surface,

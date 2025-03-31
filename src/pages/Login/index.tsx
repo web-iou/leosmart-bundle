@@ -320,8 +320,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
             <Menu.Item
               leadingIcon="translate"
               onPress={() => {
+                navigation?.navigate('LanguageSettings');
                 setMoreMenuVisible(false);
-                setLanguageDialogVisible(true);
               }}
               title={t('login.switchLanguage', {defaultValue: '切换语言'})}
             />
@@ -441,7 +441,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
           </View>
 
           {/* 服务条款 */}
-          <View className='mb-4 flex-row items-center'>
+          <View className="mb-4 flex-row items-center">
             <Checkbox
               value={agreeToTerms}
               onPress={() => setAgreeToTerms(!agreeToTerms)}
@@ -531,37 +531,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
-
-      {/* 语言选择对话框 */}
-      <Portal>
-        <Dialog
-          visible={languageDialogVisible}
-          onDismiss={() => setLanguageDialogVisible(false)}>
-          <Dialog.Title>
-            {t('common.selectLanguage', {defaultValue: '选择语言'})}
-          </Dialog.Title>
-
-          <Dialog.Content>
-            <RadioButton.Group
-              onValueChange={handleLanguageChange}
-              value={selectedLanguage}>
-              {supportedLanguages.map(lang => (
-                <RadioButton.Item
-                  key={lang.value}
-                  label={lang.label}
-                  value={lang.value}
-                />
-              ))}
-            </RadioButton.Group>
-          </Dialog.Content>
-
-          <Dialog.Actions>
-            <Button onPress={() => setLanguageDialogVisible(false)}>
-              {t('common.cancel', {defaultValue: '取消'})}
-            </Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
 
       {/* 主题选择对话框 */}
       <ThemePortal

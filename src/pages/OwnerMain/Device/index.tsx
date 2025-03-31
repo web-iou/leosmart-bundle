@@ -96,11 +96,17 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
   // }, [active, deviceList]);
   const onRefresh = () => {
     setRefreshing(true);
-    // 这里应该调用API刷新设备数据
-    // 模拟API调用延迟
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 1000);
+    const id = deviceList[active]?.id;
+    if (id) {
+      deviceApi
+        .getInverterFirstPage(id)
+        .then(({data}) => {
+          setDeviceData(data);
+        })
+        .finally(() => {
+          setRefreshing(false);
+        });
+    }
   };
   if (loading) {
     return (
