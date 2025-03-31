@@ -130,7 +130,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
               });
             }}>
             <View style={styles.deviceIconCircle}>
-              <AntDesign name="thunderbolt" size={24} color="#FFFFFF" />
+              <AntDesign name="swap" size={24} color="#FFFFFF" />
             </View>
             <Text
               style={[styles.deviceName, {color: theme.colors.onBackground}]}>
@@ -497,36 +497,45 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
           </Card>
         </View>
         {/* 设备控制 */}
-        <Card 
+        <Card
           style={[styles.card, {backgroundColor: theme.colors.surface}]}
           onPress={() => {
             if (deviceList[active]) {
               navigation.navigate('DeviceControl', {
                 deviceId: deviceList[active].id,
                 deviceSn: deviceList[active].sn,
-                deviceName: deviceList[active].name
+                deviceName: deviceList[active].name,
               });
             }
           }}>
           <Card.Content>
             <View style={styles.controlHeader}>
               <View style={styles.controlTitleContainer}>
-                <View style={[styles.controlIcon, {
-                  backgroundColor: theme.dark ? theme.colors.surfaceVariant : theme.colors.primaryContainer
-                }]}>
-                  <AntDesign 
-                    name="setting" 
-                    size={22} 
+                <View
+                  style={[
+                    styles.controlIcon,
+                    {
+                      backgroundColor: theme.dark
+                        ? theme.colors.surfaceVariant
+                        : theme.colors.primaryContainer,
+                    },
+                  ]}>
+                  <AntDesign
+                    name="setting"
+                    size={22}
                     color={theme.colors.primary}
-                    style={{alignSelf: 'center'}} 
+                    style={{alignSelf: 'center'}}
                   />
                 </View>
                 <Text
-                  style={[styles.sectionTitle, {
-                    color: theme.colors.onSurface, 
-                    textAlign: 'left',
-                    marginLeft: 10
-                  }]}>
+                  style={[
+                    styles.sectionTitle,
+                    {
+                      color: theme.colors.onSurface,
+                      textAlign: 'left',
+                      marginLeft: 10,
+                    },
+                  ]}>
                   {t('device.control', {defaultValue: '设备控制'})}
                 </Text>
               </View>
@@ -539,15 +548,21 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
             </View>
 
             <View style={styles.signalStatus}>
-              <View style={[styles.signalIconContainer, {
-                backgroundColor: theme.dark ? 'rgba(255, 255, 255, 0.1)' : theme.colors.surfaceVariant,
-                marginLeft: 5
-              }]}>
-                <AntDesign 
-                  name="wifi" 
-                  size={16} 
+              <View
+                style={[
+                  styles.signalIconContainer,
+                  {
+                    backgroundColor: theme.dark
+                      ? 'rgba(255, 255, 255, 0.1)'
+                      : theme.colors.surfaceVariant,
+                    marginLeft: 5,
+                  },
+                ]}>
+                <AntDesign
+                  name="wifi"
+                  size={16}
                   color="#4CAF50"
-                  style={{alignSelf: 'center'}} 
+                  style={{alignSelf: 'center'}}
                 />
               </View>
               <Text
@@ -556,7 +571,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                   {color: theme.colors.onSurfaceVariant},
                 ]}>
                 4G {t('device.signalStrength', {defaultValue: '信号强度'})}:{' '}
-                <Text style={{color: "#4CAF50", fontWeight: '600'}}>优</Text>
+                <Text style={{color: '#4CAF50', fontWeight: '600'}}>优</Text>
               </Text>
             </View>
           </Card.Content>

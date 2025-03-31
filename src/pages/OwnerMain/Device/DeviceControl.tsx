@@ -356,7 +356,7 @@ const DeviceControl = ({
                   ]}>
                   <Icon
                     style={{alignSelf: 'center'}}
-                    name="safety"
+                    name="Safety"
                     size={22}
                     color={theme.colors.primary}
                   />
