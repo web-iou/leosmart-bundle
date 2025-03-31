@@ -42,7 +42,8 @@
     "react-native-vision-camera": "^4.6.4",
     "react-native-webview": "^13.13.4",
     "react-redux": "^9.2.0",
-    "victory-native": "^36.0.0"
+    "victory-native": "^36.0.0",
+    "react-native-chart-kit": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

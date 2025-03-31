@@ -26,25 +26,24 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
     storage.getInstance()!,
   );
 
-  // 全局景观模式开关状态
+  // 全场景模式开关状态
   const [globalMode, setGlobalMode] = useState<boolean>(false);
   const [show, setShow] = useState(false);
+
   // 处理用户退出登录
   const handleLogout = () => {
     Alert.alert(
-      t('profile.logoutTitle', {defaultValue: '退出登录'}),
-      t('profile.logoutConfirm', {defaultValue: '确定要退出登录吗？'}),
+      t('messageBox.logout'),
+      t('user.logOutMessage'),
       [
         {
-          text: t('common.cancel', {defaultValue: '取消'}),
+          text: t('user.logOutCancel'),
           style: 'cancel',
         },
         {
-          text: t('common.confirm', {defaultValue: '确定'}),
+          text: t('user.logOutExit'),
           onPress: () => {
-            // 清除认证令牌
             storage.delete('auth_token');
-            // 导航回登录页面
             navigation.reset({
               index: 0,
               routes: [{name: 'Login'}],
@@ -55,10 +54,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
     );
   };
 
-  // 切换全球景模式
+  // 切换全场景模式
   const toggleGlobalMode = () => {
     setGlobalMode(!globalMode);
-    // 实际应用中调用相关API来切换模式
   };
 
   // 导航到通用设置
@@ -69,24 +67,20 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
   // 导航到账号安全
   const goToAccountSecurity = () => {
     Alert.alert(
-      t('profile.featureNotAvailable', {defaultValue: '功能未开放'}),
-      t('profile.comingSoon', {defaultValue: '此功能即将上线，敬请期待！'}),
+      t('message.box.title'),
+      t('userSetting.SecuritySettings.placeholder.securityQuestion'),
     );
   };
 
   // 导航到皮肤设置
   const goToThemeSettings = () => {
     setShow(true);
-    // Alert.alert(
-    //   t('profile.featureNotAvailable', { defaultValue: '功能未开放' }),
-    //   t('profile.comingSoon', { defaultValue: '此功能即将上线，敬请期待！' })
-    // );
   };
 
   // 导航到关于页面
   const goToAbout = () => {
     navigation.navigate('WebView', {
-      title: t('about.title', {defaultValue: '关于我们'}),
+      title: t('common.about'),
       url: 'https://example.com/about',
     });
   };
@@ -110,7 +104,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
             {backgroundColor: theme.colors.surface},
           ]}>
           <List.Item
-            title={t('profile.general', {defaultValue: '通用'})}
+            title={t('common.general')}
             titleStyle={{color: theme.colors.onSurface}}
             left={props => <List.Icon {...props} icon="cog" color="#FF9800" />}
             right={props => (
@@ -126,7 +120,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
           <Divider style={{backgroundColor: theme.colors.outline + '20'}} />
 
           <List.Item
-            title={t('profile.accountSecurity', {defaultValue: '账号安全'})}
+            title={t('userSetting.account_security')}
             titleStyle={{color: theme.colors.onSurface}}
             left={props => (
               <List.Icon {...props} icon="shield" color="#2196F3" />
@@ -144,7 +138,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
           <Divider style={{backgroundColor: theme.colors.outline + '20'}} />
 
           <List.Item
-            title={t('profile.theme', {defaultValue: '皮肤'})}
+            title={t('layout.skin')}
             titleStyle={{color: theme.colors.onSurface}}
             left={props => (
               <List.Icon {...props} icon="palette" color="#4CAF50" />
@@ -162,7 +156,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
           <Divider style={{backgroundColor: theme.colors.outline + '20'}} />
 
           <List.Item
-            title={t('profile.about', {defaultValue: '关于'})}
+            title={t('common.about')}
             titleStyle={{color: theme.colors.onSurface}}
             left={props => (
               <List.Icon {...props} icon="information" color="#FF5722" />
@@ -178,14 +172,14 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
           />
         </View>
 
-        {/* 全球景模式开关 */}
+        {/* 全场景模式开关 */}
         <View
           style={[
             styles.switchContainer,
             {backgroundColor: theme.colors.surface},
           ]}>
           <Text style={[styles.switchText, {color: theme.colors.onSurface}]}>
-            {t('profile.globalMode', {defaultValue: '全球景模式'})}
+            {t('settings.full.scene.mode')}
           </Text>
           <Switch
             value={globalMode}
@@ -199,7 +193,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
           style={[styles.logoutButton, {borderColor: theme.colors.error}]}
           onPress={handleLogout}>
           <Text style={[styles.logoutButtonText, {color: theme.colors.error}]}>
-            {t('profile.logout', {defaultValue: '退出登录'})}
+            {t('messageBox.logout')}
           </Text>
         </TouchableOpacity>
         <ThemePortal

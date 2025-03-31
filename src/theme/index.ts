@@ -7,7 +7,7 @@ import { storage } from '../utils/storage';
 import { StyleSheet, FlexAlignType } from 'react-native';
 
 // 扩展 MD3Colors 类型以包含我们的自定义颜色
-export type CustomColors = {
+export interface CustomColors {
   logoColor: string;
   welcomeTextColor: string;
   subTextColor: string;
@@ -31,7 +31,9 @@ export type CustomColors = {
   dialogBackgroundColor: string;
   dialogTitleColor: string;
   dialogTextColor: string;
-};
+  warning: string;
+  warningContainer: string;
+}
 
 // Custom color palettes
 const lightColors = {
@@ -67,6 +69,8 @@ const lightColors = {
   dialogBackgroundColor: '#FFFFFF',
   dialogTitleColor: '#333333',
   dialogTextColor: '#555555',
+  warning: '#FFA726',
+  warningContainer: '#FFF3E0',
 } as const;
 
 const darkColors = {
@@ -102,6 +106,8 @@ const darkColors = {
   dialogBackgroundColor: '#2a2a2a',
   dialogTitleColor: '#ffffff',
   dialogTextColor: '#cccccc',
+  warning: '#FFB74D',
+  warningContainer: '#2D2416',
 } as const;
 
 // 自定义字体变体配置
