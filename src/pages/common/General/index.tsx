@@ -1,11 +1,3 @@
-/*
- * @Author: cx19940809
- * @Date: 2025-03-31 09:09:25
- * @LastEditors: cx19940809 
- * @LastEditTime: 2025-03-31 09:26:05
- * @FilePath: /leosmart/src/pages/common/General/index.tsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {List, useTheme, Divider} from 'react-native-paper';
@@ -25,7 +17,7 @@ const FeatureList: React.FC<FeatureListProps> = ({
   currentVendor,
 }) => {
   const theme = useTheme();
-  const navigation = useNavigation();
+  const navigation = useNavigation<ReactNavigation.Navigation['navigation']>();
   const {t} = useTranslation();
   const onLanguagePress = () => {
     navigation.navigate('LanguageSettings');

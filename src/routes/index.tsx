@@ -17,7 +17,7 @@ import InstallerMainScreen from '../pages/InstallerMain';
 import WebViewPage from '../pages/common/WebView';
 import ResetPasswordScreen from '../pages/common/ResetPassword';
 import RegisterScreen from '../pages/Register';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 // 定义路由参数类型 - 只保留实际使用的路由
 export type RootStackParamList = {
@@ -46,11 +46,15 @@ export type RootStackParamList = {
     deviceSn: string;
     deviceName?: string;
   };
-  [key: string]: any; // 添加索引签名
+  LanguageSettings: undefined;
+  CountryPicker: {
+    onSelectCountry: (value:any) => void;
+  };
+  [key: string]: any;
 };
 declare global {
   namespace ReactNavigation {
-    type Navigation<T extends keyof RootStackParamList> =
+    type Navigation<T extends keyof RootStackParamList = ''> =
       NativeStackScreenProps<RootStackParamList, T>;
   }
 }
@@ -120,7 +124,11 @@ const AppNavigator: React.FC = () => {
   // 如果登录状态尚未确定，显示加载指示器
   if (isLoggedIn === null) {
     return (
-      <View style={[styles.loadingContainer, { backgroundColor: theme.colors.background }]}>
+      <View
+        style={[
+          styles.loadingContainer,
+          {backgroundColor: theme.colors.background},
+        ]}>
         <ActivityIndicator size="large" color={theme.colors.primary} />
       </View>
     );
@@ -168,13 +176,57 @@ const AppNavigator: React.FC = () => {
           component={require('@/pages/common/General').default}
         />
         <Stack.Screen
+          name="CountryPicker"
+          options={{
+            headerBackButtonDisplayMode: 'minimal',
+            headerShown: true,
+            headerTitle: t('userSetting.basicInfo.form.label.countryRegion', {
+              defaultValue: '国家/地区',
+            }),
+          }}
+          component={require('@/pages/common/CountryPicker').default}
+        />
+        <Stack.Screen
+          name="AccountSecurity"
+          options={{
+            headerBackButtonDisplayMode: 'minimal',
+            headerShown: true,
+            headerTitle: t('userSetting.account_security', {
+              defaultValue: '账户安全',
+            }),
+          }}
+          component={require('@/pages/common/Profile/AccountSecurity').default}
+        />
+        <Stack.Screen
+          name="ChangeEmail"
+          options={{
+            headerBackButtonDisplayMode: 'minimal',
+            headerShown: true,
+            headerTitle: t('userSetting.SecuritySettings.form.label.email', {
+              defaultValue: '安全邮箱',
+            }),
+          }}
+          component={require('@/pages/common/Profile/ChangeEmail').default}
+        />
+        <Stack.Screen
+          name="ChangePassword"
+          options={{
+            headerBackButtonDisplayMode: 'minimal',
+            headerShown: true,
+            headerTitle: t('sys.operation.validate', {
+              defaultValue: '修改密码',
+            }),
+          }}
+          component={require('@/pages/common/Profile/ChangePassword').default}
+        />
+        <Stack.Screen
           name="LanguageSettings"
           options={{
             headerBackButtonDisplayMode: 'minimal',
             headerShown: true,
             headerTitle: t('user.title1'),
           }}
-          component={require('@/pages/LanguageSettings').default}
+          component={require('@/pages/common/LanguageSettings').default}
         />
         <Stack.Screen
           name="PVChart"

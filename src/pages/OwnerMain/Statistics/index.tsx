@@ -25,170 +25,189 @@ interface StatisticsPageProps {
 }
 
 // 使用memo优化图表组件
-const PowerGenerationChart = React.memo(({
-  monthlyData, 
-  maxPower, 
-  chartContentWidth,
-  chartHeight,
-  chartContentPadding,
-  formatTime,
-  theme,
-  selected
-}) => {
-  if (!monthlyData?.length) return null;
-  
-  return (
-    <VictoryChart
-      theme={VictoryTheme.material}
-      domainPadding={{x: 20}}
-      width={chartContentWidth}
-      height={chartHeight}
-      padding={chartContentPadding}
-      domain={{y: [0, maxPower]}}>
-      <VictoryAxis
-        crossAxis
-        tickFormat={(_, index) => {
-          const item = monthlyData[index];
-          return item ? formatTime(item.time) : '';
-        }}
-        style={{
-          axis: {stroke: theme.colors.outline},
-          ticks: {stroke: theme.colors.outline, size: 5},
-          tickLabels: {
-            fill: theme.colors.onSurfaceVariant,
-            fontSize: 12,
-          },
-          grid: {stroke: 'transparent'},
-        }}
-      />
-      <VictoryAxis
-        dependentAxis
-        crossAxis
-        tickValues={[
-          0,
-          Math.round(maxPower * 0.25),
-          Math.round(maxPower * 0.5),
-          Math.round(maxPower * 0.75),
-          Math.round(maxPower),
-        ]}
-        tickFormat={() => ''}
-        style={{
-          axis: {stroke: theme.colors.outline},
-          ticks: {stroke: 'transparent', size: 0},
-          tickLabels: {
-            fill: 'transparent',
-          },
-          grid: {
-            stroke: theme.colors.outline + '20',
-            strokeDasharray: '5,5',
-          },
-        }}
-      />
-      <VictoryBar
-        data={monthlyData}
-        x="time"
-        y="power"
-        barWidth={25}
-        cornerRadius={{top: 6}}
-        style={{
-          data: {
-            fill: '#FF9800',
-          },
-        }}
-        barRatio={0.7}
-        animate={{
-          duration: 300, // 减少动画时间
-          onLoad: {duration: 300},
-        }}
-      />
-    </VictoryChart>
-  );
-});
+const PowerGenerationChart = React.memo(
+  ({
+    monthlyData,
+    maxPower,
+    chartContentWidth,
+    chartHeight,
+    chartContentPadding,
+    formatTime,
+    theme,
+    selected,
+  }: {
+    monthlyData: any[];
+    maxPower: number;
+    chartContentWidth: number;
+    chartHeight: number;
+    chartContentPadding: any;
+    formatTime: any;
+    theme: any;
+    selected: string;
+  }) => {
+    if (!monthlyData?.length) return null;
+
+    return (
+      <VictoryChart
+        theme={VictoryTheme.material}
+        domainPadding={{x: 20}}
+        width={chartContentWidth}
+        height={chartHeight}
+        padding={chartContentPadding}
+        domain={{y: [0, maxPower]}}>
+        <VictoryAxis
+          crossAxis
+          tickFormat={(_, index) => {
+            const item = monthlyData[index];
+            return item ? formatTime(item.time) : '';
+          }}
+          style={{
+            axis: {stroke: theme.colors.outline},
+            ticks: {stroke: theme.colors.outline, size: 5},
+            tickLabels: {
+              fill: theme.colors.onSurfaceVariant,
+              fontSize: 12,
+            },
+            grid: {stroke: 'transparent'},
+          }}
+        />
+        <VictoryAxis
+          dependentAxis
+          crossAxis
+          tickValues={[
+            0,
+            Math.round(maxPower * 0.25),
+            Math.round(maxPower * 0.5),
+            Math.round(maxPower * 0.75),
+            Math.round(maxPower),
+          ]}
+          tickFormat={() => ''}
+          style={{
+            axis: {stroke: theme.colors.outline},
+            ticks: {stroke: 'transparent', size: 0},
+            tickLabels: {
+              fill: 'transparent',
+            },
+            grid: {
+              stroke: theme.colors.outline + '20',
+              strokeDasharray: '5,5',
+            },
+          }}
+        />
+        <VictoryBar
+          data={monthlyData}
+          x="time"
+          y="power"
+          barWidth={25}
+          cornerRadius={{top: 6}}
+          style={{
+            data: {
+              fill: '#FF9800',
+            },
+          }}
+          barRatio={0.7}
+          animate={{
+            duration: 300, // 减少动画时间
+            onLoad: {duration: 300},
+          }}
+        />
+      </VictoryChart>
+    );
+  },
+);
 
 // 统计摘要卡片组件
-const StatisticsSummaryCard = React.memo(({
-  monthlyData,
-  loading,
-  formatTime,
-  theme,
-  t
-}) => {
-  // 使用useMemo缓存计算结果
-  const totalPower = useMemo(() => 
-    monthlyData.reduce((sum, item) => sum + item.power, 0).toFixed(2)
-  , [monthlyData]);
-  
-  const averagePower = useMemo(() => 
-    Math.round(
-      monthlyData.reduce((sum, item) => sum + item.power, 0) /
-        (monthlyData.length || 1)
-    )
-  , [monthlyData]);
-  
-  const peakMonth = useMemo(() => {
-    if (!monthlyData.length) return '-';
-    return formatTime(
-      monthlyData.reduce(
-        (max, item) => (max.power > item.power ? max : item),
-        monthlyData[0]
-      ).time
+const StatisticsSummaryCard = React.memo(
+  ({
+    monthlyData,
+    loading,
+    formatTime,
+    theme,
+    t,
+  }: {
+    monthlyData: any[];
+    loading: boolean;
+    formatTime: any;
+    theme: any;
+    t: any;
+  }) => {
+    // 使用useMemo缓存计算结果
+    const totalPower = useMemo(
+      () => monthlyData.reduce((sum, item) => sum + item.power, 0).toFixed(2),
+      [monthlyData],
     );
-  }, [monthlyData, formatTime]);
 
-  return (
-    <Card.Content>
-      <Text
-        style={[styles.summaryTitle, {color: theme.colors.onSurface}]}>
-        {t('statistics.yearlyTotal', {defaultValue: '年度发电量总计'})}
-      </Text>
-      <Text style={[styles.summaryValue, {color: theme.colors.primary}]}>
-        {loading ? (
-          <ActivityIndicator size="small" color={theme.colors.primary} />
-        ) : (
-          `${totalPower} kWh`
-        )}
-      </Text>
+    const averagePower = useMemo(
+      () =>
+        Math.round(
+          monthlyData.reduce((sum, item) => sum + item.power, 0) /
+            (monthlyData.length || 1),
+        ),
+      [monthlyData],
+    );
 
-      <Divider
-        style={[
-          styles.divider,
-          {backgroundColor: theme.colors.outline + '30'},
-        ]}
-      />
+    const peakMonth = useMemo(() => {
+      if (!monthlyData.length) return '-';
+      return formatTime(
+        monthlyData.reduce(
+          (max, item) => (max.power > item.power ? max : item),
+          monthlyData[0],
+        ).time,
+      );
+    }, [monthlyData, formatTime]);
 
-      <Text
-        style={[styles.summaryTitle, {color: theme.colors.onSurface}]}>
-        {t('statistics.monthlyAverage', {defaultValue: '月均发电量'})}
-      </Text>
-      <Text style={[styles.summaryValue, {color: theme.colors.primary}]}>
-        {loading ? (
-          <ActivityIndicator size="small" color={theme.colors.primary} />
-        ) : (
-          `${averagePower} kWh`
-        )}
-      </Text>
+    return (
+      <Card.Content>
+        <Text style={[styles.summaryTitle, {color: theme.colors.onSurface}]}>
+          {t('statistics.yearlyTotal', {defaultValue: '年度发电量总计'})}
+        </Text>
+        <Text style={[styles.summaryValue, {color: theme.colors.primary}]}>
+          {loading ? (
+            <ActivityIndicator size="small" color={theme.colors.primary} />
+          ) : (
+            `${totalPower} kWh`
+          )}
+        </Text>
 
-      <Divider
-        style={[
-          styles.divider,
-          {backgroundColor: theme.colors.outline + '30'},
-        ]}
-      />
+        <Divider
+          style={[
+            styles.divider,
+            {backgroundColor: theme.colors.outline + '30'},
+          ]}
+        />
 
-      <Text
-        style={[styles.summaryTitle, {color: theme.colors.onSurface}]}>
-        {t('statistics.peakMonth', {defaultValue: '发电峰值月'})}
-      </Text>
-      <Text style={[styles.summaryValue, {color: theme.colors.primary}]}>
-        {loading ? (
-          <ActivityIndicator size="small" color={theme.colors.primary} />
-        ) : (
-          peakMonth
-        )}
-      </Text>
-    </Card.Content>
-  );
-});
+        <Text style={[styles.summaryTitle, {color: theme.colors.onSurface}]}>
+          {t('statistics.monthlyAverage', {defaultValue: '月均发电量'})}
+        </Text>
+        <Text style={[styles.summaryValue, {color: theme.colors.primary}]}>
+          {loading ? (
+            <ActivityIndicator size="small" color={theme.colors.primary} />
+          ) : (
+            `${averagePower} kWh`
+          )}
+        </Text>
+
+        <Divider
+          style={[
+            styles.divider,
+            {backgroundColor: theme.colors.outline + '30'},
+          ]}
+        />
+
+        <Text style={[styles.summaryTitle, {color: theme.colors.onSurface}]}>
+          {t('statistics.peakMonth', {defaultValue: '发电峰值月'})}
+        </Text>
+        <Text style={[styles.summaryValue, {color: theme.colors.primary}]}>
+          {loading ? (
+            <ActivityIndicator size="small" color={theme.colors.primary} />
+          ) : (
+            peakMonth
+          )}
+        </Text>
+      </Card.Content>
+    );
+  },
+);
 
 const StatisticsPage: React.FC<StatisticsPageProps> = ({
   navigation: _navigation,
@@ -203,7 +222,9 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
   const [loading, setLoading] = useState(false);
 
   // 数据状态
-  const [monthlyData, setMonthlyData] = useState<Array<{power: number; time: string}>>([]);
+  const [monthlyData, setMonthlyData] = useState<
+    Array<{power: number; time: string}>
+  >([]);
 
   // 使用useMemo缓存计算结果，避免重复计算
   const maxPower = useMemo(() => {
@@ -214,38 +235,46 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
   // 图表布局相关常量 - 使用useMemo缓存计算结果
   const yAxisWidth = 45;
   const chartHeight = 350;
-  const chartContentPadding = useMemo(() => ({top: 20, bottom: 50, left: 0, right: 20}), []);
-  const yAxisPadding = useMemo(() => ({top: 20, bottom: 50, left: 30, right: 0}), []);
+  const chartContentPadding = useMemo(
+    () => ({top: 20, bottom: 50, left: 0, right: 20}),
+    [],
+  );
+  const yAxisPadding = useMemo(
+    () => ({top: 20, bottom: 50, left: 30, right: 0}),
+    [],
+  );
 
   // 计算图表内容区域宽度
   const chartDimensions = useMemo(() => {
     const minChartContentWidth = screenWidth - 40 - yAxisWidth;
     const calculatedContentWidth = monthlyData.length * 60;
     return {
-      chartContentWidth: Math.max(minChartContentWidth, calculatedContentWidth)
+      chartContentWidth: Math.max(minChartContentWidth, calculatedContentWidth),
     };
   }, [screenWidth, monthlyData.length, yAxisWidth]);
 
   // 可选年份列表
-  const yearOptions = useMemo(() => [
-    { title: '月' },
-    { title: '年' },
-    { title: '总' },
-  ], []);
+  const yearOptions = useMemo(
+    () => [{title: '月'}, {title: '年'}, {title: '总'}],
+    [],
+  );
 
   // 格式化时间显示 - 使用useCallback避免重新创建函数
-  const formatTime = useCallback((time: string) => {
-    switch (selected) {
-      case '月':
-        return dayjs(time).format('D日');
-      case '年':
-        return dayjs(time).format('M月');
-      case '总':
-        return dayjs(time).format('YYYY年');
-      default:
-        return time;
-    }
-  }, [selected]);
+  const formatTime = useCallback(
+    (time: string) => {
+      switch (selected) {
+        case '月':
+          return dayjs(time).format('D日');
+        case '年':
+          return dayjs(time).format('M月');
+        case '总':
+          return dayjs(time).format('YYYY年');
+        default:
+          return time;
+      }
+    },
+    [selected],
+  );
 
   // 当选择变化时，更新数据 - 使用useCallback
   const fetchData = useCallback(() => {
@@ -273,12 +302,18 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
   }, [fetchData]);
 
   // 打开/关闭年份选择菜单
-  const toggleYearMenu = useCallback(() => setYearMenuVisible(!yearMenuVisible), [yearMenuVisible]);
+  const toggleYearMenu = useCallback(
+    () => setYearMenuVisible(!yearMenuVisible),
+    [yearMenuVisible],
+  );
   const closeYearMenu = useCallback(() => setYearMenuVisible(false), []);
-  const selectMenuItem = useCallback((title: string) => () => {
-    setSelected(title);
-    closeYearMenu();
-  }, [closeYearMenu]);
+  const selectMenuItem = useCallback(
+    (title: string) => () => {
+      setSelected(title);
+      closeYearMenu();
+    },
+    [closeYearMenu],
+  );
 
   return (
     <SafeAreaLayout>

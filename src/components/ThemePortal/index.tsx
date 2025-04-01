@@ -8,7 +8,7 @@ import {Button, Dialog, Portal, RadioButton} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 
 export default forwardRef(
-  ({setThemeDialogVisible, themeDialogVisible}, ref) => {
+  ({setThemeDialogVisible, themeDialogVisible}: {setThemeDialogVisible: (value:boolean)=>void, themeDialogVisible: boolean}, ref) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
     const [selectedTheme, setSelectedTheme] = useState('light');

@@ -33,7 +33,6 @@ const Picker = ({
   const fadeAnim = useRef(new Animated.Value(0)).current;
   // 计算初始滚动位置
   const initialIndex = data.findIndex(item => item === defaultValue);
-  console.log(selectedValue);
   
   useEffect(() => {
     Animated.timing(fadeAnim, {

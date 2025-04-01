@@ -22,8 +22,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {ExtendedMD3Theme} from '@/theme';
 import Picker from '@/components/Picker'; // 引入Picker组件
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-
+import {CountryItem} from '../common/CountryPicker';
+import {init, Geolocation} from 'react-native-amap-geolocation';
 // 定义国家和时区类型
 interface Country {
   code: string;
@@ -47,50 +47,6 @@ const SITES: Site[] = [
   {code: 'US', name: '美国站'},
   {code: 'EU', name: '欧洲站'},
 ];
-
-// 临时数据 - 后面会替换为API调用
-const COUNTRIES: Country[] = [
-  {code: 'CN', name: '中国'},
-  {code: 'US', name: '美国'},
-  {code: 'GB', name: '英国'},
-  {code: 'JP', name: '日本'},
-  {code: 'KR', name: '韩国'},
-  {code: 'AU', name: '澳大利亚'},
-  {code: 'CA', name: '加拿大'},
-  {code: 'DE', name: '德国'},
-  {code: 'FR', name: '法国'},
-];
-
-const TIMEZONES: Record<string, Timezone[]> = {
-  CN: [
-    {id: 'Asia/Shanghai', name: '北京 (UTC+8:00)'},
-    {id: 'Asia/Urumqi', name: '乌鲁木齐 (UTC+6:00)'},
-  ],
-  US: [
-    {id: 'America/New_York', name: '纽约 (UTC-5:00)'},
-    {id: 'America/Chicago', name: '芝加哥 (UTC-6:00)'},
-    {id: 'America/Denver', name: '丹佛 (UTC-7:00)'},
-    {id: 'America/Los_Angeles', name: '洛杉矶 (UTC-8:00)'},
-    {id: 'America/Anchorage', name: '安克雷奇 (UTC-9:00)'},
-    {id: 'Pacific/Honolulu', name: '檀香山 (UTC-10:00)'},
-  ],
-  GB: [{id: 'Europe/London', name: '伦敦 (UTC+0:00)'}],
-  JP: [{id: 'Asia/Tokyo', name: '东京 (UTC+9:00)'}],
-  KR: [{id: 'Asia/Seoul', name: '首尔 (UTC+9:00)'}],
-  AU: [
-    {id: 'Australia/Sydney', name: '悉尼 (UTC+10:00)'},
-    {id: 'Australia/Perth', name: '珀斯 (UTC+8:00)'},
-    {id: 'Australia/Darwin', name: '达尔文 (UTC+9:30)'},
-    {id: 'Australia/Brisbane', name: '布里斯班 (UTC+10:00)'},
-  ],
-  CA: [
-    {id: 'America/Toronto', name: '多伦多 (UTC-5:00)'},
-    {id: 'America/Vancouver', name: '温哥华 (UTC-8:00)'},
-    {id: 'America/Edmonton', name: '埃德蒙顿 (UTC-7:00)'},
-  ],
-  DE: [{id: 'Europe/Berlin', name: '柏林 (UTC+1:00)'}],
-  FR: [{id: 'Europe/Paris', name: '巴黎 (UTC+1:00)'}],
-};
 
 interface RegisterScreenProps {
   navigation: any;
@@ -124,15 +80,10 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
   const [userType, setUserType] = useState<number>(1); // 默认业主角色
 
   // 国家和时区
-  const [countryCode, setCountryCode] = useState<string>('CN'); // 默认中国
-  const [timezone, setTimezone] = useState<string>('Asia/Shanghai'); // 默认北京
-  const [countryPickerVisible, setCountryPickerVisible] =
-    useState<boolean>(false);
+  const [countryCode, setCountryCode] = useState<string>(''); // 默认中国
+  const [timezone, setTimezone] = useState<string>(''); // 默认北京
   const [timezonePickerVisible, setTimezonePickerVisible] =
     useState<boolean>(false);
-  const [countryNames, setCountryNames] = useState<string[]>(
-    COUNTRIES.map(country => country.name),
-  );
   const [timezoneNames, setTimezoneNames] = useState<string[]>([]);
 
   // 第二步：表单输入
@@ -142,7 +93,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [parentCode, setParentCode] = useState('');
-
+  const [nickname, setNickname] = useState('');
   // 状态控制
   const [loading, setLoading] = useState(false);
   const [sending, setSending] = useState(false);
@@ -156,6 +107,14 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
 
   // 尝试获取用户的国家和设置默认值
   useEffect(() => {
+    init({
+      ios: '3bf9af0cbaca33af3182b30a9c80c202',
+      android: '3bf9af0cbaca33af3182b30a9c80c202',
+    }).then(() => {
+      Geolocation.(position => {
+        console.log(position);
+      });
+    });
     // 这里可以使用地理位置API获取用户当前国家
     // 暂时使用默认值，这部分后续可以替换为API调用
     setCountryCode('CN');
@@ -163,17 +122,17 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
   }, []);
 
   // 当国家改变时更新时区
-  useEffect(() => {
-    if (
-      countryCode &&
-      TIMEZONES[countryCode] &&
-      TIMEZONES[countryCode].length > 0
-    ) {
-      setTimezone(TIMEZONES[countryCode][0].id);
-      // 更新时区名称列表
-      setTimezoneNames(TIMEZONES[countryCode].map(tz => tz.name));
-    }
-  }, [countryCode]);
+  // useEffect(() => {
+  //   if (
+  //     countryCode &&
+  //     TIMEZONES[countryCode] &&
+  //     TIMEZONES[countryCode].length > 0
+  //   ) {
+  //     setTimezone(TIMEZONES[countryCode][0].id);
+  //     // 更新时区名称列表
+  //     setTimezoneNames(TIMEZONES[countryCode].map(tz => tz.name));
+  //   }
+  // }, [countryCode]);
 
   // 验证码倒计时逻辑
   useEffect(() => {
@@ -382,14 +341,16 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
   };
 
   // 选择国家
-  const handleSelectCountry = (code: string) => {
-    setCountryCode(code);
-    setCountryPickerVisible(false);
+  const handleSelectCountry = (data: CountryItem) => {
+    debugger;
+    setCountryCode(data.value);
+    // setCountryPickerVisible(false);
 
     // 当选择新国家时，默认选择该国家的第一个时区
-    if (TIMEZONES[code]?.length > 0) {
-      setTimezone(TIMEZONES[code][0].id);
-    }
+    // if (TIMEZONES[code]?.length > 0) {
+    setTimezone(data.zoneList[0].value);
+    // }
+    setTimezoneNames(data.zoneList.map(item => item.value));
   };
 
   // 选择时区
@@ -413,10 +374,9 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
   // 获取当前选择的时区名称
   const getCurrentTimezoneName = () => {
     const timezones = TIMEZONES[countryCode] || [];
-    const tz = timezones.find((t: Timezone) => t.id === timezone);
+    const tz = timezones.find((t: Timezone) => t.value === timezone);
     return tz ? tz.name : '';
   };
-
   return (
     <View
       style={[styles.container, {backgroundColor: theme.colors.background}]}>
@@ -633,7 +593,11 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                       height: 40,
                     },
                   ]}
-                  onPress={() => setCountryPickerVisible(true)}>
+                  onPress={() => {
+                    navigation.navigate('CountryPicker', {
+                      onSelectCountry: handleSelectCountry,
+                    });
+                  }}>
                   <Text
                     style={{
                       flex: 1,
@@ -650,7 +614,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                 </TouchableOpacity>
               </View>
             </View>
-
+            {/* 
             <Picker
               visible={countryPickerVisible}
               data={countryNames}
@@ -663,7 +627,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                 }
                 setCountryPickerVisible(false);
               }}
-            />
+            /> */}
 
             {/* 时区选择 */}
             <View style={styles.inputGroup}>
@@ -734,6 +698,38 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                 style={[styles.sectionTitle, {color: theme.colors.onSurface}]}>
                 {t('register.emailRegister', {defaultValue: '邮箱注册'})}
               </Text>
+            </View>
+            {/* 昵称字段 */}
+            <View style={styles.sectionHeader}>
+              <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+                {t('sysuser.nickname', {defaultValue: '昵称'})}
+              </Text>
+              <View style={styles.inputContainer}>
+                <AntDesign
+                  name="user"
+                  size={22}
+                  color={theme.colors.onSurfaceVariant}
+                  style={styles.inputIcon}
+                />
+                <TextInput
+                  style={[
+                    styles.input,
+                    {
+                      backgroundColor: theme.colors.inputBackground,
+                      height: 40,
+                      borderRadius: 20,
+                    },
+                  ]}
+                  mode="outlined"
+                  placeholder={t('userSetting.form.error.nickname.required', {
+                    defaultValue: '请输入昵称',
+                  })}
+                  value={nickname}
+                  onChangeText={setNickname}
+                  autoCapitalize="none"
+                  outlineStyle={{borderRadius: 20}}
+                />
+              </View>
             </View>
 
             {/* 邮箱输入 */}
@@ -924,73 +920,70 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
 
             {/* 安装商特有字段 */}
             {userType === 2 && (
-              <>
-                <View style={styles.inputGroup}>
-                  <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-                    {t('register.companyName', {defaultValue: '公司名称'})}
-                  </Text>
-                  <View style={styles.inputContainer}>
-                    <AntDesign
-                      name="business"
-                      size={14}
-                      color={theme.colors.onSurfaceVariant}
-                      style={styles.inputIcon}
-                    />
-                    <TextInput
-                      style={[
-                        styles.input,
-                        {
-                          backgroundColor: theme.colors.inputBackground,
-                          height: 40,
-                          borderRadius: 20,
-                        },
-                      ]}
-                      mode="outlined"
-                      placeholder={t('register.enterCompanyName', {
-                        defaultValue: '请输入公司名称',
-                      })}
-                      value={companyName}
-                      onChangeText={setCompanyName}
-                      outlineStyle={{borderRadius: 20}}
-                    />
-                  </View>
-                </View>
-
-                <View style={styles.inputGroup}>
-                  <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-                    {t('register.parentCode', {
-                      defaultValue: '上级安装商、轻销商代码',
+              <View style={styles.inputGroup}>
+                <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+                  {t('register.companyName', {defaultValue: '公司名称'})}
+                </Text>
+                <View style={styles.inputContainer}>
+                  <AntDesign
+                    name="business"
+                    size={22}
+                    color={theme.colors.onSurfaceVariant}
+                    style={styles.inputIcon}
+                  />
+                  <TextInput
+                    style={[
+                      styles.input,
+                      {
+                        backgroundColor: theme.colors.inputBackground,
+                        height: 40,
+                        borderRadius: 20,
+                      },
+                    ]}
+                    mode="outlined"
+                    placeholder={t('register.enterCompanyName', {
+                      defaultValue: '请输入公司名称',
                     })}
-                  </Text>
-                  <View style={styles.inputContainer}>
-                    <AntDesign
-                      name="code"
-                      size={14}
-                      color={theme.colors.onSurfaceVariant}
-                      style={styles.inputIcon}
-                    />
-                    <TextInput
-                      style={[
-                        styles.input,
-                        {
-                          backgroundColor: theme.colors.inputBackground,
-                          height: 40,
-                          borderRadius: 20,
-                        },
-                      ]}
-                      mode="outlined"
-                      placeholder={t('register.enterParentCode', {
-                        defaultValue: '请输入',
-                      })}
-                      value={parentCode}
-                      onChangeText={setParentCode}
-                      outlineStyle={{borderRadius: 20}}
-                    />
-                  </View>
+                    value={companyName}
+                    onChangeText={setCompanyName}
+                    outlineStyle={{borderRadius: 20}}
+                  />
                 </View>
-              </>
+              </View>
             )}
 
+            <View style={styles.inputGroup}>
+              <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+                {t('register.parentCode', {
+                  defaultValue: '上级安装商、轻销商代码',
+                })}
+              </Text>
+              <View style={styles.inputContainer}>
+                <AntDesign
+                  name="code"
+                  size={22}
+                  color={theme.colors.onSurfaceVariant}
+                  style={styles.inputIcon}
+                />
+                <TextInput
+                  style={[
+                    styles.input,
+                    {
+                      backgroundColor: theme.colors.inputBackground,
+                      height: 40,
+                      borderRadius: 20,
+                    },
+                  ]}
+                  mode="outlined"
+                  placeholder={t('register.enterParentCode', {
+                    defaultValue: '请输入',
+                  })}
+                  value={parentCode}
+                  onChangeText={setParentCode}
+                  outlineStyle={{borderRadius: 20}}
+                />
+              </View>
+            </View>
             {/* 注册按钮 */}
             <TouchableOpacity
               style={[

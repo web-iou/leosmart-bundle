@@ -1,6 +1,6 @@
-import http, { ApiResponse } from '../http';
-import { encrypt } from '@/utils/crypto';
-import { VITE_PWD_ENC_KEY } from '@/config/config';
+import http, {ApiResponse} from '../http';
+import {encrypt} from '@/utils/crypto';
+import {VITE_PWD_ENC_KEY} from '@/config/config';
 // 用户信息接口
 export interface UserInfo {
   id: string;
@@ -61,19 +61,19 @@ export interface LoginResult {
 
 // 注册请求参数接口
 export interface RegisterParams {
-  countyCollapse?: string;      // 注册国家/地区
-  timeZone?: string;           // 注册时区
-  lng?: string;                // 注册语言
-  center?: string;             // 数据中心
-  userType: number;            // 用户类型；业主:1;安装商:2
-  code: string;                // 邮箱验证码
-  email: string;               // 邮箱
-  phone?: string;              // 手机号码
-  username?: string;           // 用户账号
-  password: string;            // 密码
-  companyName?: string;        // 公司名称
-  parentCompanyName?: string;  // 上级公司名称，不用传入
-  parentCode?: string;         // 安装商或上级公司Code
+  countyCollapse?: string; // 注册国家/地区
+  timeZone?: string; // 注册时区
+  lng?: string; // 注册语言
+  center?: string; // 数据中心
+  userType: number; // 用户类型；业主:1;安装商:2
+  code: string; // 邮箱验证码
+  email: string; // 邮箱
+  phone?: string; // 手机号码
+  username?: string; // 用户账号
+  password: string; // 密码
+  companyName?: string; // 公司名称
+  parentCompanyName?: string; // 上级公司名称，不用传入
+  parentCode?: string; // 安装商或上级公司Code
 }
 
 // 修改密码请求参数接口
@@ -97,17 +97,22 @@ class UserApi {
 
   // 登录
   public login(params: LoginParams): Promise<ApiResponse<LoginResult>> {
-    return http.post(`/auth/oauth2/token`, {
-      username: params.username,
-      password: encrypt(params.password, VITE_PWD_ENC_KEY),
-      grant_type: 'password',
-      scope: 'server',
-    },{ headers: {
-      skipAuth: true,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    }});
+    return http.post(
+      `/auth/oauth2/token`,
+      {
+        username: params.username,
+        password: encrypt(params.password, VITE_PWD_ENC_KEY),
+        grant_type: 'password',
+        scope: 'server',
+      },
+      {
+        headers: {
+          skipAuth: true,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      },
+    );
   }
-
 
   // 发送重置密码验证码
   public sendResetPasswordCode(email: string): Promise<ApiResponse<boolean>> {
@@ -115,7 +120,9 @@ class UserApi {
   }
 
   // 重置密码
-  public resetPassword(params: ResetPasswordParams): Promise<ApiResponse<boolean>> {
+  public resetPassword(
+    params: ResetPasswordParams,
+  ): Promise<ApiResponse<boolean>> {
     return http.put(`/admin/register/email/change`, params);
   }
 
@@ -128,8 +135,25 @@ class UserApi {
   public register(params: RegisterParams): Promise<ApiResponse<boolean>> {
     return http.post(`/admin/register/mail`, params);
   }
+  // 获取国家及时区
+  public getCountry(): Promise<
+    ApiResponse<
+      {
+        code: string;
+        value: string;
+        zoneList: [
+          {
+            code: string;
+            value: string;
+          },
+        ];
+      }[]
+    >
+  > {
+    return http.get(`/admin/register/country/zone`);
+  }
 }
 
 // 创建并导出 UserApi 实例
 export const userApi = new UserApi();
-export default userApi; 
+export default userApi;

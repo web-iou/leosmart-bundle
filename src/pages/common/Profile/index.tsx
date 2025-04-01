@@ -66,10 +66,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
 
   // 导航到账号安全
   const goToAccountSecurity = () => {
-    Alert.alert(
-      t('message.box.title'),
-      t('userSetting.SecuritySettings.placeholder.securityQuestion'),
-    );
+    navigation.navigate('AccountSecurity');
   };
 
   // 导航到皮肤设置
@@ -172,8 +169,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
           />
         </View>
 
-        {/* 全场景模式开关 */}
-        <View
+        {/* 全球景模式开关 */}
+        {/* <View
           style={[
             styles.switchContainer,
             {backgroundColor: theme.colors.surface},
@@ -186,7 +183,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
             onValueChange={toggleGlobalMode}
             color={theme.colors.primary}
           />
-        </View>
+        </View> */}
 
         {/* 退出登录按钮 */}
         <TouchableOpacity
