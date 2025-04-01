@@ -23,7 +23,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {ExtendedMD3Theme} from '@/theme';
 import Picker from '@/components/Picker'; // 引入Picker组件
 import {CountryItem} from '../common/CountryPicker';
-import {init, Geolocation} from 'react-native-amap-geolocation';
+// import {init, Geolocation} from 'react-native-amap-geolocation';
 // 定义国家和时区类型
 interface Country {
   code: string;
@@ -107,14 +107,14 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
 
   // 尝试获取用户的国家和设置默认值
   useEffect(() => {
-    init({
-      ios: '3bf9af0cbaca33af3182b30a9c80c202',
-      android: '3bf9af0cbaca33af3182b30a9c80c202',
-    }).then(() => {
-      Geolocation.(position => {
-        console.log(position);
-      });
-    });
+    // init({
+    //   ios: '3bf9af0cbaca33af3182b30a9c80c202',
+    //   android: '3bf9af0cbaca33af3182b30a9c80c202',
+    // }).then(() => {
+    //   Geolocation.(position => {
+    //     console.log(position);
+    //   });
+    // });
     // 这里可以使用地理位置API获取用户当前国家
     // 暂时使用默认值，这部分后续可以替换为API调用
     setCountryCode('CN');

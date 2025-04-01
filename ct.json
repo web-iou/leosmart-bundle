@@ -1,0 +1,9806 @@
+[
+	{
+		"code" : "mn.auth.mng",
+		"name" : "权限管理",
+		"language" : "zh-CN",
+		"value" : "权限管理"
+	},
+	{
+		"code" : "mn.auth.user",
+		"name" : "用户管理",
+		"language" : "zh-CN",
+		"value" : "用户管理"
+	},
+	{
+		"code" : "mn.mng",
+		"name" : "菜单管理",
+		"language" : "zh-CN",
+		"value" : "菜单管理"
+	},
+	{
+		"code" : "mn.role.mng",
+		"name" : "角色管理",
+		"language" : "zh-CN",
+		"value" : "角色管理"
+	},
+	{
+		"code" : "mn.role.assgn",
+		"name" : "分配权限",
+		"language" : "zh-CN",
+		"value" : "分配权限"
+	},
+	{
+		"code" : "mn.dpm.mng",
+		"name" : "部门管理",
+		"language" : "zh-CN",
+		"value" : "部门管理"
+	},
+	{
+		"code" : "mn.post.mng",
+		"name" : "岗位管理",
+		"language" : "zh-CN",
+		"value" : "岗位管理"
+	},
+	{
+		"code" : "mn.sys.mng",
+		"name" : "系统管理",
+		"language" : "zh-CN",
+		"value" : "系统管理"
+	},
+	{
+		"code" : "mn.log.mng",
+		"name" : "日志管理",
+		"language" : "zh-CN",
+		"value" : "日志管理"
+	},
+	{
+		"code" : "mn.log.opt",
+		"name" : "操作日志",
+		"language" : "zh-CN",
+		"value" : "操作日志"
+	},
+	{
+		"code" : "mn.dic.mng",
+		"name" : "字典管理",
+		"language" : "zh-CN",
+		"value" : "字典管理"
+	},
+	{
+		"code" : "mn.parm.mng",
+		"name" : "参数管理",
+		"language" : "zh-CN",
+		"value" : "参数管理"
+	},
+	{
+		"code" : "mn.code.gen",
+		"name" : "代码生成",
+		"language" : "zh-CN",
+		"value" : "代码生成"
+	},
+	{
+		"code" : "mn.trm.mnng",
+		"name" : "终端管理",
+		"language" : "zh-CN",
+		"value" : "终端管理"
+	},
+	{
+		"code" : "mn.tk.mng",
+		"name" : "令牌管理",
+		"language" : "zh-CN",
+		"value" : "令牌管理"
+	},
+	{
+		"code" : "mn.quat.mng",
+		"name" : "Quartz管理",
+		"language" : "zh-CN",
+		"value" : "Quartz管理"
+	},
+	{
+		"code" : "mn.mntr.mng",
+		"name" : "系统监控",
+		"language" : "zh-CN",
+		"value" : "系统监控"
+	},
+	{
+		"code" : "mn.doc",
+		"name" : "文档扩展",
+		"language" : "zh-CN",
+		"value" : "文档扩展"
+	},
+	{
+		"code" : "mn.cache.mntr",
+		"name" : "缓存监控",
+		"language" : "zh-CN",
+		"value" : "缓存监控"
+	},
+	{
+		"code" : "mn.dev.mng",
+		"name" : "开发平台",
+		"language" : "zh-CN",
+		"value" : "开发平台"
+	},
+	{
+		"code" : "mn.ds",
+		"name" : "数据源管理",
+		"language" : "zh-CN",
+		"value" : "数据源管理"
+	},
+	{
+		"code" : "mn.form.ds",
+		"name" : "表单设计",
+		"language" : "zh-CN",
+		"value" : "表单设计"
+	},
+	{
+		"code" : "mn.page.gen",
+		"name" : "生成页面",
+		"language" : "zh-CN",
+		"value" : "生成页面"
+	},
+	{
+		"code" : "mn.mt.mng",
+		"name" : "元数据管理",
+		"language" : "zh-CN",
+		"value" : "元数据管理"
+	},
+	{
+		"code" : "mn.tpl.mng",
+		"name" : "模板管理",
+		"language" : "zh-CN",
+		"value" : "模板管理"
+	},
+	{
+		"code" : "mn.tsk.pause",
+		"name" : "任务暂停",
+		"language" : "zh-CN",
+		"value" : "任务暂停"
+	},
+	{
+		"code" : "mn.tsk.start",
+		"name" : "任务开始",
+		"language" : "zh-CN",
+		"value" : "任务开始"
+	},
+	{
+		"code" : "mn.tsk.flush",
+		"name" : "任务刷新",
+		"language" : "zh-CN",
+		"value" : "任务刷新"
+	},
+	{
+		"code" : "mn.tsk.execute",
+		"name" : "执行任务",
+		"language" : "zh-CN",
+		"value" : "执行任务"
+	},
+	{
+		"code" : "mn.file.mng",
+		"name" : "文件管理",
+		"language" : "zh-CN",
+		"value" : "文件管理"
+	},
+	{
+		"code" : "mn.intn.mng",
+		"name" : "国际化",
+		"language" : "zh-CN",
+		"value" : "国际化"
+	},
+	{
+		"code" : "mn.cmp.mng",
+		"name" : "伙伴公司",
+		"language" : "zh-CN",
+		"value" : "伙伴公司"
+	},
+	{
+		"code" : "mn.plt.grp",
+		"name" : "模板分组",
+		"language" : "zh-CN",
+		"value" : "模板分组"
+	},
+	{
+		"code" : "mn.field.mng",
+		"name" : "字段管理",
+		"language" : "zh-CN",
+		"value" : "字段管理"
+	},
+	{
+		"code" : "mn.test.tool",
+		"name" : "测试工具",
+		"language" : "zh-CN",
+		"value" : "测试工具"
+	},
+	{
+		"code" : "mn.iot.tool",
+		"name" : "lot物联工具",
+		"language" : "zh-CN",
+		"value" : "lot物联工具"
+	},
+	{
+		"code" : "pb.add",
+		"name" : "新增",
+		"language" : "zh-CN",
+		"value" : "新增"
+	},
+	{
+		"code" : "pb.update",
+		"name" : "编辑",
+		"language" : "zh-CN",
+		"value" : "编辑"
+	},
+	{
+		"code" : "pb.delete",
+		"name" : "删除",
+		"language" : "zh-CN",
+		"value" : "删除"
+	},
+	{
+		"code" : "pb.export",
+		"name" : "导出",
+		"language" : "zh-CN",
+		"value" : "导出"
+	},
+	{
+		"code" : "pb.search",
+		"name" : "搜索",
+		"language" : "zh-CN",
+		"value" : "搜索"
+	},
+	{
+		"code" : "pb.view",
+		"name" : "查看",
+		"language" : "zh-CN",
+		"value" : "查看"
+	},
+	{
+		"code" : "menu.server.dashboard",
+		"name" : "仪表盘-服务端",
+		"language" : "zh-CN",
+		"value" : "仪表盘-服务端"
+	},
+	{
+		"code" : "menu.server.workplace",
+		"name" : "工作台-服务端",
+		"language" : "zh-CN",
+		"value" : "工作台-服务端"
+	},
+	{
+		"code" : "menu.server.monitor",
+		"name" : "实时监控-服务端",
+		"language" : "zh-CN",
+		"value" : "实时监控-服务端"
+	},
+	{
+		"code" : "menu.list",
+		"name" : "列表页",
+		"language" : "zh-CN",
+		"value" : "列表页"
+	},
+	{
+		"code" : "menu.result",
+		"name" : "结果页",
+		"language" : "zh-CN",
+		"value" : "结果页"
+	},
+	{
+		"code" : "menu.exception",
+		"name" : "异常页",
+		"language" : "zh-CN",
+		"value" : "异常页"
+	},
+	{
+		"code" : "menu.form",
+		"name" : "表单页",
+		"language" : "zh-CN",
+		"value" : "表单页"
+	},
+	{
+		"code" : "menu.profile",
+		"name" : "详情页",
+		"language" : "zh-CN",
+		"value" : "详情页"
+	},
+	{
+		"code" : "menu.visualization",
+		"name" : "数据可视化",
+		"language" : "zh-CN",
+		"value" : "数据可视化"
+	},
+	{
+		"code" : "menu.user",
+		"name" : "个人中心",
+		"language" : "zh-CN",
+		"value" : "个人中心"
+	},
+	{
+		"code" : "menu.arcoWebsite",
+		"name" : "Arco Design",
+		"language" : "zh-CN",
+		"value" : "Arco Design"
+	},
+	{
+		"code" : "menu.faq",
+		"name" : "常见问题",
+		"language" : "zh-CN",
+		"value" : "常见问题"
+	},
+	{
+		"code" : "navbar.docs",
+		"name" : "文档中心",
+		"language" : "zh-CN",
+		"value" : "文档中心"
+	},
+	{
+		"code" : "navbar.action.locale",
+		"name" : "切换为中文",
+		"language" : "zh-CN",
+		"value" : "切换为中文"
+	},
+	{
+		"code" : "settings.title",
+		"name" : "页面配置",
+		"language" : "zh-CN",
+		"value" : "页面配置"
+	},
+	{
+		"code" : "settings.themeColor",
+		"name" : "主题色",
+		"language" : "zh-CN",
+		"value" : "主题色"
+	},
+	{
+		"code" : "settings.content",
+		"name" : "内容区域",
+		"language" : "zh-CN",
+		"value" : "内容区域"
+	},
+	{
+		"code" : "settings.language",
+		"name" : "语言",
+		"language" : "zh-CN",
+		"value" : "语言"
+	},
+	{
+		"code" : "settings.navbar",
+		"name" : "导航栏",
+		"language" : "zh-CN",
+		"value" : "导航栏"
+	},
+	{
+		"code" : "settings.menuWidth",
+		"name" : "菜单宽度 (px)",
+		"language" : "zh-CN",
+		"value" : "菜单宽度 (px)"
+	},
+	{
+		"code" : "settings.navbar.theme.toLight",
+		"name" : "点击切换为亮色模式",
+		"language" : "zh-CN",
+		"value" : "点击切换为亮色模式"
+	},
+	{
+		"code" : "settings.navbar.theme.toDark",
+		"name" : "点击切换为暗黑模式",
+		"language" : "zh-CN",
+		"value" : "点击切换为暗黑模式"
+	},
+	{
+		"code" : "settings.navbar.screen.toFull",
+		"name" : "点击切换全屏模式",
+		"language" : "zh-CN",
+		"value" : "点击切换全屏模式"
+	},
+	{
+		"code" : "settings.navbar.screen.toExit",
+		"name" : "点击退出全屏模式",
+		"language" : "zh-CN",
+		"value" : "点击退出全屏模式"
+	},
+	{
+		"code" : "settings.navbar.alerts",
+		"name" : "消息通知",
+		"language" : "zh-CN",
+		"value" : "消息通知"
+	},
+	{
+		"code" : "settings.menu",
+		"name" : "菜单栏",
+		"language" : "zh-CN",
+		"value" : "菜单栏"
+	},
+	{
+		"code" : "settings.topMenu",
+		"name" : "顶部菜单栏",
+		"language" : "zh-CN",
+		"value" : "顶部菜单栏"
+	},
+	{
+		"code" : "settings.tabBar",
+		"name" : "多页签",
+		"language" : "zh-CN",
+		"value" : "多页签"
+	},
+	{
+		"code" : "settings.footer",
+		"name" : "底部",
+		"language" : "zh-CN",
+		"value" : "底部"
+	},
+	{
+		"code" : "settings.otherSettings",
+		"name" : "其他设置",
+		"language" : "zh-CN",
+		"value" : "其他设置"
+	},
+	{
+		"code" : "settings.colorWeak",
+		"name" : "色弱模式",
+		"language" : "zh-CN",
+		"value" : "色弱模式"
+	},
+	{
+		"code" : "settings.alertContent",
+		"name" : "配置之后仅是临时生效，要想真正作用于项目，点击下方的 \"复制配置\" 按钮，将配置替换到 settings.json 中即可。",
+		"language" : "zh-CN",
+		"value" : "配置之后仅是临时生效，要想真正作用于项目，点击下方的 \"复制配置\" 按钮，将配置替换到 settings.json 中即可。"
+	},
+	{
+		"code" : "settings.copySettings",
+		"name" : "复制配置",
+		"language" : "zh-CN",
+		"value" : "复制配置"
+	},
+	{
+		"code" : "settings.copySettings.message",
+		"name" : "复制成功，请粘贴到 src\/settings.json 文件中",
+		"language" : "zh-CN",
+		"value" : "复制成功，请粘贴到 src\/settings.json 文件中"
+	},
+	{
+		"code" : "settings.close",
+		"name" : "关闭",
+		"language" : "zh-CN",
+		"value" : "关闭"
+	},
+	{
+		"code" : "settings.color.tooltip",
+		"name" : "根据主题颜色生成的 10 个梯度色（将配置复制到项目中，主题色才能对亮色 \/ 暗黑模式同时生效）",
+		"language" : "zh-CN",
+		"value" : "根据主题颜色生成的 10 个梯度色（将配置复制到项目中，主题色才能对亮色 \/ 暗黑模式同时生效）"
+	},
+	{
+		"code" : "settings.menuFromServer",
+		"name" : "菜单来源于后台",
+		"language" : "zh-CN",
+		"value" : "菜单来源于后台"
+	},
+	{
+		"code" : "queryTree.hideSearch",
+		"name" : "隐藏搜索",
+		"language" : "zh-CN",
+		"value" : "隐藏搜索"
+	},
+	{
+		"code" : "queryTree.displayTheSearch",
+		"name" : "显示搜索",
+		"language" : "zh-CN",
+		"value" : "显示搜索"
+	},
+	{
+		"code" : "queryTree.refresh",
+		"name" : "刷新",
+		"language" : "zh-CN",
+		"value" : "刷新"
+	},
+	{
+		"code" : "queryTree.print",
+		"name" : "打印",
+		"language" : "zh-CN",
+		"value" : "打印"
+	},
+	{
+		"code" : "queryTree.view",
+		"name" : "视图",
+		"language" : "zh-CN",
+		"value" : "视图"
+	},
+	{
+		"code" : "excel.downloadTemplate",
+		"name" : "下载模板",
+		"language" : "zh-CN",
+		"value" : "下载模板"
+	},
+	{
+		"code" : "excel.fileFormat",
+		"name" : "仅允许导入xls、xlsx格式文件。",
+		"language" : "zh-CN",
+		"value" : "仅允许导入xls、xlsx格式文件。"
+	},
+	{
+		"code" : "excel.operationNotice",
+		"name" : "将文件拖到此处，或",
+		"language" : "zh-CN",
+		"value" : "将文件拖到此处，或"
+	},
+	{
+		"code" : "excel.clickUpload",
+		"name" : "点击上传",
+		"language" : "zh-CN",
+		"value" : "点击上传"
+	},
+	{
+		"code" : "excel.lineNumbers",
+		"name" : "行号",
+		"language" : "zh-CN",
+		"value" : "行号"
+	},
+	{
+		"code" : "excel.misDescription",
+		"name" : "错误描述",
+		"language" : "zh-CN",
+		"value" : "错误描述"
+	},
+	{
+		"code" : "excel.validationFailureData",
+		"name" : "校验失败数据",
+		"language" : "zh-CN",
+		"value" : "校验失败数据"
+	},
+	{
+		"code" : "excel.pleaseUpload",
+		"name" : "请上传",
+		"language" : "zh-CN",
+		"value" : "请上传"
+	},
+	{
+		"code" : "excel.size",
+		"name" : "大小不超过",
+		"language" : "zh-CN",
+		"value" : "大小不超过"
+	},
+	{
+		"code" : "excel.format",
+		"name" : "格式为",
+		"language" : "zh-CN",
+		"value" : "格式为"
+	},
+	{
+		"code" : "excel.file",
+		"name" : "的文件",
+		"language" : "zh-CN",
+		"value" : "的文件"
+	},
+	{
+		"code" : "excel.sizeErrorText",
+		"name" : "文件大小不超过",
+		"language" : "zh-CN",
+		"value" : "文件大小不超过"
+	},
+	{
+		"code" : "excel.typeErrorText",
+		"name" : "文件类型错误，请上传",
+		"language" : "zh-CN",
+		"value" : "文件类型错误，请上传"
+	},
+	{
+		"code" : "dytable.submit",
+		"name" : "确定",
+		"language" : "zh-CN",
+		"value" : "确定"
+	},
+	{
+		"code" : "dytable.reset",
+		"name" : "重置",
+		"language" : "zh-CN",
+		"value" : "重置"
+	},
+	{
+		"code" : "dytable.checkALL",
+		"name" : "全选",
+		"language" : "zh-CN",
+		"value" : "全选"
+	},
+	{
+		"code" : "dytable.sortable.reset",
+		"name" : "恢复到初始状态",
+		"language" : "zh-CN",
+		"value" : "恢复到初始状态"
+	},
+	{
+		"code" : "dytable.sortable.fixed.left",
+		"name" : "左侧固定",
+		"language" : "zh-CN",
+		"value" : "左侧固定"
+	},
+	{
+		"code" : "dytable.sortable.fixed.right",
+		"name" : "右侧固定",
+		"language" : "zh-CN",
+		"value" : "右侧固定"
+	},
+	{
+		"code" : "dytable.sortable.fixed.no",
+		"name" : "不固定",
+		"language" : "zh-CN",
+		"value" : "不固定"
+	},
+	{
+		"code" : "dytable.sortable.fixed.remove",
+		"name" : "移除固定",
+		"language" : "zh-CN",
+		"value" : "移除固定"
+	},
+	{
+		"code" : "messageBox.tab.title.message",
+		"name" : "消息",
+		"language" : "zh-CN",
+		"value" : "消息"
+	},
+	{
+		"code" : "messageBox.tab.title.notice",
+		"name" : "通知",
+		"language" : "zh-CN",
+		"value" : "通知"
+	},
+	{
+		"code" : "messageBox.tab.title.todo",
+		"name" : "待办",
+		"language" : "zh-CN",
+		"value" : "待办"
+	},
+	{
+		"code" : "messageBox.tab.button",
+		"name" : "清空",
+		"language" : "zh-CN",
+		"value" : "清空"
+	},
+	{
+		"code" : "messageBox.allRead",
+		"name" : "全部已读",
+		"language" : "zh-CN",
+		"value" : "全部已读"
+	},
+	{
+		"code" : "messageBox.viewMore",
+		"name" : "查看更多",
+		"language" : "zh-CN",
+		"value" : "查看更多"
+	},
+	{
+		"code" : "messageBox.noContent",
+		"name" : "暂无内容",
+		"language" : "zh-CN",
+		"value" : "暂无内容"
+	},
+	{
+		"code" : "messageBox.switchRoles",
+		"name" : "切换角色",
+		"language" : "zh-CN",
+		"value" : "切换角色"
+	},
+	{
+		"code" : "messageBox.userCenter",
+		"name" : "用户中心",
+		"language" : "zh-CN",
+		"value" : "用户中心"
+	},
+	{
+		"code" : "messageBox.userSettings",
+		"name" : "用户设置",
+		"language" : "zh-CN",
+		"value" : "用户设置"
+	},
+	{
+		"code" : "messageBox.logout",
+		"name" : "登出登录",
+		"language" : "zh-CN",
+		"value" : "登出登录"
+	},
+	{
+		"code" : "router.home",
+		"name" : "首页",
+		"language" : "zh-CN",
+		"value" : "首页"
+	},
+	{
+		"code" : "router.system",
+		"name" : "系统设置",
+		"language" : "zh-CN",
+		"value" : "系统设置"
+	},
+	{
+		"code" : "router.limitsFrontEnd",
+		"name" : "前端控制",
+		"language" : "zh-CN",
+		"value" : "前端控制"
+	},
+	{
+		"code" : "router.limitsFrontEndPage",
+		"name" : "页面权限",
+		"language" : "zh-CN",
+		"value" : "页面权限"
+	},
+	{
+		"code" : "router.limitsFrontEndBtn",
+		"name" : "按钮权限",
+		"language" : "zh-CN",
+		"value" : "按钮权限"
+	},
+	{
+		"code" : "router.limitsBackEnd",
+		"name" : "后端控制",
+		"language" : "zh-CN",
+		"value" : "后端控制"
+	},
+	{
+		"code" : "router.funIndex",
+		"name" : "功能",
+		"language" : "zh-CN",
+		"value" : "功能"
+	},
+	{
+		"code" : "router.funTagsView",
+		"name" : "tagsView 操作",
+		"language" : "zh-CN",
+		"value" : "tagsView 操作"
+	},
+	{
+		"code" : "router.funCountup",
+		"name" : "数字滚动",
+		"language" : "zh-CN",
+		"value" : "数字滚动"
+	},
+	{
+		"code" : "router.funWangEditor",
+		"name" : "Editor 编辑器",
+		"language" : "zh-CN",
+		"value" : "Editor 编辑器"
+	},
+	{
+		"code" : "router.funCropper",
+		"name" : "图片裁剪",
+		"language" : "zh-CN",
+		"value" : "图片裁剪"
+	},
+	{
+		"code" : "router.funQrcode",
+		"name" : "二维码生成",
+		"language" : "zh-CN",
+		"value" : "二维码生成"
+	},
+	{
+		"code" : "router.funEchartsMap",
+		"name" : "地理坐标\/地图",
+		"language" : "zh-CN",
+		"value" : "地理坐标\/地图"
+	},
+	{
+		"code" : "router.funPrintJs",
+		"name" : "页面打印",
+		"language" : "zh-CN",
+		"value" : "页面打印"
+	},
+	{
+		"code" : "router.funClipboard",
+		"name" : "复制剪切",
+		"language" : "zh-CN",
+		"value" : "复制剪切"
+	},
+	{
+		"code" : "router.funGridLayout",
+		"name" : "拖拽布局",
+		"language" : "zh-CN",
+		"value" : "拖拽布局"
+	},
+	{
+		"code" : "router.funSplitpanes",
+		"name" : "窗格拆分器",
+		"language" : "zh-CN",
+		"value" : "窗格拆分器"
+	},
+	{
+		"code" : "router.funDragVerify",
+		"name" : "验证器",
+		"language" : "zh-CN",
+		"value" : "验证器"
+	},
+	{
+		"code" : "router.pagesIndex",
+		"name" : "页面",
+		"language" : "zh-CN",
+		"value" : "页面"
+	},
+	{
+		"code" : "router.pagesFiltering",
+		"name" : "过滤筛选组件",
+		"language" : "zh-CN",
+		"value" : "过滤筛选组件"
+	},
+	{
+		"code" : "router.pagesFilteringDetails",
+		"name" : "过滤筛选组件详情",
+		"language" : "zh-CN",
+		"value" : "过滤筛选组件详情"
+	},
+	{
+		"code" : "router.pagesFilteringDetails1",
+		"name" : "过滤筛选组件详情111",
+		"language" : "zh-CN",
+		"value" : "过滤筛选组件详情111"
+	},
+	{
+		"code" : "router.pagesIocnfont",
+		"name" : "ali 字体图标",
+		"language" : "zh-CN",
+		"value" : "ali 字体图标"
+	},
+	{
+		"code" : "router.pagesElement",
+		"name" : "ele 字体图标",
+		"language" : "zh-CN",
+		"value" : "ele 字体图标"
+	},
+	{
+		"code" : "router.pagesAwesome",
+		"name" : "awe 字体图标",
+		"language" : "zh-CN",
+		"value" : "awe 字体图标"
+	},
+	{
+		"code" : "router.pagesFormAdapt",
+		"name" : "表单自适应",
+		"language" : "zh-CN",
+		"value" : "表单自适应"
+	},
+	{
+		"code" : "router.pagesTableRules",
+		"name" : "表单表格验证",
+		"language" : "zh-CN",
+		"value" : "表单表格验证"
+	},
+	{
+		"code" : "router.pagesFormI18n",
+		"name" : "表单国际化",
+		"language" : "zh-CN",
+		"value" : "表单国际化"
+	},
+	{
+		"code" : "router.pagesFormRules",
+		"name" : "多表单验证",
+		"language" : "zh-CN",
+		"value" : "多表单验证"
+	},
+	{
+		"code" : "router.pagesDynamicForm",
+		"name" : "动态复杂表单",
+		"language" : "zh-CN",
+		"value" : "动态复杂表单"
+	},
+	{
+		"code" : "router.pagesWorkflow",
+		"name" : "工作流",
+		"language" : "zh-CN",
+		"value" : "工作流"
+	},
+	{
+		"code" : "router.pagesListAdapt",
+		"name" : "列表自适应",
+		"language" : "zh-CN",
+		"value" : "列表自适应"
+	},
+	{
+		"code" : "router.pagesWaterfall",
+		"name" : "瀑布屏",
+		"language" : "zh-CN",
+		"value" : "瀑布屏"
+	},
+	{
+		"code" : "router.pagesSteps",
+		"name" : "步骤条",
+		"language" : "zh-CN",
+		"value" : "步骤条"
+	},
+	{
+		"code" : "router.pagesPreview",
+		"name" : "大图预览",
+		"language" : "zh-CN",
+		"value" : "大图预览"
+	},
+	{
+		"code" : "router.pagesWaves",
+		"name" : "波浪效果",
+		"language" : "zh-CN",
+		"value" : "波浪效果"
+	},
+	{
+		"code" : "router.pagesTree",
+		"name" : "树形改表格",
+		"language" : "zh-CN",
+		"value" : "树形改表格"
+	},
+	{
+		"code" : "router.pagesDrag",
+		"name" : "拖动指令",
+		"language" : "zh-CN",
+		"value" : "拖动指令"
+	},
+	{
+		"code" : "router.pagesLazyImg",
+		"name" : "图片懒加载",
+		"language" : "zh-CN",
+		"value" : "图片懒加载"
+	},
+	{
+		"code" : "router.makeIndex",
+		"name" : "组件封装",
+		"language" : "zh-CN",
+		"value" : "组件封装"
+	},
+	{
+		"code" : "router.makeSelector",
+		"name" : "图标选择器",
+		"language" : "zh-CN",
+		"value" : "图标选择器"
+	},
+	{
+		"code" : "router.makeNoticeBar",
+		"name" : "滚动通知栏",
+		"language" : "zh-CN",
+		"value" : "滚动通知栏"
+	},
+	{
+		"code" : "router.makeSvgDemo",
+		"name" : "svgIcon 演示",
+		"language" : "zh-CN",
+		"value" : "svgIcon 演示"
+	},
+	{
+		"code" : "router.makeTableDemo",
+		"name" : "表格封装演示",
+		"language" : "zh-CN",
+		"value" : "表格封装演示"
+	},
+	{
+		"code" : "router.paramsIndex",
+		"name" : "路由参数",
+		"language" : "zh-CN",
+		"value" : "路由参数"
+	},
+	{
+		"code" : "router.paramsCommon",
+		"name" : "普通路由",
+		"language" : "zh-CN",
+		"value" : "普通路由"
+	},
+	{
+		"code" : "router.paramsDynamic",
+		"name" : "动态路由",
+		"language" : "zh-CN",
+		"value" : "动态路由"
+	},
+	{
+		"code" : "router.paramsCommonDetails",
+		"name" : "普通路由详情",
+		"language" : "zh-CN",
+		"value" : "普通路由详情"
+	},
+	{
+		"code" : "router.paramsDynamicDetails",
+		"name" : "动态路由详情",
+		"language" : "zh-CN",
+		"value" : "动态路由详情"
+	},
+	{
+		"code" : "router.chartIndex",
+		"name" : "大数据图表",
+		"language" : "zh-CN",
+		"value" : "大数据图表"
+	},
+	{
+		"code" : "router.visualizingLinkDemo1",
+		"name" : "数据可视化演示1",
+		"language" : "zh-CN",
+		"value" : "数据可视化演示1"
+	},
+	{
+		"code" : "router.visualizingLinkDemo2",
+		"name" : "数据可视化演示2",
+		"language" : "zh-CN",
+		"value" : "数据可视化演示2"
+	},
+	{
+		"code" : "router.tools",
+		"name" : "工具类集合",
+		"language" : "zh-CN",
+		"value" : "工具类集合"
+	},
+	{
+		"code" : "router.layoutLinkView",
+		"name" : "外链",
+		"language" : "zh-CN",
+		"value" : "外链"
+	},
+	{
+		"code" : "router.layoutIframeViewOne",
+		"name" : "内嵌 iframe1",
+		"language" : "zh-CN",
+		"value" : "内嵌 iframe1"
+	},
+	{
+		"code" : "router.layoutIframeViewTwo",
+		"name" : "内嵌 iframe2",
+		"language" : "zh-CN",
+		"value" : "内嵌 iframe2"
+	},
+	{
+		"code" : "staticRoutes.login",
+		"name" : "登录",
+		"language" : "zh-CN",
+		"value" : "登录"
+	},
+	{
+		"code" : "staticRoutes.authredirect",
+		"name" : "回调页",
+		"language" : "zh-CN",
+		"value" : "回调页"
+	},
+	{
+		"code" : "staticRoutes.notFound",
+		"name" : "找不到此页面",
+		"language" : "zh-CN",
+		"value" : "找不到此页面"
+	},
+	{
+		"code" : "staticRoutes.noPower",
+		"name" : "没有权限",
+		"language" : "zh-CN",
+		"value" : "没有权限"
+	},
+	{
+		"code" : "user.title0",
+		"name" : "组件大小",
+		"language" : "zh-CN",
+		"value" : "组件大小"
+	},
+	{
+		"code" : "user.title1",
+		"name" : "语言切换",
+		"language" : "zh-CN",
+		"value" : "语言切换"
+	},
+	{
+		"code" : "user.title2",
+		"name" : "菜单搜索",
+		"language" : "zh-CN",
+		"value" : "菜单搜索"
+	},
+	{
+		"code" : "user.title3",
+		"name" : "布局配置",
+		"language" : "zh-CN",
+		"value" : "布局配置"
+	},
+	{
+		"code" : "user.title5",
+		"name" : "开全屏",
+		"language" : "zh-CN",
+		"value" : "开全屏"
+	},
+	{
+		"code" : "user.title6",
+		"name" : "关全屏",
+		"language" : "zh-CN",
+		"value" : "关全屏"
+	},
+	{
+		"code" : "user.dropdownLarge",
+		"name" : "大型",
+		"language" : "zh-CN",
+		"value" : "大型"
+	},
+	{
+		"code" : "user.dropdownDefault",
+		"name" : "默认",
+		"language" : "zh-CN",
+		"value" : "默认"
+	},
+	{
+		"code" : "user.dropdownSmall",
+		"name" : "小型",
+		"language" : "zh-CN",
+		"value" : "小型"
+	},
+	{
+		"code" : "user.dropdown5",
+		"name" : "退出登录",
+		"language" : "zh-CN",
+		"value" : "退出登录"
+	},
+	{
+		"code" : "user.searchPlaceholder",
+		"name" : "菜单搜索：支持中文、路由路径",
+		"language" : "zh-CN",
+		"value" : "菜单搜索：支持中文、路由路径"
+	},
+	{
+		"code" : "user.newGo",
+		"name" : "前往通知中心",
+		"language" : "zh-CN",
+		"value" : "前往通知中心"
+	},
+	{
+		"code" : "user.newDesc",
+		"name" : "暂无通知",
+		"language" : "zh-CN",
+		"value" : "暂无通知"
+	},
+	{
+		"code" : "user.logOutTitle",
+		"name" : "提示",
+		"language" : "zh-CN",
+		"value" : "提示"
+	},
+	{
+		"code" : "user.logOutMessage",
+		"name" : "此操作将退出登录, 是否继续?",
+		"language" : "zh-CN",
+		"value" : "此操作将退出登录, 是否继续?"
+	},
+	{
+		"code" : "user.logOutCancel",
+		"name" : "取消",
+		"language" : "zh-CN",
+		"value" : "取消"
+	},
+	{
+		"code" : "user.logOutExit",
+		"name" : "退出中",
+		"language" : "zh-CN",
+		"value" : "退出中"
+	},
+	{
+		"code" : "tagsView.closeOther",
+		"name" : "关闭其它",
+		"language" : "zh-CN",
+		"value" : "关闭其它"
+	},
+	{
+		"code" : "tagsView.closeAll",
+		"name" : "全部关闭",
+		"language" : "zh-CN",
+		"value" : "全部关闭"
+	},
+	{
+		"code" : "tagsView.fullscreen",
+		"name" : "当前页全屏",
+		"language" : "zh-CN",
+		"value" : "当前页全屏"
+	},
+	{
+		"code" : "tagsView.favorite",
+		"name" : "收藏",
+		"language" : "zh-CN",
+		"value" : "收藏"
+	},
+	{
+		"code" : "notFound.foundTitle",
+		"name" : "地址输入错误，请重新输入地址~",
+		"language" : "zh-CN",
+		"value" : "地址输入错误，请重新输入地址~"
+	},
+	{
+		"code" : "notFound.foundMsg",
+		"name" : "您可以先检查网址，然后重新输入或给我们反馈问题。",
+		"language" : "zh-CN",
+		"value" : "您可以先检查网址，然后重新输入或给我们反馈问题。"
+	},
+	{
+		"code" : "notFound.foundBtn",
+		"name" : "返回首页",
+		"language" : "zh-CN",
+		"value" : "返回首页"
+	},
+	{
+		"code" : "noAccess.accessTitle",
+		"name" : "您未被授权，没有操作权限~",
+		"language" : "zh-CN",
+		"value" : "您未被授权，没有操作权限~"
+	},
+	{
+		"code" : "noAccess.accessMsg",
+		"name" : "联系方式：加QQ群探讨 665452019",
+		"language" : "zh-CN",
+		"value" : "联系方式：加QQ群探讨 665452019"
+	},
+	{
+		"code" : "noAccess.accessBtn",
+		"name" : "重新授权",
+		"language" : "zh-CN",
+		"value" : "重新授权"
+	},
+	{
+		"code" : "layout.oneTitle",
+		"name" : "全局主题",
+		"language" : "zh-CN",
+		"value" : "全局主题"
+	},
+	{
+		"code" : "layout.twoTopTitle",
+		"name" : "顶栏设置",
+		"language" : "zh-CN",
+		"value" : "顶栏设置"
+	},
+	{
+		"code" : "layout.twoMenuTitle",
+		"name" : "菜单设置",
+		"language" : "zh-CN",
+		"value" : "菜单设置"
+	},
+	{
+		"code" : "layout.twoColumnsTitle",
+		"name" : "分栏设置",
+		"language" : "zh-CN",
+		"value" : "分栏设置"
+	},
+	{
+		"code" : "layout.twoTopBar",
+		"name" : "顶栏背景",
+		"language" : "zh-CN",
+		"value" : "顶栏背景"
+	},
+	{
+		"code" : "layout.twoTopBarColor",
+		"name" : "顶栏默认字体颜色",
+		"language" : "zh-CN",
+		"value" : "顶栏默认字体颜色"
+	},
+	{
+		"code" : "layout.twoIsTopBarColorGradual",
+		"name" : "顶栏背景渐变",
+		"language" : "zh-CN",
+		"value" : "顶栏背景渐变"
+	},
+	{
+		"code" : "layout.twoMenuBar",
+		"name" : "菜单背景",
+		"language" : "zh-CN",
+		"value" : "菜单背景"
+	},
+	{
+		"code" : "layout.twoMenuBarColor",
+		"name" : "菜单默认字体颜色",
+		"language" : "zh-CN",
+		"value" : "菜单默认字体颜色"
+	},
+	{
+		"code" : "layout.twoMenuBarActiveColor",
+		"name" : "菜单高亮背景色",
+		"language" : "zh-CN",
+		"value" : "菜单高亮背景色"
+	},
+	{
+		"code" : "layout.twoIsMenuBarColorGradual",
+		"name" : "菜单背景渐变",
+		"language" : "zh-CN",
+		"value" : "菜单背景渐变"
+	},
+	{
+		"code" : "layout.twoColumnsMenuBar",
+		"name" : "分栏菜单背景",
+		"language" : "zh-CN",
+		"value" : "分栏菜单背景"
+	},
+	{
+		"code" : "layout.twoColumnsMenuBarColor",
+		"name" : "分栏菜单默认字体颜色",
+		"language" : "zh-CN",
+		"value" : "分栏菜单默认字体颜色"
+	},
+	{
+		"code" : "layout.twoIsColumnsMenuBarColorGradual",
+		"name" : "分栏菜单背景渐变",
+		"language" : "zh-CN",
+		"value" : "分栏菜单背景渐变"
+	},
+	{
+		"code" : "layout.twoIsColumnsMenuHoverPreload",
+		"name" : "分栏菜单鼠标悬停预加载",
+		"language" : "zh-CN",
+		"value" : "分栏菜单鼠标悬停预加载"
+	},
+	{
+		"code" : "layout.threeTitle",
+		"name" : "界面设置",
+		"language" : "zh-CN",
+		"value" : "界面设置"
+	},
+	{
+		"code" : "layout.threeIsCollapse",
+		"name" : "菜单水平折叠",
+		"language" : "zh-CN",
+		"value" : "菜单水平折叠"
+	},
+	{
+		"code" : "layout.threeIsUniqueOpened",
+		"name" : "菜单手风琴",
+		"language" : "zh-CN",
+		"value" : "菜单手风琴"
+	},
+	{
+		"code" : "layout.threeIsFixedHeader",
+		"name" : "固定 Header",
+		"language" : "zh-CN",
+		"value" : "固定 Header"
+	},
+	{
+		"code" : "layout.threeIsClassicSplitMenu",
+		"name" : "经典布局顶部菜单",
+		"language" : "zh-CN",
+		"value" : "经典布局顶部菜单"
+	},
+	{
+		"code" : "layout.threeIsLockScreen",
+		"name" : "开启锁屏",
+		"language" : "zh-CN",
+		"value" : "开启锁屏"
+	},
+	{
+		"code" : "layout.threeLockScreenTime",
+		"name" : "自动锁屏(s\/秒)",
+		"language" : "zh-CN",
+		"value" : "自动锁屏(s\/秒)"
+	},
+	{
+		"code" : "layout.fourTitle",
+		"name" : "界面显示",
+		"language" : "zh-CN",
+		"value" : "界面显示"
+	},
+	{
+		"code" : "layout.fourIsShowLogo",
+		"name" : "侧边栏 Logo",
+		"language" : "zh-CN",
+		"value" : "侧边栏 Logo"
+	},
+	{
+		"code" : "layout.fourIsBreadcrumb",
+		"name" : "开启 Breadcrumb",
+		"language" : "zh-CN",
+		"value" : "开启 Breadcrumb"
+	},
+	{
+		"code" : "layout.fourIsBreadcrumbIcon",
+		"name" : "开启 Breadcrumb 图标",
+		"language" : "zh-CN",
+		"value" : "开启 Breadcrumb 图标"
+	},
+	{
+		"code" : "layout.fourIsTagsview",
+		"name" : "开启 Tagsview",
+		"language" : "zh-CN",
+		"value" : "开启 Tagsview"
+	},
+	{
+		"code" : "layout.fourIsTagsviewIcon",
+		"name" : "开启 Tagsview 图标",
+		"language" : "zh-CN",
+		"value" : "开启 Tagsview 图标"
+	},
+	{
+		"code" : "layout.fourIsCacheTagsView",
+		"name" : "开启 TagsView 缓存",
+		"language" : "zh-CN",
+		"value" : "开启 TagsView 缓存"
+	},
+	{
+		"code" : "layout.fourIsSortableTagsView",
+		"name" : "开启 TagsView 拖拽",
+		"language" : "zh-CN",
+		"value" : "开启 TagsView 拖拽"
+	},
+	{
+		"code" : "layout.fourIsShareTagsView",
+		"name" : "开启 TagsView 共用",
+		"language" : "zh-CN",
+		"value" : "开启 TagsView 共用"
+	},
+	{
+		"code" : "layout.fourIsFooter",
+		"name" : "开启 Footer",
+		"language" : "zh-CN",
+		"value" : "开启 Footer"
+	},
+	{
+		"code" : "layout.fourIsGrayscale",
+		"name" : "灰色模式",
+		"language" : "zh-CN",
+		"value" : "灰色模式"
+	},
+	{
+		"code" : "layout.fourIsDark",
+		"name" : "深色模式",
+		"language" : "zh-CN",
+		"value" : "深色模式"
+	},
+	{
+		"code" : "layout.fourIsWartermark",
+		"name" : "开启水印",
+		"language" : "zh-CN",
+		"value" : "开启水印"
+	},
+	{
+		"code" : "layout.fourWartermarkText",
+		"name" : "水印文案",
+		"language" : "zh-CN",
+		"value" : "水印文案"
+	},
+	{
+		"code" : "layout.fiveTitle",
+		"name" : "其它设置",
+		"language" : "zh-CN",
+		"value" : "其它设置"
+	},
+	{
+		"code" : "layout.fiveTagsStyle",
+		"name" : "Tagsview 风格",
+		"language" : "zh-CN",
+		"value" : "Tagsview 风格"
+	},
+	{
+		"code" : "layout.fiveAnimation",
+		"name" : "主页面切换动画",
+		"language" : "zh-CN",
+		"value" : "主页面切换动画"
+	},
+	{
+		"code" : "layout.fiveColumnsAsideStyle",
+		"name" : "分栏高亮风格",
+		"language" : "zh-CN",
+		"value" : "分栏高亮风格"
+	},
+	{
+		"code" : "layout.fiveColumnsAsideLayout",
+		"name" : "分栏布局风格",
+		"language" : "zh-CN",
+		"value" : "分栏布局风格"
+	},
+	{
+		"code" : "layout.sixTitle",
+		"name" : "布局切换",
+		"language" : "zh-CN",
+		"value" : "布局切换"
+	},
+	{
+		"code" : "layout.sixClassic",
+		"name" : "经典",
+		"language" : "zh-CN",
+		"value" : "经典"
+	},
+	{
+		"code" : "layout.sixTransverse",
+		"name" : "横向",
+		"language" : "zh-CN",
+		"value" : "横向"
+	},
+	{
+		"code" : "layout.sixColumns",
+		"name" : "分栏",
+		"language" : "zh-CN",
+		"value" : "分栏"
+	},
+	{
+		"code" : "layout.tipText",
+		"name" : "点击下方按钮，复制布局配置去 `src\/stores\/themeConfig.ts` 中修改。",
+		"language" : "zh-CN",
+		"value" : "点击下方按钮，复制布局配置去 `src\/stores\/themeConfig.ts` 中修改。"
+	},
+	{
+		"code" : "layout.copyText",
+		"name" : "一键复制配置",
+		"language" : "zh-CN",
+		"value" : "一键复制配置"
+	},
+	{
+		"code" : "layout.resetText",
+		"name" : "一键恢复默认",
+		"language" : "zh-CN",
+		"value" : "一键恢复默认"
+	},
+	{
+		"code" : "layout.copyTextSuccess",
+		"name" : "复制成功！",
+		"language" : "zh-CN",
+		"value" : "复制成功！"
+	},
+	{
+		"code" : "layout.copyTextError",
+		"name" : "复制失败！",
+		"language" : "zh-CN",
+		"value" : "复制失败！"
+	},
+	{
+		"code" : "upgrade.title",
+		"name" : "新版本升级",
+		"language" : "zh-CN",
+		"value" : "新版本升级"
+	},
+	{
+		"code" : "upgrade.msg",
+		"name" : "新版本来啦，马上更新尝鲜吧！不用担心，更新很快的哦！",
+		"language" : "zh-CN",
+		"value" : "新版本来啦，马上更新尝鲜吧！不用担心，更新很快的哦！"
+	},
+	{
+		"code" : "upgrade.desc",
+		"name" : "提示：更新会还原默认配置",
+		"language" : "zh-CN",
+		"value" : "提示：更新会还原默认配置"
+	},
+	{
+		"code" : "upgrade.btnOne",
+		"name" : "残忍拒绝",
+		"language" : "zh-CN",
+		"value" : "残忍拒绝"
+	},
+	{
+		"code" : "upgrade.btnTwo",
+		"name" : "马上更新",
+		"language" : "zh-CN",
+		"value" : "马上更新"
+	},
+	{
+		"code" : "upgrade.btnTwoLoading",
+		"name" : "更新中",
+		"language" : "zh-CN",
+		"value" : "更新中"
+	},
+	{
+		"code" : "common.queryBtn",
+		"name" : "查询",
+		"language" : "zh-CN",
+		"value" : "查询"
+	},
+	{
+		"code" : "common.expandBtn",
+		"name" : "展开\/折叠",
+		"language" : "zh-CN",
+		"value" : "展开\/折叠"
+	},
+	{
+		"code" : "common.detailBtn",
+		"name" : "详情",
+		"language" : "zh-CN",
+		"value" : "详情"
+	},
+	{
+		"code" : "common.refreshCacheBtn",
+		"name" : "刷新缓存",
+		"language" : "zh-CN",
+		"value" : "刷新缓存"
+	},
+	{
+		"code" : "common.importBtn",
+		"name" : "导入",
+		"language" : "zh-CN",
+		"value" : "导入"
+	},
+	{
+		"code" : "common.queryDeptTip",
+		"name" : "请输入部门名称",
+		"language" : "zh-CN",
+		"value" : "请输入部门名称"
+	},
+	{
+		"code" : "common.action",
+		"name" : "操作",
+		"language" : "zh-CN",
+		"value" : "操作"
+	},
+	{
+		"code" : "common.optSuccessText",
+		"name" : "操作成功",
+		"language" : "zh-CN",
+		"value" : "操作成功"
+	},
+	{
+		"code" : "common.editSuccessText",
+		"name" : "修改成功",
+		"language" : "zh-CN",
+		"value" : "修改成功"
+	},
+	{
+		"code" : "common.addSuccessText",
+		"name" : "添加成功",
+		"language" : "zh-CN",
+		"value" : "添加成功"
+	},
+	{
+		"code" : "common.delSuccessText",
+		"name" : "删除成功",
+		"language" : "zh-CN",
+		"value" : "删除成功"
+	},
+	{
+		"code" : "common.delConfirmText",
+		"name" : "此操作将永久删除",
+		"language" : "zh-CN",
+		"value" : "此操作将永久删除"
+	},
+	{
+		"code" : "common.optConfirmText",
+		"name" : "是否确认本操作",
+		"language" : "zh-CN",
+		"value" : "是否确认本操作"
+	},
+	{
+		"code" : "common.confirmButtonText",
+		"name" : "确认",
+		"language" : "zh-CN",
+		"value" : "确认"
+	},
+	{
+		"code" : "common.download",
+		"name" : "下载",
+		"language" : "zh-CN",
+		"value" : "下载"
+	},
+	{
+		"code" : "message.box.title",
+		"name" : "系统提示",
+		"language" : "zh-CN",
+		"value" : "系统提示"
+	},
+	{
+		"code" : "label.one1",
+		"name" : "用户名登录",
+		"language" : "zh-CN",
+		"value" : "用户名登录"
+	},
+	{
+		"code" : "label.two2",
+		"name" : "手机号登录",
+		"language" : "zh-CN",
+		"value" : "手机号登录"
+	},
+	{
+		"code" : "label.three3",
+		"name" : "社交登录",
+		"language" : "zh-CN",
+		"value" : "社交登录"
+	},
+	{
+		"code" : "label.register",
+		"name" : "注册账号",
+		"language" : "zh-CN",
+		"value" : "注册账号"
+	},
+	{
+		"code" : "link.one3",
+		"name" : "第三方登录",
+		"language" : "zh-CN",
+		"value" : "第三方登录"
+	},
+	{
+		"code" : "link.two4",
+		"name" : "友情链接",
+		"language" : "zh-CN",
+		"value" : "友情链接"
+	},
+	{
+		"code" : "password.accountPlaceholder1",
+		"name" : "请输入用户名",
+		"language" : "zh-CN",
+		"value" : "请输入用户名"
+	},
+	{
+		"code" : "password.accountPlaceholder3",
+		"name" : "请输入验证码",
+		"language" : "zh-CN",
+		"value" : "请输入验证码"
+	},
+	{
+		"code" : "password.phonePlaceholder4",
+		"name" : "请输入手机号",
+		"language" : "zh-CN",
+		"value" : "请输入手机号"
+	},
+	{
+		"code" : "password.registerBtnText",
+		"name" : "注 册",
+		"language" : "zh-CN",
+		"value" : "注 册"
+	},
+	{
+		"code" : "password.readAccept",
+		"name" : "我已仔细阅读并接受",
+		"language" : "zh-CN",
+		"value" : "我已仔细阅读并接受"
+	},
+	{
+		"code" : "password.privacyPolicy",
+		"name" : "《隐私政策》",
+		"language" : "zh-CN",
+		"value" : "《隐私政策》"
+	},
+	{
+		"code" : "mobile.codeText",
+		"name" : "获取验证码",
+		"language" : "zh-CN",
+		"value" : "获取验证码"
+	},
+	{
+		"code" : "scan.text",
+		"name" : "打开手机扫一扫，快速登录\/注册",
+		"language" : "zh-CN",
+		"value" : "打开手机扫一扫，快速登录\/注册"
+	},
+	{
+		"code" : "scan.wechatApp",
+		"name" : "微信扫码体验移动端",
+		"language" : "zh-CN",
+		"value" : "微信扫码体验移动端"
+	},
+	{
+		"code" : "tenant_guide.title",
+		"name" : "请选择租户，点击此处",
+		"language" : "zh-CN",
+		"value" : "请选择租户，点击此处"
+	},
+	{
+		"code" : "tenant_guide.description",
+		"name" : "请选择租户，只需要在第一次使用时进行选择。",
+		"language" : "zh-CN",
+		"value" : "请选择租户，只需要在第一次使用时进行选择。"
+	},
+	{
+		"code" : "signInText",
+		"name" : "欢迎回来！",
+		"language" : "zh-CN",
+		"value" : "欢迎回来！"
+	},
+	{
+		"code" : "browserMsgText",
+		"name" : "* 温馨提示：建议使用谷歌、Microsoft Edge，版本 79.0.1072.62 及以上浏览器，360浏览器请使用极速模式",
+		"language" : "zh-CN",
+		"value" : "* 温馨提示：建议使用谷歌、Microsoft Edge，版本 79.0.1072.62 及以上浏览器，360浏览器请使用极速模式"
+	},
+	{
+		"code" : "menu.dashboard.monitor",
+		"name" : "实时监控",
+		"language" : "zh-CN",
+		"value" : "实时监控"
+	},
+	{
+		"code" : "monitor.title.chatPanel",
+		"name" : "聊天窗口",
+		"language" : "zh-CN",
+		"value" : "聊天窗口"
+	},
+	{
+		"code" : "monitor.title.quickOperation",
+		"name" : "快捷操作",
+		"language" : "zh-CN",
+		"value" : "快捷操作"
+	},
+	{
+		"code" : "monitor.title.studioInfo",
+		"name" : "直播信息",
+		"language" : "zh-CN",
+		"value" : "直播信息"
+	},
+	{
+		"code" : "monitor.title.studioPreview",
+		"name" : "直播预览",
+		"language" : "zh-CN",
+		"value" : "直播预览"
+	},
+	{
+		"code" : "monitor.chat.options.all",
+		"name" : "全部",
+		"language" : "zh-CN",
+		"value" : "全部"
+	},
+	{
+		"code" : "monitor.chat.placeholder.searchCategory",
+		"name" : "搜索类目",
+		"language" : "zh-CN",
+		"value" : "搜索类目"
+	},
+	{
+		"code" : "monitor.chat.update",
+		"name" : "更新",
+		"language" : "zh-CN",
+		"value" : "更新"
+	},
+	{
+		"code" : "monitor.list.title.order",
+		"name" : "序号",
+		"language" : "zh-CN",
+		"value" : "序号"
+	},
+	{
+		"code" : "monitor.list.title.cover",
+		"name" : "封面",
+		"language" : "zh-CN",
+		"value" : "封面"
+	},
+	{
+		"code" : "monitor.list.title.name",
+		"name" : "名称",
+		"language" : "zh-CN",
+		"value" : "名称"
+	},
+	{
+		"code" : "monitor.list.title.duration",
+		"name" : "视频时长",
+		"language" : "zh-CN",
+		"value" : "视频时长"
+	},
+	{
+		"code" : "monitor.list.title.id",
+		"name" : "视频Id",
+		"language" : "zh-CN",
+		"value" : "视频Id"
+	},
+	{
+		"code" : "monitor.list.tip.rotations",
+		"name" : "轮播次数",
+		"language" : "zh-CN",
+		"value" : "轮播次数"
+	},
+	{
+		"code" : "monitor.list.tip.rest",
+		"name" : "，节目单观众不可见",
+		"language" : "zh-CN",
+		"value" : "，节目单观众不可见"
+	},
+	{
+		"code" : "monitor.list.tag.auditFailed",
+		"name" : "审核未通过",
+		"language" : "zh-CN",
+		"value" : "审核未通过"
+	},
+	{
+		"code" : "monitor.tab.title.liveMethod",
+		"name" : "直播方式",
+		"language" : "zh-CN",
+		"value" : "直播方式"
+	},
+	{
+		"code" : "monitor.tab.title.onlinePopulation",
+		"name" : "在线人数",
+		"language" : "zh-CN",
+		"value" : "在线人数"
+	},
+	{
+		"code" : "monitor.liveMethod.normal",
+		"name" : "普通直播",
+		"language" : "zh-CN",
+		"value" : "普通直播"
+	},
+	{
+		"code" : "monitor.liveMethod.flowControl",
+		"name" : "控流直播",
+		"language" : "zh-CN",
+		"value" : "控流直播"
+	},
+	{
+		"code" : "monitor.liveMethod.video",
+		"name" : "视频直播",
+		"language" : "zh-CN",
+		"value" : "视频直播"
+	},
+	{
+		"code" : "monitor.liveMethod.web",
+		"name" : "网页开播",
+		"language" : "zh-CN",
+		"value" : "网页开播"
+	},
+	{
+		"code" : "monitor.editCarousel",
+		"name" : "编辑轮播",
+		"language" : "zh-CN",
+		"value" : "编辑轮播"
+	},
+	{
+		"code" : "monitor.startCarousel",
+		"name" : "开始轮播",
+		"language" : "zh-CN",
+		"value" : "开始轮播"
+	},
+	{
+		"code" : "monitor.quickOperation.changeClarity",
+		"name" : "切换清晰度",
+		"language" : "zh-CN",
+		"value" : "切换清晰度"
+	},
+	{
+		"code" : "monitor.quickOperation.switchStream",
+		"name" : "主备流切换",
+		"language" : "zh-CN",
+		"value" : "主备流切换"
+	},
+	{
+		"code" : "monitor.quickOperation.removeClarity",
+		"name" : "摘除清晰度",
+		"language" : "zh-CN",
+		"value" : "摘除清晰度"
+	},
+	{
+		"code" : "monitor.quickOperation.pushFlowGasket",
+		"name" : "推流垫片",
+		"language" : "zh-CN",
+		"value" : "推流垫片"
+	},
+	{
+		"code" : "monitor.studioInfo.label.studioTitle",
+		"name" : "直播标题",
+		"language" : "zh-CN",
+		"value" : "直播标题"
+	},
+	{
+		"code" : "monitor.studioInfo.label.onlineNotification",
+		"name" : "上线通知",
+		"language" : "zh-CN",
+		"value" : "上线通知"
+	},
+	{
+		"code" : "monitor.studioInfo.label.studioCategory",
+		"name" : "直播类目",
+		"language" : "zh-CN",
+		"value" : "直播类目"
+	},
+	{
+		"code" : "monitor.studioInfo.placeholder.studioTitle",
+		"name" : "的直播间",
+		"language" : "zh-CN",
+		"value" : "的直播间"
+	},
+	{
+		"code" : "monitor.studioStatus.title.studioStatus",
+		"name" : "直播状态",
+		"language" : "zh-CN",
+		"value" : "直播状态"
+	},
+	{
+		"code" : "monitor.studioStatus.title.pictureInfo",
+		"name" : "画面信息",
+		"language" : "zh-CN",
+		"value" : "画面信息"
+	},
+	{
+		"code" : "monitor.studioStatus.smooth",
+		"name" : "流畅",
+		"language" : "zh-CN",
+		"value" : "流畅"
+	},
+	{
+		"code" : "monitor.studioStatus.frameRate",
+		"name" : "帧率",
+		"language" : "zh-CN",
+		"value" : "帧率"
+	},
+	{
+		"code" : "monitor.studioStatus.bitRate",
+		"name" : "码率",
+		"language" : "zh-CN",
+		"value" : "码率"
+	},
+	{
+		"code" : "monitor.studioStatus.mainstream",
+		"name" : "主流",
+		"language" : "zh-CN",
+		"value" : "主流"
+	},
+	{
+		"code" : "monitor.studioStatus.hotStandby",
+		"name" : "热备",
+		"language" : "zh-CN",
+		"value" : "热备"
+	},
+	{
+		"code" : "monitor.studioStatus.coldStandby",
+		"name" : "冷备",
+		"language" : "zh-CN",
+		"value" : "冷备"
+	},
+	{
+		"code" : "monitor.studioStatus.line",
+		"name" : "线路",
+		"language" : "zh-CN",
+		"value" : "线路"
+	},
+	{
+		"code" : "monitor.studioStatus.play",
+		"name" : "播放格式",
+		"language" : "zh-CN",
+		"value" : "播放格式"
+	},
+	{
+		"code" : "monitor.studioStatus.pictureQuality",
+		"name" : "画质",
+		"language" : "zh-CN",
+		"value" : "画质"
+	},
+	{
+		"code" : "monitor.studioPreview.studio",
+		"name" : "直播间",
+		"language" : "zh-CN",
+		"value" : "直播间"
+	},
+	{
+		"code" : "monitor.studioPreview.watching",
+		"name" : "在看",
+		"language" : "zh-CN",
+		"value" : "在看"
+	},
+	{
+		"code" : "menu.dashboard.workplace",
+		"name" : "工作台",
+		"language" : "zh-CN",
+		"value" : "工作台"
+	},
+	{
+		"code" : "workplace.balance",
+		"name" : "余额（元）",
+		"language" : "zh-CN",
+		"value" : "余额（元）"
+	},
+	{
+		"code" : "workplace.order.pending",
+		"name" : "待支付",
+		"language" : "zh-CN",
+		"value" : "待支付"
+	},
+	{
+		"code" : "workplace.order.pendingRenewal",
+		"name" : "待续费订单",
+		"language" : "zh-CN",
+		"value" : "待续费订单"
+	},
+	{
+		"code" : "workplace.onlineContent",
+		"name" : "线上总内容",
+		"language" : "zh-CN",
+		"value" : "线上总内容"
+	},
+	{
+		"code" : "workplace.putIn",
+		"name" : "投放中内容",
+		"language" : "zh-CN",
+		"value" : "投放中内容"
+	},
+	{
+		"code" : "workplace.newDay",
+		"name" : "日新增评论",
+		"language" : "zh-CN",
+		"value" : "日新增评论"
+	},
+	{
+		"code" : "workplace.newFromYesterday",
+		"name" : "较昨日新增",
+		"language" : "zh-CN",
+		"value" : "较昨日新增"
+	},
+	{
+		"code" : "workplace.minute",
+		"name" : "分钟",
+		"language" : "zh-CN",
+		"value" : "分钟"
+	},
+	{
+		"code" : "workplace.docs",
+		"name" : "帮助文档",
+		"language" : "zh-CN",
+		"value" : "帮助文档"
+	},
+	{
+		"code" : "workplace.docs.productOverview",
+		"name" : "产品概要",
+		"language" : "zh-CN",
+		"value" : "产品概要"
+	},
+	{
+		"code" : "workplace.docs.userGuide",
+		"name" : "使用指南",
+		"language" : "zh-CN",
+		"value" : "使用指南"
+	},
+	{
+		"code" : "workplace.docs.workflow",
+		"name" : "接入流程",
+		"language" : "zh-CN",
+		"value" : "接入流程"
+	},
+	{
+		"code" : "workplace.docs.interfaceDocs",
+		"name" : "接口文档",
+		"language" : "zh-CN",
+		"value" : "接口文档"
+	},
+	{
+		"code" : "workplace.contentManagement",
+		"name" : "内容管理",
+		"language" : "zh-CN",
+		"value" : "内容管理"
+	},
+	{
+		"code" : "workplace.contentStatistical",
+		"name" : "内容分析",
+		"language" : "zh-CN",
+		"value" : "内容分析"
+	},
+	{
+		"code" : "workplace.advanced",
+		"name" : "高级管理",
+		"language" : "zh-CN",
+		"value" : "高级管理"
+	},
+	{
+		"code" : "workplace.onlinePromotion",
+		"name" : "线上推广",
+		"language" : "zh-CN",
+		"value" : "线上推广"
+	},
+	{
+		"code" : "workplace.contentPutIn",
+		"name" : "内容投放",
+		"language" : "zh-CN",
+		"value" : "内容投放"
+	},
+	{
+		"code" : "workplace.announcement",
+		"name" : "公告",
+		"language" : "zh-CN",
+		"value" : "公告"
+	},
+	{
+		"code" : "workplace.recently.visited",
+		"name" : "最近访问",
+		"language" : "zh-CN",
+		"value" : "最近访问"
+	},
+	{
+		"code" : "workplace.record.nodata",
+		"name" : "暂无数据",
+		"language" : "zh-CN",
+		"value" : "暂无数据"
+	},
+	{
+		"code" : "workplace.quickOperation.setup",
+		"name" : "管理",
+		"language" : "zh-CN",
+		"value" : "管理"
+	},
+	{
+		"code" : "workplace.allProject",
+		"name" : "所有项目",
+		"language" : "zh-CN",
+		"value" : "所有项目"
+	},
+	{
+		"code" : "workplace.loadMore",
+		"name" : "加载更多",
+		"language" : "zh-CN",
+		"value" : "加载更多"
+	},
+	{
+		"code" : "workplace.contentData",
+		"name" : "内容数据",
+		"language" : "zh-CN",
+		"value" : "内容数据"
+	},
+	{
+		"code" : "workplace.popularContent",
+		"name" : "线上热门内容",
+		"language" : "zh-CN",
+		"value" : "线上热门内容"
+	},
+	{
+		"code" : "workplace.popularContent.text",
+		"name" : "文本",
+		"language" : "zh-CN",
+		"value" : "文本"
+	},
+	{
+		"code" : "workplace.popularContent.image",
+		"name" : "图片",
+		"language" : "zh-CN",
+		"value" : "图片"
+	},
+	{
+		"code" : "workplace.popularContent.video",
+		"name" : "视频",
+		"language" : "zh-CN",
+		"value" : "视频"
+	},
+	{
+		"code" : "workplace.categoriesPercent",
+		"name" : "内容类型占比",
+		"language" : "zh-CN",
+		"value" : "内容类型占比"
+	},
+	{
+		"code" : "workplace.pecs",
+		"name" : "个",
+		"language" : "zh-CN",
+		"value" : "个"
+	},
+	{
+		"code" : "datasourceconf.index",
+		"name" : "#",
+		"language" : "zh-CN",
+		"value" : "#"
+	},
+	{
+		"code" : "datasourceconf.importDatasourceConfTip",
+		"name" : "导入数据源",
+		"language" : "zh-CN",
+		"value" : "导入数据源"
+	},
+	{
+		"code" : "datasourceconf.id",
+		"name" : "主键",
+		"language" : "zh-CN",
+		"value" : "主键"
+	},
+	{
+		"code" : "datasourceconf.name",
+		"name" : "别名",
+		"language" : "zh-CN",
+		"value" : "别名"
+	},
+	{
+		"code" : "datasourceconf.url",
+		"name" : "jdbc-url",
+		"language" : "zh-CN",
+		"value" : "jdbc-url"
+	},
+	{
+		"code" : "datasourceconf.username",
+		"name" : "用户名",
+		"language" : "zh-CN",
+		"value" : "用户名"
+	},
+	{
+		"code" : "datasourceconf.password",
+		"name" : "密码",
+		"language" : "zh-CN",
+		"value" : "密码"
+	},
+	{
+		"code" : "datasourceconf.docBtn",
+		"name" : "文档",
+		"language" : "zh-CN",
+		"value" : "文档"
+	},
+	{
+		"code" : "datasourceconf.createTime",
+		"name" : "创建时间",
+		"language" : "zh-CN",
+		"value" : "创建时间"
+	},
+	{
+		"code" : "datasourceconf.delFlag",
+		"name" : "删除标记",
+		"language" : "zh-CN",
+		"value" : "删除标记"
+	},
+	{
+		"code" : "datasourceconf.tenantId",
+		"name" : "租户ID",
+		"language" : "zh-CN",
+		"value" : "租户ID"
+	},
+	{
+		"code" : "datasourceconf.dsType",
+		"name" : "类型",
+		"language" : "zh-CN",
+		"value" : "类型"
+	},
+	{
+		"code" : "datasourceconf.confType",
+		"name" : "配置类型",
+		"language" : "zh-CN",
+		"value" : "配置类型"
+	},
+	{
+		"code" : "datasourceconf.dsName",
+		"name" : "库名称",
+		"language" : "zh-CN",
+		"value" : "库名称"
+	},
+	{
+		"code" : "datasourceconf.instance",
+		"name" : "实例",
+		"language" : "zh-CN",
+		"value" : "实例"
+	},
+	{
+		"code" : "datasourceconf.port",
+		"name" : "端口",
+		"language" : "zh-CN",
+		"value" : "端口"
+	},
+	{
+		"code" : "datasourceconf.host",
+		"name" : "主机",
+		"language" : "zh-CN",
+		"value" : "主机"
+	},
+	{
+		"code" : "datasourceconf.inputidTip",
+		"name" : "请输入主键",
+		"language" : "zh-CN",
+		"value" : "请输入主键"
+	},
+	{
+		"code" : "datasourceconf.inputnameTip",
+		"name" : "请输入别名",
+		"language" : "zh-CN",
+		"value" : "请输入别名"
+	},
+	{
+		"code" : "datasourceconf.inputurlTip",
+		"name" : "请输入jdbcurl",
+		"language" : "zh-CN",
+		"value" : "请输入jdbcurl"
+	},
+	{
+		"code" : "datasourceconf.inputcreateTimeTip",
+		"name" : "请输入创建时间",
+		"language" : "zh-CN",
+		"value" : "请输入创建时间"
+	},
+	{
+		"code" : "datasourceconf.inputupdateTimeTip",
+		"name" : "请输入更新",
+		"language" : "zh-CN",
+		"value" : "请输入更新"
+	},
+	{
+		"code" : "datasourceconf.inputdelFlagTip",
+		"name" : "请输入删除标记",
+		"language" : "zh-CN",
+		"value" : "请输入删除标记"
+	},
+	{
+		"code" : "datasourceconf.inputtenantIdTip",
+		"name" : "请输入租户ID",
+		"language" : "zh-CN",
+		"value" : "请输入租户ID"
+	},
+	{
+		"code" : "datasourceconf.inputdsTypeTip",
+		"name" : "请输入数据库类型",
+		"language" : "zh-CN",
+		"value" : "请输入数据库类型"
+	},
+	{
+		"code" : "datasourceconf.inputconfTypeTip",
+		"name" : "请输入配置类型",
+		"language" : "zh-CN",
+		"value" : "请输入配置类型"
+	},
+	{
+		"code" : "datasourceconf.inputdsNameTip",
+		"name" : "请输入数据库名称",
+		"language" : "zh-CN",
+		"value" : "请输入数据库名称"
+	},
+	{
+		"code" : "datasourceconf.inputinstanceTip",
+		"name" : "请输入实例",
+		"language" : "zh-CN",
+		"value" : "请输入实例"
+	},
+	{
+		"code" : "datasourceconf.inputportTip",
+		"name" : "请输入端口",
+		"language" : "zh-CN",
+		"value" : "请输入端口"
+	},
+	{
+		"code" : "datasourceconf.inputhostTip",
+		"name" : "请输入主机",
+		"language" : "zh-CN",
+		"value" : "请输入主机"
+	},
+	{
+		"code" : "fieldtype.importFieldTypeTip",
+		"name" : "导入列属性",
+		"language" : "zh-CN",
+		"value" : "导入列属性"
+	},
+	{
+		"code" : "fieldtype.columnType",
+		"name" : "字段类型",
+		"language" : "zh-CN",
+		"value" : "字段类型"
+	},
+	{
+		"code" : "fieldtype.attrType",
+		"name" : "属性类型",
+		"language" : "zh-CN",
+		"value" : "属性类型"
+	},
+	{
+		"code" : "fieldtype.packageName",
+		"name" : "属性包名",
+		"language" : "zh-CN",
+		"value" : "属性包名"
+	},
+	{
+		"code" : "fieldtype.inputcolumnTypeTip",
+		"name" : "请输入字段类型",
+		"language" : "zh-CN",
+		"value" : "请输入字段类型"
+	},
+	{
+		"code" : "fieldtype.inputattrTypeTip",
+		"name" : "请输入属性类型",
+		"language" : "zh-CN",
+		"value" : "请输入属性类型"
+	},
+	{
+		"code" : "fieldtype.inputpackageNameTip",
+		"name" : "请输入属性包名",
+		"language" : "zh-CN",
+		"value" : "请输入属性包名"
+	},
+	{
+		"code" : "group.importgenGroupTip",
+		"name" : "导入模板分组",
+		"language" : "zh-CN",
+		"value" : "导入模板分组"
+	},
+	{
+		"code" : "group.groupName",
+		"name" : "分组名称",
+		"language" : "zh-CN",
+		"value" : "分组名称"
+	},
+	{
+		"code" : "group.groupDesc",
+		"name" : "分组描述",
+		"language" : "zh-CN",
+		"value" : "分组描述"
+	},
+	{
+		"code" : "group.inputGroupNameTip",
+		"name" : "请输入分组名称",
+		"language" : "zh-CN",
+		"value" : "请输入分组名称"
+	},
+	{
+		"code" : "group.inputGroupDescTip",
+		"name" : "请输入分组描述",
+		"language" : "zh-CN",
+		"value" : "请输入分组描述"
+	},
+	{
+		"code" : "group.templateType",
+		"name" : "模板类型",
+		"language" : "zh-CN",
+		"value" : "模板类型"
+	},
+	{
+		"code" : "group.selectType",
+		"name" : "请选择模板类型",
+		"language" : "zh-CN",
+		"value" : "请选择模板类型"
+	},
+	{
+		"code" : "gen.syncBtn",
+		"name" : "同步",
+		"language" : "zh-CN",
+		"value" : "同步"
+	},
+	{
+		"code" : "gen.designBtn",
+		"name" : "设计",
+		"language" : "zh-CN",
+		"value" : "设计"
+	},
+	{
+		"code" : "gen.genBtn",
+		"name" : "生成",
+		"language" : "zh-CN",
+		"value" : "生成"
+	},
+	{
+		"code" : "gen.prewBtn",
+		"name" : "预览",
+		"language" : "zh-CN",
+		"value" : "预览"
+	},
+	{
+		"code" : "table.tableName",
+		"name" : "表名",
+		"language" : "zh-CN",
+		"value" : "表名"
+	},
+	{
+		"code" : "table.className",
+		"name" : "类名",
+		"language" : "zh-CN",
+		"value" : "类名"
+	},
+	{
+		"code" : "table.tableComment",
+		"name" : "说明",
+		"language" : "zh-CN",
+		"value" : "说明"
+	},
+	{
+		"code" : "table.tableDesc",
+		"name" : "注释",
+		"language" : "zh-CN",
+		"value" : "注释"
+	},
+	{
+		"code" : "table.author",
+		"name" : "作者",
+		"language" : "zh-CN",
+		"value" : "作者"
+	},
+	{
+		"code" : "table.email",
+		"name" : "邮箱",
+		"language" : "zh-CN",
+		"value" : "邮箱"
+	},
+	{
+		"code" : "table.packageName",
+		"name" : "项目包名",
+		"language" : "zh-CN",
+		"value" : "项目包名"
+	},
+	{
+		"code" : "table.version",
+		"name" : "项目版本号",
+		"language" : "zh-CN",
+		"value" : "项目版本号"
+	},
+	{
+		"code" : "table.generatorType",
+		"name" : "生成方式  0：zip压缩包   1：自定义目录",
+		"language" : "zh-CN",
+		"value" : "生成方式  0：zip压缩包   1：自定义目录"
+	},
+	{
+		"code" : "table.backendPath",
+		"name" : "后端生成路径",
+		"language" : "zh-CN",
+		"value" : "后端生成路径"
+	},
+	{
+		"code" : "table.frontendPath",
+		"name" : "前端生成路径",
+		"language" : "zh-CN",
+		"value" : "前端生成路径"
+	},
+	{
+		"code" : "table.moduleName",
+		"name" : "模块名",
+		"language" : "zh-CN",
+		"value" : "模块名"
+	},
+	{
+		"code" : "table.functionName",
+		"name" : "功能名",
+		"language" : "zh-CN",
+		"value" : "功能名"
+	},
+	{
+		"code" : "table.formLayout",
+		"name" : "表单布局  1：一列   2：两列",
+		"language" : "zh-CN",
+		"value" : "表单布局  1：一列   2：两列"
+	},
+	{
+		"code" : "table.datasourceId",
+		"name" : "数据源ID",
+		"language" : "zh-CN",
+		"value" : "数据源ID"
+	},
+	{
+		"code" : "table.baseclassId",
+		"name" : "基类ID",
+		"language" : "zh-CN",
+		"value" : "基类ID"
+	},
+	{
+		"code" : "table.inputtableNameTip",
+		"name" : "请输入表名",
+		"language" : "zh-CN",
+		"value" : "请输入表名"
+	},
+	{
+		"code" : "table.inputclassNameTip",
+		"name" : "请输入类名",
+		"language" : "zh-CN",
+		"value" : "请输入类名"
+	},
+	{
+		"code" : "table.inputtableCommentTip",
+		"name" : "请输入说明",
+		"language" : "zh-CN",
+		"value" : "请输入说明"
+	},
+	{
+		"code" : "table.inputauthorTip",
+		"name" : "请输入作者",
+		"language" : "zh-CN",
+		"value" : "请输入作者"
+	},
+	{
+		"code" : "table.inputemailTip",
+		"name" : "请输入邮箱",
+		"language" : "zh-CN",
+		"value" : "请输入邮箱"
+	},
+	{
+		"code" : "table.inputpackageNameTip",
+		"name" : "请输入项目包名",
+		"language" : "zh-CN",
+		"value" : "请输入项目包名"
+	},
+	{
+		"code" : "table.inputversionTip",
+		"name" : "请输入项目版本号",
+		"language" : "zh-CN",
+		"value" : "请输入项目版本号"
+	},
+	{
+		"code" : "table.inputgeneratorTypeTip",
+		"name" : "请输入生成方式  0：zip压缩包   1：自定义目录",
+		"language" : "zh-CN",
+		"value" : "请输入生成方式  0：zip压缩包   1：自定义目录"
+	},
+	{
+		"code" : "table.inputbackendPathTip",
+		"name" : "请输入后端生成路径",
+		"language" : "zh-CN",
+		"value" : "请输入后端生成路径"
+	},
+	{
+		"code" : "table.inputfrontendPathTip",
+		"name" : "请输入前端生成路径",
+		"language" : "zh-CN",
+		"value" : "请输入前端生成路径"
+	},
+	{
+		"code" : "table.inputmoduleNameTip",
+		"name" : "请输入模块名",
+		"language" : "zh-CN",
+		"value" : "请输入模块名"
+	},
+	{
+		"code" : "table.inputfunctionNameTip",
+		"name" : "请输入功能名",
+		"language" : "zh-CN",
+		"value" : "请输入功能名"
+	},
+	{
+		"code" : "table.inputformLayoutTip",
+		"name" : "请输入表单布局  1：一列   2：两列",
+		"language" : "zh-CN",
+		"value" : "请输入表单布局  1：一列   2：两列"
+	},
+	{
+		"code" : "table.inputdatasourceIdTip",
+		"name" : "请输入数据源ID",
+		"language" : "zh-CN",
+		"value" : "请输入数据源ID"
+	},
+	{
+		"code" : "table.inputbaseclassIdTip",
+		"name" : "请输入基类ID",
+		"language" : "zh-CN",
+		"value" : "请输入基类ID"
+	},
+	{
+		"code" : "template.importgenTemplateTip",
+		"name" : "导入模板",
+		"language" : "zh-CN",
+		"value" : "导入模板"
+	},
+	{
+		"code" : "template.templateName",
+		"name" : "模板名称",
+		"language" : "zh-CN",
+		"value" : "模板名称"
+	},
+	{
+		"code" : "template.generatorPath",
+		"name" : "模板路径",
+		"language" : "zh-CN",
+		"value" : "模板路径"
+	},
+	{
+		"code" : "template.desc",
+		"name" : "模板描述",
+		"language" : "zh-CN",
+		"value" : "模板描述"
+	},
+	{
+		"code" : "template.inputTemplateNameTip",
+		"name" : "请输入模板名称",
+		"language" : "zh-CN",
+		"value" : "请输入模板名称"
+	},
+	{
+		"code" : "template.inputGeneratorPathTip",
+		"name" : "请输入模板路径",
+		"language" : "zh-CN",
+		"value" : "请输入模板路径"
+	},
+	{
+		"code" : "template.inputDescTip",
+		"name" : "请输入模板描述",
+		"language" : "zh-CN",
+		"value" : "请输入模板描述"
+	},
+	{
+		"code" : "template.templateCode",
+		"name" : "模板代码",
+		"language" : "zh-CN",
+		"value" : "模板代码"
+	},
+	{
+		"code" : "template.inputTemplateCode",
+		"name" : "请输入模板代码",
+		"language" : "zh-CN",
+		"value" : "请输入模板代码"
+	},
+	{
+		"code" : "login.form.title",
+		"name" : "登录Tsun EMS",
+		"language" : "zh-CN",
+		"value" : "登录Tsun EMS"
+	},
+	{
+		"code" : "login.form.userName.errMsg",
+		"name" : "用户名不能为空",
+		"language" : "zh-CN",
+		"value" : "用户名不能为空"
+	},
+	{
+		"code" : "login.form.password.errMsg",
+		"name" : "密码不能为空",
+		"language" : "zh-CN",
+		"value" : "密码不能为空"
+	},
+	{
+		"code" : "login.form.login.errMsg",
+		"name" : "登录出错，请刷新重试",
+		"language" : "zh-CN",
+		"value" : "登录出错，请刷新重试"
+	},
+	{
+		"code" : "login.form.login.success",
+		"name" : "欢迎使用",
+		"language" : "zh-CN",
+		"value" : "欢迎使用"
+	},
+	{
+		"code" : "login.form.password.placeholder",
+		"name" : "请输入密码",
+		"language" : "zh-CN",
+		"value" : "请输入密码"
+	},
+	{
+		"code" : "login.form.rememberPassword",
+		"name" : "记住密码",
+		"language" : "zh-CN",
+		"value" : "记住密码"
+	},
+	{
+		"code" : "login.form.forgetPassword",
+		"name" : "忘记密码",
+		"language" : "zh-CN",
+		"value" : "忘记密码"
+	},
+	{
+		"code" : "login.banner.slogan1",
+		"name" : "开箱即用的高质量模板",
+		"language" : "zh-CN",
+		"value" : "开箱即用的高质量模板"
+	},
+	{
+		"code" : "login.banner.subSlogan1",
+		"name" : "丰富的的页面模板，覆盖大多数典型业务场景",
+		"language" : "zh-CN",
+		"value" : "丰富的的页面模板，覆盖大多数典型业务场景"
+	},
+	{
+		"code" : "login.banner.slogan2",
+		"name" : "内置了常见问题的解决方案",
+		"language" : "zh-CN",
+		"value" : "内置了常见问题的解决方案"
+	},
+	{
+		"code" : "login.banner.subSlogan2",
+		"name" : "国际化，路由配置，状态管理应有尽有",
+		"language" : "zh-CN",
+		"value" : "国际化，路由配置，状态管理应有尽有"
+	},
+	{
+		"code" : "login.banner.slogan3",
+		"name" : "接入可视化增强工具AUX",
+		"language" : "zh-CN",
+		"value" : "接入可视化增强工具AUX"
+	},
+	{
+		"code" : "login.banner.subSlogan3",
+		"name" : "实现灵活的区块式开发",
+		"language" : "zh-CN",
+		"value" : "实现灵活的区块式开发"
+	},
+	{
+		"code" : "client.importsysOauthClientDetailsTip",
+		"name" : "导入终端信息表",
+		"language" : "zh-CN",
+		"value" : "导入终端信息表"
+	},
+	{
+		"code" : "client.id",
+		"name" : "ID",
+		"language" : "zh-CN",
+		"value" : "ID"
+	},
+	{
+		"code" : "client.clientId",
+		"name" : "客户端ID",
+		"language" : "zh-CN",
+		"value" : "客户端ID"
+	},
+	{
+		"code" : "client.clientSecret",
+		"name" : "客户端密钥",
+		"language" : "zh-CN",
+		"value" : "客户端密钥"
+	},
+	{
+		"code" : "client.scope",
+		"name" : "域",
+		"language" : "zh-CN",
+		"value" : "域"
+	},
+	{
+		"code" : "client.authorizedGrantTypes",
+		"name" : "授权模式",
+		"language" : "zh-CN",
+		"value" : "授权模式"
+	},
+	{
+		"code" : "client.webServerRedirectUri",
+		"name" : "回调地址",
+		"language" : "zh-CN",
+		"value" : "回调地址"
+	},
+	{
+		"code" : "client.authorities",
+		"name" : "权限",
+		"language" : "zh-CN",
+		"value" : "权限"
+	},
+	{
+		"code" : "client.accessTokenValidity",
+		"name" : "令牌时效（秒）",
+		"language" : "zh-CN",
+		"value" : "令牌时效（秒）"
+	},
+	{
+		"code" : "client.refreshTokenValidity",
+		"name" : "刷新时效（秒）",
+		"language" : "zh-CN",
+		"value" : "刷新时效（秒）"
+	},
+	{
+		"code" : "client.additionalInformation",
+		"name" : "扩展信息",
+		"language" : "zh-CN",
+		"value" : "扩展信息"
+	},
+	{
+		"code" : "client.autoapprove",
+		"name" : "自动放行",
+		"language" : "zh-CN",
+		"value" : "自动放行"
+	},
+	{
+		"code" : "client.createBy",
+		"name" : "创建人",
+		"language" : "zh-CN",
+		"value" : "创建人"
+	},
+	{
+		"code" : "client.updateBy",
+		"name" : "修改人",
+		"language" : "zh-CN",
+		"value" : "修改人"
+	},
+	{
+		"code" : "client.createTime",
+		"name" : "上传时间",
+		"language" : "zh-CN",
+		"value" : "上传时间"
+	},
+	{
+		"code" : "client.updateTime",
+		"name" : "更新时间",
+		"language" : "zh-CN",
+		"value" : "更新时间"
+	},
+	{
+		"code" : "client.tenantId",
+		"name" : "所属租户",
+		"language" : "zh-CN",
+		"value" : "所属租户"
+	},
+	{
+		"code" : "client.captchaFlag",
+		"name" : "验证码开关",
+		"language" : "zh-CN",
+		"value" : "验证码开关"
+	},
+	{
+		"code" : "client.encFlag",
+		"name" : "前端密码加密",
+		"language" : "zh-CN",
+		"value" : "前端密码加密"
+	},
+	{
+		"code" : "client.onlineQuantity",
+		"name" : "允许同时在线",
+		"language" : "zh-CN",
+		"value" : "允许同时在线"
+	},
+	{
+		"code" : "client.inputIdTip",
+		"name" : "请输入ID",
+		"language" : "zh-CN",
+		"value" : "请输入ID"
+	},
+	{
+		"code" : "client.inputClientIdTip",
+		"name" : "请输入客户端id",
+		"language" : "zh-CN",
+		"value" : "请输入客户端id"
+	},
+	{
+		"code" : "client.inputResourceIdsTip",
+		"name" : "请输入",
+		"language" : "zh-CN",
+		"value" : "请输入"
+	},
+	{
+		"code" : "client.inputClientSecretTip",
+		"name" : "请输入密钥",
+		"language" : "zh-CN",
+		"value" : "请输入密钥"
+	},
+	{
+		"code" : "client.inputScopeTip",
+		"name" : "请输入域",
+		"language" : "zh-CN",
+		"value" : "请输入域"
+	},
+	{
+		"code" : "client.inputAuthorizedGrantTypesTip",
+		"name" : "请输入授权模式",
+		"language" : "zh-CN",
+		"value" : "请输入授权模式"
+	},
+	{
+		"code" : "client.inputWebServerRedirectUriTip",
+		"name" : "请输入回调地址",
+		"language" : "zh-CN",
+		"value" : "请输入回调地址"
+	},
+	{
+		"code" : "client.inputAuthoritiesTip",
+		"name" : "请输入权限",
+		"language" : "zh-CN",
+		"value" : "请输入权限"
+	},
+	{
+		"code" : "client.inputAccessTokenValidityTip",
+		"name" : "请输入令牌时效",
+		"language" : "zh-CN",
+		"value" : "请输入令牌时效"
+	},
+	{
+		"code" : "client.inputRefreshTokenValidityTip",
+		"name" : "请输入刷新时效",
+		"language" : "zh-CN",
+		"value" : "请输入刷新时效"
+	},
+	{
+		"code" : "client.inputAdditionalInformationTip",
+		"name" : "请输入扩展信息",
+		"language" : "zh-CN",
+		"value" : "请输入扩展信息"
+	},
+	{
+		"code" : "client.inputAutoapproveTip",
+		"name" : "请输入自动放行",
+		"language" : "zh-CN",
+		"value" : "请输入自动放行"
+	},
+	{
+		"code" : "client.inputUpdateByTip",
+		"name" : "请输入修改人",
+		"language" : "zh-CN",
+		"value" : "请输入修改人"
+	},
+	{
+		"code" : "client.inputCreateTimeTip",
+		"name" : "请输入上传时间",
+		"language" : "zh-CN",
+		"value" : "请输入上传时间"
+	},
+	{
+		"code" : "client.inputUpdateTimeTip",
+		"name" : "请输入更新时间",
+		"language" : "zh-CN",
+		"value" : "请输入更新时间"
+	},
+	{
+		"code" : "client.inputTenantIdTip",
+		"name" : "请输入所属租户",
+		"language" : "zh-CN",
+		"value" : "请输入所属租户"
+	},
+	{
+		"code" : "sysdept.name",
+		"name" : "部门名称",
+		"language" : "zh-CN",
+		"value" : "部门名称"
+	},
+	{
+		"code" : "sysdept.parentId",
+		"name" : "上级部门",
+		"language" : "zh-CN",
+		"value" : "上级部门"
+	},
+	{
+		"code" : "sysdept.weight",
+		"name" : "排序",
+		"language" : "zh-CN",
+		"value" : "排序"
+	},
+	{
+		"code" : "sysdept.inputparentIdTip",
+		"name" : "请选择上级部门",
+		"language" : "zh-CN",
+		"value" : "请选择上级部门"
+	},
+	{
+		"code" : "sysdept.inputsortOrderTip",
+		"name" : "请输入排序",
+		"language" : "zh-CN",
+		"value" : "请输入排序"
+	},
+	{
+		"code" : "sysdept.importTip",
+		"name" : "导入部门",
+		"language" : "zh-CN",
+		"value" : "导入部门"
+	},
+	{
+		"code" : "sysdict.importsysDictTip",
+		"name" : "导入字典表",
+		"language" : "zh-CN",
+		"value" : "导入字典表"
+	},
+	{
+		"code" : "sysdict.id",
+		"name" : "编号",
+		"language" : "zh-CN",
+		"value" : "编号"
+	},
+	{
+		"code" : "sysdict.dictType",
+		"name" : "字典类型",
+		"language" : "zh-CN",
+		"value" : "字典类型"
+	},
+	{
+		"code" : "sysdict.description",
+		"name" : "描述",
+		"language" : "zh-CN",
+		"value" : "描述"
+	},
+	{
+		"code" : "sysdict.remarks",
+		"name" : "备注",
+		"language" : "zh-CN",
+		"value" : "备注"
+	},
+	{
+		"code" : "sysdict.delFlag",
+		"name" : "delFlag",
+		"language" : "zh-CN",
+		"value" : "delFlag"
+	},
+	{
+		"code" : "sysdict.inputIdTip",
+		"name" : "请输入编号",
+		"language" : "zh-CN",
+		"value" : "请输入编号"
+	},
+	{
+		"code" : "sysdict.inputDictTypeTip",
+		"name" : "请输入字典类型",
+		"language" : "zh-CN",
+		"value" : "请输入字典类型"
+	},
+	{
+		"code" : "sysdict.inputDescriptionTip",
+		"name" : "请输入描述",
+		"language" : "zh-CN",
+		"value" : "请输入描述"
+	},
+	{
+		"code" : "sysdict.inputRemarksTip",
+		"name" : "请输入备注",
+		"language" : "zh-CN",
+		"value" : "请输入备注"
+	},
+	{
+		"code" : "sysdict.inputDelFlagTip",
+		"name" : "请输入 delFlag",
+		"language" : "zh-CN",
+		"value" : "请输入 delFlag"
+	},
+	{
+		"code" : "sysdict.dictItem",
+		"name" : "字典项",
+		"language" : "zh-CN",
+		"value" : "字典项"
+	},
+	{
+		"code" : "sysdict.deleteDisabledTip",
+		"name" : "系统内置数据不能删除",
+		"language" : "zh-CN",
+		"value" : "系统内置数据不能删除"
+	},
+	{
+		"code" : "dictItem.importsysDictItemTip",
+		"name" : "导入字典项",
+		"language" : "zh-CN",
+		"value" : "导入字典项"
+	},
+	{
+		"code" : "dictItem.dictId",
+		"name" : "dictId",
+		"language" : "zh-CN",
+		"value" : "dictId"
+	},
+	{
+		"code" : "dictItem.itemValue",
+		"name" : "数据值",
+		"language" : "zh-CN",
+		"value" : "数据值"
+	},
+	{
+		"code" : "dictItem.label",
+		"name" : "标签名",
+		"language" : "zh-CN",
+		"value" : "标签名"
+	},
+	{
+		"code" : "dictItem.inputDictIdTip",
+		"name" : "请输入 dictId",
+		"language" : "zh-CN",
+		"value" : "请输入 dictId"
+	},
+	{
+		"code" : "dictItem.inputItemValueTip",
+		"name" : "请输入数据值",
+		"language" : "zh-CN",
+		"value" : "请输入数据值"
+	},
+	{
+		"code" : "dictItem.inputLabelTip",
+		"name" : "请输入标签名",
+		"language" : "zh-CN",
+		"value" : "请输入标签名"
+	},
+	{
+		"code" : "dictItem.inputDictTypeTip",
+		"name" : "请输入类型",
+		"language" : "zh-CN",
+		"value" : "请输入类型"
+	},
+	{
+		"code" : "file.importsysFileTip",
+		"name" : "导入文件管理表",
+		"language" : "zh-CN",
+		"value" : "导入文件管理表"
+	},
+	{
+		"code" : "file.uploadFile",
+		"name" : "上传文件",
+		"language" : "zh-CN",
+		"value" : "上传文件"
+	},
+	{
+		"code" : "file.fileName",
+		"name" : "文件名称",
+		"language" : "zh-CN",
+		"value" : "文件名称"
+	},
+	{
+		"code" : "file.bucketName",
+		"name" : "桶名称",
+		"language" : "zh-CN",
+		"value" : "桶名称"
+	},
+	{
+		"code" : "file.original",
+		"name" : "原文件名",
+		"language" : "zh-CN",
+		"value" : "原文件名"
+	},
+	{
+		"code" : "file.type",
+		"name" : "文件类型",
+		"language" : "zh-CN",
+		"value" : "文件类型"
+	},
+	{
+		"code" : "file.fileSize",
+		"name" : "文件大小",
+		"language" : "zh-CN",
+		"value" : "文件大小"
+	},
+	{
+		"code" : "file.delFlag",
+		"name" : "${field.fieldComment}",
+		"language" : "zh-CN",
+		"value" : "${field.fieldComment}"
+	},
+	{
+		"code" : "file.inputfileNameTip",
+		"name" : "请输入文件名称",
+		"language" : "zh-CN",
+		"value" : "请输入文件名称"
+	},
+	{
+		"code" : "file.inputbucketNameTip",
+		"name" : "请输入桶名称",
+		"language" : "zh-CN",
+		"value" : "请输入桶名称"
+	},
+	{
+		"code" : "file.inputoriginalTip",
+		"name" : "请输入原文件名",
+		"language" : "zh-CN",
+		"value" : "请输入原文件名"
+	},
+	{
+		"code" : "file.inputtypeTip",
+		"name" : "请输入文件类型",
+		"language" : "zh-CN",
+		"value" : "请输入文件类型"
+	},
+	{
+		"code" : "file.inputfileSizeTip",
+		"name" : "请输入文件大小",
+		"language" : "zh-CN",
+		"value" : "请输入文件大小"
+	},
+	{
+		"code" : "file.inputdelFlagTip",
+		"name" : "请输入${field.fieldComment}",
+		"language" : "zh-CN",
+		"value" : "请输入${field.fieldComment}"
+	},
+	{
+		"code" : "job.importsysJobTip",
+		"name" : "导入定时任务调度表",
+		"language" : "zh-CN",
+		"value" : "导入定时任务调度表"
+	},
+	{
+		"code" : "job.jobId",
+		"name" : "任务id",
+		"language" : "zh-CN",
+		"value" : "任务id"
+	},
+	{
+		"code" : "job.jobName",
+		"name" : "任务名称",
+		"language" : "zh-CN",
+		"value" : "任务名称"
+	},
+	{
+		"code" : "job.jobGroup",
+		"name" : "任务组名",
+		"language" : "zh-CN",
+		"value" : "任务组名"
+	},
+	{
+		"code" : "job.jobOrder",
+		"name" : "组内执行顺利",
+		"language" : "zh-CN",
+		"value" : "组内执行顺利"
+	},
+	{
+		"code" : "job.executePath",
+		"name" : "执行路径",
+		"language" : "zh-CN",
+		"value" : "执行路径"
+	},
+	{
+		"code" : "job.className",
+		"name" : "执行文件",
+		"language" : "zh-CN",
+		"value" : "执行文件"
+	},
+	{
+		"code" : "job.methodName",
+		"name" : "执行方法",
+		"language" : "zh-CN",
+		"value" : "执行方法"
+	},
+	{
+		"code" : "job.methodParamsValue",
+		"name" : "参数值",
+		"language" : "zh-CN",
+		"value" : "参数值"
+	},
+	{
+		"code" : "job.cronExpression",
+		"name" : "cron表达式",
+		"language" : "zh-CN",
+		"value" : "cron表达式"
+	},
+	{
+		"code" : "job.misfirePolicy",
+		"name" : "错失执行策略",
+		"language" : "zh-CN",
+		"value" : "错失执行策略"
+	},
+	{
+		"code" : "job.jobTenantType",
+		"name" : "1、多租户任务;2、非多租户任务",
+		"language" : "zh-CN",
+		"value" : "1、多租户任务;2、非多租户任务"
+	},
+	{
+		"code" : "job.jobStatus",
+		"name" : "任务状态",
+		"language" : "zh-CN",
+		"value" : "任务状态"
+	},
+	{
+		"code" : "job.jobExecuteStatus",
+		"name" : "执行状态",
+		"language" : "zh-CN",
+		"value" : "执行状态"
+	},
+	{
+		"code" : "job.createBy",
+		"name" : "创建者",
+		"language" : "zh-CN",
+		"value" : "创建者"
+	},
+	{
+		"code" : "job.updateBy",
+		"name" : "更新者",
+		"language" : "zh-CN",
+		"value" : "更新者"
+	},
+	{
+		"code" : "job.startTime",
+		"name" : "初次执行时间",
+		"language" : "zh-CN",
+		"value" : "初次执行时间"
+	},
+	{
+		"code" : "job.previousTime",
+		"name" : "上次执行时间",
+		"language" : "zh-CN",
+		"value" : "上次执行时间"
+	},
+	{
+		"code" : "job.nextTime",
+		"name" : "下次执行时间",
+		"language" : "zh-CN",
+		"value" : "下次执行时间"
+	},
+	{
+		"code" : "job.tenantId",
+		"name" : "租户",
+		"language" : "zh-CN",
+		"value" : "租户"
+	},
+	{
+		"code" : "job.remark",
+		"name" : "备注信息",
+		"language" : "zh-CN",
+		"value" : "备注信息"
+	},
+	{
+		"code" : "job.jobMessage",
+		"name" : "日志信息",
+		"language" : "zh-CN",
+		"value" : "日志信息"
+	},
+	{
+		"code" : "job.executeTime",
+		"name" : "执行时间",
+		"language" : "zh-CN",
+		"value" : "执行时间"
+	},
+	{
+		"code" : "job.exceptionInfo",
+		"name" : "异常信息",
+		"language" : "zh-CN",
+		"value" : "异常信息"
+	},
+	{
+		"code" : "job.inputjobIdTip",
+		"name" : "请输入任务id",
+		"language" : "zh-CN",
+		"value" : "请输入任务id"
+	},
+	{
+		"code" : "job.inputjobNameTip",
+		"name" : "请输入任务名称",
+		"language" : "zh-CN",
+		"value" : "请输入任务名称"
+	},
+	{
+		"code" : "job.inputjobGroupTip",
+		"name" : "请输入任务组名",
+		"language" : "zh-CN",
+		"value" : "请输入任务组名"
+	},
+	{
+		"code" : "job.inputjobOrderTip",
+		"name" : "请输入组内执行顺利",
+		"language" : "zh-CN",
+		"value" : "请输入组内执行顺利"
+	},
+	{
+		"code" : "job.inputexecutePathTip",
+		"name" : "请输入执行路径",
+		"language" : "zh-CN",
+		"value" : "请输入执行路径"
+	},
+	{
+		"code" : "job.inputclassNameTip",
+		"name" : "请输入执行文件",
+		"language" : "zh-CN",
+		"value" : "请输入执行文件"
+	},
+	{
+		"code" : "job.inputmethodNameTip",
+		"name" : "请输入执行方法",
+		"language" : "zh-CN",
+		"value" : "请输入执行方法"
+	},
+	{
+		"code" : "job.inputmethodParamsValueTip",
+		"name" : "请输入参数值",
+		"language" : "zh-CN",
+		"value" : "请输入参数值"
+	},
+	{
+		"code" : "job.inputcronExpressionTip",
+		"name" : "请输入cron表达式",
+		"language" : "zh-CN",
+		"value" : "请输入cron表达式"
+	},
+	{
+		"code" : "job.inputmisfirePolicyTip",
+		"name" : "请输入错失执行策略",
+		"language" : "zh-CN",
+		"value" : "请输入错失执行策略"
+	},
+	{
+		"code" : "job.inputjobTenantTypeTip",
+		"name" : "请输入1、多租户任务;2、非多租户任务",
+		"language" : "zh-CN",
+		"value" : "请输入1、多租户任务;2、非多租户任务"
+	},
+	{
+		"code" : "job.inputjobStatusTip",
+		"name" : "请输入任务状态",
+		"language" : "zh-CN",
+		"value" : "请输入任务状态"
+	},
+	{
+		"code" : "job.inputjobExecuteStatusTip",
+		"name" : "请输入执行状态",
+		"language" : "zh-CN",
+		"value" : "请输入执行状态"
+	},
+	{
+		"code" : "job.inputcreateByTip",
+		"name" : "请输入创建者",
+		"language" : "zh-CN",
+		"value" : "请输入创建者"
+	},
+	{
+		"code" : "job.inputupdateByTip",
+		"name" : "请输入更新者",
+		"language" : "zh-CN",
+		"value" : "请输入更新者"
+	},
+	{
+		"code" : "job.inputstartTimeTip",
+		"name" : "请输入初次执行时间",
+		"language" : "zh-CN",
+		"value" : "请输入初次执行时间"
+	},
+	{
+		"code" : "job.inputpreviousTimeTip",
+		"name" : "请输入上次执行时间",
+		"language" : "zh-CN",
+		"value" : "请输入上次执行时间"
+	},
+	{
+		"code" : "job.inputnextTimeTip",
+		"name" : "请输入下次执行时间",
+		"language" : "zh-CN",
+		"value" : "请输入下次执行时间"
+	},
+	{
+		"code" : "job.inputtenantIdTip",
+		"name" : "请输入租户",
+		"language" : "zh-CN",
+		"value" : "请输入租户"
+	},
+	{
+		"code" : "job.inputremarkTip",
+		"name" : "请输入备注信息",
+		"language" : "zh-CN",
+		"value" : "请输入备注信息"
+	},
+	{
+		"code" : "log.importsysJobLogTip",
+		"name" : "导入定时任务执行日志表",
+		"language" : "zh-CN",
+		"value" : "导入定时任务执行日志表"
+	},
+	{
+		"code" : "log.jobLogId",
+		"name" : "任务日志ID",
+		"language" : "zh-CN",
+		"value" : "任务日志ID"
+	},
+	{
+		"code" : "log.executeTime",
+		"name" : "执行时间",
+		"language" : "zh-CN",
+		"value" : "执行时间"
+	},
+	{
+		"code" : "log.inputJobLogIdTip",
+		"name" : "请输入任务日志ID",
+		"language" : "zh-CN",
+		"value" : "请输入任务日志ID"
+	},
+	{
+		"code" : "log.inputMethodNameTip",
+		"name" : "请输入任务方法",
+		"language" : "zh-CN",
+		"value" : "请输入任务方法"
+	},
+	{
+		"code" : "log.inputCronExpressionTip",
+		"name" : "请输入cron执行表达式",
+		"language" : "zh-CN",
+		"value" : "请输入cron执行表达式"
+	},
+	{
+		"code" : "log.inputJobMessageTip",
+		"name" : "请输入日志信息",
+		"language" : "zh-CN",
+		"value" : "请输入日志信息"
+	},
+	{
+		"code" : "log.inputExecuteTimeTip",
+		"name" : "请输入执行时间",
+		"language" : "zh-CN",
+		"value" : "请输入执行时间"
+	},
+	{
+		"code" : "log.inputExceptionInfoTip",
+		"name" : "请输入异常信息",
+		"language" : "zh-CN",
+		"value" : "请输入异常信息"
+	},
+	{
+		"code" : "syslog.title",
+		"name" : "标题",
+		"language" : "zh-CN",
+		"value" : "标题"
+	},
+	{
+		"code" : "syslog.remoteAddr",
+		"name" : "IP地址",
+		"language" : "zh-CN",
+		"value" : "IP地址"
+	},
+	{
+		"code" : "syslog.method",
+		"name" : "请求方式",
+		"language" : "zh-CN",
+		"value" : "请求方式"
+	},
+	{
+		"code" : "syslog.ua",
+		"name" : "浏览器",
+		"language" : "zh-CN",
+		"value" : "浏览器"
+	},
+	{
+		"code" : "syslog.serviceId",
+		"name" : "客户端",
+		"language" : "zh-CN",
+		"value" : "客户端"
+	},
+	{
+		"code" : "syslog.time",
+		"name" : "耗时",
+		"language" : "zh-CN",
+		"value" : "耗时"
+	},
+	{
+		"code" : "syslog.params",
+		"name" : "请求参数",
+		"language" : "zh-CN",
+		"value" : "请求参数"
+	},
+	{
+		"code" : "syslog.createTime",
+		"name" : "请求时间",
+		"language" : "zh-CN",
+		"value" : "请求时间"
+	},
+	{
+		"code" : "syslog.requestUri",
+		"name" : "请求地址",
+		"language" : "zh-CN",
+		"value" : "请求地址"
+	},
+	{
+		"code" : "syslog.createBy",
+		"name" : "操作人",
+		"language" : "zh-CN",
+		"value" : "操作人"
+	},
+	{
+		"code" : "syslog.inputLogTypeTip",
+		"name" : "请选择类型",
+		"language" : "zh-CN",
+		"value" : "请选择类型"
+	},
+	{
+		"code" : "syslog.inputStartPlaceholderTip",
+		"name" : "开始时间",
+		"language" : "zh-CN",
+		"value" : "开始时间"
+	},
+	{
+		"code" : "syslog.inputEndPlaceholderTip",
+		"name" : "结束时间",
+		"language" : "zh-CN",
+		"value" : "结束时间"
+	},
+	{
+		"code" : "sysmenu.name",
+		"name" : "菜单名称",
+		"language" : "zh-CN",
+		"value" : "菜单名称"
+	},
+	{
+		"code" : "sysmenu.enName",
+		"name" : "菜单英文",
+		"language" : "zh-CN",
+		"value" : "菜单英文"
+	},
+	{
+		"code" : "sysmenu.path",
+		"name" : "路由",
+		"language" : "zh-CN",
+		"value" : "路由"
+	},
+	{
+		"code" : "sysmenu.keepAlive",
+		"name" : "缓冲",
+		"language" : "zh-CN",
+		"value" : "缓冲"
+	},
+	{
+		"code" : "sysmenu.permission",
+		"name" : "权限标识",
+		"language" : "zh-CN",
+		"value" : "权限标识"
+	},
+	{
+		"code" : "sysmenu.inputNameTip",
+		"name" : "请输入菜单名称",
+		"language" : "zh-CN",
+		"value" : "请输入菜单名称"
+	},
+	{
+		"code" : "sysmenu.inputEnNameTip",
+		"name" : "请输入菜单英文",
+		"language" : "zh-CN",
+		"value" : "请输入菜单英文"
+	},
+	{
+		"code" : "sysmenu.parentId",
+		"name" : "上级菜单",
+		"language" : "zh-CN",
+		"value" : "上级菜单"
+	},
+	{
+		"code" : "sysmenu.embedded",
+		"name" : "是否内嵌",
+		"language" : "zh-CN",
+		"value" : "是否内嵌"
+	},
+	{
+		"code" : "sysmenu.visible",
+		"name" : "是否显示",
+		"language" : "zh-CN",
+		"value" : "是否显示"
+	},
+	{
+		"code" : "sysmenu.icon",
+		"name" : "图标",
+		"language" : "zh-CN",
+		"value" : "图标"
+	},
+	{
+		"code" : "sysmenu.inputMenuIdTip",
+		"name" : "系统菜单",
+		"language" : "zh-CN",
+		"value" : "系统菜单"
+	},
+	{
+		"code" : "sysmenu.inputPermissionTip",
+		"name" : "请输入权限标识",
+		"language" : "zh-CN",
+		"value" : "请输入权限标识"
+	},
+	{
+		"code" : "sysmenu.inputPathTip",
+		"name" : "请输入路由路径",
+		"language" : "zh-CN",
+		"value" : "请输入路由路径"
+	},
+	{
+		"code" : "sysmenu.inputParentIdTip",
+		"name" : "请选择上级菜单",
+		"language" : "zh-CN",
+		"value" : "请选择上级菜单"
+	},
+	{
+		"code" : "sysmenu.inputIconTip",
+		"name" : "请选择图标",
+		"language" : "zh-CN",
+		"value" : "请选择图标"
+	},
+	{
+		"code" : "sysmenu.inputVisibleTip",
+		"name" : "请选择是否显示",
+		"language" : "zh-CN",
+		"value" : "请选择是否显示"
+	},
+	{
+		"code" : "sysmenu.inputKeepAliveTip",
+		"name" : "请选择是否缓冲",
+		"language" : "zh-CN",
+		"value" : "请选择是否缓冲"
+	},
+	{
+		"code" : "sysmenu.inputMenuTypeTip",
+		"name" : "请选择菜单类型",
+		"language" : "zh-CN",
+		"value" : "请选择菜单类型"
+	},
+	{
+		"code" : "sysmenu.inputEmbeddedTip",
+		"name" : "请选择是否内嵌",
+		"language" : "zh-CN",
+		"value" : "请选择是否内嵌"
+	},
+	{
+		"code" : "sysmenu.deleteDisabledTip",
+		"name" : "菜单包含下级不能删除",
+		"language" : "zh-CN",
+		"value" : "菜单包含下级不能删除"
+	},
+	{
+		"code" : "param.importsysPublicParamTip",
+		"name" : "导入公共参数配置表",
+		"language" : "zh-CN",
+		"value" : "导入公共参数配置表"
+	},
+	{
+		"code" : "param.publicKey",
+		"name" : "键",
+		"language" : "zh-CN",
+		"value" : "键"
+	},
+	{
+		"code" : "param.publicValue",
+		"name" : "值",
+		"language" : "zh-CN",
+		"value" : "值"
+	},
+	{
+		"code" : "param.status",
+		"name" : "状态",
+		"language" : "zh-CN",
+		"value" : "状态"
+	},
+	{
+		"code" : "param.validateCode",
+		"name" : "编码",
+		"language" : "zh-CN",
+		"value" : "编码"
+	},
+	{
+		"code" : "param.updateTime",
+		"name" : "修改时间",
+		"language" : "zh-CN",
+		"value" : "修改时间"
+	},
+	{
+		"code" : "param.inputpublicNameTip",
+		"name" : "请输入名称",
+		"language" : "zh-CN",
+		"value" : "请输入名称"
+	},
+	{
+		"code" : "param.inputpublicKeyTip",
+		"name" : "请输入键",
+		"language" : "zh-CN",
+		"value" : "请输入键"
+	},
+	{
+		"code" : "param.inputpublicValueTip",
+		"name" : "请输入值",
+		"language" : "zh-CN",
+		"value" : "请输入值"
+	},
+	{
+		"code" : "param.inputstatusTip",
+		"name" : "请输入状态",
+		"language" : "zh-CN",
+		"value" : "请输入状态"
+	},
+	{
+		"code" : "param.inputvalidateCodeTip",
+		"name" : "请输入编码",
+		"language" : "zh-CN",
+		"value" : "请输入编码"
+	},
+	{
+		"code" : "param.inputupdateTimeTip",
+		"name" : "请输入修改时间",
+		"language" : "zh-CN",
+		"value" : "请输入修改时间"
+	},
+	{
+		"code" : "post.importPostTip",
+		"name" : "导入岗位管理",
+		"language" : "zh-CN",
+		"value" : "导入岗位管理"
+	},
+	{
+		"code" : "post.postId",
+		"name" : "岗位ID",
+		"language" : "zh-CN",
+		"value" : "岗位ID"
+	},
+	{
+		"code" : "post.postCode",
+		"name" : "岗位编码",
+		"language" : "zh-CN",
+		"value" : "岗位编码"
+	},
+	{
+		"code" : "post.postName",
+		"name" : "岗位名称",
+		"language" : "zh-CN",
+		"value" : "岗位名称"
+	},
+	{
+		"code" : "post.postSort",
+		"name" : "岗位排序",
+		"language" : "zh-CN",
+		"value" : "岗位排序"
+	},
+	{
+		"code" : "post.remark",
+		"name" : "岗位描述",
+		"language" : "zh-CN",
+		"value" : "岗位描述"
+	},
+	{
+		"code" : "post.delFlag",
+		"name" : "是否删除  -1：已删除  0：正常",
+		"language" : "zh-CN",
+		"value" : "是否删除  -1：已删除  0：正常"
+	},
+	{
+		"code" : "post.updateBy",
+		"name" : "更新人",
+		"language" : "zh-CN",
+		"value" : "更新人"
+	},
+	{
+		"code" : "post.inputpostIdTip",
+		"name" : "请输入岗位ID",
+		"language" : "zh-CN",
+		"value" : "请输入岗位ID"
+	},
+	{
+		"code" : "post.inputpostCodeTip",
+		"name" : "请输入岗位编码",
+		"language" : "zh-CN",
+		"value" : "请输入岗位编码"
+	},
+	{
+		"code" : "post.inputpostNameTip",
+		"name" : "请输入岗位名称",
+		"language" : "zh-CN",
+		"value" : "请输入岗位名称"
+	},
+	{
+		"code" : "post.inputpostSortTip",
+		"name" : "请输入岗位排序",
+		"language" : "zh-CN",
+		"value" : "请输入岗位排序"
+	},
+	{
+		"code" : "post.inputremarkTip",
+		"name" : "请输入岗位描述",
+		"language" : "zh-CN",
+		"value" : "请输入岗位描述"
+	},
+	{
+		"code" : "post.inputdelFlagTip",
+		"name" : "请输入是否删除  -1：已删除  0：正常",
+		"language" : "zh-CN",
+		"value" : "请输入是否删除  -1：已删除  0：正常"
+	},
+	{
+		"code" : "post.inputupdateByTip",
+		"name" : "请输入更新人",
+		"language" : "zh-CN",
+		"value" : "请输入更新人"
+	},
+	{
+		"code" : "sysrole.roleName",
+		"name" : "角色名称",
+		"language" : "zh-CN",
+		"value" : "角色名称"
+	},
+	{
+		"code" : "sysrole.inputRoleNameTip",
+		"name" : "请输入角色名称",
+		"language" : "zh-CN",
+		"value" : "请输入角色名称"
+	},
+	{
+		"code" : "sysrole.permissionTip",
+		"name" : "授权",
+		"language" : "zh-CN",
+		"value" : "授权"
+	},
+	{
+		"code" : "sysrole.deleteDisabledTip",
+		"name" : "角色不允许删除",
+		"language" : "zh-CN",
+		"value" : "角色不允许删除"
+	},
+	{
+		"code" : "sysrole.roleCode",
+		"name" : "角色标识",
+		"language" : "zh-CN",
+		"value" : "角色标识"
+	},
+	{
+		"code" : "sysrole.roleDesc",
+		"name" : "角色描述",
+		"language" : "zh-CN",
+		"value" : "角色描述"
+	},
+	{
+		"code" : "sysrole.data_authority",
+		"name" : "数据权限",
+		"language" : "zh-CN",
+		"value" : "数据权限"
+	},
+	{
+		"code" : "sysrole.please_enter_the_role_Code",
+		"name" : "请输入角色标识",
+		"language" : "zh-CN",
+		"value" : "请输入角色标识"
+	},
+	{
+		"code" : "sysrole.please_enter_the_role_description",
+		"name" : "请输入角色描述",
+		"language" : "zh-CN",
+		"value" : "请输入角色描述"
+	},
+	{
+		"code" : "sysrole.please_select",
+		"name" : "请选择",
+		"language" : "zh-CN",
+		"value" : "请选择"
+	},
+	{
+		"code" : "systoken.userId",
+		"name" : "用户ID",
+		"language" : "zh-CN",
+		"value" : "用户ID"
+	},
+	{
+		"code" : "systoken.accessToken",
+		"name" : "令牌",
+		"language" : "zh-CN",
+		"value" : "令牌"
+	},
+	{
+		"code" : "systoken.expiresAt",
+		"name" : "过期时间",
+		"language" : "zh-CN",
+		"value" : "过期时间"
+	},
+	{
+		"code" : "systoken.offlineBtn",
+		"name" : "下线",
+		"language" : "zh-CN",
+		"value" : "下线"
+	},
+	{
+		"code" : "systoken.offlineConfirmText",
+		"name" : "确认下线",
+		"language" : "zh-CN",
+		"value" : "确认下线"
+	},
+	{
+		"code" : "systoken.offlineSuccessText",
+		"name" : "下线成功",
+		"language" : "zh-CN",
+		"value" : "下线成功"
+	},
+	{
+		"code" : "sysuser.name",
+		"name" : "姓名",
+		"language" : "zh-CN",
+		"value" : "姓名"
+	},
+	{
+		"code" : "sysuser.phone",
+		"name" : "手机号",
+		"language" : "zh-CN",
+		"value" : "手机号"
+	},
+	{
+		"code" : "sysuser.post",
+		"name" : "岗位",
+		"language" : "zh-CN",
+		"value" : "岗位"
+	},
+	{
+		"code" : "sysuser.role",
+		"name" : "角色",
+		"language" : "zh-CN",
+		"value" : "角色"
+	},
+	{
+		"code" : "sysuser.dept",
+		"name" : "部门",
+		"language" : "zh-CN",
+		"value" : "部门"
+	},
+	{
+		"code" : "sysuser.nickname",
+		"name" : "昵称",
+		"language" : "zh-CN",
+		"value" : "昵称"
+	},
+	{
+		"code" : "sysuser.inputNameTip",
+		"name" : "请输入姓名",
+		"language" : "zh-CN",
+		"value" : "请输入姓名"
+	},
+	{
+		"code" : "sysuser.importUserTip",
+		"name" : "用户导入",
+		"language" : "zh-CN",
+		"value" : "用户导入"
+	},
+	{
+		"code" : "sysuser.deleteDisabledTip",
+		"name" : "admin 不允许被删除",
+		"language" : "zh-CN",
+		"value" : "admin 不允许被删除"
+	},
+	{
+		"code" : "sysuser.noDataScopeTip",
+		"name" : "没有数据权限",
+		"language" : "zh-CN",
+		"value" : "没有数据权限"
+	},
+	{
+		"code" : "personal.name",
+		"name" : "个人信息",
+		"language" : "zh-CN",
+		"value" : "个人信息"
+	},
+	{
+		"code" : "personal.passwordRule",
+		"name" : "两次输入密码不一致",
+		"language" : "zh-CN",
+		"value" : "两次输入密码不一致"
+	},
+	{
+		"code" : "personal.passwordScore",
+		"name" : "密码等级太低",
+		"language" : "zh-CN",
+		"value" : "密码等级太低"
+	},
+	{
+		"code" : "menu.user.info",
+		"name" : "用户信息",
+		"language" : "zh-CN",
+		"value" : "用户信息"
+	},
+	{
+		"code" : "userInfo.editUserInfo",
+		"name" : "编辑信息",
+		"language" : "zh-CN",
+		"value" : "编辑信息"
+	},
+	{
+		"code" : "userInfo.tab.title.overview",
+		"name" : "总览",
+		"language" : "zh-CN",
+		"value" : "总览"
+	},
+	{
+		"code" : "userInfo.tab.title.project",
+		"name" : "项目",
+		"language" : "zh-CN",
+		"value" : "项目"
+	},
+	{
+		"code" : "userInfo.tab.title.team",
+		"name" : "我的团队",
+		"language" : "zh-CN",
+		"value" : "我的团队"
+	},
+	{
+		"code" : "userInfo.title.latestActivity",
+		"name" : "最新动态",
+		"language" : "zh-CN",
+		"value" : "最新动态"
+	},
+	{
+		"code" : "userInfo.title.latestNotification",
+		"name" : "站内通知",
+		"language" : "zh-CN",
+		"value" : "站内通知"
+	},
+	{
+		"code" : "userInfo.title.myProject",
+		"name" : "我的项目",
+		"language" : "zh-CN",
+		"value" : "我的项目"
+	},
+	{
+		"code" : "userInfo.visits.unit",
+		"name" : "人次",
+		"language" : "zh-CN",
+		"value" : "人次"
+	},
+	{
+		"code" : "userInfo.visits.lastMonth",
+		"name" : "较上月",
+		"language" : "zh-CN",
+		"value" : "较上月"
+	},
+	{
+		"code" : "userSetting.menu.title.account",
+		"name" : "账号设置",
+		"language" : "zh-CN",
+		"value" : "账号设置"
+	},
+	{
+		"code" : "userSetting.menu.title.data",
+		"name" : "导出数据",
+		"language" : "zh-CN",
+		"value" : "导出数据"
+	},
+	{
+		"code" : "userSetting.saveSuccess",
+		"name" : "保存成功",
+		"language" : "zh-CN",
+		"value" : "保存成功"
+	},
+	{
+		"code" : "userSetting.title.basicInfo",
+		"name" : "基本信息",
+		"language" : "zh-CN",
+		"value" : "基本信息"
+	},
+	{
+		"code" : "userSetting.title.socialInfo",
+		"name" : "社交信息",
+		"language" : "zh-CN",
+		"value" : "社交信息"
+	},
+	{
+		"code" : "userSetting.label.avatar",
+		"name" : "头像",
+		"language" : "zh-CN",
+		"value" : "头像"
+	},
+	{
+		"code" : "userSetting.label.location",
+		"name" : "办公地点",
+		"language" : "zh-CN",
+		"value" : "办公地点"
+	},
+	{
+		"code" : "userSetting.label.introduction",
+		"name" : "个人简介",
+		"language" : "zh-CN",
+		"value" : "个人简介"
+	},
+	{
+		"code" : "userSetting.label.personalWebsite",
+		"name" : "个人网站",
+		"language" : "zh-CN",
+		"value" : "个人网站"
+	},
+	{
+		"code" : "userSetting.save",
+		"name" : "保存",
+		"language" : "zh-CN",
+		"value" : "保存"
+	},
+	{
+		"code" : "userSetting.label.certification",
+		"name" : "实名认证",
+		"language" : "zh-CN",
+		"value" : "实名认证"
+	},
+	{
+		"code" : "userSetting.label.phone",
+		"name" : "手机号码",
+		"language" : "zh-CN",
+		"value" : "手机号码"
+	},
+	{
+		"code" : "userSetting.label.accountId",
+		"name" : "账号ID",
+		"language" : "zh-CN",
+		"value" : "账号ID"
+	},
+	{
+		"code" : "userSetting.label.registrationDate",
+		"name" : "注册时间",
+		"language" : "zh-CN",
+		"value" : "注册时间"
+	},
+	{
+		"code" : "userSetting.tab.basicInformation",
+		"name" : "基础信息",
+		"language" : "zh-CN",
+		"value" : "基础信息"
+	},
+	{
+		"code" : "userSetting.tab.securitySettings",
+		"name" : "安全设置",
+		"language" : "zh-CN",
+		"value" : "安全设置"
+	},
+	{
+		"code" : "userSetting.basicInfo.placeholder.email",
+		"name" : "请输入邮箱地址，如xxx{'@'}bytedance.com",
+		"language" : "zh-CN",
+		"value" : "请输入邮箱地址，如xxx{'@'}bytedance.com"
+	},
+	{
+		"code" : "userSetting.basicInfo.placeholder.nickname",
+		"name" : "请输入您的昵称",
+		"language" : "zh-CN",
+		"value" : "请输入您的昵称"
+	},
+	{
+		"code" : "userSetting.form.error.nickname.required",
+		"name" : "请输入昵称",
+		"language" : "zh-CN",
+		"value" : "请输入昵称"
+	},
+	{
+		"code" : "userSetting.basicInfo.form.label.countryRegion",
+		"name" : "国家\/地区",
+		"language" : "zh-CN",
+		"value" : "国家\/地区"
+	},
+	{
+		"code" : "userSetting.form.error.countryRegion.required",
+		"name" : "请选择国家\/地区",
+		"language" : "zh-CN",
+		"value" : "请选择国家\/地区"
+	},
+	{
+		"code" : "userSetting.basicInfo.form.label.area",
+		"name" : "所在区域",
+		"language" : "zh-CN",
+		"value" : "所在区域"
+	},
+	{
+		"code" : "userSetting.form.error.area.required",
+		"name" : "请选择所在区域",
+		"language" : "zh-CN",
+		"value" : "请选择所在区域"
+	},
+	{
+		"code" : "userSetting.basicInfo.form.label.address",
+		"name" : "具体地址",
+		"language" : "zh-CN",
+		"value" : "具体地址"
+	},
+	{
+		"code" : "userSetting.basicInfo.placeholder.address",
+		"name" : "请输入您的地址",
+		"language" : "zh-CN",
+		"value" : "请输入您的地址"
+	},
+	{
+		"code" : "userSetting.basicInfo.placeholder.profile",
+		"name" : "请输入您的个人简介，最多不超过200字。",
+		"language" : "zh-CN",
+		"value" : "请输入您的个人简介，最多不超过200字。"
+	},
+	{
+		"code" : "userSetting.form.error.profile.maxLength",
+		"name" : "最多不超过200字",
+		"language" : "zh-CN",
+		"value" : "最多不超过200字"
+	},
+	{
+		"code" : "userSetting.SecuritySettings.form.label.password",
+		"name" : "登录密码",
+		"language" : "zh-CN",
+		"value" : "登录密码"
+	},
+	{
+		"code" : "userSetting.SecuritySettings.placeholder.password",
+		"name" : "已设置。密码至少6位字符，支持数字、字母和除空格外的特殊字符，且必须同时包含数字和大小写字母。",
+		"language" : "zh-CN",
+		"value" : "已设置。密码至少6位字符，支持数字、字母和除空格外的特殊字符，且必须同时包含数字和大小写字母。"
+	},
+	{
+		"code" : "userSetting.SecuritySettings.form.label.securityQuestion",
+		"name" : "密保问题",
+		"language" : "zh-CN",
+		"value" : "密保问题"
+	},
+	{
+		"code" : "userSetting.SecuritySettings.placeholder.securityQuestion",
+		"name" : "您暂未设置密保问题，密保问题可以有效的保护账号的安全。",
+		"language" : "zh-CN",
+		"value" : "您暂未设置密保问题，密保问题可以有效的保护账号的安全。"
+	},
+	{
+		"code" : "userSetting.SecuritySettings.form.label.phone",
+		"name" : "安全手机",
+		"language" : "zh-CN",
+		"value" : "安全手机"
+	},
+	{
+		"code" : "userSetting.SecuritySettings.form.label.email",
+		"name" : "安全邮箱",
+		"language" : "zh-CN",
+		"value" : "安全邮箱"
+	},
+	{
+		"code" : "userSetting.SecuritySettings.placeholder.email",
+		"name" : "您暂未设置邮箱，绑定邮箱可以用来找回密码、接收通知等。",
+		"language" : "zh-CN",
+		"value" : "您暂未设置邮箱，绑定邮箱可以用来找回密码、接收通知等。"
+	},
+	{
+		"code" : "userSetting.SecuritySettings.button.settings",
+		"name" : "设置",
+		"language" : "zh-CN",
+		"value" : "设置"
+	},
+	{
+		"code" : "userSetting.SecuritySettings.button.update",
+		"name" : "修改",
+		"language" : "zh-CN",
+		"value" : "修改"
+	},
+	{
+		"code" : "userSetting.certification.title.enterprise",
+		"name" : "企业实名认证",
+		"language" : "zh-CN",
+		"value" : "企业实名认证"
+	},
+	{
+		"code" : "userSetting.certification.extra.enterprise",
+		"name" : "修改认证主体",
+		"language" : "zh-CN",
+		"value" : "修改认证主体"
+	},
+	{
+		"code" : "userSetting.certification.label.accountType",
+		"name" : "账号类型",
+		"language" : "zh-CN",
+		"value" : "账号类型"
+	},
+	{
+		"code" : "userSetting.certification.label.status",
+		"name" : "认证状态",
+		"language" : "zh-CN",
+		"value" : "认证状态"
+	},
+	{
+		"code" : "userSetting.certification.label.time",
+		"name" : "认证时间",
+		"language" : "zh-CN",
+		"value" : "认证时间"
+	},
+	{
+		"code" : "userSetting.certification.label.legalPerson",
+		"name" : "法人姓名",
+		"language" : "zh-CN",
+		"value" : "法人姓名"
+	},
+	{
+		"code" : "userSetting.certification.label.certificateType",
+		"name" : "法人证件类型",
+		"language" : "zh-CN",
+		"value" : "法人证件类型"
+	},
+	{
+		"code" : "userSetting.certification.label.authenticationNumber",
+		"name" : "法人认证号码",
+		"language" : "zh-CN",
+		"value" : "法人认证号码"
+	},
+	{
+		"code" : "userSetting.certification.label.enterpriseName",
+		"name" : "企业名称",
+		"language" : "zh-CN",
+		"value" : "企业名称"
+	},
+	{
+		"code" : "userSetting.certification.label.enterpriseCertificateType",
+		"name" : "企业证件类型",
+		"language" : "zh-CN",
+		"value" : "企业证件类型"
+	},
+	{
+		"code" : "userSetting.certification.label.organizationCode",
+		"name" : "组织机构代码",
+		"language" : "zh-CN",
+		"value" : "组织机构代码"
+	},
+	{
+		"code" : "userSetting.certification.title.record",
+		"name" : "认证记录",
+		"language" : "zh-CN",
+		"value" : "认证记录"
+	},
+	{
+		"code" : "userSetting.certification.columns.certificationType",
+		"name" : "认证类型",
+		"language" : "zh-CN",
+		"value" : "认证类型"
+	},
+	{
+		"code" : "userSetting.certification.cell.certificationType",
+		"name" : "企业证件认证",
+		"language" : "zh-CN",
+		"value" : "企业证件认证"
+	},
+	{
+		"code" : "userSetting.certification.columns.certificationContent",
+		"name" : "认证内容",
+		"language" : "zh-CN",
+		"value" : "认证内容"
+	},
+	{
+		"code" : "userSetting.certification.columns.status",
+		"name" : "当前状态",
+		"language" : "zh-CN",
+		"value" : "当前状态"
+	},
+	{
+		"code" : "userSetting.certification.cell.pass",
+		"name" : "已通过",
+		"language" : "zh-CN",
+		"value" : "已通过"
+	},
+	{
+		"code" : "userSetting.certification.cell.auditing",
+		"name" : "审核中",
+		"language" : "zh-CN",
+		"value" : "审核中"
+	},
+	{
+		"code" : "userSetting.certification.button.withdraw",
+		"name" : "撤回",
+		"language" : "zh-CN",
+		"value" : "撤回"
+	},
+	{
+		"code" : "login.title",
+		"name" : "欢迎使用智慧能源EMS系统",
+		"language" : "zh-CN",
+		"value" : "欢迎使用智慧能源EMS系统"
+	},
+	{
+		"code" : "login.content",
+		"name" : "登录页面文案内容",
+		"language" : "zh-CN",
+		"value" : "智慧能源EMS系统，为您提供高效、智能的能源管理解决方案。实时监控能源消耗，优化能源分配，降低成本，提升能源利用效率。"
+	},
+	{
+		"code" : "mn.product",
+		"name" : "产品管理",
+		"language" : "zh-CN",
+		"value" : "产品管理"
+	},
+	{
+		"code" : "mn.product.category",
+		"name" : "产品分类",
+		"language" : "zh-CN",
+		"value" : "产品分类"
+	},
+	{
+		"code" : "mn.product.list",
+		"name" : "产品清单",
+		"language" : "zh-CN",
+		"value" : "产品清单"
+	},
+	{
+		"code" : "mu.dashboard",
+		"name" : "仪表盘",
+		"language" : "zh-CN",
+		"value" : "仪表盘"
+	},
+	{
+		"code" : "common.mail.code.send",
+		"name" : "验证码已发送",
+		"language" : "zh-CN",
+		"value" : "验证码已发送"
+	},
+	{
+		"code" : "common.code.send.err",
+		"name" : "发送验证码失败",
+		"language" : "zh-CN",
+		"value" : "发送验证码失败"
+	},
+	{
+		"code" : "common.reset.password.success",
+		"name" : "密码重置成功",
+		"language" : "zh-CN",
+		"value" : "密码重置成功"
+	},
+	{
+		"code" : "common.reset.password.err",
+		"name" : "密码重置失败",
+		"language" : "zh-CN",
+		"value" : "密码重置失败"
+	},
+	{
+		"code" : "mail.vail.tips",
+		"name" : "请输入有效的邮箱地址",
+		"language" : "zh-CN",
+		"value" : "请输入有效的邮箱地址"
+	},
+	{
+		"code" : "common.code",
+		"name" : "验证码",
+		"language" : "zh-CN",
+		"value" : "验证码"
+	},
+	{
+		"code" : "common.password.newpassword",
+		"name" : "新密码",
+		"language" : "zh-CN",
+		"value" : "新密码"
+	},
+	{
+		"code" : "common.password.newpassword.tip",
+		"name" : "请输入新密码",
+		"language" : "zh-CN",
+		"value" : "请输入新密码"
+	},
+	{
+		"code" : "common.password.newpassword.rule",
+		"name" : "密码长度不能少于6个字符",
+		"language" : "zh-CN",
+		"value" : "密码长度不能少于6个字符"
+	},
+	{
+		"code" : "common.password.newpassword.tip2",
+		"name" : "再次输入新密码",
+		"language" : "zh-CN",
+		"value" : "再次输入新密码"
+	},
+	{
+		"code" : "common.password.newpassword.tip3",
+		"name" : "请再次输入新密码",
+		"language" : "zh-CN",
+		"value" : "请再次输入新密码"
+	},
+	{
+		"code" : "sys.operation.register",
+		"name" : "注册",
+		"language" : "zh-CN",
+		"value" : "注册"
+	},
+	{
+		"code" : "sys.operation.validate",
+		"name" : "修改密码",
+		"language" : "zh-CN",
+		"value" : "修改密码"
+	},
+	{
+		"code" : "sys.operation.login",
+		"name" : "登录",
+		"language" : "zh-CN",
+		"value" : "登录"
+	},
+	{
+		"code" : "device.pv_power",
+		"name" : "光伏功率",
+		"language" : "zh-CN",
+		"value" : "光伏功率"
+	},
+	{
+		"code" : "device.output_power",
+		"name" : "输出功率",
+		"language" : "zh-CN",
+		"value" : "输出功率"
+	},
+	{
+		"code" : "device.today_electricity_production",
+		"name" : "今日发电量",
+		"language" : "zh-CN",
+		"value" : "今日发电量"
+	},
+	{
+		"code" : "device.cumulative_electricity_generation",
+		"name" : "累计发电量",
+		"language" : "zh-CN",
+		"value" : "累计发电量"
+	},
+	{
+		"code" : "device.equipment_control",
+		"name" : "设备控制",
+		"language" : "zh-CN",
+		"value" : "设备控制"
+	},
+	{
+		"code" : "device.equipment",
+		"name" : "设备",
+		"language" : "zh-CN",
+		"value" : "设备"
+	},
+	{
+		"code" : "pb.statistics",
+		"name" : "统计",
+		"language" : "zh-CN",
+		"value" : "统计"
+	},
+	{
+		"code" : "userInfo.title.my",
+		"name" : "我的",
+		"language" : "zh-CN",
+		"value" : "我的"
+	},
+	{
+		"code" : "syslog.voltage",
+		"name" : "电压",
+		"language" : "zh-CN",
+		"value" : "电压"
+	},
+	{
+		"code" : "syslog.current",
+		"name" : "电流",
+		"language" : "zh-CN",
+		"value" : "电流"
+	},
+	{
+		"code" : "device.total_power_generation",
+		"name" : "总发电量",
+		"language" : "zh-CN",
+		"value" : "总发电量"
+	},
+	{
+		"code" : "user.power_regulation",
+		"name" : "功率调节",
+		"language" : "zh-CN",
+		"value" : "功率调节"
+	},
+	{
+		"code" : "user.remote_power_on_off",
+		"name" : "远程开关机",
+		"language" : "zh-CN",
+		"value" : "远程开关机"
+	},
+	{
+		"code" : "dytable.factory.reset",
+		"name" : "恢复出厂设置",
+		"language" : "zh-CN",
+		"value" : "恢复出厂设置"
+	},
+	{
+		"code" : "user.safety_regulations",
+		"name" : "安规",
+		"language" : "zh-CN",
+		"value" : "安规"
+	},
+	{
+		"code" : "common.general",
+		"name" : "通用",
+		"language" : "zh-CN",
+		"value" : "通用"
+	},
+	{
+		"code" : "userSetting.account_security",
+		"name" : "账号安全",
+		"language" : "zh-CN",
+		"value" : "账号安全"
+	},
+	{
+		"code" : "layout.skin",
+		"name" : "皮肤",
+		"language" : "zh-CN",
+		"value" : "皮肤"
+	},
+	{
+		"code" : "common.about",
+		"name" : "关于",
+		"language" : "zh-CN",
+		"value" : "关于"
+	},
+	{
+		"code" : "settings.full.scene.mode",
+		"name" : "全场景模式",
+		"language" : "zh-CN",
+		"value" : "全场景模式"
+	},
+	{
+		"code" : "common.add.device",
+		"name" : "添加设备",
+		"language" : "zh-CN",
+		"value" : "添加设备"
+	},
+	{
+		"code" : "scan.device",
+		"name" : "扫码设备二维码链接设备",
+		"language" : "zh-CN",
+		"value" : "扫码设备二维码链接设备"
+	},
+	{
+		"code" : "password.enter.sn.serial.number",
+		"name" : "输入SN序列号",
+		"language" : "zh-CN",
+		"value" : "输入SN序列号"
+	},
+	{
+		"code" : "scan.turnon.flashlight",
+		"name" : "打开手电筒",
+		"language" : "zh-CN",
+		"value" : "打开手电筒"
+	},
+	{
+		"code" : "userSetting.device.settings",
+		"name" : "设备设置",
+		"language" : "zh-CN",
+		"value" : "设备设置"
+	},
+	{
+		"code" : "table.add.device",
+		"name" : "设备添加",
+		"language" : "zh-CN",
+		"value" : "设备添加"
+	},
+	{
+		"code" : "login.serial.number.input",
+		"name" : "输入序列号",
+		"language" : "zh-CN",
+		"value" : "输入序列号"
+	},
+	{
+		"code" : "password.Input.device.name",
+		"name" : "请输入设备名称",
+		"language" : "zh-CN",
+		"value" : "请输入设备名称"
+	},
+	{
+		"code" : "userSetting.power.settings",
+		"name" : "功率设置",
+		"language" : "zh-CN",
+		"value" : "功率设置"
+	},
+	{
+		"code" : "syslog.activepowercontrol.mode",
+		"name" : "调节方式：有功功率",
+		"language" : "zh-CN",
+		"value" : "调节方式：有功功率"
+	},
+	{
+		"code" : "syslog.activepower100percent",
+		"name" : "有功功率百分百",
+		"language" : "zh-CN",
+		"value" : "有功功率百分百"
+	},
+	{
+		"code" : "user.activepower.regulation",
+		"name" : "有功功率调节",
+		"language" : "zh-CN",
+		"value" : "有功功率调节"
+	},
+	{
+		"code" : "message.text",
+		"name" : "指的是用户可以调整最大输出功率与额定功率的比例。",
+		"language" : "zh-CN",
+		"value" : "指的是用户可以调整最大输出功率与额定功率的比例。"
+	},
+	{
+		"code" : "settings.selfconsumption.mode",
+		"name" : "自发自用模式",
+		"language" : "zh-CN",
+		"value" : "自发自用模式"
+	},
+	{
+		"code" : "message.solarfirstloadcharge.grid",
+		"name" : "尽量减少电网电力的使用，太阳能优先供给给负载，然后充电到电池，最后馈电到电网。",
+		"language" : "zh-CN",
+		"value" : "尽量减少电网电力的使用，太阳能优先供给给负载，然后充电到电池，最后馈电到电网。"
+	},
+	{
+		"code" : "device.reservedbattery.capacity",
+		"name" : "预留电量",
+		"language" : "zh-CN",
+		"value" : "预留电量"
+	},
+	{
+		"code" : "settings.economy.mode",
+		"name" : "经济模式",
+		"language" : "zh-CN",
+		"value" : "经济模式"
+	},
+	{
+		"code" : "message.timeofusepricing.mode",
+		"name" : "也称为分时电价模式，通过电池，避免使用高峰时间的电网电力，最大额度的节省电费支出。",
+		"language" : "zh-CN",
+		"value" : "也称为分时电价模式，通过电池，避免使用高峰时间的电网电力，最大额度的节省电费支出。"
+	},
+	{
+		"code" : "settings.operating.mode.settings",
+		"name" : "工作模式设置",
+		"language" : "zh-CN",
+		"value" : "工作模式设置"
+	},
+	{
+		"code" : "workplace.unit",
+		"name" : "单位",
+		"language" : "zh-CN",
+		"value" : "单位"
+	},
+	{
+		"code" : "workplace.CNY",
+		"name" : "元",
+		"language" : "zh-CN",
+		"value" : "元"
+	},
+	{
+		"code" : "message.ongrid.price",
+		"name" : "上网电价",
+		"language" : "zh-CN",
+		"value" : "上网电价"
+	},
+	{
+		"code" : "settings.tariff.types",
+		"name" : "电价类型",
+		"language" : "zh-CN",
+		"value" : "电价类型"
+	},
+	{
+		"code" : "message.fixed.tariff",
+		"name" : "固定电价",
+		"language" : "zh-CN",
+		"value" : "固定电价"
+	},
+	{
+		"code" : "layout.electricity_price_yuan_per_kwh",
+		"name" : "电价（元\/kwh）",
+		"language" : "zh-CN",
+		"value" : "电价（元\/kwh）"
+	},
+	{
+		"code" : "layout.pv.curve",
+		"name" : "光伏曲线",
+		"language" : "zh-CN",
+		"value" : "光伏曲线"
+	},
+	{
+		"code" : "layout.output.curve",
+		"name" : "输出曲线",
+		"language" : "zh-CN",
+		"value" : "输出曲线"
+	},
+	{
+		"code" : "settings.defaultlanguage",
+		"name" : "默认语言",
+		"language" : "zh-CN",
+		"value" : "默认语言"
+	},
+	{
+		"code" : "settings.supplier.installer",
+		"name" : "供应商\/安装商",
+		"language" : "zh-CN",
+		"value" : "供应商\/安装商"
+	},
+	{
+		"code" : "sysdept.installer.companyname",
+		"name" : "安装商：公司名称",
+		"language" : "zh-CN",
+		"value" : "安装商：公司名称"
+	},
+	{
+		"code" : "param.installercode",
+		"name" : "安装商编码",
+		"language" : "zh-CN",
+		"value" : "安装商编码"
+	},
+	{
+		"code" : "userSetting.authorizeinstalleroperatoraccess",
+		"name" : "授权给安装商\/运营商，安装商可以实时看到设备运行情况，以便及时更好的服务。",
+		"language" : "zh-CN",
+		"value" : "授权给安装商\/运营商，安装商可以实时看到设备运行情况，以便及时更好的服务。"
+	},
+	{
+		"code" : "syslog.contractsigningmethod",
+		"name" : "签约方式",
+		"language" : "zh-CN",
+		"value" : "签约方式"
+	},
+	{
+		"code" : "sys.read.onlyprotocol",
+		"name" : "只读协议",
+		"language" : "zh-CN",
+		"value" : "只读协议"
+	},
+	{
+		"code" : "sys.aftersalesagreement",
+		"name" : "售后协议",
+		"language" : "zh-CN",
+		"value" : "售后协议"
+	},
+	{
+		"code" : "sys.operationandmaintenanceagreement",
+		"name" : "运维协议",
+		"language" : "zh-CN",
+		"value" : "运维协议"
+	},
+	{
+		"code" : "user.alarminformation",
+		"name" : "告警信息",
+		"language" : "zh-CN",
+		"value" : "告警信息"
+	},
+	{
+		"code" : "job.authorized_stations_view",
+		"name" : "仅能对授权的场站进行查看操作",
+		"language" : "zh-CN",
+		"value" : "仅能对授权的场站进行查看操作"
+	},
+	{
+		"code" : "job.authorized_stations_view_edit",
+		"name" : "可对授权的场站进行查看、编辑操作",
+		"language" : "zh-CN",
+		"value" : "可对授权的场站进行查看、编辑操作"
+	},
+	{
+		"code" : "job.view_edit_add_device_edit_device_delete_device",
+		"name" : "查看、编辑、设备添加、设备编辑、设备删除",
+		"language" : "zh-CN",
+		"value" : "查看、编辑、设备添加、设备编辑、设备删除"
+	},
+	{
+		"code" : "settings.replaceinstaller",
+		"name" : "更换安装商",
+		"language" : "zh-CN",
+		"value" : "更换安装商"
+	},
+	{
+		"code" : "sys.app.center.none",
+		"name" : "数据中心未输入",
+		"language" : "zh-CN",
+		"value" : "数据中心未输入"
+	},
+	{
+		"code" : "device.status",
+		"name" : "设备状态",
+		"language" : "zh-CN",
+		"value" : "设备状态"
+	},
+	{
+		"code" : "device.today_data",
+		"name" : "今日数据",
+		"language" : "zh-CN",
+		"value" : "今日数据"
+	},
+	{
+		"code" : "device.load",
+		"name" : "负载",
+		"language" : "zh-CN",
+		"value" : "负载"
+	},
+	{
+		"code" : "device.yongdian_zijilv",
+		"name" : "用电自给率",
+		"language" : "zh-CN",
+		"value" : "用电自给率"
+	},
+	{
+		"code" : "device.revenue",
+		"name" : "收益",
+		"language" : "zh-CN",
+		"value" : "收益"
+	},
+	{
+		"code" : "device.huanbao_jianpai",
+		"name" : "环保减排",
+		"language" : "zh-CN",
+		"value" : "环保减排"
+	},
+	{
+		"code" : "device.electricity_production",
+		"name" : "发电量",
+		"language" : "zh-CN",
+		"value" : "发电量"
+	},
+	{
+		"code" : "device.load_consumption",
+		"name" : "负载消耗",
+		"language" : "zh-CN",
+		"value" : "负载消耗"
+	},
+	{
+		"code" : "device.battery_storage",
+		"name" : "存入电池",
+		"language" : "zh-CN",
+		"value" : "存入电池"
+	},
+	{
+		"code" : "device.feed_into_power_grid",
+		"name" : "馈入电网",
+		"language" : "zh-CN",
+		"value" : "馈入电网"
+	},
+	{
+		"code" : "device.electricity_usage",
+		"name" : "用电量",
+		"language" : "zh-CN",
+		"value" : "用电量"
+	},
+	{
+		"code" : "device.grid",
+		"name" : "电网",
+		"language" : "zh-CN",
+		"value" : "电网"
+	},
+	{
+		"code" : "device.gridSupply",
+		"name" : "电网供电",
+		"language" : "zh-CN",
+		"value" : "电网供电"
+	},
+	{
+		"code" : "monitor.statInfo",
+		"name" : "电站信息",
+		"language" : "zh-CN",
+		"value" : "电站信息"
+	},
+	{
+		"code" : "monitor.elecPrice",
+		"name" : "电价",
+		"language" : "zh-CN",
+		"value" : "电价"
+	},
+	{
+		"code" : "monitor.opMode",
+		"name" : "工作模式",
+		"language" : "zh-CN",
+		"value" : "工作模式"
+	},
+	{
+		"code" : "monitor.statFacade",
+		"name" : "电站封面",
+		"language" : "zh-CN",
+		"value" : "电站封面"
+	},
+	{
+		"code" : "monitor.statType",
+		"name" : "电站类型",
+		"language" : "zh-CN",
+		"value" : "电站类型"
+	},
+	{
+		"code" : "device.pvwatt",
+		"name" : "光伏装机功率（kwp）",
+		"language" : "zh-CN",
+		"value" : "光伏装机功率（kwp）"
+	},
+	{
+		"code" : "message.gridPrice",
+		"name" : "用网电价",
+		"language" : "zh-CN",
+		"value" : "用网电价"
+	},
+	{
+		"code" : "client.resStorage",
+		"name" : "户用储能",
+		"language" : "zh-CN",
+		"value" : "户用储能"
+	},
+	{
+		"code" : "settings.selfCons",
+		"name" : "自发自用",
+		"language" : "zh-CN",
+		"value" : "自发自用"
+	},
+	{
+		"code" : "client.resPV",
+		"name" : "户用光伏",
+		"language" : "zh-CN",
+		"value" : "户用光伏"
+	},
+	{
+		"code" : "client.comIndStorage",
+		"name" : "工商储能",
+		"language" : "zh-CN",
+		"value" : "工商储能"
+	},
+	{
+		"code" : "message.touPrice",
+		"name" : "分时电价",
+		"language" : "zh-CN",
+		"value" : "分时电价"
+	},
+	{
+		"code" : "settings.fullGridInj",
+		"name" : "全额上网",
+		"language" : "zh-CN",
+		"value" : "全额上网"
+	},
+	{
+		"code" : "settings.offGrid",
+		"name" : "离网",
+		"language" : "zh-CN",
+		"value" : "离网"
+	},
+	{
+		"code" : "device.pvPowerSupply",
+		"name" : "光伏供电",
+		"language" : "zh-CN",
+		"value" : "光伏供电"
+	},
+	{
+		"code" : "device.battPowerSupply",
+		"name" : "电池供电",
+		"language" : "zh-CN",
+		"value" : "电池供电"
+	},
+	{
+		"code" : "device.totalInstalledCap",
+		"name" : "总装机量",
+		"language" : "zh-CN",
+		"value" : "总装机量"
+	},
+	{
+		"code" : "workplace.totalInstalledCap",
+		"name" : "装机趋势分析",
+		"language" : "zh-CN",
+		"value" : "装机趋势分析"
+	},
+	{
+		"code" : "settings.netConfig",
+		"name" : "网络配置",
+		"language" : "zh-CN",
+		"value" : "网络配置"
+	},
+	{
+		"code" : "user.locDebug",
+		"name" : "本地调试",
+		"language" : "zh-CN",
+		"value" : "本地调试"
+	},
+	{
+		"code" : "user.alarm",
+		"name" : "告警",
+		"language" : "zh-CN",
+		"value" : "告警"
+	},
+	{
+		"code" : "note.text",
+		"name" : "注意：1.配网时必须保持蓝牙已打开。\n          2.距离设备不能超过10米。",
+		"language" : "zh-CN",
+		"value" : "注意：1.配网时必须保持蓝牙已打开。\n          2.距离设备不能超过10米。"
+	},
+	{
+		"code" : "sysrole.select_wifi",
+		"name" : "选择 wifi",
+		"language" : "zh-CN",
+		"value" : "选择 wifi"
+	},
+	{
+		"code" : "label.cancel_account",
+		"name" : "注销账号",
+		"language" : "zh-CN",
+		"value" : "注销账号"
+	},
+	{
+		"code" : "template.installer_distributor_code",
+		"name" : "安装商经销商代码",
+		"language" : "zh-CN",
+		"value" : "安装商经销商代码"
+	},
+	{
+		"code" : "syslog.dtu",
+		"name" : "dtu",
+		"language" : "zh-CN",
+		"value" : "dtu"
+	},
+	{
+		"code" : "syslog.electric_meter",
+		"name" : "电表",
+		"language" : "zh-CN",
+		"value" : "电表"
+	},
+	{
+		"code" : "syslog.inverter",
+		"name" : "逆变器",
+		"language" : "zh-CN",
+		"value" : "逆变器"
+	},
+	{
+		"code" : "note.doc",
+		"name" : "不支持5G网络频段，请选择2.4G网络",
+		"language" : "zh-CN",
+		"value" : "不支持5G网络频段，请选择2.4G网络"
+	},
+	{
+		"code" : "monitor.tab.title.online",
+		"name" : "在线",
+		"language" : "zh-CN",
+		"value" : "在线"
+	},
+	{
+		"code" : "monitor.tab.title.offline",
+		"name" : "离线",
+		"language" : "zh-CN",
+		"value" : "离线"
+	},
+	{
+		"code" : "monitor.tab.title.fault",
+		"name" : "故障",
+		"language" : "zh-CN",
+		"value" : "故障"
+	},
+	{
+		"code" : "user.site_switch",
+		"name" : "站点切换",
+		"language" : "zh-CN",
+		"value" : "站点切换"
+	},
+	{
+		"code" : "user.current_site",
+		"name" : "当前站点",
+		"language" : "zh-CN",
+		"value" : "当前站点"
+	},
+	{
+		"code" : "user.china_site",
+		"name" : "中国站",
+		"language" : "zh-CN",
+		"value" : "中国站"
+	},
+	{
+		"code" : "user.europe_site",
+		"name" : "欧洲站",
+		"language" : "zh-CN",
+		"value" : "欧洲站"
+	},
+	{
+		"code" : "user.australia_site",
+		"name" : "澳洲站",
+		"language" : "zh-CN",
+		"value" : "澳洲站"
+	},
+	{
+		"code" : "userSetting.selectable_sites",
+		"name" : "可选站点",
+		"language" : "zh-CN",
+		"value" : "可选站点"
+	},
+	{
+		"code" : "common.title.chinese_simplified",
+		"name" : "中文简体",
+		"language" : "zh-CN",
+		"value" : "中文简体"
+	},
+	{
+		"code" : "common.title.english",
+		"name" : "English",
+		"language" : "zh-CN",
+		"value" : "English"
+	},
+	{
+		"code" : "common.title.german",
+		"name" : "German",
+		"language" : "zh-CN",
+		"value" : "German"
+	},
+	{
+		"code" : "sys.privacy_policy",
+		"name" : "隐私协议",
+		"language" : "zh-CN",
+		"value" : "隐私协议"
+	},
+	{
+		"code" : "sys.app.time.zone",
+		"name" : "时区",
+		"language" : "zh-CN",
+		"value" : "时区"
+	},
+	{
+		"code" : "sys.operation.email_registration",
+		"name" : "邮箱注册",
+		"language" : "zh-CN",
+		"value" : "邮箱注册"
+	},
+	{
+		"code" : "mail.email_verification_code",
+		"name" : "请输入邮箱验证码",
+		"language" : "zh-CN",
+		"value" : "请输入邮箱验证码"
+	},
+	{
+		"code" : "login.re_enter_password",
+		"name" : "再次输入密码",
+		"language" : "zh-CN",
+		"value" : "再次输入密码"
+	},
+	{
+		"code" : "template.parent_installer_dealer_code",
+		"name" : "上级安装商、经销商代码",
+		"language" : "zh-CN",
+		"value" : "上级安装商、经销商代码"
+	},
+	{
+		"code" : "password.terms_of_service_and_privacy_policy_agreement",
+		"name" : "我已阅读并同意服务协议和隐私政策",
+		"language" : "zh-CN",
+		"value" : "我已阅读并同意服务协议和隐私政策"
+	},
+	{
+		"code" : "note.registration_success",
+		"name" : "恭喜你！注册成功！",
+		"language" : "zh-CN",
+		"value" : "恭喜你！注册成功！"
+	},
+	{
+		"code" : "note.auto_login_after_3_seconds",
+		"name" : "3秒后自动登入",
+		"language" : "zh-CN",
+		"value" : "3秒后自动登入"
+	},
+	{
+		"code" : "user.return_to_login_immediately",
+		"name" : "立即返回登录",
+		"language" : "zh-CN",
+		"value" : "立即返回登录"
+	},
+	{
+		"code" : "user.send",
+		"name" : "发送",
+		"language" : "zh-CN",
+		"value" : "发送"
+	},
+	{
+		"code" : "syslog.dtu.sn",
+		"name" : "DTU  SN",
+		"language" : "zh-CN",
+		"value" : "DTU  SN"
+	},
+	{
+		"code" : "device.model",
+		"name" : "设备型号",
+		"language" : "zh-CN",
+		"value" : "设备型号"
+	},
+	{
+		"code" : "password.privacy_policy_agreement",
+		"name" : "我已阅读并同意《隐私政策》",
+		"language" : "zh-CN",
+		"value" : "我已阅读并同意《隐私政策》"
+	},
+	{
+		"code" : "workplace.More",
+		"name" : "更多",
+		"language" : "zh-CN",
+		"value" : "更多"
+	},
+	{
+		"code" : "workplace.user_manual",
+		"name" : "用户手册",
+		"language" : "zh-CN",
+		"value" : "用户手册"
+	},
+	{
+		"code" : "ct.albania",
+		"name" : "阿尔巴尼亚",
+		"language" : "zh-CN",
+		"value" : "阿尔巴尼亚"
+	},
+	{
+		"code" : "ct.ireland",
+		"name" : "爱尔兰",
+		"language" : "zh-CN",
+		"value" : "爱尔兰"
+	},
+	{
+		"code" : "ct.estonia",
+		"name" : "爱沙尼亚",
+		"language" : "zh-CN",
+		"value" : "爱沙尼亚"
+	},
+	{
+		"code" : "ct.andorra",
+		"name" : "安道尔",
+		"language" : "zh-CN",
+		"value" : "安道尔"
+	},
+	{
+		"code" : "ct.austria",
+		"name" : "奥地利",
+		"language" : "zh-CN",
+		"value" : "奥地利"
+	},
+	{
+		"code" : "ct.belarus",
+		"name" : "白俄罗斯",
+		"language" : "zh-CN",
+		"value" : "白俄罗斯"
+	},
+	{
+		"code" : "ct.bulgaria",
+		"name" : "保加利亚",
+		"language" : "zh-CN",
+		"value" : "保加利亚"
+	},
+	{
+		"code" : "ct.northmacedonia",
+		"name" : "北马其顿",
+		"language" : "zh-CN",
+		"value" : "北马其顿"
+	},
+	{
+		"code" : "ct.belgium",
+		"name" : "比利时",
+		"language" : "zh-CN",
+		"value" : "比利时"
+	},
+	{
+		"code" : "ct.iceland",
+		"name" : "冰岛",
+		"language" : "zh-CN",
+		"value" : "冰岛"
+	},
+	{
+		"code" : "ct.bosniaandherzegovina",
+		"name" : "波黑",
+		"language" : "zh-CN",
+		"value" : "波黑"
+	},
+	{
+		"code" : "ct.poland",
+		"name" : "波兰",
+		"language" : "zh-CN",
+		"value" : "波兰"
+	},
+	{
+		"code" : "ct.denmark",
+		"name" : "丹麦",
+		"language" : "zh-CN",
+		"value" : "丹麦"
+	},
+	{
+		"code" : "ct.germany",
+		"name" : "德国",
+		"language" : "zh-CN",
+		"value" : "德国"
+	},
+	{
+		"code" : "ct.russia",
+		"name" : "俄罗斯",
+		"language" : "zh-CN",
+		"value" : "俄罗斯"
+	},
+	{
+		"code" : "ct.france",
+		"name" : "法国",
+		"language" : "zh-CN",
+		"value" : "法国"
+	},
+	{
+		"code" : "ct.vaticancity",
+		"name" : "梵蒂冈",
+		"language" : "zh-CN",
+		"value" : "梵蒂冈"
+	},
+	{
+		"code" : "ct.finland",
+		"name" : "芬兰",
+		"language" : "zh-CN",
+		"value" : "芬兰"
+	},
+	{
+		"code" : "ct.netherlands",
+		"name" : "荷兰",
+		"language" : "zh-CN",
+		"value" : "荷兰"
+	},
+	{
+		"code" : "ct.montenegro",
+		"name" : "黑山",
+		"language" : "zh-CN",
+		"value" : "黑山"
+	},
+	{
+		"code" : "ct.czech",
+		"name" : "捷克",
+		"language" : "zh-CN",
+		"value" : "捷克"
+	},
+	{
+		"code" : "ct.croatia",
+		"name" : "克罗地亚",
+		"language" : "zh-CN",
+		"value" : "克罗地亚"
+	},
+	{
+		"code" : "ct.latvia",
+		"name" : "拉脱维亚",
+		"language" : "zh-CN",
+		"value" : "拉脱维亚"
+	},
+	{
+		"code" : "ct.lithuania",
+		"name" : "立陶宛",
+		"language" : "zh-CN",
+		"value" : "立陶宛"
+	},
+	{
+		"code" : "ct.liechtenstein",
+		"name" : "列支敦士登",
+		"language" : "zh-CN",
+		"value" : "列支敦士登"
+	},
+	{
+		"code" : "ct.luxembourg",
+		"name" : "卢森堡",
+		"language" : "zh-CN",
+		"value" : "卢森堡"
+	},
+	{
+		"code" : "ct.romania",
+		"name" : "罗马尼亚",
+		"language" : "zh-CN",
+		"value" : "罗马尼亚"
+	},
+	{
+		"code" : "ct.malta",
+		"name" : "马耳他",
+		"language" : "zh-CN",
+		"value" : "马耳他"
+	},
+	{
+		"code" : "ct.moldova",
+		"name" : "摩尔多瓦",
+		"language" : "zh-CN",
+		"value" : "摩尔多瓦"
+	},
+	{
+		"code" : "ct.monaco",
+		"name" : "摩纳哥",
+		"language" : "zh-CN",
+		"value" : "摩纳哥"
+	},
+	{
+		"code" : "ct.norway",
+		"name" : "挪威",
+		"language" : "zh-CN",
+		"value" : "挪威"
+	},
+	{
+		"code" : "ct.portugal",
+		"name" : "葡萄牙",
+		"language" : "zh-CN",
+		"value" : "葡萄牙"
+	},
+	{
+		"code" : "ct.sweden",
+		"name" : "瑞典",
+		"language" : "zh-CN",
+		"value" : "瑞典"
+	},
+	{
+		"code" : "ct.switzerland",
+		"name" : "瑞士",
+		"language" : "zh-CN",
+		"value" : "瑞士"
+	},
+	{
+		"code" : "ct.cyprus",
+		"name" : "塞浦路斯",
+		"language" : "zh-CN",
+		"value" : "塞浦路斯"
+	},
+	{
+		"code" : "ct.sanmarino",
+		"name" : "圣马力诺",
+		"language" : "zh-CN",
+		"value" : "圣马力诺"
+	},
+	{
+		"code" : "ct.slovakia",
+		"name" : "斯洛伐克",
+		"language" : "zh-CN",
+		"value" : "斯洛伐克"
+	},
+	{
+		"code" : "ct.slovenia",
+		"name" : "斯洛文尼亚",
+		"language" : "zh-CN",
+		"value" : "斯洛文尼亚"
+	},
+	{
+		"code" : "ct.turkey",
+		"name" : "土耳其",
+		"language" : "zh-CN",
+		"value" : "土耳其"
+	},
+	{
+		"code" : "ct.ukraine",
+		"name" : "乌克兰",
+		"language" : "zh-CN",
+		"value" : "乌克兰"
+	},
+	{
+		"code" : "ct.spain",
+		"name" : "西班牙",
+		"language" : "zh-CN",
+		"value" : "西班牙"
+	},
+	{
+		"code" : "ct.greece",
+		"name" : "希腊",
+		"language" : "zh-CN",
+		"value" : "希腊"
+	},
+	{
+		"code" : "ct.hungary",
+		"name" : "匈牙利",
+		"language" : "zh-CN",
+		"value" : "匈牙利"
+	},
+	{
+		"code" : "ct.italy",
+		"name" : "意大利",
+		"language" : "zh-CN",
+		"value" : "意大利"
+	},
+	{
+		"code" : "ct.unitedkingdom",
+		"name" : "英国",
+		"language" : "zh-CN",
+		"value" : "英国"
+	},
+	{
+		"code" : "tz.europe.tirane",
+		"name" : "欧洲\/地拉那",
+		"language" : "zh-CN",
+		"value" : "欧洲\/地拉那"
+	},
+	{
+		"code" : "tz.eire",
+		"name" : "爱尔兰",
+		"language" : "zh-CN",
+		"value" : "爱尔兰"
+	},
+	{
+		"code" : "tz.europe.belfast",
+		"name" : "欧洲\/贝尔法斯特",
+		"language" : "zh-CN",
+		"value" : "欧洲\/贝尔法斯特"
+	},
+	{
+		"code" : "tz.europe.dublin",
+		"name" : "欧洲\/都柏林",
+		"language" : "zh-CN",
+		"value" : "欧洲\/都柏林"
+	},
+	{
+		"code" : "tz.europe.tallinn",
+		"name" : "欧洲\/塔林",
+		"language" : "zh-CN",
+		"value" : "欧洲\/塔林"
+	},
+	{
+		"code" : "tz.europe.andorra",
+		"name" : "欧洲\/安道尔",
+		"language" : "zh-CN",
+		"value" : "欧洲\/安道尔"
+	},
+	{
+		"code" : "tz.europe.vienna",
+		"name" : "欧洲\/维也纳",
+		"language" : "zh-CN",
+		"value" : "欧洲\/维也纳"
+	},
+	{
+		"code" : "tz.europe.minsk",
+		"name" : "欧洲\/明斯克",
+		"language" : "zh-CN",
+		"value" : "欧洲\/明斯克"
+	},
+	{
+		"code" : "tz.europe.sofia",
+		"name" : "欧洲\/索非亚",
+		"language" : "zh-CN",
+		"value" : "欧洲\/索非亚"
+	},
+	{
+		"code" : "tz.europe.skopje",
+		"name" : "欧洲\/斯科普里",
+		"language" : "zh-CN",
+		"value" : "欧洲\/斯科普里"
+	},
+	{
+		"code" : "tz.europe.brussels",
+		"name" : "欧洲\/布鲁塞尔",
+		"language" : "zh-CN",
+		"value" : "欧洲\/布鲁塞尔"
+	},
+	{
+		"code" : "tz.atlantic.reykjavik",
+		"name" : "大西洋\/雷克雅未克",
+		"language" : "zh-CN",
+		"value" : "大西洋\/雷克雅未克"
+	},
+	{
+		"code" : "tz.iceland",
+		"name" : "冰岛",
+		"language" : "zh-CN",
+		"value" : "冰岛"
+	},
+	{
+		"code" : "tz.europe.sarajevo",
+		"name" : "欧洲\/萨拉热窝",
+		"language" : "zh-CN",
+		"value" : "欧洲\/萨拉热窝"
+	},
+	{
+		"code" : "tz.europe.warsaw",
+		"name" : "欧洲\/华沙",
+		"language" : "zh-CN",
+		"value" : "欧洲\/华沙"
+	},
+	{
+		"code" : "tz.poland",
+		"name" : "波兰",
+		"language" : "zh-CN",
+		"value" : "波兰"
+	},
+	{
+		"code" : "tz.america.godthab",
+		"name" : "美洲\/戈特哈布",
+		"language" : "zh-CN",
+		"value" : "美洲\/戈特哈布"
+	},
+	{
+		"code" : "tz.america.nuuk",
+		"name" : "美洲\/努克",
+		"language" : "zh-CN",
+		"value" : "美洲\/努克"
+	},
+	{
+		"code" : "tz.america.scoresbysund",
+		"name" : "美洲\/斯科斯比松",
+		"language" : "zh-CN",
+		"value" : "美洲\/斯科斯比松"
+	},
+	{
+		"code" : "tz.america.thule",
+		"name" : "美洲\/图勒",
+		"language" : "zh-CN",
+		"value" : "美洲\/图勒"
+	},
+	{
+		"code" : "tz.atlantic.faeroe",
+		"name" : "大西洋\/法罗群岛",
+		"language" : "zh-CN",
+		"value" : "大西洋\/法罗群岛"
+	},
+	{
+		"code" : "tz.europe.copenhagen",
+		"name" : "欧洲\/哥本哈根",
+		"language" : "zh-CN",
+		"value" : "欧洲\/哥本哈根"
+	},
+	{
+		"code" : "tz.europe.berlin",
+		"name" : "欧洲\/柏林",
+		"language" : "zh-CN",
+		"value" : "欧洲\/柏林"
+	},
+	{
+		"code" : "tz.europe.busingen",
+		"name" : "欧洲\/布辛根",
+		"language" : "zh-CN",
+		"value" : "欧洲\/布辛根"
+	},
+	{
+		"code" : "tz.antarctica.vostok",
+		"name" : "南极洲\/沃斯托克",
+		"language" : "zh-CN",
+		"value" : "南极洲\/沃斯托克"
+	},
+	{
+		"code" : "tz.asia.anadyr",
+		"name" : "亚洲\/阿纳德尔",
+		"language" : "zh-CN",
+		"value" : "亚洲\/阿纳德尔"
+	},
+	{
+		"code" : "tz.asia.barnaul",
+		"name" : "亚洲\/巴尔瑙尔",
+		"language" : "zh-CN",
+		"value" : "亚洲\/巴尔瑙尔"
+	},
+	{
+		"code" : "tz.asia.chita",
+		"name" : "亚洲\/赤塔",
+		"language" : "zh-CN",
+		"value" : "亚洲\/赤塔"
+	},
+	{
+		"code" : "tz.asia.rkutsk",
+		"name" : "亚洲\/伊尔库茨克",
+		"language" : "zh-CN",
+		"value" : "亚洲\/伊尔库茨克"
+	},
+	{
+		"code" : "tz.asia.kamchatka",
+		"name" : "亚洲\/堪察加",
+		"language" : "zh-CN",
+		"value" : "亚洲\/堪察加"
+	},
+	{
+		"code" : "tz.asia.krasnoyarsk",
+		"name" : "亚洲\/克拉斯诺亚尔斯克",
+		"language" : "zh-CN",
+		"value" : "亚洲\/克拉斯诺亚尔斯克"
+	},
+	{
+		"code" : "tz.asia.magadan",
+		"name" : "亚洲\/马加丹",
+		"language" : "zh-CN",
+		"value" : "亚洲\/马加丹"
+	},
+	{
+		"code" : "tz.asia.novokuznetsk",
+		"name" : "亚洲\/新库兹涅茨克",
+		"language" : "zh-CN",
+		"value" : "亚洲\/新库兹涅茨克"
+	},
+	{
+		"code" : "tz.asia.novosibirsk",
+		"name" : "亚洲\/新西伯利亚",
+		"language" : "zh-CN",
+		"value" : "亚洲\/新西伯利亚"
+	},
+	{
+		"code" : "tz.asia.omsk",
+		"name" : "亚洲\/鄂木斯克",
+		"language" : "zh-CN",
+		"value" : "亚洲\/鄂木斯克"
+	},
+	{
+		"code" : "tz.asia.sakhalin",
+		"name" : "亚洲\/萨哈林",
+		"language" : "zh-CN",
+		"value" : "亚洲\/萨哈林"
+	},
+	{
+		"code" : "tz.asia_srednekolymsk",
+		"name" : "亚洲\/中科雷姆斯克",
+		"language" : "zh-CN",
+		"value" : "亚洲\/中科雷姆斯克"
+	},
+	{
+		"code" : "tz.asia.tomsk",
+		"name" : "亚洲\/托木斯克",
+		"language" : "zh-CN",
+		"value" : "亚洲\/托木斯克"
+	},
+	{
+		"code" : "tz.asia.ust-nera",
+		"name" : "亚洲\/乌斯季-内拉",
+		"language" : "zh-CN",
+		"value" : "亚洲\/乌斯季-内拉"
+	},
+	{
+		"code" : "tz.asia.vladivostok",
+		"name" : "亚洲\/海参崴",
+		"language" : "zh-CN",
+		"value" : "亚洲\/海参崴"
+	},
+	{
+		"code" : "tz.asia.yakutsk",
+		"name" : "亚洲\/雅库茨克",
+		"language" : "zh-CN",
+		"value" : "亚洲\/雅库茨克"
+	},
+	{
+		"code" : "tz.asia.yekaterinburg",
+		"name" : "亚洲\/叶卡捷琳堡",
+		"language" : "zh-CN",
+		"value" : "亚洲\/叶卡捷琳堡"
+	},
+	{
+		"code" : "tz.europe.astrakhan",
+		"name" : "欧洲\/阿斯特拉罕",
+		"language" : "zh-CN",
+		"value" : "欧洲\/阿斯特拉罕"
+	},
+	{
+		"code" : "tz.europe.kaliningrad",
+		"name" : "欧洲\/加里宁格勒",
+		"language" : "zh-CN",
+		"value" : "欧洲\/加里宁格勒"
+	},
+	{
+		"code" : "tz.europe.kirov",
+		"name" : "欧洲\/基洛夫",
+		"language" : "zh-CN",
+		"value" : "欧洲\/基洛夫"
+	},
+	{
+		"code" : "tz.europe.moscow",
+		"name" : "欧洲\/莫斯科",
+		"language" : "zh-CN",
+		"value" : "欧洲\/莫斯科"
+	},
+	{
+		"code" : "tz.europe.samara",
+		"name" : "欧洲\/萨马拉",
+		"language" : "zh-CN",
+		"value" : "欧洲\/萨马拉"
+	},
+	{
+		"code" : "tz.europe.saratov",
+		"name" : "欧洲\/萨拉托夫",
+		"language" : "zh-CN",
+		"value" : "欧洲\/萨拉托夫"
+	},
+	{
+		"code" : "tz.europe.ulyanovsk",
+		"name" : "欧洲\/乌里扬诺夫斯克",
+		"language" : "zh-CN",
+		"value" : "欧洲\/乌里扬诺夫斯克"
+	},
+	{
+		"code" : "tz.europe.volgograd",
+		"name" : "欧洲\/伏尔加格勒",
+		"language" : "zh-CN",
+		"value" : "欧洲\/伏尔加格勒"
+	},
+	{
+		"code" : "tz.america.cayenne",
+		"name" : "美洲\/卡宴",
+		"language" : "zh-CN",
+		"value" : "美洲\/卡宴"
+	},
+	{
+		"code" : "tz.america.guadeloupe",
+		"name" : "美洲\/瓜德罗普",
+		"language" : "zh-CN",
+		"value" : "美洲\/瓜德罗普"
+	},
+	{
+		"code" : "tz.america.marigot",
+		"name" : "美洲\/马里戈特",
+		"language" : "zh-CN",
+		"value" : "美洲\/马里戈特"
+	},
+	{
+		"code" : "tz.america.martinique",
+		"name" : "美洲\/马提尼克",
+		"language" : "zh-CN",
+		"value" : "美洲\/马提尼克"
+	},
+	{
+		"code" : "tz.america.miquelon",
+		"name" : "美洲\/圣皮埃尔",
+		"language" : "zh-CN",
+		"value" : "美洲\/圣皮埃尔"
+	},
+	{
+		"code" : "tz.antarctica.dumontdurville",
+		"name" : "南极洲\/杜蒙-杜维尔",
+		"language" : "zh-CN",
+		"value" : "南极洲\/杜蒙-杜维尔"
+	},
+	{
+		"code" : "tz.europe.paris",
+		"name" : "欧洲\/巴黎",
+		"language" : "zh-CN",
+		"value" : "欧洲\/巴黎"
+	},
+	{
+		"code" : "tz.indian.kerguelen",
+		"name" : "印度洋\/凯尔盖朗",
+		"language" : "zh-CN",
+		"value" : "印度洋\/凯尔盖朗"
+	},
+	{
+		"code" : "tz.indian.mayotte",
+		"name" : "印度洋\/马约特",
+		"language" : "zh-CN",
+		"value" : "印度洋\/马约特"
+	},
+	{
+		"code" : "tz.indian.reunion",
+		"name" : "印度洋\/留尼汪",
+		"language" : "zh-CN",
+		"value" : "印度洋\/留尼汪"
+	},
+	{
+		"code" : "tz.pacific.marquesas",
+		"name" : "太平洋\/马克萨斯",
+		"language" : "zh-CN",
+		"value" : "太平洋\/马克萨斯"
+	},
+	{
+		"code" : "tz.pacific.tahiti",
+		"name" : "太平洋\/塔希提岛",
+		"language" : "zh-CN",
+		"value" : "太平洋\/塔希提岛"
+	},
+	{
+		"code" : "tz.pacific.wallis",
+		"name" : "太平洋\/瓦利斯",
+		"language" : "zh-CN",
+		"value" : "太平洋\/瓦利斯"
+	},
+	{
+		"code" : "tz.europe.vatican",
+		"name" : "欧洲\/梵蒂冈",
+		"language" : "zh-CN",
+		"value" : "欧洲\/梵蒂冈"
+	},
+	{
+		"code" : "tz.europe.helsinki",
+		"name" : "欧洲\/赫尔辛基",
+		"language" : "zh-CN",
+		"value" : "欧洲\/赫尔辛基"
+	},
+	{
+		"code" : "tz.europe.mariehamn",
+		"name" : "欧洲\/玛丽港",
+		"language" : "zh-CN",
+		"value" : "欧洲\/玛丽港"
+	},
+	{
+		"code" : "tz.america.aruba",
+		"name" : "美洲\/阿鲁巴",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿鲁巴"
+	},
+	{
+		"code" : "tz.america.curacao",
+		"name" : "美洲\/库拉索",
+		"language" : "zh-CN",
+		"value" : "美洲\/库拉索"
+	},
+	{
+		"code" : "tz.america.kralendijk",
+		"name" : "美洲\/克拉伦代克",
+		"language" : "zh-CN",
+		"value" : "美洲\/克拉伦代克"
+	},
+	{
+		"code" : "tz.europe.amsterdam",
+		"name" : "欧洲\/阿姆斯特丹",
+		"language" : "zh-CN",
+		"value" : "欧洲\/阿姆斯特丹"
+	},
+	{
+		"code" : "tz.europe.podgorica",
+		"name" : "欧洲\/波德戈里察",
+		"language" : "zh-CN",
+		"value" : "欧洲\/波德戈里察"
+	},
+	{
+		"code" : "tz.europe.prague",
+		"name" : "欧洲\/布拉格",
+		"language" : "zh-CN",
+		"value" : "欧洲\/布拉格"
+	},
+	{
+		"code" : "tz.europe.zagreb",
+		"name" : "欧洲\/萨格勒布",
+		"language" : "zh-CN",
+		"value" : "欧洲\/萨格勒布"
+	},
+	{
+		"code" : "tz.europe.riga",
+		"name" : "欧洲\/里加",
+		"language" : "zh-CN",
+		"value" : "欧洲\/里加"
+	},
+	{
+		"code" : "tz.europe.vilnius",
+		"name" : "欧洲\/维尔纽斯",
+		"language" : "zh-CN",
+		"value" : "欧洲\/维尔纽斯"
+	},
+	{
+		"code" : "tz.europe.vaduz",
+		"name" : "欧洲\/瓦杜兹",
+		"language" : "zh-CN",
+		"value" : "欧洲\/瓦杜兹"
+	},
+	{
+		"code" : "tz.europe.luxembourg",
+		"name" : "欧洲\/卢森堡",
+		"language" : "zh-CN",
+		"value" : "欧洲\/卢森堡"
+	},
+	{
+		"code" : "tz.europe.bucharest",
+		"name" : "欧洲\/布加勒斯特",
+		"language" : "zh-CN",
+		"value" : "欧洲\/布加勒斯特"
+	},
+	{
+		"code" : "tz.europe.malta",
+		"name" : "欧洲\/马耳他",
+		"language" : "zh-CN",
+		"value" : "欧洲\/马耳他"
+	},
+	{
+		"code" : "tz.europe.chisinau",
+		"name" : "欧洲\/基希讷乌",
+		"language" : "zh-CN",
+		"value" : "欧洲\/基希讷乌"
+	},
+	{
+		"code" : "tz.europe.tiraspol",
+		"name" : "欧洲\/蒂拉斯波尔",
+		"language" : "zh-CN",
+		"value" : "欧洲\/蒂拉斯波尔"
+	},
+	{
+		"code" : "tz.europe.monaco",
+		"name" : "欧洲\/摩纳哥",
+		"language" : "zh-CN",
+		"value" : "欧洲\/摩纳哥"
+	},
+	{
+		"code" : "tz.antarctica.troll",
+		"name" : "南极洲\/特罗尔",
+		"language" : "zh-CN",
+		"value" : "南极洲\/特罗尔"
+	},
+	{
+		"code" : "tz.arctic.longyearbyen",
+		"name" : "北极\/朗伊尔城",
+		"language" : "zh-CN",
+		"value" : "北极\/朗伊尔城"
+	},
+	{
+		"code" : "tz.atlantic.jan_mayen",
+		"name" : "大西洋\/扬马延",
+		"language" : "zh-CN",
+		"value" : "大西洋\/扬马延"
+	},
+	{
+		"code" : "tz.europe.oslo",
+		"name" : "欧洲\/奥斯陆",
+		"language" : "zh-CN",
+		"value" : "欧洲\/奥斯陆"
+	},
+	{
+		"code" : "tz.atlantic.azores",
+		"name" : "大西洋\/亚速尔群岛",
+		"language" : "zh-CN",
+		"value" : "大西洋\/亚速尔群岛"
+	},
+	{
+		"code" : "tz.atlantic.madeira",
+		"name" : "大西洋\/马德拉",
+		"language" : "zh-CN",
+		"value" : "大西洋\/马德拉"
+	},
+	{
+		"code" : "tz.europe.lisbon",
+		"name" : "欧洲\/里斯本",
+		"language" : "zh-CN",
+		"value" : "欧洲\/里斯本"
+	},
+	{
+		"code" : "tz.portugal",
+		"name" : "葡萄牙",
+		"language" : "zh-CN",
+		"value" : "葡萄牙"
+	},
+	{
+		"code" : "tz.europe.stockholm",
+		"name" : "欧洲\/斯德哥尔摩",
+		"language" : "zh-CN",
+		"value" : "欧洲\/斯德哥尔摩"
+	},
+	{
+		"code" : "tz.europe.zurich",
+		"name" : "欧洲\/苏黎世",
+		"language" : "zh-CN",
+		"value" : "欧洲\/苏黎世"
+	},
+	{
+		"code" : "tz.europe.nicosia",
+		"name" : "欧洲\/尼科西亚",
+		"language" : "zh-CN",
+		"value" : "欧洲\/尼科西亚"
+	},
+	{
+		"code" : "tz.europe.san_marino",
+		"name" : "欧洲\/圣马力诺",
+		"language" : "zh-CN",
+		"value" : "欧洲\/圣马力诺"
+	},
+	{
+		"code" : "europe.bratislava",
+		"name" : "欧洲\/布拉迪斯拉发",
+		"language" : "zh-CN",
+		"value" : "欧洲\/布拉迪斯拉发"
+	},
+	{
+		"code" : "tz.europe.ljubljana",
+		"name" : "欧洲\/卢布尔雅那",
+		"language" : "zh-CN",
+		"value" : "欧洲\/卢布尔雅那"
+	},
+	{
+		"code" : "tz.europe.istanbul",
+		"name" : "欧洲\/伊斯坦布尔",
+		"language" : "zh-CN",
+		"value" : "欧洲\/伊斯坦布尔"
+	},
+	{
+		"code" : "tz.turkey",
+		"name" : "土耳其",
+		"language" : "zh-CN",
+		"value" : "土耳其"
+	},
+	{
+		"code" : "tz.europe.kiev",
+		"name" : "欧洲\/基辅",
+		"language" : "zh-CN",
+		"value" : "欧洲\/基辅"
+	},
+	{
+		"code" : "tz.europe.simferopol",
+		"name" : "欧洲\/辛菲罗波尔",
+		"language" : "zh-CN",
+		"value" : "欧洲\/辛菲罗波尔"
+	},
+	{
+		"code" : "tz.europe.uzhgorod",
+		"name" : "欧洲\/乌日霍罗德",
+		"language" : "zh-CN",
+		"value" : "欧洲\/乌日霍罗德"
+	},
+	{
+		"code" : "tz.europe.zaporozhye",
+		"name" : "欧洲\/扎波罗热",
+		"language" : "zh-CN",
+		"value" : "欧洲\/扎波罗热"
+	},
+	{
+		"code" : "tz.africa.ceuta",
+		"name" : "非洲\/休达",
+		"language" : "zh-CN",
+		"value" : "非洲\/休达"
+	},
+	{
+		"code" : "tz.atlantic.canary",
+		"name" : "大西洋\/加那利群岛",
+		"language" : "zh-CN",
+		"value" : "大西洋\/加那利群岛"
+	},
+	{
+		"code" : "tz.europe.madrid",
+		"name" : "欧洲\/马德里",
+		"language" : "zh-CN",
+		"value" : "欧洲\/马德里"
+	},
+	{
+		"code" : "tz.europe.athens",
+		"name" : "欧洲\/雅典",
+		"language" : "zh-CN",
+		"value" : "欧洲\/雅典"
+	},
+	{
+		"code" : "tz.europe.budapest",
+		"name" : "匈牙利\/布达佩斯",
+		"language" : "zh-CN",
+		"value" : "匈牙利\/布达佩斯"
+	},
+	{
+		"code" : "tz.europe.rome",
+		"name" : "欧洲\/罗马",
+		"language" : "zh-CN",
+		"value" : "欧洲\/罗马"
+	},
+	{
+		"code" : "tz.america.anguilla",
+		"name" : "美洲\/安圭拉",
+		"language" : "zh-CN",
+		"value" : "美洲\/安圭拉"
+	},
+	{
+		"code" : "tz.america.cayman",
+		"name" : "美洲\/开曼群岛",
+		"language" : "zh-CN",
+		"value" : "美洲\/开曼群岛"
+	},
+	{
+		"code" : "tz.america.grand_turk",
+		"name" : "美洲\/大特克",
+		"language" : "zh-CN",
+		"value" : "美洲\/大特克"
+	},
+	{
+		"code" : "tz.america.indiana.tell_city",
+		"name" : "美洲\/印第安纳\/特尔城",
+		"language" : "zh-CN",
+		"value" : "美洲\/印第安纳\/特尔城"
+	},
+	{
+		"code" : "tz.america.montserrat",
+		"name" : "美洲\/蒙特塞拉特",
+		"language" : "zh-CN",
+		"value" : "美洲\/蒙特塞拉特"
+	},
+	{
+		"code" : "tz.america.tortola",
+		"name" : "美洲\/托尔托拉",
+		"language" : "zh-CN",
+		"value" : "美洲\/托尔托拉"
+	},
+	{
+		"code" : "tz.antarctica.rothera",
+		"name" : "南极洲\/罗瑟拉",
+		"language" : "zh-CN",
+		"value" : "南极洲\/罗瑟拉"
+	},
+	{
+		"code" : "tz.atlantic.bermuda",
+		"name" : "大西洋\/百慕大",
+		"language" : "zh-CN",
+		"value" : "大西洋\/百慕大"
+	},
+	{
+		"code" : "tz.atlantic.south_georgia",
+		"name" : "大西洋\/南乔治亚岛",
+		"language" : "zh-CN",
+		"value" : "大西洋\/南乔治亚岛"
+	},
+	{
+		"code" : "tz.atlantic.st_helena",
+		"name" : "大西洋\/圣赫勒拿",
+		"language" : "zh-CN",
+		"value" : "大西洋\/圣赫勒拿"
+	},
+	{
+		"code" : "tz.atlantic.stanley",
+		"name" : "大西洋\/斯坦利",
+		"language" : "zh-CN",
+		"value" : "大西洋\/斯坦利"
+	},
+	{
+		"code" : "tz.europe.gibraltar",
+		"name" : "欧洲\/直布罗陀",
+		"language" : "zh-CN",
+		"value" : "欧洲\/直布罗陀"
+	},
+	{
+		"code" : "tz.europe.guernsey",
+		"name" : "欧洲\/根西岛",
+		"language" : "zh-CN",
+		"value" : "欧洲\/根西岛"
+	},
+	{
+		"code" : "tz.europe.isle_of_man",
+		"name" : "欧洲\/马恩岛",
+		"language" : "zh-CN",
+		"value" : "欧洲\/马恩岛"
+	},
+	{
+		"code" : "tz.europe.jersey",
+		"name" : "欧洲\/泽西岛",
+		"language" : "zh-CN",
+		"value" : "欧洲\/泽西岛"
+	},
+	{
+		"code" : "tz.europe.london",
+		"name" : "欧洲\/伦敦",
+		"language" : "zh-CN",
+		"value" : "欧洲\/伦敦"
+	},
+	{
+		"code" : "tz.gb-eire",
+		"name" : "英国\/爱尔兰",
+		"language" : "zh-CN",
+		"value" : "英国\/爱尔兰"
+	},
+	{
+		"code" : "tz.greenwich",
+		"name" : "格林威治",
+		"language" : "zh-CN",
+		"value" : "格林威治"
+	},
+	{
+		"code" : "tz.pacific.pitcairn",
+		"name" : "太平洋\/皮特凯恩",
+		"language" : "zh-CN",
+		"value" : "太平洋\/皮特凯恩"
+	},
+	{
+		"code" : "ct.afghanistan",
+		"name" : "阿富汗",
+		"language" : "zh-CN",
+		"value" : "阿富汗"
+	},
+	{
+		"code" : "ct.unitedarabemirates",
+		"name" : "阿拉伯联合酋长国",
+		"language" : "zh-CN",
+		"value" : "阿拉伯联合酋长国"
+	},
+	{
+		"code" : "ct.sultanateofoman",
+		"name" : "阿曼苏丹",
+		"language" : "zh-CN",
+		"value" : "阿曼苏丹"
+	},
+	{
+		"code" : "ct.azerbaijan",
+		"name" : "阿塞拜疆",
+		"language" : "zh-CN",
+		"value" : "阿塞拜疆"
+	},
+	{
+		"code" : "ct.pakistan",
+		"name" : "巴基斯坦",
+		"language" : "zh-CN",
+		"value" : "巴基斯坦"
+	},
+	{
+		"code" : "ct.bahrain",
+		"name" : "巴林",
+		"language" : "zh-CN",
+		"value" : "巴林"
+	},
+	{
+		"code" : "ct.bhutan",
+		"name" : "不丹",
+		"language" : "zh-CN",
+		"value" : "不丹"
+	},
+	{
+		"code" : "ct.northkorea",
+		"name" : "朝鲜",
+		"language" : "zh-CN",
+		"value" : "朝鲜"
+	},
+	{
+		"code" : "ct.equatorialguinea",
+		"name" : "赤道几内亚",
+		"language" : "zh-CN",
+		"value" : "赤道几内亚"
+	},
+	{
+		"code" : "ct.timor-leste",
+		"name" : "东帝汶",
+		"language" : "zh-CN",
+		"value" : "东帝汶"
+	},
+	{
+		"code" : "ct.togo",
+		"name" : "多哥",
+		"language" : "zh-CN",
+		"value" : "多哥"
+	},
+	{
+		"code" : "ct.philippines",
+		"name" : "菲律宾",
+		"language" : "zh-CN",
+		"value" : "菲律宾"
+	},
+	{
+		"code" : "ct.kazakhstan",
+		"name" : "哈萨克斯坦",
+		"language" : "zh-CN",
+		"value" : "哈萨克斯坦"
+	},
+	{
+		"code" : "ct.southkorea",
+		"name" : "韩国",
+		"language" : "zh-CN",
+		"value" : "韩国"
+	},
+	{
+		"code" : "ct.kyrgyzstan",
+		"name" : "吉尔吉斯斯坦",
+		"language" : "zh-CN",
+		"value" : "吉尔吉斯斯坦"
+	},
+	{
+		"code" : "ct.qatar",
+		"name" : "卡塔尔",
+		"language" : "zh-CN",
+		"value" : "卡塔尔"
+	},
+	{
+		"code" : "ct.laos",
+		"name" : "老挝",
+		"language" : "zh-CN",
+		"value" : "老挝"
+	},
+	{
+		"code" : "ct.lebanon",
+		"name" : "黎巴嫩",
+		"language" : "zh-CN",
+		"value" : "黎巴嫩"
+	},
+	{
+		"code" : "ct.malaysia",
+		"name" : "马来西亚",
+		"language" : "zh-CN",
+		"value" : "马来西亚"
+	},
+	{
+		"code" : "ct.mongolia",
+		"name" : "蒙古",
+		"language" : "zh-CN",
+		"value" : "蒙古"
+	},
+	{
+		"code" : "ct.bangladesh",
+		"name" : "孟加拉",
+		"language" : "zh-CN",
+		"value" : "孟加拉"
+	},
+	{
+		"code" : "ct.myanmar",
+		"name" : "缅甸",
+		"language" : "zh-CN",
+		"value" : "缅甸"
+	},
+	{
+		"code" : "ct.nepal",
+		"name" : "尼泊尔",
+		"language" : "zh-CN",
+		"value" : "尼泊尔"
+	},
+	{
+		"code" : "ct.japan",
+		"name" : "日本",
+		"language" : "zh-CN",
+		"value" : "日本"
+	},
+	{
+		"code" : "ct.saudiarabia",
+		"name" : "沙特阿拉伯",
+		"language" : "zh-CN",
+		"value" : "沙特阿拉伯"
+	},
+	{
+		"code" : "ct.saotomeandprincipe",
+		"name" : "圣多美和普林西比",
+		"language" : "zh-CN",
+		"value" : "圣多美和普林西比"
+	},
+	{
+		"code" : "ct.srilanka",
+		"name" : "斯里兰卡",
+		"language" : "zh-CN",
+		"value" : "斯里兰卡"
+	},
+	{
+		"code" : "ct.tajikistan",
+		"name" : "塔吉克斯坦",
+		"language" : "zh-CN",
+		"value" : "塔吉克斯坦"
+	},
+	{
+		"code" : "ct.thailand",
+		"name" : "泰国",
+		"language" : "zh-CN",
+		"value" : "泰国"
+	},
+	{
+		"code" : "ct.turkmenistan",
+		"name" : "土库曼斯坦",
+		"language" : "zh-CN",
+		"value" : "土库曼斯坦"
+	},
+	{
+		"code" : "ct.brunei",
+		"name" : "文莱",
+		"language" : "zh-CN",
+		"value" : "文莱"
+	},
+	{
+		"code" : "ct.uzbekistan",
+		"name" : "乌兹别克斯坦",
+		"language" : "zh-CN",
+		"value" : "乌兹别克斯坦"
+	},
+	{
+		"code" : "ct.singapore",
+		"name" : "新加坡",
+		"language" : "zh-CN",
+		"value" : "新加坡"
+	},
+	{
+		"code" : "ct.syria",
+		"name" : "叙利亚",
+		"language" : "zh-CN",
+		"value" : "叙利亚"
+	},
+	{
+		"code" : "ct.armenia",
+		"name" : "亚美尼亚",
+		"language" : "zh-CN",
+		"value" : "亚美尼亚"
+	},
+	{
+		"code" : "ct.yemen",
+		"name" : "也门",
+		"language" : "zh-CN",
+		"value" : "也门"
+	},
+	{
+		"code" : "ct.iraq",
+		"name" : "伊拉克",
+		"language" : "zh-CN",
+		"value" : "伊拉克"
+	},
+	{
+		"code" : "ct.iran",
+		"name" : "伊朗",
+		"language" : "zh-CN",
+		"value" : "伊朗"
+	},
+	{
+		"code" : "ct.israel",
+		"name" : "以色列",
+		"language" : "zh-CN",
+		"value" : "以色列"
+	},
+	{
+		"code" : "ct.india",
+		"name" : "印度",
+		"language" : "zh-CN",
+		"value" : "印度"
+	},
+	{
+		"code" : "ct.indonesia",
+		"name" : "印度尼西亚",
+		"language" : "zh-CN",
+		"value" : "印度尼西亚"
+	},
+	{
+		"code" : "ct.jordanhashemite",
+		"name" : "约旦哈希姆",
+		"language" : "zh-CN",
+		"value" : "约旦哈希姆"
+	},
+	{
+		"code" : "ct.vietnam",
+		"name" : "越南",
+		"language" : "zh-CN",
+		"value" : "越南"
+	},
+	{
+		"code" : "ct.china",
+		"name" : "中国",
+		"language" : "zh-CN",
+		"value" : "中国"
+	},
+	{
+		"code" : "tz.asia.kabul",
+		"name" : "亚洲\/喀布尔",
+		"language" : "zh-CN",
+		"value" : "亚洲\/喀布尔"
+	},
+	{
+		"code" : "tz.asia.khandyga",
+		"name" : "亚洲\/坎德加",
+		"language" : "zh-CN",
+		"value" : "亚洲\/坎德加"
+	},
+	{
+		"code" : "tz.asia.dubai",
+		"name" : "亚洲\/迪拜",
+		"language" : "zh-CN",
+		"value" : "亚洲\/迪拜"
+	},
+	{
+		"code" : "tz.asia.muscat",
+		"name" : "亚洲\/马斯喀特",
+		"language" : "zh-CN",
+		"value" : "亚洲\/马斯喀特"
+	},
+	{
+		"code" : "tz.asia.baku",
+		"name" : "亚洲\/巴库",
+		"language" : "zh-CN",
+		"value" : "亚洲\/巴库"
+	},
+	{
+		"code" : "tz.asia.karachi",
+		"name" : "亚洲\/卡拉奇",
+		"language" : "zh-CN",
+		"value" : "亚洲\/卡拉奇"
+	},
+	{
+		"code" : "tz.asia.gaza",
+		"name" : "亚洲\/加沙",
+		"language" : "zh-CN",
+		"value" : "亚洲\/加沙"
+	},
+	{
+		"code" : "tz.asia.hebron",
+		"name" : "亚洲\/希伯仑",
+		"language" : "zh-CN",
+		"value" : "亚洲\/希伯仑"
+	},
+	{
+		"code" : "tz.asia.jerusalem",
+		"name" : "亚洲\/耶路撒冷",
+		"language" : "zh-CN",
+		"value" : "亚洲\/耶路撒冷"
+	},
+	{
+		"code" : "tz.asia.bahrain",
+		"name" : "亚洲\/巴林",
+		"language" : "zh-CN",
+		"value" : "亚洲\/巴林"
+	},
+	{
+		"code" : "tz.asia.thimbu",
+		"name" : "亚洲\/廷布",
+		"language" : "zh-CN",
+		"value" : "亚洲\/廷布"
+	},
+	{
+		"code" : "tz.asia.pyongyang",
+		"name" : "亚洲\/平壤",
+		"language" : "zh-CN",
+		"value" : "亚洲\/平壤"
+	},
+	{
+		"code" : "tz.africa.malabo",
+		"name" : "非洲\/马拉博",
+		"language" : "zh-CN",
+		"value" : "非洲\/马拉博"
+	},
+	{
+		"code" : "tz.asia.dili",
+		"name" : "亚洲\/帝力",
+		"language" : "zh-CN",
+		"value" : "亚洲\/帝力"
+	},
+	{
+		"code" : "tz.africa.lome",
+		"name" : "非洲\/洛美",
+		"language" : "zh-CN",
+		"value" : "非洲\/洛美"
+	},
+	{
+		"code" : "tz.asia.manila",
+		"name" : "亚洲\/马尼拉",
+		"language" : "zh-CN",
+		"value" : "亚洲\/马尼拉"
+	},
+	{
+		"code" : "tz.asia.almaty",
+		"name" : "亚洲\/阿拉木图",
+		"language" : "zh-CN",
+		"value" : "亚洲\/阿拉木图"
+	},
+	{
+		"code" : "tz.asia.aqtau",
+		"name" : "亚洲\/阿克套",
+		"language" : "zh-CN",
+		"value" : "亚洲\/阿克套"
+	},
+	{
+		"code" : "tz.asia.aqtobe",
+		"name" : "亚洲\/阿克托别",
+		"language" : "zh-CN",
+		"value" : "亚洲\/阿克托别"
+	},
+	{
+		"code" : "tz.asia.atyrau",
+		"name" : "亚洲\/阿特劳",
+		"language" : "zh-CN",
+		"value" : "亚洲\/阿特劳"
+	},
+	{
+		"code" : "tz.asia.oral",
+		"name" : "亚洲\/奥拉尔",
+		"language" : "zh-CN",
+		"value" : "亚洲\/奥拉尔"
+	},
+	{
+		"code" : "tz.asia.qostanay",
+		"name" : "亚洲\/科斯坦奈",
+		"language" : "zh-CN",
+		"value" : "亚洲\/科斯坦奈"
+	},
+	{
+		"code" : "tz.asia.qyzylorda",
+		"name" : "亚洲\/克孜勒奥尔达",
+		"language" : "zh-CN",
+		"value" : "亚洲\/克孜勒奥尔达"
+	},
+	{
+		"code" : "tz.asia.seoul",
+		"name" : "亚洲\/首尔",
+		"language" : "zh-CN",
+		"value" : "亚洲\/首尔"
+	},
+	{
+		"code" : "tz.asia.bishkek",
+		"name" : "亚洲\/比什凯克",
+		"language" : "zh-CN",
+		"value" : "亚洲\/比什凯克"
+	},
+	{
+		"code" : "tz.asia.qatar",
+		"name" : "亚洲\/卡塔尔",
+		"language" : "zh-CN",
+		"value" : "亚洲\/卡塔尔"
+	},
+	{
+		"code" : "tz.asia.vientiane",
+		"name" : "亚洲\/万象",
+		"language" : "zh-CN",
+		"value" : "亚洲\/万象"
+	},
+	{
+		"code" : "tz.asia.beirut",
+		"name" : "亚洲\/贝鲁特",
+		"language" : "zh-CN",
+		"value" : "亚洲\/贝鲁特"
+	},
+	{
+		"code" : "tz.asia.kuala_lumpur",
+		"name" : "亚洲\/吉隆坡",
+		"language" : "zh-CN",
+		"value" : "亚洲\/吉隆坡"
+	},
+	{
+		"code" : "tz.asia.kuching",
+		"name" : "亚洲\/古晋",
+		"language" : "zh-CN",
+		"value" : "亚洲\/古晋"
+	},
+	{
+		"code" : "tz.asia.choibalsan",
+		"name" : "亚洲\/乔伊巴尔森",
+		"language" : "zh-CN",
+		"value" : "亚洲\/乔伊巴尔森"
+	},
+	{
+		"code" : "tz.asia.hovd",
+		"name" : "亚洲\/霍夫德",
+		"language" : "zh-CN",
+		"value" : "亚洲\/霍夫德"
+	},
+	{
+		"code" : "tz.asia.ulaanbaatar",
+		"name" : "亚洲\/乌兰巴托",
+		"language" : "zh-CN",
+		"value" : "亚洲\/乌兰巴托"
+	},
+	{
+		"code" : "tz.asia.dacca",
+		"name" : "亚洲\/达卡",
+		"language" : "zh-CN",
+		"value" : "亚洲\/达卡"
+	},
+	{
+		"code" : "tz.asia.rangoon",
+		"name" : "亚洲\/仰光",
+		"language" : "zh-CN",
+		"value" : "亚洲\/仰光"
+	},
+	{
+		"code" : "tz.asia.yangon",
+		"name" : "亚洲\/仰光",
+		"language" : "zh-CN",
+		"value" : "亚洲\/仰光"
+	},
+	{
+		"code" : "tz.asia.kathmandu",
+		"name" : "亚洲\/加德满都",
+		"language" : "zh-CN",
+		"value" : "亚洲\/加德满都"
+	},
+	{
+		"code" : "tz.asia.katmandu",
+		"name" : "亚洲\/加德满都",
+		"language" : "zh-CN",
+		"value" : "亚洲\/加德满都"
+	},
+	{
+		"code" : "tz.asia.thimphu",
+		"name" : "亚洲\/廷布",
+		"language" : "zh-CN",
+		"value" : "亚洲\/廷布"
+	},
+	{
+		"code" : "tz.asia.tokyo",
+		"name" : "亚洲\/东京",
+		"language" : "zh-CN",
+		"value" : "亚洲\/东京"
+	},
+	{
+		"code" : "tz.asia.riyadh",
+		"name" : "亚洲\/利雅得",
+		"language" : "zh-CN",
+		"value" : "亚洲\/利雅得"
+	},
+	{
+		"code" : "tz.africa.sao_tome",
+		"name" : "非洲\/圣多美",
+		"language" : "zh-CN",
+		"value" : "非洲\/圣多美"
+	},
+	{
+		"code" : "tz.asia.colombo",
+		"name" : "亚洲\/科伦坡",
+		"language" : "zh-CN",
+		"value" : "亚洲\/科伦坡"
+	},
+	{
+		"code" : "tz.asia.dushanbe",
+		"name" : "亚洲\/杜尚别",
+		"language" : "zh-CN",
+		"value" : "亚洲\/杜尚别"
+	},
+	{
+		"code" : "tz.asia.bangkok",
+		"name" : "亚洲\/曼谷",
+		"language" : "zh-CN",
+		"value" : "亚洲\/曼谷"
+	},
+	{
+		"code" : "tz.asia.ashgabat",
+		"name" : "亚洲\/阿什哈巴德",
+		"language" : "zh-CN",
+		"value" : "亚洲\/阿什哈巴德"
+	},
+	{
+		"code" : "tz.asia.brunei",
+		"name" : "亚洲\/文莱",
+		"language" : "zh-CN",
+		"value" : "亚洲\/文莱"
+	},
+	{
+		"code" : "tz.asia.samarkand",
+		"name" : "亚洲\/撒马尔罕",
+		"language" : "zh-CN",
+		"value" : "亚洲\/撒马尔罕"
+	},
+	{
+		"code" : "tz.asia.tashkent",
+		"name" : "亚洲\/塔什干",
+		"language" : "zh-CN",
+		"value" : "亚洲\/塔什干"
+	},
+	{
+		"code" : "tz.asia.singapore",
+		"name" : "亚洲\/新加坡",
+		"language" : "zh-CN",
+		"value" : "亚洲\/新加坡"
+	},
+	{
+		"code" : "tz.asia.damascus",
+		"name" : "亚洲\/大马士革",
+		"language" : "zh-CN",
+		"value" : "亚洲\/大马士革"
+	},
+	{
+		"code" : "tz.asia.yerevan",
+		"name" : "亚洲\/埃里温",
+		"language" : "zh-CN",
+		"value" : "亚洲\/埃里温"
+	},
+	{
+		"code" : "tz.asia.aden",
+		"name" : "亚洲\/亚丁",
+		"language" : "zh-CN",
+		"value" : "亚洲\/亚丁"
+	},
+	{
+		"code" : "tz.asia.baghdad",
+		"name" : "亚洲\/巴格达",
+		"language" : "zh-CN",
+		"value" : "亚洲\/巴格达"
+	},
+	{
+		"code" : "tz.asia.tehran",
+		"name" : "亚洲\/德黑兰",
+		"language" : "zh-CN",
+		"value" : "亚洲\/德黑兰"
+	},
+	{
+		"code" : "tz.asia.tel_aviv",
+		"name" : "亚洲\/特拉维夫",
+		"language" : "zh-CN",
+		"value" : "亚洲\/特拉维夫"
+	},
+	{
+		"code" : "tz.asia.calcutta",
+		"name" : "亚洲\/加尔各答",
+		"language" : "zh-CN",
+		"value" : "亚洲\/加尔各答"
+	},
+	{
+		"code" : "tz.asia.jakarta",
+		"name" : "亚洲\/雅加达",
+		"language" : "zh-CN",
+		"value" : "亚洲\/雅加达"
+	},
+	{
+		"code" : "tz.asia.jayapura",
+		"name" : "亚洲\/查亚普拉",
+		"language" : "zh-CN",
+		"value" : "亚洲\/查亚普拉"
+	},
+	{
+		"code" : "tz.asia.makassar",
+		"name" : "亚洲\/望加锡",
+		"language" : "zh-CN",
+		"value" : "亚洲\/望加锡"
+	},
+	{
+		"code" : "tz.asia.pontianak",
+		"name" : "亚洲\/庞蒂亚纳克",
+		"language" : "zh-CN",
+		"value" : "亚洲\/庞蒂亚纳克"
+	},
+	{
+		"code" : "tz.asia.amman",
+		"name" : "亚洲\/安曼",
+		"language" : "zh-CN",
+		"value" : "亚洲\/安曼"
+	},
+	{
+		"code" : "tz.asia.ho_chi_minh",
+		"name" : "亚洲\/胡志明市",
+		"language" : "zh-CN",
+		"value" : "亚洲\/胡志明市"
+	},
+	{
+		"code" : "tz.asia.saigon",
+		"name" : "亚洲\/西贡",
+		"language" : "zh-CN",
+		"value" : "亚洲\/西贡"
+	},
+	{
+		"code" : "tz.asia.chongqing",
+		"name" : "亚洲\/重庆",
+		"language" : "zh-CN",
+		"value" : "亚洲\/重庆"
+	},
+	{
+		"code" : "tz.asia.harbin",
+		"name" : "亚洲\/哈尔滨",
+		"language" : "zh-CN",
+		"value" : "亚洲\/哈尔滨"
+	},
+	{
+		"code" : "tz.asia.hong_kong",
+		"name" : "亚洲\/香港",
+		"language" : "zh-CN",
+		"value" : "亚洲\/香港"
+	},
+	{
+		"code" : "tz.asia.kashgar",
+		"name" : "亚洲\/喀什",
+		"language" : "zh-CN",
+		"value" : "亚洲\/喀什"
+	},
+	{
+		"code" : "tz.asia.macao",
+		"name" : "亚洲\/澳门",
+		"language" : "zh-CN",
+		"value" : "亚洲\/澳门"
+	},
+	{
+		"code" : "tz.asia.shanghai",
+		"name" : "亚洲\/上海",
+		"language" : "zh-CN",
+		"value" : "亚洲\/上海"
+	},
+	{
+		"code" : "tz.asia.taipei",
+		"name" : "亚洲\/台北",
+		"language" : "zh-CN",
+		"value" : "亚洲\/台北"
+	},
+	{
+		"code" : "tz.asia.urumqi",
+		"name" : "亚洲\/乌鲁木齐",
+		"language" : "zh-CN",
+		"value" : "亚洲\/乌鲁木齐"
+	},
+	{
+		"code" : "tz.europe.belgrade",
+		"name" : "欧洲\/贝尔格莱德",
+		"language" : "zh-CN",
+		"value" : "欧洲\/贝尔格莱德"
+	},
+	{
+		"code" : "tz.asia.tbilisi",
+		"name" : "亚洲\/第比利斯",
+		"language" : "zh-CN",
+		"value" : "亚洲\/第比利斯"
+	},
+	{
+		"code" : "tz.america.argentina.buenos_aires",
+		"name" : "美洲\/阿根廷\/布宜诺斯艾利斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/布宜诺斯艾利斯"
+	},
+	{
+		"code" : "tz.america.argentina.catamarca",
+		"name" : "美洲\/阿根廷\/卡塔马卡",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/卡塔马卡"
+	},
+	{
+		"code" : "tz.america.argentina.comodrivadavia",
+		"name" : "美洲\/阿根廷\/科莫多罗里瓦达维亚",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/科莫多罗里瓦达维亚"
+	},
+	{
+		"code" : "tz.america.argentina.cordoba",
+		"name" : "美洲\/阿根廷\/科尔多瓦",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/科尔多瓦"
+	},
+	{
+		"code" : "tz.america.argentina.jujuy",
+		"name" : "美洲\/阿根廷\/胡胡伊",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/胡胡伊"
+	},
+	{
+		"code" : "tz.america.argentina.la_rioja",
+		"name" : "美洲\/阿根廷\/拉里奥哈",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/拉里奥哈"
+	},
+	{
+		"code" : "tz.america.argentina.mendoza",
+		"name" : "美洲\/阿根廷\/门多萨",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/门多萨"
+	},
+	{
+		"code" : "tz.america.argentina.rio_gallegos",
+		"name" : "美洲\/阿根廷\/里奥加列戈斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/里奥加列戈斯"
+	},
+	{
+		"code" : "tz.america.argentina.salta",
+		"name" : "美洲\/阿根廷\/萨尔塔",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/萨尔塔"
+	},
+	{
+		"code" : "tz.america.argentina.san_juan",
+		"name" : "美洲\/阿根廷\/圣胡安",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/圣胡安"
+	},
+	{
+		"code" : "tz.america.argentina.san_luis",
+		"name" : "美洲\/阿根廷\/圣路易斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/圣路易斯"
+	},
+	{
+		"code" : "tz.america.argentina.tucuman",
+		"name" : "美洲\/阿根廷\/图库曼",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/图库曼"
+	},
+	{
+		"code" : "tz.america.argentina.ushuaia",
+		"name" : "美洲\/阿根廷\/乌斯怀亚",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿根廷\/乌斯怀亚"
+	},
+	{
+		"code" : "tz.america.buenos_aires",
+		"name" : "美洲\/布宜诺斯艾利斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/布宜诺斯艾利斯"
+	},
+	{
+		"code" : "tz.america.catamarca",
+		"name" : "美洲\/卡塔马卡",
+		"language" : "zh-CN",
+		"value" : "美洲\/卡塔马卡"
+	},
+	{
+		"code" : "tz.america.cordoba",
+		"name" : "美洲\/科尔多瓦",
+		"language" : "zh-CN",
+		"value" : "美洲\/科尔多瓦"
+	},
+	{
+		"code" : "tz.america.jujuy",
+		"name" : "美洲\/胡胡伊",
+		"language" : "zh-CN",
+		"value" : "美洲\/胡胡伊"
+	},
+	{
+		"code" : "tz.america.mendoza",
+		"name" : "美洲\/门多萨",
+		"language" : "zh-CN",
+		"value" : "美洲\/门多萨"
+	},
+	{
+		"code" : "tz.america.rosario",
+		"name" : "美洲\/罗萨里奥",
+		"language" : "zh-CN",
+		"value" : "美洲\/罗萨里奥"
+	},
+	{
+		"code" : "tz.america.antigua",
+		"name" : "美洲\/安提瓜",
+		"language" : "zh-CN",
+		"value" : "美洲\/安提瓜"
+	},
+	{
+		"code" : "tz.america.barbados",
+		"name" : "美洲\/巴巴多斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/巴巴多斯"
+	},
+	{
+		"code" : "tz.america.nassau",
+		"name" : "美洲\/拿骚",
+		"language" : "zh-CN",
+		"value" : "美洲\/拿骚"
+	},
+	{
+		"code" : "tz.america.asuncion",
+		"name" : "美洲\/亚松森",
+		"language" : "zh-CN",
+		"value" : "美洲\/亚松森"
+	},
+	{
+		"code" : "tz.america.panama",
+		"name" : "美洲\/巴拿马",
+		"language" : "zh-CN",
+		"value" : "美洲\/巴拿马"
+	},
+	{
+		"code" : "tz.america.araguaina",
+		"name" : "美洲\/阿拉瓜伊纳",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿拉瓜伊纳"
+	},
+	{
+		"code" : "tz.america.bahia",
+		"name" : "美洲\/巴伊亚",
+		"language" : "zh-CN",
+		"value" : "美洲\/巴伊亚"
+	},
+	{
+		"code" : "tz.america.belem",
+		"name" : "美洲\/贝伦",
+		"language" : "zh-CN",
+		"value" : "美洲\/贝伦"
+	},
+	{
+		"code" : "tz.america.boa_vista",
+		"name" : "美洲\/博阿维斯塔",
+		"language" : "zh-CN",
+		"value" : "美洲\/博阿维斯塔"
+	},
+	{
+		"code" : "tz.america.campo_grande",
+		"name" : "美洲\/坎波格兰德",
+		"language" : "zh-CN",
+		"value" : "美洲\/坎波格兰德"
+	},
+	{
+		"code" : "tz.zmerica.cuiaba",
+		"name" : "美洲\/库亚巴",
+		"language" : "zh-CN",
+		"value" : "美洲\/库亚巴"
+	},
+	{
+		"code" : "tz.america.fortaleza",
+		"name" : "美洲\/累西腓",
+		"language" : "zh-CN",
+		"value" : "美洲\/累西腓"
+	},
+	{
+		"code" : "tz.america.maceio",
+		"name" : "美洲\/马塞约",
+		"language" : "zh-CN",
+		"value" : "美洲\/马塞约"
+	},
+	{
+		"code" : "tz.america.manaus",
+		"name" : "美洲\/马瑙斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/马瑙斯"
+	},
+	{
+		"code" : "tz.america.noronha",
+		"name" : "美洲\/诺罗尼亚",
+		"language" : "zh-CN",
+		"value" : "美洲\/诺罗尼亚"
+	},
+	{
+		"code" : "tz.america.porto_velho",
+		"name" : "美洲\/波图韦柳",
+		"language" : "zh-CN",
+		"value" : "美洲\/波图韦柳"
+	},
+	{
+		"code" : "tz.america.recife",
+		"name" : "美洲\/累西腓",
+		"language" : "zh-CN",
+		"value" : "美洲\/累西腓"
+	},
+	{
+		"code" : "tz.america.rio_branco",
+		"name" : "美洲\/里约布兰科",
+		"language" : "zh-CN",
+		"value" : "美洲\/里约布兰科"
+	},
+	{
+		"code" : "tz.america.santarem",
+		"name" : "美洲\/圣塔伦",
+		"language" : "zh-CN",
+		"value" : "美洲\/圣塔伦"
+	},
+	{
+		"code" : "tz.america.sao_paulo",
+		"name" : "美洲\/圣保罗",
+		"language" : "zh-CN",
+		"value" : "美洲\/圣保罗"
+	},
+	{
+		"code" : "tz.brazil.acre",
+		"name" : "巴西\/阿克里",
+		"language" : "zh-CN",
+		"value" : "巴西\/阿克里"
+	},
+	{
+		"code" : "tz.brazil.denoronha",
+		"name" : "巴西\/费尔南多迪诺罗尼亚",
+		"language" : "zh-CN",
+		"value" : "巴西\/费尔南多迪诺罗尼亚"
+	},
+	{
+		"code" : "tz.brazil.east",
+		"name" : "巴西\/东部",
+		"language" : "zh-CN",
+		"value" : "巴西\/东部"
+	},
+	{
+		"code" : "tz.brazil.west",
+		"name" : "巴西\/西部",
+		"language" : "zh-CN",
+		"value" : "巴西\/西部"
+	},
+	{
+		"code" : "tz.america.la_paz",
+		"name" : "美洲\/拉巴斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/拉巴斯"
+	},
+	{
+		"code" : "tz.america.belize",
+		"name" : "美洲\/伯利兹",
+		"language" : "zh-CN",
+		"value" : "美洲\/伯利兹"
+	},
+	{
+		"code" : "tz.america.dominica",
+		"name" : "美洲\/多米尼加",
+		"language" : "zh-CN",
+		"value" : "美洲\/多米尼加"
+	},
+	{
+		"code" : "tz.america.santo_domingo",
+		"name" : "美洲\/圣多明各",
+		"language" : "zh-CN",
+		"value" : "美洲\/圣多明各"
+	},
+	{
+		"code" : "tz.america.guayaquil",
+		"name" : "美洲\/瓜亚基尔",
+		"language" : "zh-CN",
+		"value" : "美洲\/瓜亚基尔"
+	},
+	{
+		"code" : "tz.america.santa_isabel",
+		"name" : "美洲\/圣伊莎贝尔",
+		"language" : "zh-CN",
+		"value" : "美洲\/圣伊莎贝尔"
+	},
+	{
+		"code" : "tz.pacific.galapagos",
+		"name" : "太平洋\/加拉帕戈斯",
+		"language" : "zh-CN",
+		"value" : "太平洋\/加拉帕戈斯"
+	},
+	{
+		"code" : "tz.america.bogota",
+		"name" : "美洲\/波哥大",
+		"language" : "zh-CN",
+		"value" : "美洲\/波哥大"
+	},
+	{
+		"code" : "tz.america.eirunepe",
+		"name" : "美洲\/艾鲁内佩",
+		"language" : "zh-CN",
+		"value" : "美洲\/艾鲁内佩"
+	},
+	{
+		"code" : "tz.america.costa_rica",
+		"name" : "美洲\/哥斯达黎加",
+		"language" : "zh-CN",
+		"value" : "美洲\/哥斯达黎加"
+	},
+	{
+		"code" : "tz.america.grenada",
+		"name" : "美洲\/格林纳达",
+		"language" : "zh-CN",
+		"value" : "美洲\/格林纳达"
+	},
+	{
+		"code" : "tz.america.havana",
+		"name" : "美洲\/哈瓦那",
+		"language" : "zh-CN",
+		"value" : "美洲\/哈瓦那"
+	},
+	{
+		"code" : "tz.america.guyana",
+		"name" : "美洲\/圭亚那",
+		"language" : "zh-CN",
+		"value" : "美洲\/圭亚那"
+	},
+	{
+		"code" : "tz.america.port-au-prince",
+		"name" : "美洲\/太子港",
+		"language" : "zh-CN",
+		"value" : "美洲\/太子港"
+	},
+	{
+		"code" : "tz.america.tegucigalpa",
+		"name" : "美洲\/特古西加尔巴",
+		"language" : "zh-CN",
+		"value" : "美洲\/特古西加尔巴"
+	},
+	{
+		"code" : "tz.america.atikokan",
+		"name" : "美洲\/阿蒂科坎",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿蒂科坎"
+	},
+	{
+		"code" : "tz.america.blanc-sablon",
+		"name" : "美洲\/布兰克萨布隆",
+		"language" : "zh-CN",
+		"value" : "美洲\/布兰克萨布隆"
+	},
+	{
+		"code" : "tz.america.cambridge_bay",
+		"name" : "美洲\/剑桥湾",
+		"language" : "zh-CN",
+		"value" : "美洲\/剑桥湾"
+	},
+	{
+		"code" : "tz.america.dawson",
+		"name" : "美洲\/道森",
+		"language" : "zh-CN",
+		"value" : "美洲\/道森"
+	},
+	{
+		"code" : "tz.america.dawson_creek",
+		"name" : "美洲\/道森克里克",
+		"language" : "zh-CN",
+		"value" : "美洲\/道森克里克"
+	},
+	{
+		"code" : "tz.america.edmonton",
+		"name" : "美洲\/埃德蒙顿",
+		"language" : "zh-CN",
+		"value" : "美洲\/埃德蒙顿"
+	},
+	{
+		"code" : "tz.america.fort_nelson",
+		"name" : "美洲\/纳尔逊堡",
+		"language" : "zh-CN",
+		"value" : "美洲\/纳尔逊堡"
+	},
+	{
+		"code" : "tz.america.glace_bay",
+		"name" : "美洲\/格莱斯湾",
+		"language" : "zh-CN",
+		"value" : "美洲\/格莱斯湾"
+	},
+	{
+		"code" : "tz.america.goose_bay",
+		"name" : "美洲\/戈斯贝",
+		"language" : "zh-CN",
+		"value" : "美洲\/戈斯贝"
+	},
+	{
+		"code" : "tz.america.halifax",
+		"name" : "美洲\/哈利法克斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/哈利法克斯"
+	},
+	{
+		"code" : "tz.america.inuvik",
+		"name" : "美洲\/因努维克",
+		"language" : "zh-CN",
+		"value" : "美洲\/因努维克"
+	},
+	{
+		"code" : "tz.america.iqaluit",
+		"name" : "美洲\/伊卡卢伊特",
+		"language" : "zh-CN",
+		"value" : "美洲\/伊卡卢伊特"
+	},
+	{
+		"code" : "tz.america.moncton",
+		"name" : "美洲\/蒙克顿",
+		"language" : "zh-CN",
+		"value" : "美洲\/蒙克顿"
+	},
+	{
+		"code" : "tz.america.montreal",
+		"name" : "美洲\/蒙特利尔",
+		"language" : "zh-CN",
+		"value" : "美洲\/蒙特利尔"
+	},
+	{
+		"code" : "tz.america.nipigon",
+		"name" : "美洲\/尼皮贡",
+		"language" : "zh-CN",
+		"value" : "美洲\/尼皮贡"
+	},
+	{
+		"code" : "tz.america.pangnirtung",
+		"name" : "美洲\/庞格尼通",
+		"language" : "zh-CN",
+		"value" : "美洲\/庞格尼通"
+	},
+	{
+		"code" : "tz.america.rainy_river",
+		"name" : "美洲\/雨河",
+		"language" : "zh-CN",
+		"value" : "美洲\/雨河"
+	},
+	{
+		"code" : "tz.america.rankin_inlet",
+		"name" : "美洲\/兰金因莱特",
+		"language" : "zh-CN",
+		"value" : "美洲\/兰金因莱特"
+	},
+	{
+		"code" : "tz.america.regina",
+		"name" : "美洲\/里贾纳",
+		"language" : "zh-CN",
+		"value" : "美洲\/里贾纳"
+	},
+	{
+		"code" : "tz.america.resolute",
+		"name" : "美洲\/努纳武特",
+		"language" : "zh-CN",
+		"value" : "美洲\/努纳武特"
+	},
+	{
+		"code" : "tz.america.st_johns",
+		"name" : "美洲\/圣约翰斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/圣约翰斯"
+	},
+	{
+		"code" : "tz.america.swift_current",
+		"name" : "美洲\/斯威夫特卡伦特",
+		"language" : "zh-CN",
+		"value" : "美洲\/斯威夫特卡伦特"
+	},
+	{
+		"code" : "tz.america.thunder_bay",
+		"name" : "美洲\/桑德贝",
+		"language" : "zh-CN",
+		"value" : "美洲\/桑德贝"
+	},
+	{
+		"code" : "tz.america.toronto",
+		"name" : "美洲\/多伦多",
+		"language" : "zh-CN",
+		"value" : "美洲\/多伦多"
+	},
+	{
+		"code" : "tz.america.vancouver",
+		"name" : "美洲\/温哥华",
+		"language" : "zh-CN",
+		"value" : "美洲\/温哥华"
+	},
+	{
+		"code" : "tz.america.whitehorse",
+		"name" : "美洲\/怀特霍斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/怀特霍斯"
+	},
+	{
+		"code" : "tz.america.winnipeg",
+		"name" : "加拿大\/温尼伯",
+		"language" : "zh-CN",
+		"value" : "加拿大\/温尼伯"
+	},
+	{
+		"code" : "tz.america.yellowknife",
+		"name" : "美洲\/黄刀",
+		"language" : "zh-CN",
+		"value" : "美洲\/黄刀"
+	},
+	{
+		"code" : "tz.canada.atlantic",
+		"name" : "加拿大\/大西洋",
+		"language" : "zh-CN",
+		"value" : "加拿大\/大西洋"
+	},
+	{
+		"code" : "tz.canada.central",
+		"name" : "加拿大\/中部",
+		"language" : "zh-CN",
+		"value" : "加拿大\/中部"
+	},
+	{
+		"code" : "tz.canada.eastern",
+		"name" : "加拿大\/东部",
+		"language" : "zh-CN",
+		"value" : "加拿大\/东部"
+	},
+	{
+		"code" : "tz.canada.mountain",
+		"name" : "加拿大\/山地",
+		"language" : "zh-CN",
+		"value" : "加拿大\/山地"
+	},
+	{
+		"code" : "tz.canada.newfoundland",
+		"name" : "加拿大\/纽芬兰",
+		"language" : "zh-CN",
+		"value" : "加拿大\/纽芬兰"
+	},
+	{
+		"code" : "tz.canada.pacific",
+		"name" : "加拿大\/太平洋时区",
+		"language" : "zh-CN",
+		"value" : "加拿大\/太平洋时区"
+	},
+	{
+		"code" : "tz.canada.saskatchewan",
+		"name" : "加拿大\/萨斯喀彻温",
+		"language" : "zh-CN",
+		"value" : "加拿大\/萨斯喀彻温"
+	},
+	{
+		"code" : "tz.canada.yukon",
+		"name" : "加拿大\/育空",
+		"language" : "zh-CN",
+		"value" : "加拿大\/育空"
+	},
+	{
+		"code" : "tz.america.adak",
+		"name" : "美洲\/阿达克",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿达克"
+	},
+	{
+		"code" : "tz.america.anchorage",
+		"name" : "美洲\/安克雷奇",
+		"language" : "zh-CN",
+		"value" : "美洲\/安克雷奇"
+	},
+	{
+		"code" : "tz.america.atka",
+		"name" : "美洲\/阿特卡岛",
+		"language" : "zh-CN",
+		"value" : "美洲\/阿特卡岛"
+	},
+	{
+		"code" : "tz.america.boise",
+		"name" : "美洲\/博伊西",
+		"language" : "zh-CN",
+		"value" : "美洲\/博伊西"
+	},
+	{
+		"code" : "tz.america.chicago",
+		"name" : "美洲\/芝加哥",
+		"language" : "zh-CN",
+		"value" : "美洲\/芝加哥"
+	},
+	{
+		"code" : "tz.america.coral_harbour",
+		"name" : "美洲\/珊瑚港",
+		"language" : "zh-CN",
+		"value" : "美洲\/珊瑚港"
+	},
+	{
+		"code" : "tz.america.creston",
+		"name" : "美洲\/克雷斯顿",
+		"language" : "zh-CN",
+		"value" : "美洲\/克雷斯顿"
+	},
+	{
+		"code" : "tz.america.danmarkshavn",
+		"name" : "美洲\/丹麦海峡镇",
+		"language" : "zh-CN",
+		"value" : "美洲\/丹麦海峡镇"
+	},
+	{
+		"code" : "tz.america.denver",
+		"name" : "美洲\/丹佛",
+		"language" : "zh-CN",
+		"value" : "美洲\/丹佛"
+	},
+	{
+		"code" : "tz.america.detroit",
+		"name" : "美洲\/底特律",
+		"language" : "zh-CN",
+		"value" : "美洲\/底特律"
+	},
+	{
+		"code" : "tz.america.fort_wayne",
+		"name" : "美洲\/韦恩堡",
+		"language" : "zh-CN",
+		"value" : "美洲\/韦恩堡"
+	},
+	{
+		"code" : "tz.america.indiana.indianapolis",
+		"name" : "美洲\/印第安纳\/印第安纳波利斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/印第安纳\/印第安纳波利斯"
+	},
+	{
+		"code" : "tz.america.indiana.knox",
+		"name" : "美洲\/印第安纳\/诺克斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/印第安纳\/诺克斯"
+	},
+	{
+		"code" : "tz.america.indiana.marengo",
+		"name" : "美洲\/印第安纳\/马雷恩戈",
+		"language" : "zh-CN",
+		"value" : "美洲\/印第安纳\/马雷恩戈"
+	},
+	{
+		"code" : "tz.america.indiana.petersburg",
+		"name" : "美洲\/印第安纳\/彼得斯堡",
+		"language" : "zh-CN",
+		"value" : "美洲\/印第安纳\/彼得斯堡"
+	},
+	{
+		"code" : "tz.america.indiana.vevay",
+		"name" : "美洲\/印第安纳\/维韦",
+		"language" : "zh-CN",
+		"value" : "美洲\/印第安纳\/维韦"
+	},
+	{
+		"code" : "tz.america.indiana.vincennes",
+		"name" : "美洲\/印第安纳\/文森尼斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/印第安纳\/文森尼斯"
+	},
+	{
+		"code" : "tz.america.indiana.winamac",
+		"name" : "美洲\/印第安纳\/温纳马克",
+		"language" : "zh-CN",
+		"value" : "美洲\/印第安纳\/温纳马克"
+	},
+	{
+		"code" : "tz.america.indianapolis",
+		"name" : "美洲\/印第安纳波利斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/印第安纳波利斯"
+	},
+	{
+		"code" : "tz.america.juneau",
+		"name" : "美洲\/朱诺",
+		"language" : "zh-CN",
+		"value" : "美洲\/朱诺"
+	},
+	{
+		"code" : "tz.america.kentucky.louisville",
+		"name" : "美洲\/肯塔基州\/路易斯维尔",
+		"language" : "zh-CN",
+		"value" : "美洲\/肯塔基州\/路易斯维尔"
+	},
+	{
+		"code" : "tz.america.kentucky.monticello",
+		"name" : "美国\/肯塔基州\/蒙蒂塞洛",
+		"language" : "zh-CN",
+		"value" : "美国\/肯塔基州\/蒙蒂塞洛"
+	},
+	{
+		"code" : "tz.america.knox_in",
+		"name" : "美国\/诺克斯_IN",
+		"language" : "zh-CN",
+		"value" : "美国\/诺克斯_IN"
+	},
+	{
+		"code" : "tz.america\/Los_Angeles",
+		"name" : "美洲\/洛杉矶",
+		"language" : "zh-CN",
+		"value" : "美洲\/洛杉矶"
+	},
+	{
+		"code" : "tz.america.louisville",
+		"name" : "美洲\/路易斯维尔",
+		"language" : "zh-CN",
+		"value" : "美洲\/路易斯维尔"
+	},
+	{
+		"code" : "tz.america.lower_princes",
+		"name" : "美洲\/下普林斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/下普林斯"
+	},
+	{
+		"code" : "tz.america.menominee",
+		"name" : "美洲\/梅诺米尼",
+		"language" : "zh-CN",
+		"value" : "美洲\/梅诺米尼"
+	},
+	{
+		"code" : "tz.america.metlakatla",
+		"name" : "美洲\/梅特拉卡特拉",
+		"language" : "zh-CN",
+		"value" : "美洲\/梅特拉卡特拉"
+	},
+	{
+		"code" : "tz.america.new_york",
+		"name" : "美洲\/纽约",
+		"language" : "zh-CN",
+		"value" : "美洲\/纽约"
+	},
+	{
+		"code" : "tz.america.nome",
+		"name" : "美洲\/诺姆",
+		"language" : "zh-CN",
+		"value" : "美洲\/诺姆"
+	},
+	{
+		"code" : "tz.america.north_dakota.beulah",
+		"name" : "美洲\/北达科他州比尤拉",
+		"language" : "zh-CN",
+		"value" : "美洲\/北达科他州比尤拉"
+	},
+	{
+		"code" : "tz.america.north_dakota.center",
+		"name" : "美洲\/北达科他\/中心",
+		"language" : "zh-CN",
+		"value" : "美洲\/北达科他\/中心"
+	},
+	{
+		"code" : "tz.america.north_dakota.new_salem",
+		"name" : "美国\/北达科他州\/新塞勒姆",
+		"language" : "zh-CN",
+		"value" : "美国\/北达科他州\/新塞勒姆"
+	},
+	{
+		"code" : "tz.america.phoenix",
+		"name" : "美洲\/凤凰城",
+		"language" : "zh-CN",
+		"value" : "美洲\/凤凰城"
+	},
+	{
+		"code" : "tz.america.porto_acre",
+		"name" : "美国\/波尔图阿克尔",
+		"language" : "zh-CN",
+		"value" : "美国\/波尔图阿克尔"
+	},
+	{
+		"code" : "tz.america.puerto_rico",
+		"name" : "美洲\/波多黎各",
+		"language" : "zh-CN",
+		"value" : "美洲\/波多黎各"
+	},
+	{
+		"code" : "tz.america.shiprock",
+		"name" : "美洲\/Shiprock",
+		"language" : "zh-CN",
+		"value" : "美洲\/Shiprock"
+	},
+	{
+		"code" : "tz.america.sitka",
+		"name" : "美洲\/锡特卡",
+		"language" : "zh-CN",
+		"value" : "美洲\/锡特卡"
+	},
+	{
+		"code" : "tz.america.st_barthelemy",
+		"name" : "美洲\/圣巴泰勒米岛",
+		"language" : "zh-CN",
+		"value" : "美洲\/圣巴泰勒米岛"
+	},
+	{
+		"code" : "tz.america.st_thomas",
+		"name" : "美洲\/圣托马斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/圣托马斯"
+	},
+	{
+		"code" : "tz.america.virgin",
+		"name" : "美洲\/维尔京群岛",
+		"language" : "zh-CN",
+		"value" : "美洲\/维尔京群岛"
+	},
+	{
+		"code" : "tz.america.yakutat",
+		"name" : "美洲\/亚库塔特",
+		"language" : "zh-CN",
+		"value" : "美洲\/亚库塔特"
+	},
+	{
+		"code" : "tz.antarctica.mcmurdo",
+		"name" : "南极洲\/麦克默多",
+		"language" : "zh-CN",
+		"value" : "南极洲\/麦克默多"
+	},
+	{
+		"code" : "tz.antarctica.palmer",
+		"name" : "南极洲\/帕尔默",
+		"language" : "zh-CN",
+		"value" : "南极洲\/帕尔默"
+	},
+	{
+		"code" : "tz.navajo",
+		"name" : "纳瓦霍",
+		"language" : "zh-CN",
+		"value" : "纳瓦霍"
+	},
+	{
+		"code" : "tz.pacific.guam",
+		"name" : "太平洋\/关岛",
+		"language" : "zh-CN",
+		"value" : "太平洋\/关岛"
+	},
+	{
+		"code" : "tz.pacific.honolulu",
+		"name" : "太平洋\/檀香山",
+		"language" : "zh-CN",
+		"value" : "太平洋\/檀香山"
+	},
+	{
+		"code" : "tz.pacific.johnston",
+		"name" : "太平洋\/约翰斯顿岛",
+		"language" : "zh-CN",
+		"value" : "太平洋\/约翰斯顿岛"
+	},
+	{
+		"code" : "tz.pacific.midway",
+		"name" : "太平洋\/中途岛",
+		"language" : "zh-CN",
+		"value" : "太平洋\/中途岛"
+	},
+	{
+		"code" : "tz.pacific.pago_pago",
+		"name" : "太平洋\/帕果帕果",
+		"language" : "zh-CN",
+		"value" : "太平洋\/帕果帕果"
+	},
+	{
+		"code" : "tz.pacific.saipan",
+		"name" : "太平洋\/塞班岛",
+		"language" : "zh-CN",
+		"value" : "太平洋\/塞班岛"
+	},
+	{
+		"code" : "tz.pacific.wake",
+		"name" : "太平洋\/威克岛",
+		"language" : "zh-CN",
+		"value" : "太平洋\/威克岛"
+	},
+	{
+		"code" : "tz.us.alaska",
+		"name" : "美国\/阿拉斯加",
+		"language" : "zh-CN",
+		"value" : "美国\/阿拉斯加"
+	},
+	{
+		"code" : "tz.us.aleutian",
+		"name" : "美国\/阿留申群岛",
+		"language" : "zh-CN",
+		"value" : "美国\/阿留申群岛"
+	},
+	{
+		"code" : "tz.us.arizona",
+		"name" : "美国\/亚利桑那",
+		"language" : "zh-CN",
+		"value" : "美国\/亚利桑那"
+	},
+	{
+		"code" : "tz.us.central",
+		"name" : "美国\/中部",
+		"language" : "zh-CN",
+		"value" : "美国\/中部"
+	},
+	{
+		"code" : "tz.us.eastern",
+		"name" : "美国\/东部",
+		"language" : "zh-CN",
+		"value" : "美国\/东部"
+	},
+	{
+		"code" : "tz.us.east-indiana",
+		"name" : "美国\/印第安纳东部",
+		"language" : "zh-CN",
+		"value" : "美国\/印第安纳东部"
+	},
+	{
+		"code" : "tz.us.hawaii",
+		"name" : "美国\/夏威夷",
+		"language" : "zh-CN",
+		"value" : "美国\/夏威夷"
+	},
+	{
+		"code" : "tz.us.indiana-starke",
+		"name" : "美国\/印第安纳州-斯塔克",
+		"language" : "zh-CN",
+		"value" : "美国\/印第安纳州-斯塔克"
+	},
+	{
+		"code" : "tz.us.michigan",
+		"name" : "美国\/密歇根",
+		"language" : "zh-CN",
+		"value" : "美国\/密歇根"
+	},
+	{
+		"code" : "tz.us.samoa",
+		"name" : "美国\/萨摩亚",
+		"language" : "zh-CN",
+		"value" : "美国\/萨摩亚"
+	},
+	{
+		"code" : "tz.america.lima",
+		"name" : "美洲\/利马",
+		"language" : "zh-CN",
+		"value" : "美洲\/利马"
+	},
+	{
+		"code" : "tz.america.bahia_banderas",
+		"name" : "美洲\/巴亚班德拉斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/巴亚班德拉斯"
+	},
+	{
+		"code" : "tz.america.cancun",
+		"name" : "美洲\/坎昆",
+		"language" : "zh-CN",
+		"value" : "美洲\/坎昆"
+	},
+	{
+		"code" : "tz.america.chihuahua",
+		"name" : "美洲\/墨西哥奇瓦瓦",
+		"language" : "zh-CN",
+		"value" : "美洲\/墨西哥奇瓦瓦"
+	},
+	{
+		"code" : "tz.america.ciudad_juarez",
+		"name" : "美洲\/华雷斯城",
+		"language" : "zh-CN",
+		"value" : "美洲\/华雷斯城"
+	},
+	{
+		"code" : "tz.america.ensenada",
+		"name" : "美洲\/恩森纳达",
+		"language" : "zh-CN",
+		"value" : "美洲\/恩森纳达"
+	},
+	{
+		"code" : "tz.america.hermosillo",
+		"name" : "美洲\/埃莫西约",
+		"language" : "zh-CN",
+		"value" : "美洲\/埃莫西约"
+	},
+	{
+		"code" : "tz.america.matamoros",
+		"name" : "美洲\/马塔莫罗斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/马塔莫罗斯"
+	},
+	{
+		"code" : "tz.america.mazatlan",
+		"name" : "美洲\/马萨特兰",
+		"language" : "zh-CN",
+		"value" : "美洲\/马萨特兰"
+	},
+	{
+		"code" : "tz.america.merida",
+		"name" : "美洲\/梅里达",
+		"language" : "zh-CN",
+		"value" : "美洲\/梅里达"
+	},
+	{
+		"code" : "tz.america.mexico_city",
+		"name" : "美洲\/墨西哥城",
+		"language" : "zh-CN",
+		"value" : "美洲\/墨西哥城"
+	},
+	{
+		"code" : "tz.america.monterrey",
+		"name" : "美洲\/蒙特雷",
+		"language" : "zh-CN",
+		"value" : "美洲\/蒙特雷"
+	},
+	{
+		"code" : "tz.america.ojinaga",
+		"name" : "美国\/奥希纳加",
+		"language" : "zh-CN",
+		"value" : "美国\/奥希纳加"
+	},
+	{
+		"code" : "tz.america.tijuana",
+		"name" : "美洲\/蒂华纳",
+		"language" : "zh-CN",
+		"value" : "美洲\/蒂华纳"
+	},
+	{
+		"code" : "tz.mexico.bajanorte",
+		"name" : "墨西哥\/下加利福尼亚",
+		"language" : "zh-CN",
+		"value" : "墨西哥\/下加利福尼亚"
+	},
+	{
+		"code" : "tz.mexico.bajasur",
+		"name" : "墨西哥\/下加利福尼亚",
+		"language" : "zh-CN",
+		"value" : "墨西哥\/下加利福尼亚"
+	},
+	{
+		"code" : "tz.mexico.general",
+		"name" : "墨西哥\/中部",
+		"language" : "zh-CN",
+		"value" : "墨西哥\/中部"
+	},
+	{
+		"code" : "tz.america.managua",
+		"name" : "美洲\/马那瓜",
+		"language" : "zh-CN",
+		"value" : "美洲\/马那瓜"
+	},
+	{
+		"code" : "tz.america.el_salvador",
+		"name" : "美洲\/萨尔瓦多",
+		"language" : "zh-CN",
+		"value" : "美洲\/萨尔瓦多"
+	},
+	{
+		"code" : "tz.america.sst_kitts",
+		"name" : "美洲\/圣基茨",
+		"language" : "zh-CN",
+		"value" : "美洲\/圣基茨"
+	},
+	{
+		"code" : "tz.america.st_lucia",
+		"name" : "美洲\/圣卢西亚",
+		"language" : "zh-CN",
+		"value" : "美洲\/圣卢西亚"
+	},
+	{
+		"code" : "tz.america.st_vincent",
+		"name" : "美洲\/圣文森特",
+		"language" : "zh-CN",
+		"value" : "美洲\/圣文森特"
+	},
+	{
+		"code" : "tz.america.paramaribo",
+		"name" : "美洲\/帕拉马里博",
+		"language" : "zh-CN",
+		"value" : "美洲\/帕拉马里博"
+	},
+	{
+		"code" : "tz.america.port_of_spain",
+		"name" : "美洲\/西班牙港",
+		"language" : "zh-CN",
+		"value" : "美洲\/西班牙港"
+	},
+	{
+		"code" : "tz.america.guatemala",
+		"name" : "美洲\/危地马拉",
+		"language" : "zh-CN",
+		"value" : "美洲\/危地马拉"
+	},
+	{
+		"code" : "america\/Caracas",
+		"name" : "美洲\/加拉加斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/加拉加斯"
+	},
+	{
+		"code" : "tz.america.montevideo",
+		"name" : "美洲\/蒙得维的亚",
+		"language" : "zh-CN",
+		"value" : "美洲\/蒙得维的亚"
+	},
+	{
+		"code" : "tz.america.jamaica",
+		"name" : "美洲\/牙买加",
+		"language" : "zh-CN",
+		"value" : "美洲\/牙买加"
+	},
+	{
+		"code" : "tz.jamaica",
+		"name" : "牙买加",
+		"language" : "zh-CN",
+		"value" : "牙买加"
+	},
+	{
+		"code" : "tz.america.punta_arenas",
+		"name" : "美洲\/蓬塔阿雷纳斯",
+		"language" : "zh-CN",
+		"value" : "美洲\/蓬塔阿雷纳斯"
+	},
+	{
+		"code" : "tz.america.santiago",
+		"name" : "美洲\/圣地亚哥",
+		"language" : "zh-CN",
+		"value" : "美洲\/圣地亚哥"
+	},
+	{
+		"code" : "tz.chile.continental",
+		"name" : "智利\/智利大陆",
+		"language" : "zh-CN",
+		"value" : "智利\/智利大陆"
+	},
+	{
+		"code" : "tz.chile.easterisland",
+		"name" : "智利\/复活节岛",
+		"language" : "zh-CN",
+		"value" : "智利\/复活节岛"
+	},
+	{
+		"code" : "tz.pacific.easter",
+		"name" : "太平洋\/复活节岛",
+		"language" : "zh-CN",
+		"value" : "太平洋\/复活节岛"
+	},
+	{
+		"code" : "ct.serbia",
+		"name" : "塞尔维亚",
+		"language" : "zh-CN",
+		"value" : "塞尔维亚"
+	},
+	{
+		"code" : "ct.georgia",
+		"name" : "格鲁吉亚",
+		"language" : "zh-CN",
+		"value" : "格鲁吉亚"
+	},
+	{
+		"code" : "ct.argentina",
+		"name" : "阿根廷",
+		"language" : "zh-CN",
+		"value" : "阿根廷"
+	},
+	{
+		"code" : "ct.antiguaandbarbuda",
+		"name" : "安提瓜和巴布达",
+		"language" : "zh-CN",
+		"value" : "安提瓜和巴布达"
+	},
+	{
+		"code" : "ct.barbados",
+		"name" : "巴巴多斯",
+		"language" : "zh-CN",
+		"value" : "巴巴多斯"
+	},
+	{
+		"code" : "ct.bahamas",
+		"name" : "巴哈马",
+		"language" : "zh-CN",
+		"value" : "巴哈马"
+	},
+	{
+		"code" : "ct.paraguay",
+		"name" : "巴拉圭",
+		"language" : "zh-CN",
+		"value" : "巴拉圭"
+	},
+	{
+		"code" : "ct.panama",
+		"name" : "巴拿马",
+		"language" : "zh-CN",
+		"value" : "巴拿马"
+	},
+	{
+		"code" : "ct.brazil",
+		"name" : "巴西",
+		"language" : "zh-CN",
+		"value" : "巴西"
+	},
+	{
+		"code" : "ct.bolivia",
+		"name" : "玻利维亚",
+		"language" : "zh-CN",
+		"value" : "玻利维亚"
+	},
+	{
+		"code" : "ct.belize",
+		"name" : "伯利兹",
+		"language" : "zh-CN",
+		"value" : "伯利兹"
+	},
+	{
+		"code" : "ct.dominica",
+		"name" : "多米尼加",
+		"language" : "zh-CN",
+		"value" : "多米尼加"
+	},
+	{
+		"code" : "ct.ecuador",
+		"name" : "厄瓜多尔",
+		"language" : "zh-CN",
+		"value" : "厄瓜多尔"
+	},
+	{
+		"code" : "ct.colombia",
+		"name" : "哥伦比亚",
+		"language" : "zh-CN",
+		"value" : "哥伦比亚"
+	},
+	{
+		"code" : "ct.costarica",
+		"name" : "哥斯达黎加",
+		"language" : "zh-CN",
+		"value" : "哥斯达黎加"
+	},
+	{
+		"code" : "ct.grenada",
+		"name" : "格林纳达",
+		"language" : "zh-CN",
+		"value" : "格林纳达"
+	},
+	{
+		"code" : "ct.cuba",
+		"name" : "古巴",
+		"language" : "zh-CN",
+		"value" : "古巴"
+	},
+	{
+		"code" : "ct.guyana",
+		"name" : "圭亚那",
+		"language" : "zh-CN",
+		"value" : "圭亚那"
+	},
+	{
+		"code" : "ct.haiti",
+		"name" : "海地",
+		"language" : "zh-CN",
+		"value" : "海地"
+	},
+	{
+		"code" : "ct.honduras",
+		"name" : "洪都拉斯",
+		"language" : "zh-CN",
+		"value" : "洪都拉斯"
+	},
+	{
+		"code" : "ct.canada",
+		"name" : "加拿大",
+		"language" : "zh-CN",
+		"value" : "加拿大"
+	},
+	{
+		"code" : "ct.unitedstates",
+		"name" : "美国",
+		"language" : "zh-CN",
+		"value" : "美国"
+	},
+	{
+		"code" : "ct.peru",
+		"name" : "秘鲁",
+		"language" : "zh-CN",
+		"value" : "秘鲁"
+	},
+	{
+		"code" : "ct.mexico",
+		"name" : "墨西哥",
+		"language" : "zh-CN",
+		"value" : "墨西哥"
+	},
+	{
+		"code" : "ct.nicaragua",
+		"name" : "尼加拉瓜",
+		"language" : "zh-CN",
+		"value" : "尼加拉瓜"
+	},
+	{
+		"code" : "ct.elsalvador",
+		"name" : "萨尔瓦多",
+		"language" : "zh-CN",
+		"value" : "萨尔瓦多"
+	},
+	{
+		"code" : "ct.saintkittsandnevis",
+		"name" : "圣基茨和尼维斯",
+		"language" : "zh-CN",
+		"value" : "圣基茨和尼维斯"
+	},
+	{
+		"code" : "ct.saintlucia",
+		"name" : "圣卢西亚",
+		"language" : "zh-CN",
+		"value" : "圣卢西亚"
+	},
+	{
+		"code" : "ct.saintvincentandthegrenadines",
+		"name" : "圣文森特和格林纳丁斯",
+		"language" : "zh-CN",
+		"value" : "圣文森特和格林纳丁斯"
+	},
+	{
+		"code" : "ct.suriname",
+		"name" : "苏里南",
+		"language" : "zh-CN",
+		"value" : "苏里南"
+	},
+	{
+		"code" : "ct.trinidadandtobago",
+		"name" : "特立尼达和多巴哥",
+		"language" : "zh-CN",
+		"value" : "特立尼达和多巴哥"
+	},
+	{
+		"code" : "ct.guatemala",
+		"name" : "危地马拉",
+		"language" : "zh-CN",
+		"value" : "危地马拉"
+	},
+	{
+		"code" : "ct.venezuela",
+		"name" : "委内瑞拉",
+		"language" : "zh-CN",
+		"value" : "委内瑞拉"
+	},
+	{
+		"code" : "ct.uruguay",
+		"name" : "乌拉圭",
+		"language" : "zh-CN",
+		"value" : "乌拉圭"
+	},
+	{
+		"code" : "ct.jamaica",
+		"name" : "牙买加",
+		"language" : "zh-CN",
+		"value" : "牙买加"
+	},
+	{
+		"code" : "ct.chile",
+		"name" : "智利",
+		"language" : "zh-CN",
+		"value" : "智利"
+	},
+	{
+		"code" : "tz.asia.kuwait",
+		"name" : "亚洲\/科威特",
+		"language" : "zh-CN",
+		"value" : "亚洲\/科威特"
+	},
+	{
+		"code" : "tz.asia.phnom_penh",
+		"name" : "亚洲\/金边",
+		"language" : "zh-CN",
+		"value" : "亚洲\/金边"
+	},
+	{
+		"code" : "tz.asia.famagusta",
+		"name" : "亚洲\/法马古斯塔",
+		"language" : "zh-CN",
+		"value" : "亚洲\/法马古斯塔"
+	},
+	{
+		"code" : "tz.asia.nicosia",
+		"name" : "亚洲\/尼科西亚",
+		"language" : "zh-CN",
+		"value" : "亚洲\/尼科西亚"
+	},
+	{
+		"code" : "tz.atlantic.cape_verde",
+		"name" : "大西洋\/佛得角",
+		"language" : "zh-CN",
+		"value" : "大西洋\/佛得角"
+	},
+	{
+		"code" : "tz.africa.algiers",
+		"name" : "非洲\/阿尔及尔",
+		"language" : "zh-CN",
+		"value" : "非洲\/阿尔及尔"
+	},
+	{
+		"code" : "tz.africa.el_aaiun",
+		"name" : "非洲\/艾尔艾因",
+		"language" : "zh-CN",
+		"value" : "非洲\/艾尔艾因"
+	},
+	{
+		"code" : "tz.africa.cairo",
+		"name" : "非洲\/开罗",
+		"language" : "zh-CN",
+		"value" : "非洲\/开罗"
+	},
+	{
+		"code" : "tz.africa.addis_ababa",
+		"name" : "非洲\/亚的斯亚贝巴",
+		"language" : "zh-CN",
+		"value" : "非洲\/亚的斯亚贝巴"
+	},
+	{
+		"code" : "tz.africa.mbabane",
+		"name" : "非洲\/姆巴巴内",
+		"language" : "zh-CN",
+		"value" : "非洲\/姆巴巴内"
+	},
+	{
+		"code" : "tz.africa.luanda",
+		"name" : "非洲\/罗安达",
+		"language" : "zh-CN",
+		"value" : "非洲\/罗安达"
+	},
+	{
+		"code" : "tz.africa.porto-novo",
+		"name" : "非洲\/波多诺伏",
+		"language" : "zh-CN",
+		"value" : "非洲\/波多诺伏"
+	},
+	{
+		"code" : "tz.africa.gaborone",
+		"name" : "非洲\/加博罗内",
+		"language" : "zh-CN",
+		"value" : "非洲\/加博罗内"
+	},
+	{
+		"code" : "tz.africa.ouagadougou",
+		"name" : "非洲\/瓦加杜古",
+		"language" : "zh-CN",
+		"value" : "非洲\/瓦加杜古"
+	},
+	{
+		"code" : "tz.africa.bujumbura",
+		"name" : "非洲\/布琼布拉",
+		"language" : "zh-CN",
+		"value" : "非洲\/布琼布拉"
+	},
+	{
+		"code" : "tz.africa.asmara",
+		"name" : "非洲\/阿斯马拉",
+		"language" : "zh-CN",
+		"value" : "非洲\/阿斯马拉"
+	},
+	{
+		"code" : "tz.africa.asmera",
+		"name" : "非洲\/阿斯马拉",
+		"language" : "zh-CN",
+		"value" : "非洲\/阿斯马拉"
+	},
+	{
+		"code" : "tz.africa.banjul",
+		"name" : "非洲\/班珠尔",
+		"language" : "zh-CN",
+		"value" : "非洲\/班珠尔"
+	},
+	{
+		"code" : "tz.africa.brazzaville",
+		"name" : "非洲\/布拉柴维尔",
+		"language" : "zh-CN",
+		"value" : "非洲\/布拉柴维尔"
+	},
+	{
+		"code" : "tz.africa.kinshasa",
+		"name" : "非洲\/金沙萨",
+		"language" : "zh-CN",
+		"value" : "非洲\/金沙萨"
+	},
+	{
+		"code" : "tz.africa.lubumbashi",
+		"name" : "非洲\/卢本巴希",
+		"language" : "zh-CN",
+		"value" : "非洲\/卢本巴希"
+	},
+	{
+		"code" : "tz.africa.djibouti",
+		"name" : "非洲\/吉布提",
+		"language" : "zh-CN",
+		"value" : "非洲\/吉布提"
+	},
+	{
+		"code" : "tz.africa.conakry",
+		"name" : "非洲\/科纳克里",
+		"language" : "zh-CN",
+		"value" : "非洲\/科纳克里"
+	},
+	{
+		"code" : "tz.africa.bissau",
+		"name" : "非洲\/比绍",
+		"language" : "zh-CN",
+		"value" : "非洲\/比绍"
+	},
+	{
+		"code" : "tz.africa.accra",
+		"name" : "非洲\/阿克拉",
+		"language" : "zh-CN",
+		"value" : "非洲\/阿克拉"
+	},
+	{
+		"code" : "tz.africa.libreville",
+		"name" : "非洲\/利伯维尔",
+		"language" : "zh-CN",
+		"value" : "非洲\/利伯维尔"
+	},
+	{
+		"code" : "tz.africa.harare",
+		"name" : "非洲\/哈拉雷",
+		"language" : "zh-CN",
+		"value" : "非洲\/哈拉雷"
+	},
+	{
+		"code" : "tz.africa.douala",
+		"name" : "非洲\/杜阿拉",
+		"language" : "zh-CN",
+		"value" : "非洲\/杜阿拉"
+	},
+	{
+		"code" : "tz.africa.abidjan",
+		"name" : "非洲\/阿比让",
+		"language" : "zh-CN",
+		"value" : "非洲\/阿比让"
+	},
+	{
+		"code" : "tz.africa.nairobi",
+		"name" : "非洲\/内罗毕",
+		"language" : "zh-CN",
+		"value" : "非洲\/内罗毕"
+	},
+	{
+		"code" : "tz.africa.maseru",
+		"name" : "非洲\/马塞卢",
+		"language" : "zh-CN",
+		"value" : "非洲\/马塞卢"
+	},
+	{
+		"code" : "tz.africa.monrovia",
+		"name" : "非洲\/蒙罗维亚",
+		"language" : "zh-CN",
+		"value" : "非洲\/蒙罗维亚"
+	},
+	{
+		"code" : "tz.africa.tripoli",
+		"name" : "非洲\/的黎波里",
+		"language" : "zh-CN",
+		"value" : "非洲\/的黎波里"
+	},
+	{
+		"code" : "tz.libya",
+		"name" : "利比亚",
+		"language" : "zh-CN",
+		"value" : "利比亚"
+	},
+	{
+		"code" : "tz.africa.kigali",
+		"name" : "非洲\/基加利",
+		"language" : "zh-CN",
+		"value" : "非洲\/基加利"
+	},
+	{
+		"code" : "tz.indian.antananarivo",
+		"name" : "非洲\/安塔那那利佛",
+		"language" : "zh-CN",
+		"value" : "非洲\/安塔那那利佛"
+	},
+	{
+		"code" : "tz.africa.blantyre",
+		"name" : "非洲\/布兰太尔",
+		"language" : "zh-CN",
+		"value" : "非洲\/布兰太尔"
+	},
+	{
+		"code" : "tz.africa.bamako",
+		"name" : "非洲\/巴马科",
+		"language" : "zh-CN",
+		"value" : "非洲\/巴马科"
+	},
+	{
+		"code" : "tz.africa.nouakchott",
+		"name" : "非洲\/努瓦克肖特",
+		"language" : "zh-CN",
+		"value" : "非洲\/努瓦克肖特"
+	},
+	{
+		"code" : "tz.africa.casablanca",
+		"name" : "非洲\/卡萨布兰卡",
+		"language" : "zh-CN",
+		"value" : "非洲\/卡萨布兰卡"
+	},
+	{
+		"code" : "tz.africa.maputo",
+		"name" : "非洲\/马普托",
+		"language" : "zh-CN",
+		"value" : "非洲\/马普托"
+	},
+	{
+		"code" : "tz.africa.niamey",
+		"name" : "非洲\/尼亚美",
+		"language" : "zh-CN",
+		"value" : "非洲\/尼亚美"
+	},
+	{
+		"code" : "tz.africa.lagos",
+		"name" : "非洲\/拉各斯",
+		"language" : "zh-CN",
+		"value" : "非洲\/拉各斯"
+	},
+	{
+		"code" : "tz.africa.freetown",
+		"name" : "非洲\/弗里敦",
+		"language" : "zh-CN",
+		"value" : "非洲\/弗里敦"
+	},
+	{
+		"code" : "tz.africa.dakar",
+		"name" : "非洲\/达喀尔",
+		"language" : "zh-CN",
+		"value" : "非洲\/达喀尔"
+	},
+	{
+		"code" : "tz.africa.khartoum",
+		"name" : "非洲\/喀土穆",
+		"language" : "zh-CN",
+		"value" : "非洲\/喀土穆"
+	},
+	{
+		"code" : "tz.africa.mogadishu",
+		"name" : "非洲\/摩加迪沙",
+		"language" : "zh-CN",
+		"value" : "非洲\/摩加迪沙"
+	},
+	{
+		"code" : "tz.africa.dar_es_salaam",
+		"name" : "非洲\/达累斯萨拉姆",
+		"language" : "zh-CN",
+		"value" : "非洲\/达累斯萨拉姆"
+	},
+	{
+		"code" : "tz.africa.tunis",
+		"name" : "非洲\/突尼斯",
+		"language" : "zh-CN",
+		"value" : "非洲\/突尼斯"
+	},
+	{
+		"code" : "tz.africa.kampala",
+		"name" : "非洲\/坎帕拉",
+		"language" : "zh-CN",
+		"value" : "非洲\/坎帕拉"
+	},
+	{
+		"code" : "tz.africa.timbuktu",
+		"name" : "非洲\/廷巴克图",
+		"language" : "zh-CN",
+		"value" : "非洲\/廷巴克图"
+	},
+	{
+		"code" : "tz.africa.lusaka",
+		"name" : "非洲\/卢萨卡",
+		"language" : "zh-CN",
+		"value" : "非洲\/卢萨卡"
+	},
+	{
+		"code" : "tz.africa.ndjamena",
+		"name" : "非洲\/恩贾梅纳",
+		"language" : "zh-CN",
+		"value" : "非洲\/恩贾梅纳"
+	},
+	{
+		"code" : "tz.africa.bangui",
+		"name" : "非洲\/班吉",
+		"language" : "zh-CN",
+		"value" : "非洲\/班吉"
+	},
+	{
+		"code" : "tz.antarctica.casey",
+		"name" : "南极洲\/凯西",
+		"language" : "zh-CN",
+		"value" : "南极洲\/凯西"
+	},
+	{
+		"code" : "tz.antarctica.davis",
+		"name" : "南极洲\/戴维斯",
+		"language" : "zh-CN",
+		"value" : "南极洲\/戴维斯"
+	},
+	{
+		"code" : "tz.antarctica.macquarie",
+		"name" : "南极洲\/麦夸里",
+		"language" : "zh-CN",
+		"value" : "南极洲\/麦夸里"
+	},
+	{
+		"code" : "tz.antarctica.mawson",
+		"name" : "南极洲\/莫森",
+		"language" : "zh-CN",
+		"value" : "南极洲\/莫森"
+	},
+	{
+		"code" : "tz.australia.act",
+		"name" : "澳洲\/首都地区",
+		"language" : "zh-CN",
+		"value" : "澳洲\/首都地区"
+	},
+	{
+		"code" : "tz.australia.adelaide",
+		"name" : "澳洲\/阿德莱德",
+		"language" : "zh-CN",
+		"value" : "澳洲\/阿德莱德"
+	},
+	{
+		"code" : "tz.australia.brisbane",
+		"name" : "澳洲\/布里斯班",
+		"language" : "zh-CN",
+		"value" : "澳洲\/布里斯班"
+	},
+	{
+		"code" : "tz.australia.broken_hill",
+		"name" : "澳洲\/布罗肯希尔",
+		"language" : "zh-CN",
+		"value" : "澳洲\/布罗肯希尔"
+	},
+	{
+		"code" : "tz.australia.canberra",
+		"name" : "澳洲\/堪培拉",
+		"language" : "zh-CN",
+		"value" : "澳洲\/堪培拉"
+	},
+	{
+		"code" : "tz.australia.currie",
+		"name" : "澳洲\/库里",
+		"language" : "zh-CN",
+		"value" : "澳洲\/库里"
+	},
+	{
+		"code" : "australia.darwin",
+		"name" : "澳洲\/达尔文",
+		"language" : "zh-CN",
+		"value" : "澳洲\/达尔文"
+	},
+	{
+		"code" : "tz.australia.eucla",
+		"name" : "澳洲\/尤克拉",
+		"language" : "zh-CN",
+		"value" : "澳洲\/尤克拉"
+	},
+	{
+		"code" : "tz.australia.lhi",
+		"name" : "澳洲\/豪勋爵岛",
+		"language" : "zh-CN",
+		"value" : "澳洲\/豪勋爵岛"
+	},
+	{
+		"code" : "tz.australia.lindeman",
+		"name" : "澳洲\/林德曼",
+		"language" : "zh-CN",
+		"value" : "澳洲\/林德曼"
+	},
+	{
+		"code" : "tz.australia.lord_howe",
+		"name" : "澳洲\/洛德豪岛",
+		"language" : "zh-CN",
+		"value" : "澳洲\/洛德豪岛"
+	},
+	{
+		"code" : "tz.australia.Melbourne",
+		"name" : "澳洲\/墨尔本",
+		"language" : "zh-CN",
+		"value" : "澳洲\/墨尔本"
+	},
+	{
+		"code" : "tz.australia.north",
+		"name" : "澳洲\/北部地区",
+		"language" : "zh-CN",
+		"value" : "澳洲\/北部地区"
+	},
+	{
+		"code" : "tz.australia.nsw",
+		"name" : "澳洲\/新南威尔士",
+		"language" : "zh-CN",
+		"value" : "澳洲\/新南威尔士"
+	},
+	{
+		"code" : "tz.australia.perth",
+		"name" : "澳洲\/珀斯",
+		"language" : "zh-CN",
+		"value" : "澳洲\/珀斯"
+	},
+	{
+		"code" : "tz.australia.queensland",
+		"name" : "澳洲\/昆士兰",
+		"language" : "zh-CN",
+		"value" : "澳洲\/昆士兰"
+	},
+	{
+		"code" : "tz.australia.south",
+		"name" : "澳洲\/南澳大利亚",
+		"language" : "zh-CN",
+		"value" : "澳洲\/南澳大利亚"
+	},
+	{
+		"code" : "tz.australia.sydney",
+		"name" : "澳洲\/悉尼",
+		"language" : "zh-CN",
+		"value" : "澳洲\/悉尼"
+	},
+	{
+		"code" : "tz.australia.tasmania",
+		"name" : "澳洲\/塔斯马尼亚",
+		"language" : "zh-CN",
+		"value" : "澳洲\/塔斯马尼亚"
+	},
+	{
+		"code" : "tz.australia.victoria",
+		"name" : "澳洲\/维多利亚",
+		"language" : "zh-CN",
+		"value" : "澳洲\/维多利亚"
+	},
+	{
+		"code" : "tz.australia.west",
+		"name" : "澳洲\/西部",
+		"language" : "zh-CN",
+		"value" : "澳洲\/西部"
+	},
+	{
+		"code" : "tz.australia.yancowinna",
+		"name" : "澳洲\/扬科维纳",
+		"language" : "zh-CN",
+		"value" : "澳洲\/扬科维纳"
+	},
+	{
+		"code" : "tz.indian.christmas",
+		"name" : "印度洋\/圣诞节岛",
+		"language" : "zh-CN",
+		"value" : "印度洋\/圣诞节岛"
+	},
+	{
+		"code" : "tz.indian.cocos",
+		"name" : "印度洋\/科科斯群岛",
+		"language" : "zh-CN",
+		"value" : "印度洋\/科科斯群岛"
+	},
+	{
+		"code" : "tz.pacific.norfolk",
+		"name" : "太平洋\/诺福克",
+		"language" : "zh-CN",
+		"value" : "太平洋\/诺福克"
+	},
+	{
+		"code" : "tz.australia.hobart",
+		"name" : "澳洲\/霍巴特",
+		"language" : "zh-CN",
+		"value" : "澳洲\/霍巴特"
+	},
+	{
+		"code" : "tz.indian.comoro",
+		"name" : "印度洋\/科摩罗",
+		"language" : "zh-CN",
+		"value" : "印度洋\/科摩罗"
+	},
+	{
+		"code" : "tz.indian.maldives",
+		"name" : "印度洋\/马尔代夫",
+		"language" : "zh-CN",
+		"value" : "印度洋\/马尔代夫"
+	},
+	{
+		"code" : "tz.indian.chagos",
+		"name" : "印度洋\/查戈斯",
+		"language" : "zh-CN",
+		"value" : "印度洋\/查戈斯"
+	},
+	{
+		"code" : "tz.indian.mauritius",
+		"name" : "印度洋\/毛里求斯",
+		"language" : "zh-CN",
+		"value" : "印度洋\/毛里求斯"
+	},
+	{
+		"code" : "tz.indian.mahe",
+		"name" : "印度洋\/马埃",
+		"language" : "zh-CN",
+		"value" : "印度洋\/马埃"
+	},
+	{
+		"code" : "tz.pacific.bougainville",
+		"name" : "太平洋\/布干维尔",
+		"language" : "zh-CN",
+		"value" : "太平洋\/布干维尔"
+	},
+	{
+		"code" : "tz.pacific.port_moresby",
+		"name" : "太平洋\/莫尔兹比港",
+		"language" : "zh-CN",
+		"value" : "太平洋\/莫尔兹比港"
+	},
+	{
+		"code" : "tz.pacific.gambier",
+		"name" : "太平洋\/甘比尔",
+		"language" : "zh-CN",
+		"value" : "太平洋\/甘比尔"
+	},
+	{
+		"code" : "tz.pacific.fiji",
+		"name" : "太平洋\/斐济",
+		"language" : "zh-CN",
+		"value" : "太平洋\/斐济"
+	},
+	{
+		"code" : "tz.pacific.enderbury",
+		"name" : "太平洋\/恩德伯里",
+		"language" : "zh-CN",
+		"value" : "太平洋\/恩德伯里"
+	},
+	{
+		"code" : "tz.pacific.kanton",
+		"name" : "太平洋\/坎顿",
+		"language" : "zh-CN",
+		"value" : "太平洋\/坎顿"
+	},
+	{
+		"code" : "tz.pacific.kiritimati",
+		"name" : "太平洋\/基里蒂马蒂",
+		"language" : "zh-CN",
+		"value" : "太平洋\/基里蒂马蒂"
+	},
+	{
+		"code" : "tz.pacific.tarawa",
+		"name" : "太平洋\/塔拉瓦",
+		"language" : "zh-CN",
+		"value" : "太平洋\/塔拉瓦"
+	},
+	{
+		"code" : "tz.pacific.rarotonga",
+		"name" : "太平洋\/拉罗汤加岛",
+		"language" : "zh-CN",
+		"value" : "太平洋\/拉罗汤加岛"
+	},
+	{
+		"code" : "tz.pacific.kwajalein",
+		"name" : "太平洋\/夸贾林",
+		"language" : "zh-CN",
+		"value" : "太平洋\/夸贾林"
+	},
+	{
+		"code" : "tz.pacific.majuro",
+		"name" : "太平洋\/马绍尔",
+		"language" : "zh-CN",
+		"value" : "太平洋\/马绍尔"
+	},
+	{
+		"code" : "tz.pacific.chuuk",
+		"name" : "太平洋\/楚克",
+		"language" : "zh-CN",
+		"value" : "太平洋\/楚克"
+	},
+	{
+		"code" : "tz.pacific.kosrae",
+		"name" : "太平洋\/科斯雷",
+		"language" : "zh-CN",
+		"value" : "太平洋\/科斯雷"
+	},
+	{
+		"code" : "tz.pacific.ponape",
+		"name" : "太平洋\/波纳佩",
+		"language" : "zh-CN",
+		"value" : "太平洋\/波纳佩"
+	},
+	{
+		"code" : "tz.pacific.truk",
+		"name" : "太平洋\/楚克",
+		"language" : "zh-CN",
+		"value" : "太平洋\/楚克"
+	},
+	{
+		"code" : "tz.pacific.yap",
+		"name" : "太平洋\/雅浦",
+		"language" : "zh-CN",
+		"value" : "太平洋\/雅浦"
+	},
+	{
+		"code" : "tz.pacific.niue",
+		"name" : "太平洋\/尼乌埃",
+		"language" : "zh-CN",
+		"value" : "太平洋\/尼乌埃"
+	},
+	{
+		"code" : "tz.pacific.palau",
+		"name" : "太平洋\/帕劳",
+		"language" : "zh-CN",
+		"value" : "太平洋\/帕劳"
+	},
+	{
+		"code" : "tz.pacific.apia",
+		"name" : "太平洋\/阿皮亚",
+		"language" : "zh-CN",
+		"value" : "太平洋\/阿皮亚"
+	},
+	{
+		"code" : "tz.pacific.samoa",
+		"name" : "太平洋\/萨摩亚",
+		"language" : "zh-CN",
+		"value" : "太平洋\/萨摩亚"
+	},
+	{
+		"code" : "tz.pacific.guadalcanal",
+		"name" : "太平洋\/瓜达康纳尔",
+		"language" : "zh-CN",
+		"value" : "太平洋\/瓜达康纳尔"
+	},
+	{
+		"code" : "pacific.tongatapu",
+		"name" : "太平洋\/汤加塔普",
+		"language" : "zh-CN",
+		"value" : "太平洋\/汤加塔普"
+	},
+	{
+		"code" : "tz.pacific.funafuti",
+		"name" : "太平洋\/富纳富提",
+		"language" : "zh-CN",
+		"value" : "太平洋\/富纳富提"
+	},
+	{
+		"code" : "tz.pacific.efate",
+		"name" : "太平洋\/埃法特",
+		"language" : "zh-CN",
+		"value" : "太平洋\/埃法特"
+	},
+	{
+		"code" : "tz.pacific.noumea",
+		"name" : "太平洋\/努美阿",
+		"language" : "zh-CN",
+		"value" : "太平洋\/努美阿"
+	},
+	{
+		"code" : "tz.pacific.auckland",
+		"name" : "太平洋\/奥克兰",
+		"language" : "zh-CN",
+		"value" : "太平洋\/奥克兰"
+	},
+	{
+		"code" : "tz.pacific.chatham",
+		"name" : "太平洋\/查塔姆",
+		"language" : "zh-CN",
+		"value" : "太平洋\/查塔姆"
+	},
+	{
+		"code" : "tz.pacific.fakaofo",
+		"name" : "太平洋\/法考福",
+		"language" : "zh-CN",
+		"value" : "太平洋\/法考福"
+	},
+	{
+		"code" : "tz.antarctica.syowa",
+		"name" : "南极洲\/索瓦",
+		"language" : "zh-CN",
+		"value" : "南极洲\/索瓦"
+	},
+	{
+		"code" : "ct.kuwait",
+		"name" : "科威特",
+		"language" : "zh-CN",
+		"value" : "科威特"
+	},
+	{
+		"code" : "ct.cambodia",
+		"name" : "柬埔寨",
+		"language" : "zh-CN",
+		"value" : "柬埔寨"
+	},
+	{
+		"code" : "ct.capeverde",
+		"name" : "佛得角",
+		"language" : "zh-CN",
+		"value" : "佛得角"
+	},
+	{
+		"code" : "ct.algeria",
+		"name" : "阿尔及利亚",
+		"language" : "zh-CN",
+		"value" : "阿尔及利亚"
+	},
+	{
+		"code" : "ct.egypt",
+		"name" : "埃及",
+		"language" : "zh-CN",
+		"value" : "埃及"
+	},
+	{
+		"code" : "ct.ethiopia",
+		"name" : "埃塞俄比亚",
+		"language" : "zh-CN",
+		"value" : "埃塞俄比亚"
+	},
+	{
+		"code" : "ct.ezhou",
+		"name" : "埃祖尔韦尼",
+		"language" : "zh-CN",
+		"value" : "埃祖尔韦尼"
+	},
+	{
+		"code" : "ct.angola",
+		"name" : "安哥拉",
+		"language" : "zh-CN",
+		"value" : "安哥拉"
+	},
+	{
+		"code" : "ct.benin",
+		"name" : "贝宁",
+		"language" : "zh-CN",
+		"value" : "贝宁"
+	},
+	{
+		"code" : "ct.botswana",
+		"name" : "博茨瓦纳",
+		"language" : "zh-CN",
+		"value" : "博茨瓦纳"
+	},
+	{
+		"code" : "ct.burkinafaso",
+		"name" : "布基纳法索",
+		"language" : "zh-CN",
+		"value" : "布基纳法索"
+	},
+	{
+		"code" : "ct.burundi",
+		"name" : "布隆迪",
+		"language" : "zh-CN",
+		"value" : "布隆迪"
+	},
+	{
+		"code" : "ct.eritrea",
+		"name" : "厄立特里亚",
+		"language" : "zh-CN",
+		"value" : "厄立特里亚"
+	},
+	{
+		"code" : "ct.gambia",
+		"name" : "冈比亚",
+		"language" : "zh-CN",
+		"value" : "冈比亚"
+	},
+	{
+		"code" : "ct.congo",
+		"name" : "刚果",
+		"language" : "zh-CN",
+		"value" : "刚果"
+	},
+	{
+		"code" : "ct.djibouti",
+		"name" : "吉布提",
+		"language" : "zh-CN",
+		"value" : "吉布提"
+	},
+	{
+		"code" : "ct.guinea",
+		"name" : "几内亚",
+		"language" : "zh-CN",
+		"value" : "几内亚"
+	},
+	{
+		"code" : "ct.guinea-bissau",
+		"name" : "几内亚比绍",
+		"language" : "zh-CN",
+		"value" : "几内亚比绍"
+	},
+	{
+		"code" : "ct.ghana",
+		"name" : "加纳",
+		"language" : "zh-CN",
+		"value" : "加纳"
+	},
+	{
+		"code" : "ct.gabon",
+		"name" : "加蓬",
+		"language" : "zh-CN",
+		"value" : "加蓬"
+	},
+	{
+		"code" : "ct.zimbabwe",
+		"name" : "津巴布韦",
+		"language" : "zh-CN",
+		"value" : "津巴布韦"
+	},
+	{
+		"code" : "ct.cameroon",
+		"name" : "喀麦隆",
+		"language" : "zh-CN",
+		"value" : "喀麦隆"
+	},
+	{
+		"code" : "ct.ivorycoast",
+		"name" : "科特迪瓦",
+		"language" : "zh-CN",
+		"value" : "科特迪瓦"
+	},
+	{
+		"code" : "ct.kenya",
+		"name" : "肯尼亚",
+		"language" : "zh-CN",
+		"value" : "肯尼亚"
+	},
+	{
+		"code" : "ct.lesotho",
+		"name" : "莱索托",
+		"language" : "zh-CN",
+		"value" : "莱索托"
+	},
+	{
+		"code" : "ct.liberia",
+		"name" : "利比里亚",
+		"language" : "zh-CN",
+		"value" : "利比里亚"
+	},
+	{
+		"code" : "ct.libya",
+		"name" : "利比亚",
+		"language" : "zh-CN",
+		"value" : "利比亚"
+	},
+	{
+		"code" : "ct.rwanda",
+		"name" : "卢旺达",
+		"language" : "zh-CN",
+		"value" : "卢旺达"
+	},
+	{
+		"code" : "ct.madagascar",
+		"name" : "马达加斯加",
+		"language" : "zh-CN",
+		"value" : "马达加斯加"
+	},
+	{
+		"code" : "ct.malawi",
+		"name" : "马拉维",
+		"language" : "zh-CN",
+		"value" : "马拉维"
+	},
+	{
+		"code" : "ct.mali",
+		"name" : "马里",
+		"language" : "zh-CN",
+		"value" : "马里"
+	},
+	{
+		"code" : "ct.islamicrepublicofmauritania",
+		"name" : "毛里塔尼亚伊斯兰",
+		"language" : "zh-CN",
+		"value" : "毛里塔尼亚伊斯兰"
+	},
+	{
+		"code" : "ct.morocco",
+		"name" : "摩洛哥",
+		"language" : "zh-CN",
+		"value" : "摩洛哥"
+	},
+	{
+		"code" : "ct.mozambique",
+		"name" : "莫桑比克",
+		"language" : "zh-CN",
+		"value" : "莫桑比克"
+	},
+	{
+		"code" : "ct.niger",
+		"name" : "尼日尔",
+		"language" : "zh-CN",
+		"value" : "尼日尔"
+	},
+	{
+		"code" : "ct.nigeria",
+		"name" : "尼日利亚",
+		"language" : "zh-CN",
+		"value" : "尼日利亚"
+	},
+	{
+		"code" : "ct.sierraleone",
+		"name" : "塞拉利昂",
+		"language" : "zh-CN",
+		"value" : "塞拉利昂"
+	},
+	{
+		"code" : "ct.senegal",
+		"name" : "塞内加尔",
+		"language" : "zh-CN",
+		"value" : "塞内加尔"
+	},
+	{
+		"code" : "ct.sudan",
+		"name" : "苏丹",
+		"language" : "zh-CN",
+		"value" : "苏丹"
+	},
+	{
+		"code" : "ct.somalia",
+		"name" : "索马里",
+		"language" : "zh-CN",
+		"value" : "索马里"
+	},
+	{
+		"code" : "ct.tanzania",
+		"name" : "坦桑尼亚",
+		"language" : "zh-CN",
+		"value" : "坦桑尼亚"
+	},
+	{
+		"code" : "ct.tunisia",
+		"name" : "突尼斯",
+		"language" : "zh-CN",
+		"value" : "突尼斯"
+	},
+	{
+		"code" : "ct.uganda",
+		"name" : "乌干达",
+		"language" : "zh-CN",
+		"value" : "乌干达"
+	},
+	{
+		"code" : "ct.westafricamali",
+		"name" : "西非马里",
+		"language" : "zh-CN",
+		"value" : "西非马里"
+	},
+	{
+		"code" : "ct.zambia",
+		"name" : "赞比亚",
+		"language" : "zh-CN",
+		"value" : "赞比亚"
+	},
+	{
+		"code" : "ct.chad",
+		"name" : "乍得",
+		"language" : "zh-CN",
+		"value" : "乍得"
+	},
+	{
+		"code" : "ct.centralafricanrepublic",
+		"name" : "中非共和国",
+		"language" : "zh-CN",
+		"value" : "中非共和国"
+	},
+	{
+		"code" : "ct.australia",
+		"name" : "澳大利亚",
+		"language" : "zh-CN",
+		"value" : "澳大利亚"
+	},
+	{
+		"code" : "ct.hobart",
+		"name" : "霍巴特",
+		"language" : "zh-CN",
+		"value" : "霍巴特"
+	},
+	{
+		"code" : "ct.comoros",
+		"name" : "科摩罗",
+		"language" : "zh-CN",
+		"value" : "科摩罗"
+	},
+	{
+		"code" : "ct.maldives",
+		"name" : "马尔代夫",
+		"language" : "zh-CN",
+		"value" : "马尔代夫"
+	},
+	{
+		"code" : "ct.mauritius",
+		"name" : "毛里求斯",
+		"language" : "zh-CN",
+		"value" : "毛里求斯"
+	},
+	{
+		"code" : "ct.seychelles",
+		"name" : "塞舌尔",
+		"language" : "zh-CN",
+		"value" : "塞舌尔"
+	},
+	{
+		"code" : "ct.papuanewguinea",
+		"name" : "巴布亚新几内亚",
+		"language" : "zh-CN",
+		"value" : "巴布亚新几内亚"
+	},
+	{
+		"code" : "ct.frenchpolynesia",
+		"name" : "法属波利尼西亚",
+		"language" : "zh-CN",
+		"value" : "法属波利尼西亚"
+	},
+	{
+		"code" : "ct.fijiislands",
+		"name" : "斐济群岛",
+		"language" : "zh-CN",
+		"value" : "斐济群岛"
+	},
+	{
+		"code" : "ct.kiribati",
+		"name" : "基里巴斯",
+		"language" : "zh-CN",
+		"value" : "基里巴斯"
+	},
+	{
+		"code" : "ct.cookislands",
+		"name" : "库克群岛",
+		"language" : "zh-CN",
+		"value" : "库克群岛"
+	},
+	{
+		"code" : "ct.marshallislands",
+		"name" : "马绍尔群岛",
+		"language" : "zh-CN",
+		"value" : "马绍尔群岛"
+	},
+	{
+		"code" : "ct.micronesia",
+		"name" : "密克罗尼西亚",
+		"language" : "zh-CN",
+		"value" : "密克罗尼西亚"
+	},
+	{
+		"code" : "ct.niuc",
+		"name" : "尼乌埃",
+		"language" : "zh-CN",
+		"value" : "尼乌埃"
+	},
+	{
+		"code" : "ct.palau",
+		"name" : "帕劳",
+		"language" : "zh-CN",
+		"value" : "帕劳"
+	},
+	{
+		"code" : "ct.samoa",
+		"name" : "萨摩亚",
+		"language" : "zh-CN",
+		"value" : "萨摩亚"
+	},
+	{
+		"code" : "ct.solomonislands",
+		"name" : "所罗门群岛",
+		"language" : "zh-CN",
+		"value" : "所罗门群岛"
+	},
+	{
+		"code" : "ct.tonga",
+		"name" : "汤加",
+		"language" : "zh-CN",
+		"value" : "汤加"
+	},
+	{
+		"code" : "ct.tuvalu",
+		"name" : "图瓦卢",
+		"language" : "zh-CN",
+		"value" : "图瓦卢"
+	},
+	{
+		"code" : "ct.vanuatu",
+		"name" : "瓦努阿图",
+		"language" : "zh-CN",
+		"value" : "瓦努阿图"
+	},
+	{
+		"code" : "ct.newcaledonia",
+		"name" : "新喀里多尼亚",
+		"language" : "zh-CN",
+		"value" : "新喀里多尼亚"
+	},
+	{
+		"code" : "ct.newzealand",
+		"name" : "新西兰",
+		"language" : "zh-CN",
+		"value" : "新西兰"
+	},
+	{
+		"code" : "ct.sowaisland",
+		"name" : "索瓦岛",
+		"language" : "zh-CN",
+		"value" : "索瓦岛"
+	},
+	{
+		"code" : "workplace.docs.Overview",
+		"name" : "概览",
+		"language" : "zh-CN",
+		"value" : "概览"
+	},
+	{
+		"code" : "mn.monitor",
+		"name" : "监控",
+		"language" : "zh-CN",
+		"value" : "监控"
+	},
+	{
+		"code" : "mn.control",
+		"name" : "控制",
+		"language" : "zh-CN",
+		"value" : "控制"
+	},
+	{
+		"code" : "mn.superiorcode",
+		"name" : "上级代码",
+		"language" : "zh-CN",
+		"value" : "上级代码"
+	},
+	{
+		"code" : "password.enter installer code and the operator code",
+		"name" : "请输入安装商、运营商代码",
+		"language" : "zh-CN",
+		"value" : "请输入安装商、运营商代码"
+	},
+	{
+		"code" : "common.Email.newemail.tip",
+		"name" : "请输入新邮箱",
+		"language" : "zh-CN",
+		"value" : "请输入新邮箱"
+	},
+	{
+		"code" : "monitor.statName",
+		"name" : "电站名称",
+		"language" : "zh-CN",
+		"value" : "电站名称"
+	},
+	{
+		"code" : "userSetting.completeAddress",
+		"name" : "详细地址",
+		"language" : "zh-CN",
+		"value" : "详细地址"
+	},
+	{
+		"code" : "userSetting.saveAndContinue",
+		"name" : "保存继续",
+		"language" : "zh-CN",
+		"value" : "保存继续"
+	},
+	{
+		"code" : "workplace.US$",
+		"name" : "美元",
+		"language" : "zh-CN",
+		"value" : "美元"
+	},
+	{
+		"code" : "workplace.Ruble",
+		"name" : "卢布",
+		"language" : "zh-CN",
+		"value" : "卢布"
+	},
+	{
+		"code" : "login.title.tip",
+		"name" : "Tsun云平台",
+		"language" : "zh-CN",
+		"value" : "Tsun云平台"
+	},
+	{
+		"code" : "user.registerImmediately",
+		"name" : "立即注册",
+		"language" : "zh-CN",
+		"value" : "立即注册"
+	},
+	{
+		"code" : "message.userswhoProvideServicesforPropertyOwners",
+		"name" : "为业主提供服务的用户",
+		"language" : "zh-CN",
+		"value" : "为业主提供服务的用户"
+	},
+	{
+		"code" : "message.userswhoOwnOrAlreadyOwnapowerStation",
+		"name" : "即将拥有电站或已拥有电站的用户",
+		"language" : "zh-CN",
+		"value" : "即将拥有电站或已拥有电站的用户"
+	},
+	{
+		"code" : "settings.nextStep",
+		"name" : "下一步",
+		"language" : "zh-CN",
+		"value" : "下一步"
+	},
+	{
+		"code" : "userSetting.form.countryRegion.required",
+		"name" : "国家（地区）",
+		"language" : "zh-CN",
+		"value" : "国家（地区）"
+	},
+	{
+		"code" : "password.enterRightEmail",
+		"name" : "请输入正确的邮箱",
+		"language" : "zh-CN",
+		"value" : "请输入正确的邮箱"
+	},
+	{
+		"code" : "userSetting.retrievePassword",
+		"name" : "找回密码",
+		"language" : "zh-CN",
+		"value" : "找回密码"
+	},
+	{
+		"code" : "sys.serviceAgreement",
+		"name" : "服务协议",
+		"language" : "zh-CN",
+		"value" : "服务协议"
+	}
+]

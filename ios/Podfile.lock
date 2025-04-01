@@ -1,7 +1,7 @@
 PODS:
   - AMapFoundation (1.8.2)
-  - AMapLocation (2.10.0):
-    - AMapFoundation (>= 1.8.0)
+  - AMapLocation (2.9.0):
+    - AMapFoundation (>= 1.7.0)
   - boost (1.84.0)
   - DoubleConversion (1.1.6)
   - fast_float (6.1.4)
@@ -1243,7 +1243,7 @@ PODS:
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
   - react-native-amap-geolocation (1.2.3):
-    - AMapLocation (~> 2.10.0)
+    - AMapLocation (~> 2.9.0)
     - React
   - react-native-image-picker (8.2.0):
     - DoubleConversion
@@ -1376,7 +1376,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-webview (13.13.4):
+  - react-native-webview (13.13.5):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1730,7 +1730,7 @@ PODS:
     - Yoga
   - RNFS (2.20.0):
     - React-Core
-  - RNGestureHandler (2.24.0):
+  - RNGestureHandler (2.25.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2251,7 +2251,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AMapFoundation: 9885c48fc3a78fdfb84a0299a2293e56ea3c9fec
-  AMapLocation: 5248aec2455ebb5d104b367813c946430a2ee033
+  AMapLocation: f5eb11e11c62f0f599f80b578eec8a1f70deb985
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
@@ -2290,12 +2290,12 @@ SPEC CHECKSUMS:
   React-logger: 795cd5055782db394f187f9db0477d4b25b44291
   React-Mapbuffer: 0502faf46cab8fb89cfc7bf3e6c6109b6ef9b5de
   React-microtasksnativemodule: 663bc64e3a96c5fc91081923ae7481adc1359a78
-  react-native-amap-geolocation: a7efce9e867af5912633416d826785d31391ea9f
+  react-native-amap-geolocation: 5e707b9006ddc3e4e847b36c4525664e91833b3d
   react-native-image-picker: 0452fc9efc21101946746663bf34e0db5741f00c
   react-native-mmkv: 55e8a074ae9cb919609755d7271c16b242c2603f
   react-native-safe-area-context: 286b3e7b5589795bb85ffc38faf4c0706c48a092
   react-native-skia: 3d4019882172140d9ea2f786fc3c20d818107e2e
-  react-native-webview: f174d18dec20376e312bd4e6e76cb21b9abf0ac9
+  react-native-webview: ca20dfd45204cc81f0b21e70d1e5a349daecfb81
   React-NativeModulesApple: 16fbd5b040ff6c492dacc361d49e63cba7a6a7a1
   React-perflogger: ab51b7592532a0ea45bf6eed7e6cae14a368b678
   React-performancetimeline: bc2e48198ec814d578ac8401f65d78a574358203
@@ -2328,15 +2328,15 @@ SPEC CHECKSUMS:
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNFlashList: f2025ff4c31edf4d7f578ee9e3f7ecd1c658e20d
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
-  RNGestureHandler: 9b05fab9a0b48fe48c968de7dbb9ca38a2b4f7ab
+  RNGestureHandler: 66e593addd8952725107cfaa4f5e3378e946b541
   RNReanimated: ff71ce0443c71c8a77501ace7b9738ede83cfa55
   RNScreens: 9a887b38fbb9c207f0d4e9694037c91e4fd6b248
   RNSVG: 8588ee1ca9b2e6fd2c99466e35b3db0e9f81bb40
   RNVectorIcons: 14a0c42f16a26bcc3e79a19bc1c5718284b1d469
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   VisionCamera: b5c2b3c45e641102902a5194af11dc532805221e
-  Yoga: afd04ff05ebe0121a00c468a8a3c8080221cb14c
+  Yoga: 9b7fb56e7b08cde60e2153344fa6afbd88e5d99f
 
 PODFILE CHECKSUM: f91aa3d7e052582c526a51f8be0582513d703df1
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

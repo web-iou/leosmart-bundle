@@ -114,7 +114,7 @@ const ChangeEmailScreen: React.FC<ChangeEmailProps> = ({ onSubmit }) => {
                   outlineStyle={{ borderRadius: 20 }}
                   left={
                     <TextInput.Icon
-                      icon={() => <AntDesign name="mail" size={22} color={theme.colors.onSurfaceVariant} />}
+                      icon={() => <AntDesign name="mail" size={14} color={theme.colors.onSurfaceVariant} />}
                     />
                   }
                 />
@@ -162,7 +162,7 @@ const ChangeEmailScreen: React.FC<ChangeEmailProps> = ({ onSubmit }) => {
                     outlineStyle={{ borderRadius: 20 }}
                     left={
                       <TextInput.Icon
-                        icon={() => <AntDesign name="safety" size={22} color={theme.colors.onSurfaceVariant} />}
+                        icon={() => <AntDesign name="safety" size={14} color={theme.colors.onSurfaceVariant} />}
                       />
                     }
                   />
@@ -226,13 +226,13 @@ const ChangeEmailScreen: React.FC<ChangeEmailProps> = ({ onSubmit }) => {
                   outlineStyle={{ borderRadius: 20 }}
                   left={
                     <TextInput.Icon
-                      icon={() => <AntDesign name="lock" size={22} color={theme.colors.onSurfaceVariant} />}
+                      icon={() => <AntDesign name="lock" size={14} color={theme.colors.onSurfaceVariant} />}
                     />
                   }
                   right={
                     <TextInput.Icon
                       icon="eye-off"
-                      size={22}
+                      size={14}
                     />
                   }
                 />
