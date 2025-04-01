@@ -17,13 +17,18 @@ import {
 import {useTranslation} from 'react-i18next';
 import {userApi, RegisterParams} from '@/services/api/userApi';
 import {showToast} from '@/store/slices/toastSlice';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {ExtendedMD3Theme} from '@/theme';
 import Picker from '@/components/Picker'; // 引入Picker组件
 import {CountryItem} from '../common/CountryPicker';
-// import {init, Geolocation} from 'react-native-amap-geolocation';
+import {
+  fetchCountries,
+  selectSelectedCountry,
+  setSelectedCountry,
+} from '@/store/slices/countrySlice';
+import store, {AppDispatch} from '@/store';
 // 定义国家和时区类型
 interface Country {
   code: string;
@@ -62,15 +67,13 @@ enum RegisterStep {
 const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
-  const dispatch = useDispatch();
-
+  const dispatch = useDispatch<AppDispatch>();
   // 站点选择
   const [selectedSite, setSelectedSite] = useState<string>('CN'); // 默认中国站
   const [sitePickerVisible, setSitePickerVisible] = useState<boolean>(false);
   const [siteNames, setSiteNames] = useState<string[]>(
     SITES.map(site => site.name),
   );
-
   // 注册步骤状态
   const [currentStep, setCurrentStep] = useState<RegisterStep>(
     RegisterStep.ROLE_SELECTION,
@@ -80,12 +83,11 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
   const [userType, setUserType] = useState<number>(1); // 默认业主角色
 
   // 国家和时区
-  const [countryCode, setCountryCode] = useState<string>(''); // 默认中国
-  const [timezone, setTimezone] = useState<string>(''); // 默认北京
+  const selectedCountry = useSelector(selectSelectedCountry);
   const [timezonePickerVisible, setTimezonePickerVisible] =
     useState<boolean>(false);
-  const [timezoneNames, setTimezoneNames] = useState<string[]>([]);
-
+  const [timezoneList, setTimezoneList] = useState<CountryItem['zoneList']>([]);
+  const [timezone, setTimezone] = useState<string>('');
   // 第二步：表单输入
   const [email, setEmail] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
@@ -104,35 +106,39 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
 
   // 第三步：自动跳转登录倒计时
   const [redirectCountdown, setRedirectCountdown] = useState(3);
-
+  useEffect(() => {
+    if (store.getState().country.countries.length === 0) {
+      dispatch(fetchCountries())
+        .unwrap()
+        .then(value => {          
+          //默认德国  后期这里替换地图厂商获取实际国家
+          const result = value.find(item => {
+            return item.value === 'Germany';
+          })!;
+          dispatch(
+            setSelectedCountry({
+              ...result,
+              name: t(result.code),
+            }),
+          );
+          setTimezone(result.zoneList[0].value);
+        });
+    }
+  }, []);
   // 尝试获取用户的国家和设置默认值
   useEffect(() => {
-    // init({
-    //   ios: '3bf9af0cbaca33af3182b30a9c80c202',
-    //   android: '3bf9af0cbaca33af3182b30a9c80c202',
-    // }).then(() => {
-    //   Geolocation.(position => {
-    //     console.log(position);
-    //   });
-    // });
-    // 这里可以使用地理位置API获取用户当前国家
-    // 暂时使用默认值，这部分后续可以替换为API调用
-    setCountryCode('CN');
-    setTimezone('Asia/Shanghai');
-  }, []);
-
-  // 当国家改变时更新时区
-  // useEffect(() => {
-  //   if (
-  //     countryCode &&
-  //     TIMEZONES[countryCode] &&
-  //     TIMEZONES[countryCode].length > 0
-  //   ) {
-  //     setTimezone(TIMEZONES[countryCode][0].id);
-  //     // 更新时区名称列表
-  //     setTimezoneNames(TIMEZONES[countryCode].map(tz => tz.name));
-  //   }
-  // }, [countryCode]);
+    if (selectedCountry) {
+      setTimezoneList(
+        selectedCountry.zoneList.map(item => {
+          return {
+            ...item,
+            code: t(item.code),
+          };
+        }),
+      );
+      setTimezone(selectedCountry.zoneList[0].value);
+    }
+  }, [selectedCountry]);
 
   // 验证码倒计时逻辑
   useEffect(() => {
@@ -293,7 +299,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
         userType,
         lng: i18n.language,
         center: selectedSite, // Use the selected site as the data center
-        countyCollapse: countryCode,
+        countyCollapse: selectedCountry?.value,
         timeZone: timezone,
       };
 
@@ -340,19 +346,6 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
     navigation.navigate('Login');
   };
 
-  // 选择国家
-  const handleSelectCountry = (data: CountryItem) => {
-    debugger;
-    setCountryCode(data.value);
-    // setCountryPickerVisible(false);
-
-    // 当选择新国家时，默认选择该国家的第一个时区
-    // if (TIMEZONES[code]?.length > 0) {
-    setTimezone(data.zoneList[0].value);
-    // }
-    setTimezoneNames(data.zoneList.map(item => item.value));
-  };
-
   // 选择时区
   const handleSelectTimezone = (tz: string) => {
     setTimezone(tz);
@@ -365,17 +358,10 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
     return site ? site.name : '';
   };
 
-  // 获取当前选择的国家名称
-  const getCurrentCountryName = () => {
-    const country = COUNTRIES.find(c => c.code === countryCode);
-    return country ? country.name : '';
-  };
-
   // 获取当前选择的时区名称
   const getCurrentTimezoneName = () => {
-    const timezones = TIMEZONES[countryCode] || [];
-    const tz = timezones.find((t: Timezone) => t.value === timezone);
-    return tz ? tz.name : '';
+    const tz = timezoneList.find(t => t.value === timezone);
+    return tz?.code;
   };
   return (
     <View
@@ -594,9 +580,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                     },
                   ]}
                   onPress={() => {
-                    navigation.navigate('CountryPicker', {
-                      onSelectCountry: handleSelectCountry,
-                    });
+                    navigation.navigate('CountryPicker');
                   }}>
                   <Text
                     style={{
@@ -604,7 +588,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                       color: theme.colors.onSurface,
                       paddingLeft: 36,
                     }}>
-                    {getCurrentCountryName()}
+                    {selectedCountry?.name}
                   </Text>
                   <MaterialIcons
                     name="arrow-drop-down"
@@ -614,20 +598,6 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                 </TouchableOpacity>
               </View>
             </View>
-            {/* 
-            <Picker
-              visible={countryPickerVisible}
-              data={countryNames}
-              defaultValue={getCurrentCountryName()}
-              onCancel={() => setCountryPickerVisible(false)}
-              onConfirm={value => {
-                const country = COUNTRIES.find(c => c.name === value);
-                if (country) {
-                  handleSelectCountry(country.code);
-                }
-                setCountryPickerVisible(false);
-              }}
-            /> */}
 
             {/* 时区选择 */}
             <View style={styles.inputGroup}>
@@ -672,16 +642,12 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
 
             <Picker
               visible={timezonePickerVisible}
-              data={timezoneNames}
-              defaultValue={getCurrentTimezoneName()}
+              data={timezoneList.map(item => item.code)}
+              defaultValue={timezoneList[0]?.code}
               onCancel={() => setTimezonePickerVisible(false)}
               onConfirm={value => {
-                const timezones = TIMEZONES[countryCode] || [];
-                const tz = timezones.find(t => t.name === value);
-                if (tz) {
-                  handleSelectTimezone(tz.id);
-                }
-                setTimezonePickerVisible(false);
+                const tz = timezoneList.find(t => t.code === value)!;
+                handleSelectTimezone(tz.value);
               }}
             />
 

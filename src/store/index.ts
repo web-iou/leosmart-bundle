@@ -2,8 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import themeReducer from './slices/themeSlice';
 import languageReducer from './slices/languageSlice';
 import toastReducer from './slices/toastSlice';
-
-
+import countryReducer from './slices/countrySlice';
 
 // 配置store
 export const store = configureStore({
@@ -11,6 +10,7 @@ export const store = configureStore({
     theme: themeReducer,
     language: languageReducer,
     toast: toastReducer,
+    country: countryReducer,
   },
   middleware: (getDefaultMiddleware) => 
     getDefaultMiddleware({

@@ -248,7 +248,7 @@ const ChangeEmailScreen: React.FC<ChangeEmailProps> = ({ onSubmit }) => {
           <Button 
             mode="contained" 
             onPress={handleSubmit(submitForm)}
-            className="py-1.5 rounded-full"
+            className="rounded-full"
             disabled={isLoading}
             loading={isLoading}
           >

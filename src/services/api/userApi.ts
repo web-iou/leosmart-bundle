@@ -78,9 +78,8 @@ export interface RegisterParams {
 
 // 修改密码请求参数接口
 export interface ChangePasswordParams {
-  oldPassword: string;
-  newPassword: string;
-  confirmPassword: string;
+  newpassword1: string;
+  password: string;
 }
 
 // 重置密码请求参数接口
@@ -134,6 +133,12 @@ class UserApi {
   // 注册用户
   public register(params: RegisterParams): Promise<ApiResponse<boolean>> {
     return http.post(`/admin/register/mail`, params);
+  }
+  // 修改密码
+  public changePassword(
+    params: ChangePasswordParams,
+  ): Promise<ApiResponse<UserInfo>> {
+    return http.post(`/admin/user/password`, params);
   }
   // 获取国家及时区
   public getCountry(): Promise<

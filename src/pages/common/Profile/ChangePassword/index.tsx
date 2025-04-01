@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import { View, ScrollView } from 'react-native';
-import { 
+import React, {useState} from 'react';
+import {View, ScrollView} from 'react-native';
+import {
   TextInput,
   Button,
-  useTheme, 
+  useTheme,
   HelperText,
-  Text
+  Text,
 } from 'react-native-paper';
-import { useTranslation } from 'react-i18next';
-import { useForm, Controller } from 'react-hook-form';
+import {useTranslation} from 'react-i18next';
+import {useForm, Controller} from 'react-hook-form';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { ExtendedMD3Theme } from '@/theme';
-import { userApi } from '@/services/api';
+import {ExtendedMD3Theme} from '@/theme';
+import {userApi} from '@/services/api';
+import {useDispatch} from 'react-redux';
+import {showToast} from '@/store/slices/toastSlice';
 
 type FormData = {
   currentPassword: string;
@@ -19,30 +21,42 @@ type FormData = {
   confirmPassword: string;
 };
 
-const ChangePasswordScreen = () => {
-  const { t } = useTranslation();
+const ChangePasswordScreen = ({navigation}: ReactNavigation.Navigation) => {
+  const {t} = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
-  
+
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
-  const { control, handleSubmit, formState: { errors }, watch } = useForm<FormData>({
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+    watch,
+  } = useForm<FormData>({
     defaultValues: {
       currentPassword: '',
       newPassword: '',
-      confirmPassword: ''
-    }
+      confirmPassword: '',
+    },
   });
-  
+
   const newPassword = watch('newPassword');
-  
+  const dispatch = useDispatch();
   // 提交处理
   const submitForm = async (data: FormData) => {
     setIsLoading(true);
     try {
-      // await userApi.resetPassword({pass})
+      await userApi.changePassword({
+        password: data.newPassword,
+        newpassword1: data.confirmPassword,
+      });
+      dispatch(showToast({message: '修改成功', type: 'success'}));
+      setTimeout(() => {
+        navigation.push('login');
+      }, 1000);
     } catch (error) {
       console.error('Change password error:', error);
     } finally {
@@ -51,27 +65,30 @@ const ChangePasswordScreen = () => {
   };
 
   return (
-    <View className="flex-1" style={{ backgroundColor: theme.colors.background }}>
-      <ScrollView 
-        className="flex-1"
-        keyboardShouldPersistTaps="handled"
-      >
+    <View className="flex-1" style={{backgroundColor: theme.colors.background}}>
+      <ScrollView className="flex-1" keyboardShouldPersistTaps="handled">
         <View className="p-4">
           {/* 当前密码 */}
           <View className="mb-4">
-            <Text className="text-base mb-2 font-medium" style={{ color: theme.colors.onSurface }}>
-              {t('account.currentPassword', { defaultValue: '当前密码' })}
+            <Text
+              className="text-base mb-2 font-medium"
+              style={{color: theme.colors.onSurface}}>
+              {t('account.currentPassword', {defaultValue: '当前密码'})}
             </Text>
             <Controller
               control={control}
               name="currentPassword"
               rules={{
-                required: t('validation.required', { defaultValue: '此字段为必填项' })
+                required: t('validation.required', {
+                  defaultValue: '此字段为必填项',
+                }),
               }}
-              render={({ field: { onChange, value } }) => (
+              render={({field: {onChange, value}}) => (
                 <TextInput
                   mode="outlined"
-                  placeholder={t('account.enterCurrentPassword', { defaultValue: '输入当前密码' })}
+                  placeholder={t('account.enterCurrentPassword', {
+                    defaultValue: '输入当前密码',
+                  })}
                   value={value}
                   onChangeText={onChange}
                   secureTextEntry={!showCurrentPassword}
@@ -82,16 +99,24 @@ const ChangePasswordScreen = () => {
                     height: 40,
                     borderRadius: 20,
                   }}
-                  outlineStyle={{ borderRadius: 20 }}
+                  outlineStyle={{borderRadius: 20}}
                   left={
                     <TextInput.Icon
-                      icon={() => <AntDesign name="lock" size={22} color={theme.colors.onSurfaceVariant} />}
+                      icon={() => (
+                        <AntDesign
+                          name="lock"
+                          size={22}
+                          color={theme.colors.onSurfaceVariant}
+                        />
+                      )}
                     />
                   }
                   right={
-                    <TextInput.Icon 
-                      icon={showCurrentPassword ? "eye" : "eye-off"} 
-                      onPress={() => setShowCurrentPassword(!showCurrentPassword)}
+                    <TextInput.Icon
+                      icon={showCurrentPassword ? 'eye' : 'eye-off'}
+                      onPress={() =>
+                        setShowCurrentPassword(!showCurrentPassword)
+                      }
                       size={22}
                     />
                   }
@@ -104,28 +129,34 @@ const ChangePasswordScreen = () => {
               </HelperText>
             )}
           </View>
-          
+
           {/* 新密码 */}
           <View className="mb-4">
-            <Text className="text-base mb-2 font-medium" style={{ color: theme.colors.onSurface }}>
-              {t('account.newPassword', { defaultValue: '新密码' })}
+            <Text
+              className="text-base mb-2 font-medium"
+              style={{color: theme.colors.onSurface}}>
+              {t('account.newPassword', {defaultValue: '新密码'})}
             </Text>
             <Controller
               control={control}
               name="newPassword"
               rules={{
-                required: t('validation.required', { defaultValue: '此字段为必填项' }),
+                required: t('validation.required', {
+                  defaultValue: '此字段为必填项',
+                }),
                 minLength: {
                   value: 6,
-                  message: t('validation.passwordMinLength', { 
-                    defaultValue: '密码长度至少为6位' 
-                  })
+                  message: t('validation.passwordMinLength', {
+                    defaultValue: '密码长度至少为6位',
+                  }),
                 },
               }}
-              render={({ field: { onChange, value } }) => (
+              render={({field: {onChange, value}}) => (
                 <TextInput
                   mode="outlined"
-                  placeholder={t('account.enterNewPassword', { defaultValue: '输入新密码' })}
+                  placeholder={t('account.enterNewPassword', {
+                    defaultValue: '输入新密码',
+                  })}
                   value={value}
                   onChangeText={onChange}
                   secureTextEntry={!showNewPassword}
@@ -136,15 +167,21 @@ const ChangePasswordScreen = () => {
                     height: 40,
                     borderRadius: 20,
                   }}
-                  outlineStyle={{ borderRadius: 20 }}
+                  outlineStyle={{borderRadius: 20}}
                   left={
                     <TextInput.Icon
-                      icon={() => <AntDesign name="key" size={22} color={theme.colors.onSurfaceVariant} />}
+                      icon={() => (
+                        <AntDesign
+                          name="key"
+                          size={22}
+                          color={theme.colors.onSurfaceVariant}
+                        />
+                      )}
                     />
                   }
                   right={
-                    <TextInput.Icon 
-                      icon={showNewPassword ? "eye" : "eye-off"} 
+                    <TextInput.Icon
+                      icon={showNewPassword ? 'eye' : 'eye-off'}
                       onPress={() => setShowNewPassword(!showNewPassword)}
                       size={22}
                     />
@@ -158,25 +195,33 @@ const ChangePasswordScreen = () => {
               </HelperText>
             )}
           </View>
-          
+
           {/* 确认密码 */}
           <View className="mb-4">
-            <Text className="text-base mb-2 font-medium" style={{ color: theme.colors.onSurface }}>
-              {t('account.confirmPassword', { defaultValue: '确认密码' })}
+            <Text
+              className="text-base mb-2 font-medium"
+              style={{color: theme.colors.onSurface}}>
+              {t('account.confirmPassword', {defaultValue: '确认密码'})}
             </Text>
             <Controller
               control={control}
               name="confirmPassword"
               rules={{
-                required: t('validation.required', { defaultValue: '此字段为必填项' }),
-                validate: value => 
-                  value === newPassword || 
-                  t('account.passwordMismatch', { defaultValue: '两次输入的密码不一致' })
+                required: t('validation.required', {
+                  defaultValue: '此字段为必填项',
+                }),
+                validate: value =>
+                  value === newPassword ||
+                  t('account.passwordMismatch', {
+                    defaultValue: '两次输入的密码不一致',
+                  }),
               }}
-              render={({ field: { onChange, value } }) => (
+              render={({field: {onChange, value}}) => (
                 <TextInput
                   mode="outlined"
-                  placeholder={t('account.confirmNewPassword', { defaultValue: '再次输入新密码' })}
+                  placeholder={t('account.confirmNewPassword', {
+                    defaultValue: '再次输入新密码',
+                  })}
                   value={value}
                   onChangeText={onChange}
                   secureTextEntry={!showConfirmPassword}
@@ -187,16 +232,24 @@ const ChangePasswordScreen = () => {
                     height: 40,
                     borderRadius: 20,
                   }}
-                  outlineStyle={{ borderRadius: 20 }}
+                  outlineStyle={{borderRadius: 20}}
                   left={
                     <TextInput.Icon
-                      icon={() => <AntDesign name="Safety" size={22} color={theme.colors.onSurfaceVariant} />}
+                      icon={() => (
+                        <AntDesign
+                          name="Safety"
+                          size={22}
+                          color={theme.colors.onSurfaceVariant}
+                        />
+                      )}
                     />
                   }
                   right={
-                    <TextInput.Icon 
-                      icon={showConfirmPassword ? "eye" : "eye-off"} 
-                      onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+                    <TextInput.Icon
+                      icon={showConfirmPassword ? 'eye' : 'eye-off'}
+                      onPress={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
                       size={22}
                     />
                   }
@@ -209,24 +262,23 @@ const ChangePasswordScreen = () => {
               </HelperText>
             )}
           </View>
-          
-          <Text 
+
+          <Text
             className="text-xs mb-6 px-1 leading-relaxed"
-            style={{ color: theme.colors.onSurfaceVariant }}
-          >
-            {t('account.passwordTip', { 
-              defaultValue: '为了保证账户安全，请创建一个强密码，避免使用生日、手机号等容易被猜测的密码。' 
+            style={{color: theme.colors.onSurfaceVariant}}>
+            {t('account.passwordTip', {
+              defaultValue:
+                '为了保证账户安全，请创建一个强密码，避免使用生日、手机号等容易被猜测的密码。',
             })}
           </Text>
-          
-          <Button 
-            mode="contained" 
+
+          <Button
+            mode="contained"
             onPress={handleSubmit(submitForm)}
-            className="py-1.5 rounded-full"
+            className="rounded-full"
             disabled={isLoading}
-            loading={isLoading}
-          >
-            {t('common.confirm', { defaultValue: '确认修改' })}
+            loading={isLoading}>
+            {t('common.confirm', {defaultValue: '确认修改'})}
           </Button>
         </View>
       </ScrollView>
@@ -234,4 +286,4 @@ const ChangePasswordScreen = () => {
   );
 };
 
-export default ChangePasswordScreen; 
+export default ChangePasswordScreen;

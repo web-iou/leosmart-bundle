@@ -2,7 +2,7 @@
  * @Author: cx19940809 
  * @Date: 2025-03-31 13:46:36
  * @LastEditors: cx19940809 
- * @LastEditTime: 2025-03-31 14:21:52
+ * @LastEditTime: 2025-04-01 11:00:10
  * @FilePath: /leosmart/src/pages/AccountSecurity/index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -34,7 +34,7 @@ const AccountSecurityScreen: React.FC<ReactNavigation.Navigation> = ({navigation
         </Text>
         
         <Card 
-          className="mx-4 rounded-xl overflow-hidden shadow"
+          className="rounded-xl overflow-hidden shadow"
           style={{ backgroundColor: theme.colors.surface }}
         >
           <List.Item
