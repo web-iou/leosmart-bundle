@@ -14,6 +14,12 @@ import SafeAreaLayout from '@/components/SafeAreaLayout';
 import ThemePortal from '@/components/ThemePortal';
 import {useMMKVObject} from 'react-native-mmkv';
 
+interface UserInfo {
+  username?: string;
+  email?: string;
+  userType?: number;  // 修改为数字类型：1-业主，2-安装商/运营商
+}
+
 interface ProfilePageProps {
   navigation: any;
 }
@@ -21,14 +27,22 @@ interface ProfilePageProps {
 const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
   const {t} = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
-  const [userInfo, setUserInfo] = useMMKVObject(
-    'user_info',
-    storage.getInstance()!,
-  );
+  const [userInfo] = useMMKVObject<UserInfo>('user_info', storage.getInstance()!);
 
   // 全场景模式开关状态
   const [globalMode, setGlobalMode] = useState<boolean>(false);
   const [show, setShow] = useState(false);
+
+  // 获取用户角色显示文本
+  const getUserRoleText = (userType?: number) => {
+    switch (userType) {
+      case 2:
+        return t('settings.supplier.installer', {defaultValue: '安装商/运营商'});
+      case 1:
+      default:
+        return t('userSetting.device.settings', {defaultValue: '业主'});
+    }
+  };
 
   // 处理用户退出登录
   const handleLogout = () => {
@@ -86,13 +100,38 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
     <SafeAreaLayout>
       <ScrollView
         style={[styles.container, {backgroundColor: theme.colors.background}]}>
-        {/* 顶部用户名 */}
-        <View style={styles.header}>
-          <Avatar.Icon size={60} icon="account" style={{marginBottom: 10}} />
-          <Text style={[styles.title2, {color: theme.colors.onBackground}]}>
-            {userInfo?.username}
-          </Text>
-        </View>
+        {/* 顶部用户信息 */}
+        <TouchableOpacity 
+          style={styles.header}
+          onPress={goToAccountSecurity}>
+          <View style={styles.headerContent}>
+            <View style={styles.userInfoContainer}>
+              <View style={styles.avatarContainer}>
+                <Avatar.Icon 
+                  size={80} 
+                  icon="account" 
+                  style={{backgroundColor: theme.colors.surfaceVariant}} 
+                />
+              </View>
+              <View style={styles.userInfo}>
+                <Text style={[styles.userName, {color: theme.colors.onBackground}]}>
+                  {userInfo?.username || 'Neo'}
+                </Text>
+                <Text style={[styles.userRole, {color: theme.colors.onSurfaceVariant}]}>
+                  {getUserRoleText(userInfo?.userType)}
+                </Text>
+                <Text style={[styles.userEmail, {color: theme.colors.onSurfaceVariant}]}>
+                  {userInfo?.email || 'neo@tsun.com'}
+                </Text>
+              </View>
+            </View>
+            <List.Icon 
+              icon="chevron-right" 
+              color={theme.colors.onSurfaceVariant}
+              style={styles.arrowIcon}
+            />
+          </View>
+        </TouchableOpacity>
 
         {/* 设置列表 */}
         <View
@@ -206,8 +245,49 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
+    marginTop: 20,
+    marginBottom: 50,
+  },
+  headerContent: {
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 30,
+    paddingHorizontal: 16,
+    minHeight: 160,
+  },
+  userInfoContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  avatarContainer: {
+    width: 80,
+    height: 80,
+    marginBottom: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  userInfo: {
+    alignItems: 'center',
+  },
+  userName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 6,
+    textAlign: 'center',
+  },
+  userRole: {
+    fontSize: 15,
+    opacity: 0.8,
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  userEmail: {
+    fontSize: 14,
+    opacity: 0.6,
+    textAlign: 'center',
+  },
+  arrowIcon: {
+    marginRight: -8,
+    alignSelf: 'center',
   },
   title: {
     fontSize: 24,
