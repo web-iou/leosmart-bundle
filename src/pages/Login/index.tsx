@@ -638,7 +638,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 8,
     borderRadius: 24,
-    height: 48,
+    // height: 48,
   },
 });
 

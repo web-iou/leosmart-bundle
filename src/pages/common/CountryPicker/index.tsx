@@ -1,23 +1,12 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {
-  View,
-  TouchableOpacity,
-  ActivityIndicator,
-  Dimensions,
-} from 'react-native';
-import {
-  Text,
-  Searchbar,
-  List,
-  Divider,
-  useTheme,
-  TextInput,
-} from 'react-native-paper';
+import React, {useState, useRef} from 'react';
+import {View, TouchableOpacity} from 'react-native';
+import {Text, List, Divider, useTheme, TextInput} from 'react-native-paper';
 import {FlashList} from '@shopify/flash-list';
-import {userApi} from '@/services/api';
 import {useTranslation} from 'react-i18next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { ExtendedMD3Theme } from '@/theme';
+import {ExtendedMD3Theme} from '@/theme';
+import {selectCountries, setSelectedCountry} from '@/store/slices/countrySlice';
+import {useDispatch, useSelector} from 'react-redux';
 
 export type CountryItem = {
   code: string;
@@ -36,61 +25,57 @@ type AlphabetSection = {
 };
 
 const CountryPicker = ({
-  route: {
-    params: {onSelectCountry},
-  },
-  navigation
+  navigation,
 }: ReactNavigation.Navigation<'CountryPicker'>) => {
   const {t} = useTranslation();
   const theme = useTheme<ExtendedMD3Theme>();
-  const [countries, setCountries] = useState<CountryItem[]>([]);
-  const [filteredCountries, setFilteredCountries] = useState<CountryItem[]>([]);
+  const countries = useSelector(selectCountries);
+  const dispatch = useDispatch();
+  const [filteredCountries, setFilteredCountries] =
+    useState<CountryItem[]>(countries);
   const [alphabetSections, setAlphabetSections] = useState<AlphabetSection[]>(
     [],
   );
   const [searchQuery, setSearchQuery] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [activeLetter, setActiveLetter] = useState('');
-
   const flashListRef = useRef<FlashList<CountryItem>>(null);
 
   // 获取国家数据
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        setLoading(true);
-        const response = await userApi.getCountry();
-        // if (response.data && Array.isArray(response.data)) {
-        // 按国家名称排序
-        //   const sortedCountries = [...response.data].sort((a, b) =>
-        //     a.value.localeCompare(b.value)
-        //   );
-        //   setCountries(response.data);
-        //   setFilteredCountries(response.data);
-        // 生成字母索引
-        //   generateAlphabetSections(sortedCountries);
-        // }
-        const result = response.data.map(item => {
-          return {
-            ...item,
-            name: t(item.code),
-          };
-        });
-        setCountries(result);
-        setFilteredCountries(result);
-      } catch (err) {
-        console.error('Error fetching countries:', err);
-        setError(
-          t('common.errorFetchingData', {defaultValue: '获取数据失败，请重试'}),
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchCountries = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const response = await userApi.getCountry();
+  //       // if (response.data && Array.isArray(response.data)) {
+  //       // 按国家名称排序
+  //       //   const sortedCountries = [...response.data].sort((a, b) =>
+  //       //     a.value.localeCompare(b.value)
+  //       //   );
+  //       //   setCountries(response.data);
+  //       //   setFilteredCountries(response.data);
+  //       // 生成字母索引
+  //       //   generateAlphabetSections(sortedCountries);
+  //       // }
+  //       const result = response.data.map(item => {
+  //         return {
+  //           ...item,
+  //           name: t(item.code),
+  //         };
+  //       });
+  //       setCountries(result);
+  //       setFilteredCountries(result);
+  //     } catch (err) {
+  //       console.error('Error fetching countries:', err);
+  //       setError(
+  //         t('common.errorFetchingData', {defaultValue: '获取数据失败，请重试'}),
+  //       );
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchCountries();
-  }, []);
+  //   fetchCountries();
+  // }, []);
 
   // 生成字母索引分组
   const generateAlphabetSections = (data: CountryItem[]) => {
@@ -168,10 +153,11 @@ const CountryPicker = ({
 
   // 渲染国家项
   const renderCountryItem = ({item}: {item: CountryItem}) => (
-    <TouchableOpacity onPress={() => {
-        onSelectCountry(item);
-        navigation.goBack()
-    }}>
+    <TouchableOpacity
+      onPress={() => {
+        dispatch(setSelectedCountry(item));
+        navigation.goBack();
+      }}>
       <List.Item
         title={item.name}
         right={props => <List.Icon {...props} icon="chevron-right" />}
@@ -270,40 +256,26 @@ const CountryPicker = ({
         </View>
       </View>
 
-      {loading ? (
-        <View className="flex-1 justify-center items-center">
-          <ActivityIndicator size="large" color={theme.colors.primary} />
-          <Text className="mt-4" style={{color: theme.colors.onSurface}}>
-            {t('common.loading', {defaultValue: '加载中...'})}
-          </Text>
-        </View>
-      ) : error ? (
-        <View className="flex-1 justify-center items-center p-4">
-          <Text style={{color: theme.colors.error}}>{error}</Text>
-        </View>
-      ) : (
-        <View className="flex-1">
-          {/* {renderAlphabetSidebar()} */}
-
-          <FlashList
-            ref={flashListRef}
-            data={filteredCountries}
-            renderItem={renderCountryItem}
-            estimatedItemSize={43} // 估计每个项目的高度，对性能很重要
-            keyExtractor={item => item.value}
-            contentContainerStyle={{paddingBottom: 20}}
-            ListEmptyComponent={
-              <View className="flex-1 justify-center items-center p-8">
-                <Text style={{color: theme.colors.onSurfaceVariant}}>
-                  {t('country.noResults', {
-                    defaultValue: '未找到匹配的国家/地区',
-                  })}
-                </Text>
-              </View>
-            }
-          />
-        </View>
-      )}
+      <View className="flex-1">
+        {/* {renderAlphabetSidebar()} */}
+        <FlashList
+          ref={flashListRef}
+          data={filteredCountries}
+          renderItem={renderCountryItem}
+          estimatedItemSize={43} // 估计每个项目的高度，对性能很重要
+          keyExtractor={item => item.value}
+          contentContainerStyle={{paddingBottom: 20}}
+          ListEmptyComponent={
+            <View className="flex-1 justify-center items-center p-8">
+              <Text style={{color: theme.colors.onSurfaceVariant}}>
+                {t('country.noResults', {
+                  defaultValue: '未找到匹配的国家/地区',
+                })}
+              </Text>
+            </View>
+          }
+        />
+      </View>
     </View>
   );
 };

@@ -36,7 +36,7 @@ const InstallerMainScreen: React.FC<InstallerMainScreenProps> = () => {
         tabBarStyle: {
           borderTopWidth: 1,
           borderTopColor: theme.colors.outlineVariant,
-          height: 60,
+          // height: 60,
           paddingBottom: 8,
           backgroundColor: theme.colors.surface,
         },
