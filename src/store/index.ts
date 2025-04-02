@@ -3,6 +3,7 @@ import themeReducer from './slices/themeSlice';
 import languageReducer from './slices/languageSlice';
 import toastReducer from './slices/toastSlice';
 import countryReducer from './slices/countrySlice';
+import siteReducer from './slices/siteSlice';
 
 // 配置store
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     language: languageReducer,
     toast: toastReducer,
     country: countryReducer,
+    site: siteReducer,
   },
   middleware: (getDefaultMiddleware) => 
     getDefaultMiddleware({

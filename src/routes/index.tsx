@@ -18,6 +18,8 @@ import WebViewPage from '../pages/common/WebView';
 import ResetPasswordScreen from '../pages/common/ResetPassword';
 import RegisterScreen from '../pages/Register';
 import {useTranslation} from 'react-i18next';
+import ThemeSettingsScreen from '../pages/common/ThemeSettings';
+import SiteSettingsScreen from '../pages/common/SiteSettings';
 
 // 定义路由参数类型 - 只保留实际使用的路由
 export type RootStackParamList = {
@@ -50,6 +52,8 @@ export type RootStackParamList = {
   CountryPicker: {
     onSelectCountry: (value:any) => void;
   };
+  ThemeSettings: undefined;
+  SiteSettings: undefined;
   [key: string]: any;
 };
 declare global {
@@ -265,7 +269,35 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
 
         {/* 注册页面 */}
-        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
+          options={{
+            headerBackButtonDisplayMode: 'minimal',
+            headerShown: true,
+            title: t('sys.operation.register'),
+          }}
+        />
+
+        <Stack.Screen
+          name="ThemeSettings"
+          component={ThemeSettingsScreen}
+          options={{
+            headerBackButtonDisplayMode: 'minimal',
+            headerShown: true,
+            title: t('layout.skin'),
+          }}
+        />
+
+        <Stack.Screen
+          name="SiteSettings"
+          component={SiteSettingsScreen}
+          options={{
+            headerBackButtonDisplayMode: 'minimal',
+            headerShown: true,
+            title: t('user.site_switch'),
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

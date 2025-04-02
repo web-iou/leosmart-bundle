@@ -366,7 +366,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
   return (
     <View
       style={[styles.container, {backgroundColor: theme.colors.background}]}>
-      <Appbar.Header>
+      {/* <Appbar.Header>
         {currentStep !== RegisterStep.REGISTER_SUCCESS && (
           <Appbar.BackAction onPress={handleBackPress} />
         )}
@@ -379,7 +379,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
               : t('register.success', {defaultValue: '注册成功'})
           }
         />
-      </Appbar.Header>
+      </Appbar.Header> */}
 
       <ScrollView contentContainerStyle={styles.content}>
         {/* 步骤1：选择角色 */}

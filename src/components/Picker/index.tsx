@@ -12,6 +12,8 @@ import {
   Pressable,
 } from 'react-native';
 import Action from '../Action'; // 引入 Action 组件
+import {useTheme} from 'react-native-paper';
+import {ExtendedMD3Theme} from '@/theme';
 
 const ITEM_HEIGHT = 44;
 
@@ -28,6 +30,7 @@ const Picker = ({
   onCancel: () => void;
   defaultValue?: string;
 }) => {
+  const theme = useTheme() as ExtendedMD3Theme;
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? data[0]);
   const scrollRef = useRef<ScrollView>(null);
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -72,25 +75,34 @@ const Picker = ({
   return (
     <Modal visible={visible} transparent={true} animationType="fade">
       <Animated.View style={[styles.outerContainer, {opacity: fadeAnim}]}>
-        {/* 外层遮罩 */}
         <TouchableWithoutFeedback onPress={handleCancel}>
           <View style={styles.overlay} />
         </TouchableWithoutFeedback>
 
-        <Action show={visible} style={styles.container}>
-          <View style={styles.content}>
-            <View style={styles.header}>
+        <Action
+          show={visible}
+          style={styles.container}
+          height={300}
+        >
+          <View style={[styles.content, { backgroundColor: theme.colors.elevation.level3 }]}>
+            <View style={[styles.header, { borderBottomColor: theme.colors.surfaceVariant }]}>
               <TouchableOpacity onPress={handleCancel}>
-                <Text style={styles.cancelText}>取消</Text>
+                <Text style={[styles.cancelText, { color: theme.colors.onSurfaceVariant }]}>
+                  取消
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={handleConfirm}>
-                <Text style={styles.confirmText}>确定</Text>
+                <Text style={[styles.confirmText, { color: theme.colors.primary }]}>
+                  确定
+                </Text>
               </TouchableOpacity>
             </View>
 
-            <View style={styles.pickerContainer}>
-              {/* 中间选中项指示器 */}
-              <View style={styles.pickerIndicator} />
+            <View style={[styles.pickerContainer, { backgroundColor: theme.colors.elevation.level3 }]}>
+              <View style={[styles.pickerIndicator, { 
+                borderColor: theme.colors.surfaceVariant,
+                backgroundColor: 'transparent'
+              }]} />
               <ScrollView
                 ref={scrollRef}
                 showsVerticalScrollIndicator={false}
@@ -104,9 +116,7 @@ const Picker = ({
                   }
                 }}
                 contentContainerStyle={styles.scrollContent}>
-                {/* 添加空白项使选择器位于中间 */}
                 <View style={{height: ITEM_HEIGHT * 2}} />
-
                 {data.map((item, index) => (
                   <Pressable
                     key={index}
@@ -115,14 +125,16 @@ const Picker = ({
                     <Text
                       style={[
                         styles.itemText,
-                        selectedValue === item && styles.selectedItemText,
+                        { color: theme.colors.onSurfaceVariant },
+                        selectedValue === item && [
+                          styles.selectedItemText,
+                          { color: theme.colors.primary }
+                        ],
                       ]}>
                       {item}
                     </Text>
                   </Pressable>
                 ))}
-
-                {/* 添加空白项使选择器位于中间 */}
                 <View style={{height: ITEM_HEIGHT * 2}} />
               </ScrollView>
             </View>
@@ -156,11 +168,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'white',
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
     overflow: 'hidden',
-    height: 300, // 固定高度确保有足够空间
   },
   content: {
     flex: 1,
@@ -172,15 +182,12 @@ const styles = StyleSheet.create({
     height: 44,
     paddingHorizontal: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
   },
   cancelText: {
     fontSize: 16,
-    color: '#999',
   },
   confirmText: {
     fontSize: 16,
-    color: '#1677ff',
   },
   pickerContainer: {
     height: ITEM_HEIGHT * 5,
@@ -213,8 +220,6 @@ const styles = StyleSheet.create({
     height: ITEM_HEIGHT,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: '#eee',
-    zIndex: 2,
   },
   scrollContent: {
     paddingHorizontal: 16,
@@ -226,10 +231,8 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 16,
-    color: '#333',
   },
   selectedItemText: {
-    color: '#1677ff',
     fontWeight: 'bold',
   },
 });
