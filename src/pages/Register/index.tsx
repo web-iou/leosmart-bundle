@@ -48,9 +48,7 @@ interface Site {
 
 // 临时数据 - 后面会替换为API调用
 const SITES: Site[] = [
-  {code: 'CN', name: '中国站'},
-  {code: 'US', name: '美国站'},
-  {code: 'EU', name: '欧洲站'},
+  {code: 'Europe', name: '欧洲站'},
 ];
 
 interface RegisterScreenProps {
@@ -299,7 +297,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
         userType,
         lng: i18n.language,
         center: selectedSite, // Use the selected site as the data center
-        countyCollapse: selectedCountry?.value,
+        county: selectedCountry?.value,
         timeZone: timezone,
       };
 

@@ -20,8 +20,7 @@ import {
 import {ExtendedMD3Theme} from '@/theme';
 import {deviceApi} from '@/services/api/deviceApi';
 import dayjs from 'dayjs';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 interface PVTimeChartProps {
   route: {
@@ -82,7 +81,7 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
   useEffect(() => {
     StatusBar.setBarStyle(theme.dark ? 'light-content' : 'dark-content');
     StatusBar.setBackgroundColor(theme.colors.background);
-    
+
     // 返回清理函数
     return () => {
       StatusBar.setBarStyle('default');
@@ -90,7 +89,7 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
   }, [theme.dark, theme.colors.background]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async () => {      
       try {
         setLoading(true);
         const response = await deviceApi.getPvTimeIndicator(route.params.id);
@@ -129,7 +128,7 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
     const dataPointWidth = 60;
     const calculatedWidth = Math.max(
       screenWidth - 32,
-      data.length * dataPointWidth
+      data.length * dataPointWidth,
     );
 
     // 定义图表线条颜色，使用主题中的颜色或兼容的固定颜色
@@ -137,31 +136,43 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
       pv1: theme.dark ? '#FFA726' : '#FF9800', // 橙色
       pv2: theme.dark ? '#42A5F5' : '#2196F3', // 蓝色
       pv3: theme.dark ? '#66BB6A' : '#4CAF50', // 绿色
-      pv4: theme.dark ? '#AB47BC' : '#9C27B0'  // 紫色
+      pv4: theme.dark ? '#AB47BC' : '#9C27B0', // 紫色
     };
 
     // 自定义图表主题，基于应用主题
     const chartTheme = {
       ...VictoryTheme.material,
-      background: { fill: theme.colors.surface },
+      background: {fill: theme.colors.surface},
       axis: {
         style: {
-          axis: { stroke: theme.colors.outline },
-          grid: { stroke: 'transparent' },
-          ticks: { stroke: theme.colors.outline, size: 5 },
-          tickLabels: { fill: theme.colors.onSurfaceVariant, fontSize: 10 }
-        }
-      }
+          axis: {stroke: theme.colors.outline},
+          grid: {stroke: 'transparent'},
+          ticks: {stroke: theme.colors.outline, size: 5},
+          tickLabels: {fill: theme.colors.onSurfaceVariant, fontSize: 10},
+        },
+      },
     };
 
     return (
-      <Card style={[styles.chartCard, {backgroundColor: theme.colors.surface, borderColor: theme.colors.outline, borderWidth: 1}]}>
+      <Card
+        style={[
+          styles.chartCard,
+          {
+            backgroundColor: theme.colors.surface,
+            borderColor: theme.colors.outline,
+            borderWidth: 1,
+          },
+        ]}>
         <Card.Content>
           <Text style={[styles.chartTitle, {color: theme.colors.onSurface}]}>
             {title}
           </Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={true}>
-            <View style={{width: calculatedWidth, backgroundColor: theme.colors.surface}}>
+            <View
+              style={{
+                width: calculatedWidth,
+                backgroundColor: theme.colors.surface,
+              }}>
               <VictoryChart
                 theme={chartTheme}
                 height={300}
@@ -169,7 +180,7 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
                 padding={{top: 50, bottom: 50, left: 60, right: 50}}
                 domainPadding={{x: 20}}
                 style={{
-                  background: { fill: theme.colors.surface }
+                  background: {fill: theme.colors.surface},
                 }}>
                 <VictoryAxis
                   tickFormat={time => dayjs(time).format('HH:mm')}
@@ -209,7 +220,7 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
                     {name: 'PV4', symbol: {fill: lineColors.pv4}},
                   ]}
                   style={{
-                    labels: { fill: theme.colors.onSurface }
+                    labels: {fill: theme.colors.onSurface},
                   }}
                 />
                 <VictoryGroup>
@@ -281,49 +292,52 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
-      <ScrollView style={[styles.container, { backgroundColor: theme.colors.background }]}>
-        <View style={styles.header}>
-          <Text style={[styles.pageTitle, {color: theme.colors.onBackground}]}>
-            {t('device.pvTimeData', {defaultValue: 'PV时间数据'})}
-          </Text>
-          
-          <SegmentedButtons
-            value={selected}
-            onValueChange={setSelected}
-            buttons={chartTypes.map(type => ({
-              value: type.value,
-              label: type.label,
-            }))}
-            style={styles.segmentedButtons}
-          />
-        </View>
+    <ScrollView
+      style={[styles.container, {backgroundColor: theme.colors.background}]}>
+      <View style={styles.header}>
+        <Text style={[styles.pageTitle, {color: theme.colors.onBackground}]}>
+          {t('device.pvTimeData', {defaultValue: 'PV时间数据'})}
+        </Text>
 
-        {loading ? (
-          <View style={[styles.loadingContainer, {backgroundColor: theme.colors.surface}]}>
-            <ActivityIndicator size="large" color={theme.colors.primary} />
-            <Text style={{color: theme.colors.onSurfaceVariant, marginTop: 10}}>
-              {t('common.loading', {defaultValue: '加载中...'})}
-            </Text>
-          </View>
-        ) : (
-          <>
-            {renderChart(
-              getCurrentChart().data,
-              getCurrentChart().title,
-              getCurrentChart().unit,
-            )}
-          </>
-        )}
-      </ScrollView>
-    </SafeAreaView>
+        <SegmentedButtons
+          value={selected}
+          onValueChange={setSelected}
+          buttons={chartTypes.map(type => ({
+            value: type.value,
+            label: type.label,
+          }))}
+          style={styles.segmentedButtons}
+        />
+      </View>
+
+      {loading ? (
+        <View
+          style={[
+            styles.loadingContainer,
+            {backgroundColor: theme.colors.surface},
+          ]}>
+          <ActivityIndicator size="large" color={theme.colors.primary} />
+          <Text style={{color: theme.colors.onSurfaceVariant, marginTop: 10}}>
+            {t('common.loading', {defaultValue: '加载中...'})}
+          </Text>
+        </View>
+      ) : (
+        <>
+          {renderChart(
+            getCurrentChart().data,
+            getCurrentChart().title,
+            getCurrentChart().unit,
+          )}
+        </>
+      )}
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding:16,
+    padding: 16,
   },
   header: {
     marginBottom: 16,
@@ -354,4 +368,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PVTimeChart; 
+export default PVTimeChart;

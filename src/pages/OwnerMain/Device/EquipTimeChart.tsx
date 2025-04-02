@@ -227,7 +227,6 @@ const EquipTimeChart: React.FC<EquipTimeChartProps> = ({route}) => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
       <ScrollView style={[styles.container, {backgroundColor: theme.colors.background}]}>
         <View style={styles.header}>
           <Text style={[styles.pageTitle, {color: theme.colors.onBackground}]}>
@@ -262,7 +261,6 @@ const EquipTimeChart: React.FC<EquipTimeChartProps> = ({route}) => {
           </>
         )}
       </ScrollView>
-    </SafeAreaView>
   );
 };
 

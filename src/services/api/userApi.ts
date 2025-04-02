@@ -61,7 +61,7 @@ export interface LoginResult {
 
 // 注册请求参数接口
 export interface RegisterParams {
-  countyCollapse?: string; // 注册国家/地区
+  county?: string; // 注册国家/地区
   timeZone?: string; // 注册时区
   lng?: string; // 注册语言
   center?: string; // 数据中心

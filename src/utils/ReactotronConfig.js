@@ -25,24 +25,9 @@ const reactotron = Reactotron
   // 为了避免storage.addOnValueChangedListener未定义错误，我们确保仅在存储实例可用时添加MMKV插件
   
 // 在开发环境中连接
-if (__DEV__) {
-  try {
-    // 获取原始的MMKV实例
-    const mmkvInstance = storage.getInstance();
-    
-    // 只有当MMKV实例可用时才添加MMKV插件
-    if (mmkvInstance) {
-      reactotron.use(mmkvPlugin({ storage: mmkvInstance }));
-    } else {
-      console.warn('⚠️ Reactotron MMKV插件未配置 - MMKV实例不可用');
-    }
-  } catch (err) {
-    console.warn('⚠️ Reactotron MMKV插件配置错误:', err);
-  }
-  
+if (__DEV__) {  
   reactotron.connect();
   reactotron.clear();
-  
   // 使Reactotron的console可用
   console.tron = reactotron;
 }

@@ -129,10 +129,20 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
             ref={devicesRef}
             onPress={() => {
               show(
-                deviceList.map(item => item.name),
-                [],
+                deviceList.map(item => item.name).concat('设备管理'),
+                new Array(deviceList.length).concat(
+                  AntDesign.getImageSourceSync('setting', 24, '#fff').uri,
+                ),
+                {
+                  menuWidth: 150,
+                  allowRoundedArrow: true,
+                  menuTextMargin: 20,
+                },
               ).then(index => {
-                setActive(index!);
+                if (index === deviceList.length) {
+                } else {
+                  setActive(index!);
+                }
               });
             }}>
             <View style={styles.deviceIconCircle}>
@@ -285,115 +295,43 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                   </Text>
                 </View>
                 <Text style={[styles.totalPower, {color: '#FF9800'}]}>
-                  {deviceData?.pvPower.powerTotal}W
+                  {deviceData?.pvPower.powerTotal.toFixed(1)}W
                 </Text>
               </View>
 
-              <View style={styles.pvGrid}>
-                <View style={styles.pvRow}>
-                  <Pressable
-                    onPress={() => {
-                      navigation.push('PVChart', {
-                        id: deviceList[active].id,
-                      });
-                    }}
-                    style={[
-                      styles.pvItem,
-                      {backgroundColor: theme.colors.surfaceVariant},
-                    ]}>
-                    <Text
-                      style={[
-                        styles.pvLabel,
-                        {color: theme.colors.onSurfaceVariant},
-                      ]}>
-                      PV1
-                    </Text>
-                    <Text
-                      style={[
-                        styles.pvValue,
-                        {color: theme.colors.onSurfaceVariant},
-                      ]}>
-                      {deviceData?.pvPower.powerPv1}W
-                    </Text>
-                  </Pressable>
-                  <Pressable
-                    onPress={() => {
-                      navigation.push('PVChart', {
-                        id: deviceList[active].id,
-                      });
-                    }}
-                    style={[
-                      styles.pvItem,
-                      {backgroundColor: theme.colors.surfaceVariant},
-                    ]}>
-                    <Text
-                      style={[
-                        styles.pvLabel,
-                        {color: theme.colors.onSurfaceVariant},
-                      ]}>
-                      PV2
-                    </Text>
-                    <Text
-                      style={[
-                        styles.pvValue,
-                        {color: theme.colors.onSurfaceVariant},
-                      ]}>
-                      {deviceData?.pvPower.powerPv2}W
-                    </Text>
-                  </Pressable>
-                </View>
-                <View style={styles.pvRow}>
-                  <Pressable
-                    onPress={() => {
-                      navigation.push('PVChart', {
-                        id: deviceList[active].id,
-                      });
-                    }}
-                    style={[
-                      styles.pvItem,
-                      {backgroundColor: theme.colors.surfaceVariant},
-                    ]}>
-                    <Text
-                      style={[
-                        styles.pvLabel,
-                        {color: theme.colors.onSurfaceVariant},
-                      ]}>
-                      PV3
-                    </Text>
-                    <Text
-                      style={[
-                        styles.pvValue,
-                        {color: theme.colors.onSurfaceVariant},
-                      ]}>
-                      {deviceData?.pvPower.powerPv3}W
-                    </Text>
-                  </Pressable>
-                  <Pressable
-                    onPress={() => {
-                      navigation.push('PVChart', {
-                        id: deviceList[active].id,
-                      });
-                    }}
-                    style={[
-                      styles.pvItem,
-                      {backgroundColor: theme.colors.surfaceVariant},
-                    ]}>
-                    <Text
-                      style={[
-                        styles.pvLabel,
-                        {color: theme.colors.onSurfaceVariant},
-                      ]}>
-                      PV4
-                    </Text>
-                    <Text
-                      style={[
-                        styles.pvValue,
-                        {color: theme.colors.onSurfaceVariant},
-                      ]}>
-                      {deviceData?.pvPower.powerPv4}W
-                    </Text>
-                  </Pressable>
-                </View>
+              <View className="mt-2 flex-row flex-wrap justify-between gap-y-3">
+                {Object.entries(deviceData?.pvPower!)
+                  .filter(([key]) => !key.includes('Total'))
+                  .map(([key, value]) => {
+                    return (
+                      <Pressable
+                        key={key}
+                        onPress={() => {
+                          navigation.push('PVChart', {
+                            id: deviceList[active].sn,
+                          });
+                        }}
+                        style={[
+                          styles.pvItem,
+                          {backgroundColor: theme.colors.surfaceVariant},
+                        ]}>
+                        <Text
+                          style={[
+                            styles.pvLabel,
+                            {color: theme.colors.onSurfaceVariant},
+                          ]}>
+                          {key.replace('power', '').toUpperCase()}
+                        </Text>
+                        <Text
+                          style={[
+                            styles.pvValue,
+                            {color: theme.colors.onSurfaceVariant},
+                          ]}>
+                          {value.toFixed(1)}W
+                        </Text>
+                      </Pressable>
+                    );
+                  })}
               </View>
             </View>
           </Card.Content>
@@ -405,7 +343,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
             onPress={() => {
               // 在路由导航时传入设备ID
               navigation.navigate('EquipTimeChart', {
-                id: deviceList[active].id,
+                id: deviceList[active].sn,
               });
             }}
             style={[styles.halfCard, {backgroundColor: theme.colors.surface}]}>
