@@ -173,6 +173,21 @@ class UserApi {
   public getUserInfo(): Promise<ApiResponse<UserInfo>> {
     return http.get('/admin/user/app/info');
   }
+
+  // 更新用户信息
+  public updateUserInfo(params: {
+    lng?: string;
+    county?: string;
+    timeZone?: string;
+    center?: string;
+    code?: string;
+    email?: string;
+    nickname?: string;
+    avatar?: string;
+    instCode?: string;
+  }): Promise<ApiResponse<boolean>> {
+    return http.put('/admin/user/app/info', params);
+  }
 }
 
 // 创建并导出 UserApi 实例

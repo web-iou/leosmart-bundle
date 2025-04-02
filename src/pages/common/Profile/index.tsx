@@ -110,12 +110,12 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
                 <Avatar.Icon 
                   size={80} 
                   icon="account" 
-                  style={{backgroundColor: theme.colors.surfaceVariant}} 
+                  style={{backgroundColor: theme.colors.surfaceVariant}}
                 />
               </View>
               <View style={styles.userInfo}>
                 <Text style={[styles.userName, {color: theme.colors.onBackground}]}>
-                  {userInfo?.username || 'Neo'}
+                  {userInfo?.nickname || 'Neo'}
                 </Text>
                 <Text style={[styles.userRole, {color: theme.colors.onSurfaceVariant}]}>
                   {getUserRoleText(userInfo?.userType)}

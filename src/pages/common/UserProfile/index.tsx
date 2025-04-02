@@ -27,6 +27,8 @@ import {
 } from '@/store/slices/countrySlice';
 import store from '@/store';
 import Picker from '@/components/Picker';
+import {userApi} from '@/services/api/userApi';
+import {showToast} from '@/store/slices/toastSlice';
 
 interface UserInfo {
   username?: string;
@@ -54,6 +56,7 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
   const [timezonePickerVisible, setTimezonePickerVisible] = useState(false);
   const [timezoneList, setTimezoneList] = useState<CountryItem['zoneList']>([]);
   const [timezone, setTimezone] = useState<string>(userInfo?.timeZone || '');
+  const [loading, setLoading] = useState(false);
 
   // 监听用户信息变化，更新表单数据
   useEffect(() => {
@@ -168,9 +171,65 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
   };
 
   // 处理保存
-  const handleSave = () => {
-    // TODO: 调用接口保存用户信息
-    navigation.goBack();
+  const handleSave = async () => {
+    try {
+      setLoading(true);
+      
+      // 准备更新参数
+      const updateParams = {
+        nickname: nickname || undefined,
+        county: selectedCountry?.value || undefined,
+        timeZone: timezone || undefined,
+        center: userInfo?.center || undefined,
+        email: userInfo?.email || undefined,
+        avatar: userInfo?.avatar || undefined,
+        instCode: userInfo?.instCode || undefined,
+      };
+
+      // 调用更新接口
+      const response = await userApi.updateUserInfo(updateParams);
+
+      if (response.code === 0) {
+        // 更新成功后获取最新的用户信息
+        const userInfoResponse = await userApi.getUserInfo();
+        if (userInfoResponse.code === 0 && userInfoResponse.data) {
+          // 更新缓存中的用户信息
+          storage.getInstance()?.set('user_info', JSON.stringify(userInfoResponse.data));
+        }
+
+        // 显示成功提示
+        dispatch(
+          showToast({
+            message: t('common.saveSuccess', {defaultValue: '保存成功'}),
+            type: 'success',
+            duration: 2000,
+          }),
+        );
+        
+        // 返回上一页
+        navigation.goBack();
+      } else {
+        // 显示错误信息
+        dispatch(
+          showToast({
+            message: response.message || t('common.saveFailed', {defaultValue: '保存失败'}),
+            type: 'error',
+            duration: 2000,
+          }),
+        );
+      }
+    } catch (error) {
+      console.error('Failed to save user info:', error);
+      dispatch(
+        showToast({
+          message: t('common.networkError', {defaultValue: '网络请求异常，请稍后重试'}),
+          type: 'error',
+          duration: 2000,
+        }),
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -299,10 +358,18 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
 
         {/* 确定按钮 */}
         <TouchableOpacity
-          style={[styles.saveButton, {backgroundColor: theme.colors.primary}]}
-          onPress={handleSave}>
+          style={[
+            styles.saveButton,
+            {
+              backgroundColor: loading ? theme.colors.primary + '80' : theme.colors.primary,
+            },
+          ]}
+          onPress={handleSave}
+          disabled={loading}>
           <Text style={[styles.saveButtonText, {color: theme.colors.onPrimary}]}>
-            {t('common.confirm', {defaultValue: '确定'})}
+            {loading
+              ? t('common.saving', {defaultValue: '保存中...'})
+              : t('common.confirm', {defaultValue: '确定'})}
           </Text>
         </TouchableOpacity>
 

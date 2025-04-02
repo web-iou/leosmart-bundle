@@ -1,9 +1,18 @@
+/*
+ * @Author: wangjunwj wangjunwj@dinglicom.com
+ * @Date: 2025-04-01 09:21:20
+ * @LastEditors: wangjunwj wangjunwj@dinglicom.com
+ * @LastEditTime: 2025-04-02 18:22:36
+ * @FilePath: /leosmart/src/pages/common/General/index.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {List, useTheme, Divider} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 interface FeatureListProps {
   onVendorPress: () => void;
@@ -33,10 +42,11 @@ const FeatureList: React.FC<FeatureListProps> = ({
             <List.Icon
               {...props}
               icon={({size, color}) => (
-                <MaterialCommunityIcons
-                  name="translate"
-                  size={size}
-                  color={color}
+                 <AntDesign
+                  name="earth"
+                  size={14}
+                  color={theme.colors.onSurfaceVariant}
+                  style={styles.inputIcon}
                 />
               )}
             />
