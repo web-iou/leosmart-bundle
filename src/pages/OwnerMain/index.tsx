@@ -1,8 +1,8 @@
 /*
  * @Author: wangjunwj wangjunwj@dinglicom.com
  * @Date: 2025-03-31 10:50:05
- * @LastEditors: cx19940809 
- * @LastEditTime: 2025-04-01 09:18:25
+ * @LastEditors: wangjunwj wangjunwj@dinglicom.com
+ * @LastEditTime: 2025-04-02 17:26:42
  * @FilePath: /leosmart/src/pages/OwnerMain/index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -93,7 +93,7 @@ const OwnerMainScreen: React.FC<OwnerMainScreenProps> = ({
   const barStyle = useMemo(
     () => ({
       backgroundColor: theme.colors.surface,
-      borderTopWidth: 1,
+      borderTopWidth: 0,
       borderTopColor: theme.colors.outline + '30',
       paddingBottom: insets.bottom,
       height: 56 + insets.bottom,

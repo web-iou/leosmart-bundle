@@ -1,0 +1,324 @@
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
+import {
+  Text,
+  TextInput,
+  useTheme,
+  Avatar,
+} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
+import {ExtendedMD3Theme} from '@/theme';
+import SafeAreaLayout from '@/components/SafeAreaLayout';
+import {useMMKVObject} from 'react-native-mmkv';
+import {storage} from '@/utils/storage';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {CountryItem} from '@/pages/common/CountryPicker';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  fetchCountries,
+  selectSelectedCountry,
+  setSelectedCountry,
+} from '@/store/slices/countrySlice';
+import store from '@/store';
+import Picker from '@/components/Picker';
+
+interface UserInfo {
+  username?: string;
+  email?: string;
+  userType?: number;
+  nickname?: string;
+  country?: string;
+  timezone?: string;
+}
+
+const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
+  const {t} = useTranslation();
+  const theme = useTheme() as ExtendedMD3Theme;
+  const dispatch = useDispatch();
+  const [userInfo] = useMMKVObject<UserInfo>('user_info', storage.getInstance()!);
+  
+  // 状态管理
+  const [nickname, setNickname] = useState(userInfo?.nickname || '');
+  const selectedCountry = useSelector(selectSelectedCountry);
+  const [timezonePickerVisible, setTimezonePickerVisible] = useState(false);
+  const [timezoneList, setTimezoneList] = useState<CountryItem['zoneList']>([]);
+  const [timezone, setTimezone] = useState<string>('');
+
+  // 初始化国家和时区数据
+  useEffect(() => {
+    if (store.getState().country.countries.length === 0) {
+      dispatch(fetchCountries())
+        .unwrap()
+        .then(value => {
+          const result = value.find(item => item.value === userInfo?.country) || value[0];
+          dispatch(
+            setSelectedCountry({
+              ...result,
+              name: t(result.code),
+            }),
+          );
+          setTimezone(result.zoneList[0].value);
+        });
+    }
+  }, [dispatch, t, userInfo?.country]);
+
+  // 更新时区列表
+  useEffect(() => {
+    if (selectedCountry) {
+      setTimezoneList(
+        selectedCountry.zoneList.map(item => {
+          return {
+            ...item,
+            code: t(item.code),
+          };
+        }),
+      );
+      setTimezone(selectedCountry.zoneList[0].value);
+    }
+  }, [selectedCountry, t]);
+
+  // 处理选择国家
+  const handleSelectCountry = () => {
+    navigation.navigate('CountryPicker');
+  };
+
+  // 处理选择时区
+  const handleSelectTimezone = (value: string) => {
+    setTimezone(value);
+    setTimezonePickerVisible(false);
+  };
+
+  // 获取当前选择的时区名称
+  const getCurrentTimezoneName = () => {
+    const tz = timezoneList.find(t => t.value === timezone);
+    return tz?.code || t('userSetting.basicInfo.form.placeholder.timezone', {defaultValue: '请选择时区'});
+  };
+
+  // 添加处理邮箱修改的函数
+  const handleEmailChange = () => {
+    navigation.navigate('ChangeEmail');
+  };
+
+  // 处理保存
+  const handleSave = () => {
+    // TODO: 调用接口保存用户信息
+    navigation.goBack();
+  };
+
+  return (
+    <SafeAreaLayout>
+      <ScrollView style={[styles.container, {backgroundColor: theme.colors.background}]}>
+        {/* 头像部分 */}
+        <View style={styles.avatarSection}>
+          <View style={styles.avatarContainer}>
+            <Avatar.Icon 
+              size={100} 
+              icon="account"
+              style={{backgroundColor: theme.colors.surfaceVariant}}
+            />
+            <TouchableOpacity style={styles.editAvatarButton}>
+              <MaterialIcons name="photo-camera" size={24} color={theme.colors.onSurfaceVariant} />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* 表单部分 */}
+        <View style={styles.formSection}>
+          {/* 昵称 */}
+          <View style={styles.inputGroup}>
+            <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+              {t('userSetting.form.error.nickname.required', {defaultValue: '昵称'})}
+            </Text>
+            <TextInput
+              mode="outlined"
+              value={nickname}
+              onChangeText={setNickname}
+              placeholder={t('userSetting.form.error.nickname.required', {defaultValue: '请输入昵称'})}
+              style={[styles.input, {backgroundColor: theme.colors.surface}]}
+              outlineStyle={{borderRadius: 8}}
+            />
+          </View>
+
+          {/* 国家或地区 */}
+          <View style={styles.inputGroup}>
+            <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+              {t('userSetting.basicInfo.form.label.countryRegion', {defaultValue: '国家/地区'})}
+            </Text>
+            <TouchableOpacity
+              style={[styles.pickerButton, {backgroundColor: theme.colors.surface}]}
+              onPress={handleSelectCountry}>
+              <Text style={{color: theme.colors.onSurface}}>
+                {selectedCountry?.name || t('userSetting.basicInfo.form.placeholder.countryRegion', {defaultValue: '请选择国家/地区'})}
+              </Text>
+              <MaterialIcons 
+                name="keyboard-arrow-right" 
+                size={24} 
+                color={theme.colors.onSurfaceVariant}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/* 时区 */}
+          <View style={styles.inputGroup}>
+            <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+              {t('userSetting.basicInfo.form.label.timezone', {defaultValue: '时区'})}
+            </Text>
+            <TouchableOpacity
+              style={[styles.pickerButton, {backgroundColor: theme.colors.surface}]}
+              onPress={() => setTimezonePickerVisible(true)}>
+              <Text style={{color: theme.colors.onSurface}}>
+                {getCurrentTimezoneName()}
+              </Text>
+              <MaterialIcons 
+                name="keyboard-arrow-right" 
+                size={24} 
+                color={theme.colors.onSurfaceVariant}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/* 邮箱 - 只读 */}
+          <View style={styles.inputGroup}>
+            <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+              {t('userSetting.SecuritySettings.form.label.email', {defaultValue: '邮箱'})}
+            </Text>
+            <TouchableOpacity
+              style={[styles.pickerButton, {backgroundColor: theme.colors.surface}]}
+              onPress={handleEmailChange}>
+              <Text style={{color: theme.colors.onSurfaceVariant}}>
+                {userInfo?.email}
+              </Text>
+              <MaterialIcons 
+                name="keyboard-arrow-right" 
+                size={24} 
+                color={theme.colors.onSurfaceVariant}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/* 安装商运营商 - 如果是安装商角色才显示 */}
+          {userInfo?.userType === 2 && (
+            <View style={styles.inputGroup}>
+              <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+                {t('userSetting.basicInfo.form.label.installerCode', {defaultValue: '安装商代码'})}
+              </Text>
+              <TouchableOpacity
+                style={[styles.pickerButton, {backgroundColor: theme.colors.surface}]}>
+                <Text style={{color: theme.colors.onSurfaceVariant}}>
+                  TTEC34
+                </Text>
+                <MaterialIcons 
+                  name="keyboard-arrow-right" 
+                  size={24} 
+                  color={theme.colors.onSurfaceVariant}
+                />
+              </TouchableOpacity>
+            </View>
+          )}
+
+          {/* 公司名称 - 如果是安装商角色才显示 */}
+          {userInfo?.userType === 2 && (
+            <View style={styles.inputGroup}>
+              <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+                {t('userSetting.basicInfo.form.label.companyName', {defaultValue: '公司名称'})}
+              </Text>
+              <Text style={[styles.companyName, {color: theme.colors.onSurfaceVariant}]}>
+                Leo新能源科技有限公司
+              </Text>
+            </View>
+          )}
+        </View>
+
+        {/* 确定按钮 */}
+        <TouchableOpacity
+          style={[styles.saveButton, {backgroundColor: theme.colors.primary}]}
+          onPress={handleSave}>
+          <Text style={[styles.saveButtonText, {color: theme.colors.onPrimary}]}>
+            {t('common.confirm', {defaultValue: '确定'})}
+          </Text>
+        </TouchableOpacity>
+
+        {/* 时区选择器 */}
+        <Picker
+          visible={timezonePickerVisible}
+          data={timezoneList.map(item => item.code)}
+          defaultValue={getCurrentTimezoneName()}
+          onCancel={() => setTimezonePickerVisible(false)}
+          onConfirm={(value) => {
+            const tz = timezoneList.find(t => t.code === value);
+            if (tz) {
+              handleSelectTimezone(tz.value);
+            }
+          }}
+        />
+      </ScrollView>
+    </SafeAreaLayout>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  avatarSection: {
+    alignItems: 'center',
+    paddingVertical: 32,
+  },
+  avatarContainer: {
+    position: 'relative',
+  },
+  editAvatarButton: {
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    borderRadius: 20,
+    padding: 8,
+  },
+  formSection: {
+    paddingHorizontal: 16,
+  },
+  inputGroup: {
+    marginBottom: 16,
+  },
+  label: {
+    fontSize: 14,
+    marginBottom: 8,
+  },
+  input: {
+    height: 44,
+  },
+  pickerButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 44,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.12)',
+  },
+  companyName: {
+    fontSize: 16,
+    paddingVertical: 8,
+  },
+  saveButton: {
+    margin: 16,
+    height: 44,
+    borderRadius: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  saveButtonText: {
+    fontSize: 16,
+    fontWeight: '500',
+  },
+});
+
+export default UserProfileScreen; 

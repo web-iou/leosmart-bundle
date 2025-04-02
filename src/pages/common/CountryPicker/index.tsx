@@ -216,7 +216,7 @@ const CountryPicker = ({
           <View className="flex-row items-center flex-1 relative">
             <AntDesign
               name="search1"
-              size={22}
+              size={14}
               color={theme.colors.onSurfaceVariant}
               style={{
                 position: 'absolute',
@@ -233,7 +233,7 @@ const CountryPicker = ({
               style={{
                 backgroundColor: theme.colors.inputBackground,
                 height: 40,
-                width: '80%',
+                width: '100%',
               }}
               outlineStyle={{
                 borderRadius: 20,

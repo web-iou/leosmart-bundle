@@ -85,7 +85,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
 
   // 导航到皮肤设置
   const goToThemeSettings = () => {
-    setShow(true);
+    navigation.navigate('ThemeSettings');
   };
 
   // 导航到关于页面
@@ -103,7 +103,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
         {/* 顶部用户信息 */}
         <TouchableOpacity 
           style={styles.header}
-          onPress={goToAccountSecurity}>
+          onPress={() => navigation.navigate('UserProfile')}>
           <View style={styles.headerContent}>
             <View style={styles.userInfoContainer}>
               <View style={styles.avatarContainer}>
@@ -232,9 +232,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
             {t('messageBox.logout')}
           </Text>
         </TouchableOpacity>
-        <ThemePortal
-          setThemeDialogVisible={setShow}
-          themeDialogVisible={show}></ThemePortal>
       </ScrollView>
     </SafeAreaLayout>
   );

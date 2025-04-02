@@ -89,6 +89,12 @@ export interface ResetPasswordParams {
   password: string;
 }
 
+// 添加修改邮箱的参数接口
+export interface ChangeEmailParams {
+  code: string;
+  email: string;
+}
+
 // 用户 API 类
 class UserApi {
   // 命名空间
@@ -156,6 +162,11 @@ class UserApi {
     >
   > {
     return http.get(`/admin/register/country/zone`);
+  }
+
+  // 添加修改邮箱的方法
+  public changeEmail(params: ChangeEmailParams): Promise<ApiResponse<boolean>> {
+    return http.put('/admin/user/app/mail', params);
   }
 }
 
