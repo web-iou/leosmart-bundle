@@ -6,10 +6,21 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {LineChart} from 'react-native-chart-kit';
 import {ExtendedMD3Theme} from '@/theme';
 import SafeAreaLayout from '@/components/SafeAreaLayout';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+type RootStackParamList = {
+  Monitor: {
+    filter: string;
+  };
+};
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Monitor'>;
 
 const Overview: React.FC = () => {
   const {t} = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
+  const navigation = useNavigation<NavigationProp>();
   const screenWidth = Dimensions.get('window').width;
   const chartWidth = Math.max(screenWidth * 1.2, 400);
 
@@ -22,6 +33,7 @@ const Overview: React.FC = () => {
       color: theme.colors.primary,
       bgColor: theme.colors.primaryContainer,
       icon: 'mobile1',
+      filterType: 'all',
     },
     {
       title: t('installer.processingOrders', {defaultValue: '在线设备'}),
@@ -30,6 +42,7 @@ const Overview: React.FC = () => {
       color: theme.colors.tertiary,
       bgColor: theme.colors.tertiaryContainer,
       icon: 'checkcircleo',
+      filterType: 'online',
     },
     {
       title: t('installer.pendingOrders', {defaultValue: '离线设备'}),
@@ -38,6 +51,7 @@ const Overview: React.FC = () => {
       color: theme.colors.secondary,
       bgColor: theme.colors.secondaryContainer,
       icon: 'exclamationcircleo',
+      filterType: 'offline',
     },
     {
       title: t('installer.qualityOrders', {defaultValue: '故障设备'}),
@@ -46,6 +60,7 @@ const Overview: React.FC = () => {
       color: theme.colors.error,
       bgColor: theme.colors.errorContainer,
       icon: 'closecircleo',
+      filterType: 'fault',
     },
     {
       title: t('installer.attentionOrders', {defaultValue: '警告设备'}),
@@ -54,8 +69,16 @@ const Overview: React.FC = () => {
       color: theme.colors.warning,
       bgColor: theme.colors.warningContainer,
       icon: 'warning',
+      filterType: 'warning',
     },
   ];
+
+  // 处理卡片点击
+  const handleCardPress = (filterType: string) => {
+    navigation.navigate('Monitor', {
+      filter: filterType,
+    });
+  };
 
   // 图表数据
   const chartData = {
@@ -199,8 +222,9 @@ const Overview: React.FC = () => {
         {/* 统计卡片区域 */}
         <View style={styles.statsContainer}>
           {statsCards.map((card, index) => (
-            <View
+            <TouchableOpacity
               key={index}
+              onPress={() => handleCardPress(card.filterType)}
               style={[
                 styles.statsCard,
                 {
@@ -222,7 +246,7 @@ const Overview: React.FC = () => {
               <Text style={[styles.cardStatus, {color: theme.colors.onSurfaceVariant}]}>
                 {card.status}
               </Text>
-            </View>
+            </TouchableOpacity>
           ))}
         </View>
 

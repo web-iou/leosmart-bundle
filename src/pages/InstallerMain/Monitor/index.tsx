@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -11,6 +11,15 @@ import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {ExtendedMD3Theme} from '@/theme';
 import SafeAreaLayout from '@/components/SafeAreaLayout';
+import {RouteProp, useRoute} from '@react-navigation/native';
+
+type RootStackParamList = {
+  Monitor: {
+    filter?: string;
+  };
+};
+
+type MonitorScreenRouteProp = RouteProp<RootStackParamList, 'Monitor'>;
 
 interface DeviceItem {
   id: string;
@@ -25,8 +34,16 @@ interface DeviceItem {
 const Monitor: React.FC = () => {
   const {t} = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
+  const route = useRoute<MonitorScreenRouteProp>();
   const [searchText, setSearchText] = useState('');
   const [activeTab, setActiveTab] = useState('all');
+
+  // 处理路由参数
+  useEffect(() => {
+    if (route.params?.filter) {
+      setActiveTab(route.params.filter);
+    }
+  }, [route.params?.filter]);
 
   // 模拟设备数据，实际应从API获取
   const [devices] = useState<DeviceItem[]>([
