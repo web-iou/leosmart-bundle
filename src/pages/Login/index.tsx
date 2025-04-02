@@ -189,6 +189,16 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
           await storage.setAsync('user_id', loginData.user_id);
         }
 
+        // 获取并缓存用户详细信息
+        try {
+          const userInfoResponse = await userApi.getUserInfo();
+          if (userInfoResponse.code === 0 && userInfoResponse.data) {
+            await storage.setAsync('user_info', JSON.stringify(userInfoResponse.data));
+          }
+        } catch (error) {
+          console.error('Failed to fetch user info:', error);
+        }
+
         // 如果选择了记住账号，则同时保存用户名和密码
         if (rememberMe) {
           await storage.setAsync('username', username.trim());

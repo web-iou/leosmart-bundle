@@ -33,8 +33,13 @@ interface UserInfo {
   email?: string;
   userType?: number;
   nickname?: string;
-  country?: string;
-  timezone?: string;
+  county?: string;
+  timeZone?: string;
+  center?: string;
+  avatar?: string;
+  instCode?: string;
+  instName?: string;
+  userId?: number;
 }
 
 const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
@@ -48,7 +53,18 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
   const selectedCountry = useSelector(selectSelectedCountry);
   const [timezonePickerVisible, setTimezonePickerVisible] = useState(false);
   const [timezoneList, setTimezoneList] = useState<CountryItem['zoneList']>([]);
-  const [timezone, setTimezone] = useState<string>('');
+  const [timezone, setTimezone] = useState<string>(userInfo?.timeZone || '');
+
+  // 监听用户信息变化，更新表单数据
+  useEffect(() => {
+    if (userInfo) {
+      setNickname(userInfo.nickname || '');
+      // 如果用户信息中包含时区信息，则设置时区
+      if (userInfo.timeZone) {
+        setTimezone(userInfo.timeZone);
+      }
+    }
+  }, [userInfo]);
 
   // 初始化国家和时区数据
   useEffect(() => {
@@ -56,32 +72,53 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
       dispatch(fetchCountries())
         .unwrap()
         .then(value => {
-          const result = value.find(item => item.value === userInfo?.country) || value[0];
-          dispatch(
-            setSelectedCountry({
-              ...result,
-              name: t(result.code),
-            }),
-          );
-          setTimezone(result.zoneList[0].value);
+          // 如果用户信息中有国家信息，则查找对应的国家
+          if (userInfo?.county) {
+            const result = value.find(item => item.value === userInfo.county);
+            if (result) {
+              dispatch(
+                setSelectedCountry({
+                  ...result,
+                  name: t(result.code),
+                }),
+              );
+              // 如果用户信息中有时区信息，则设置对应的时区
+              if (userInfo.timeZone) {
+                setTimezone(userInfo.timeZone);
+              } else {
+                setTimezone(result.zoneList[0].value);
+              }
+            }
+          } else {
+            // 如果没有国家信息，则使用第一个国家
+            const firstCountry = value[0];
+            dispatch(
+              setSelectedCountry({
+                ...firstCountry,
+                name: t(firstCountry.code),
+              }),
+            );
+            setTimezone(firstCountry.zoneList[0].value);
+          }
         });
     }
-  }, [dispatch, t, userInfo?.country]);
+  }, [dispatch, t, userInfo?.county, userInfo?.timeZone]);
 
   // 更新时区列表
   useEffect(() => {
     if (selectedCountry) {
       setTimezoneList(
-        selectedCountry.zoneList.map(item => {
-          return {
-            ...item,
-            code: t(item.code),
-          };
-        }),
+        selectedCountry.zoneList.map(item => ({
+          ...item,
+          code: t(item.code),
+        })),
       );
-      setTimezone(selectedCountry.zoneList[0].value);
+      // 只有在没有设置时区的情况下才设置默认时区
+      if (!timezone) {
+        setTimezone(selectedCountry.zoneList[0].value);
+      }
     }
-  }, [selectedCountry, t]);
+  }, [selectedCountry, t, timezone]);
 
   // 处理选择国家
   const handleSelectCountry = () => {

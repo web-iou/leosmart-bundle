@@ -168,6 +168,11 @@ class UserApi {
   public changeEmail(params: ChangeEmailParams): Promise<ApiResponse<boolean>> {
     return http.put('/admin/user/app/mail', params);
   }
+
+  // 获取用户信息
+  public getUserInfo(): Promise<ApiResponse<UserInfo>> {
+    return http.get('/admin/user/app/info');
+  }
 }
 
 // 创建并导出 UserApi 实例
