@@ -31,7 +31,7 @@ const Picker = ({
   defaultValue?: string;
 }) => {
   const theme = useTheme() as ExtendedMD3Theme;
-  const [selectedValue, setSelectedValue] = useState(defaultValue ?? data[0]);
+  const [selectedValue, setSelectedValue] = useState(defaultValue || data[0]);
   const scrollRef = useRef<ScrollView>(null);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   // 计算初始滚动位置
