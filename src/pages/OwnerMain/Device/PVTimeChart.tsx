@@ -89,7 +89,7 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
   }, [theme.dark, theme.colors.background]);
 
   useEffect(() => {
-    const fetchData = async () => {      
+    const fetchData = async () => {
       try {
         setLoading(true);
         const response = await deviceApi.getPvTimeIndicator(route.params.id);
@@ -117,6 +117,7 @@ const PVTimeChart: React.FC<PVTimeChartProps> = ({route}) => {
   ) => {
     // 使用更兼容的方式计算最大值
     let allValues: number[] = [];
+    data = data ?? [];
     data.forEach(item => {
       if (item.pv1Indicator !== undefined) allValues.push(item.pv1Indicator);
       if (item.pv2Indicator !== undefined) allValues.push(item.pv2Indicator);
