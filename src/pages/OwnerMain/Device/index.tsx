@@ -364,7 +364,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
               </View>
 
               <Text style={[styles.powerValue, {color: '#FF9800'}]}>
-                {deviceData?.out.powerTotal}W
+                {deviceData?.out.powerTotal.toFixed(1)}W
               </Text>
 
               <View style={styles.powerDetailsRow}>
@@ -380,7 +380,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                       {color: theme.colors.onSurfaceVariant},
                     ]}>
                     {t('device.voltage', {defaultValue: '电压'})}:{' '}
-                    {deviceData?.out.voltage}V
+                    {deviceData?.out.voltage.toFixed(1)}V
                   </Text>
                 </View>
                 <View style={styles.detailWithIcon}>
@@ -395,7 +395,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                       {color: theme.colors.onSurfaceVariant},
                     ]}>
                     {t('device.current', {defaultValue: '电流'})}:{' '}
-                    {deviceData?.out.current}A
+                    {deviceData?.out.current.toFixed(1)}A
                   </Text>
                 </View>
               </View>
@@ -418,7 +418,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
               </View>
 
               <Text style={[styles.powerValue, {color: '#FF9800'}]}>
-                {deviceData?.powerGen.genDay}kWh
+                {deviceData?.powerGen.genDay.toFixed(0)}kWh
               </Text>
 
               <View style={styles.powerDetailsRow}>
@@ -434,7 +434,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                       {color: theme.colors.onSurfaceVariant},
                     ]}>
                     {t('device.totalGeneration', {defaultValue: '累计'})}:{' '}
-                    {deviceData?.powerGen.genTotal}kWh
+                    {deviceData?.powerGen.genTotal.toFixed(0)}kWh
                   </Text>
                 </View>
                 <View style={styles.detailWithIcon}>
