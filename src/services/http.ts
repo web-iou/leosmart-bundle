@@ -5,6 +5,7 @@ import { Platform, Linking } from 'react-native';
 import RNFS from 'react-native-fs';
 import store from '@/store';
 import { showToast } from '@/store/slices/toastSlice';
+import { navigationRef } from '@/navigation';
 var Buffer = require('buffer/').Buffer; // 添加这行
 // 定义响应数据的接口
 export interface ApiResponse<T = any> {
@@ -80,8 +81,9 @@ class Http {
       baseURL: this.baseURL,
       timeout: this.timeout,
       headers: this.defaultHeaders,
-      validateStatus(status){
-        return status>=200 && status<500
+      validateStatus: (status) => {
+        // 只接受 2xx 的状态码，其他状态码都会进入错误处理
+        return status >= 200 && status < 300;
       }
     });
 
@@ -172,7 +174,7 @@ class Http {
       },
       async (error: AxiosError) => {
         const options = error.config as RequestOptions;
-        
+
         // 如果设置了跳过错误处理，则直接抛出错误
         if (options?.skipErrorHandler) {
           return Promise.reject(error);
@@ -202,11 +204,11 @@ class Http {
         const { status } = error.response;
         const errorData = error.response.data as Record<string, any>;
 
-        // 处理 401 未授权错误，可能需要重新登录
-        if (status === 401) {
-          const errorMessage = '登录已过期，请重新登录';
+        // 处理 401 未授权错误和 424 依赖失败错误
+        if (status === 401 || status === 424) {
+          const errorMessage = status === 401 ? '登录已过期，请重新登录' : '会话已失效，请重新登录';
           if (typeof __DEV__ !== 'undefined' && __DEV__) {
-            console.error('Unauthorized, please login again');
+            console.error('Authentication Error:', errorMessage);
           }
           // 使用 store 的 showToast 显示错误消息
           store.dispatch(showToast({
@@ -214,13 +216,22 @@ class Http {
             type: 'error',
             duration: 3000
           }));
+
           try {
+            // 清除认证相关的存储
             await storage.deleteAsync('auth_token');
+            await storage.deleteAsync('user_info');
+            
+            // 跳转到登录页面
+            if (navigationRef.current) {
+              navigationRef.current.reset({
+                index: 0,
+                routes: [{ name: 'Login' }],
+              });
+            }
           } catch (e) {
-            console.warn('Failed to delete auth token:', e);
+            console.warn('Failed to handle authentication error:', e);
           }
-          // 如果有全局事件总线，可以发送登出事件
-          // eventBus.emit('auth:logout');
         }
 
         // 处理 403 禁止访问错误
