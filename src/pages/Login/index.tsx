@@ -347,7 +347,11 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
             style={styles.moreButton}
             onPress={() => setShowMore(true)}>
             <Text style={{opacity: 0, width: 0, height: 0}}>{''}</Text>
-            <AntDesign name="ellipsis1" size={24} color={paperTheme.colors.onSurface} />
+            <AntDesign
+              name="ellipsis1"
+              size={24}
+              color={paperTheme.colors.onSurface}
+            />
           </TouchableOpacity>
         </View>
 
@@ -461,8 +465,9 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
                 flex: 1,
                 lineHeight: 14,
               }}>
-              <Text>{t('login.agreeTerms', {defaultValue: '我已阅读并同意'})}</Text>
-              {' '}
+              <Text>
+                {t('password.i_have_read_it', {defaultValue: '我已阅读并同意'})}
+              </Text>{' '}
               <Text
                 style={{
                   color: paperTheme.colors.termsLinkColor,
@@ -471,11 +476,11 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
                   lineHeight: 14,
                 }}
                 onPress={handleTermsPress}>
-                {t('login.termsOfService', {defaultValue: '服务条款'})}
+                {t('sys.serviceAgreement', {defaultValue: '服务条款'})}
               </Text>
-              <Text>{' '}</Text>
+              <Text> </Text>
               <Text>{t('common.and', {defaultValue: '和'})}</Text>
-              <Text>{' '}</Text>
+              <Text> </Text>
               <Text
                 style={{
                   color: paperTheme.colors.termsLinkColor,
@@ -526,7 +531,11 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
             <TouchableOpacity
               style={styles.otherLoginButton}
               onPress={() => {}}>
-              <Text style={[styles.otherLoginText, {color: paperTheme.colors.primary}]}>
+              <Text
+                style={[
+                  styles.otherLoginText,
+                  {color: paperTheme.colors.primary},
+                ]}>
                 {t('login.guestLogin', {defaultValue: '游客登录'})}
               </Text>
             </TouchableOpacity>
@@ -534,7 +543,11 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
             <TouchableOpacity
               style={styles.otherLoginButton}
               onPress={() => navigation?.navigate('Register')}>
-              <Text style={[styles.otherLoginText, {color: paperTheme.colors.primary}]}>
+              <Text
+                style={[
+                  styles.otherLoginText,
+                  {color: paperTheme.colors.primary},
+                ]}>
                 {t('login.register', {defaultValue: '立即注册'})}
               </Text>
             </TouchableOpacity>
@@ -599,13 +612,17 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
                 },
               ]}
               onPress={option.onPress}>
-              <Text style={[styles.optionText, {color: paperTheme.colors.onSurface}]}>
+              <Text
+                style={[
+                  styles.optionText,
+                  {color: paperTheme.colors.onSurface},
+                ]}>
                 {option.title}
               </Text>
             </TouchableOpacity>
           ))}
         </View>
-        
+
         {/* 取消按钮 */}
         <TouchableOpacity
           onPress={() => setShowMore(false)}

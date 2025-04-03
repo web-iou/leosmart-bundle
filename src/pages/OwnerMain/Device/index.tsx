@@ -117,70 +117,74 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
   }
   return (
     <SafeAreaLayout>
+      {/* 设备标题 */}
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.deviceTitleContainer}
+          ref={devicesRef}
+          onPress={() => {
+            show(
+              deviceList.map(item => item.name).concat('设备管理'),
+              new Array(deviceList.length).concat(
+                AntDesign.getImageSourceSync('setting', 24, '#fff').uri,
+              ),
+              {
+                menuWidth: 150,
+                allowRoundedArrow: true,
+                menuTextMargin: 20,
+              },
+            ).then(index => {
+              if (index === deviceList.length) {
+              } else {
+                setActive(index!);
+              }
+            });
+          }}>
+          <View style={styles.deviceIconCircle}>
+            <AntDesign name="swap" size={24} color="#FFFFFF" />
+          </View>
+          <Text style={[styles.deviceName, {color: theme.colors.onBackground}]}>
+            {deviceList[active]?.name}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            showPopover(
+              ['扫一扫', 'SN序列号'],
+              [
+                AntDesign.getImageSourceSync('scan1', 24, '#fff').uri,
+                AntDesign.getImageSourceSync('edit', 24, '#fff').uri,
+              ],
+            ).then(index => {
+              if (index === 0) {
+                navigation.navigate('Scan');
+              } else {
+                navigation.navigate({
+                  name: 'SNCode',
+                  params: {},
+                });
+              }
+            });
+          }}>
+          <AntDesign
+            name="plus"
+            ref={anchorRef}
+            size={24}
+            color={theme.colors.onBackground}
+          />
+        </TouchableOpacity>
+      </View>
       <ScrollView
         style={[styles.container, {backgroundColor: theme.colors.background}]}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl 
+            refreshing={refreshing} 
+            onRefresh={onRefresh}
+            colors={[theme.colors.primary]}
+            tintColor={theme.colors.primary}
+            progressBackgroundColor={theme.colors.surface}
+          />
         }>
-        {/* 设备标题 */}
-        <View style={styles.header}>
-          <TouchableOpacity
-            style={styles.deviceTitleContainer}
-            ref={devicesRef}
-            onPress={() => {
-              show(
-                deviceList.map(item => item.name).concat('设备管理'),
-                new Array(deviceList.length).concat(
-                  AntDesign.getImageSourceSync('setting', 24, '#fff').uri,
-                ),
-                {
-                  menuWidth: 150,
-                  allowRoundedArrow: true,
-                  menuTextMargin: 20,
-                },
-              ).then(index => {
-                if (index === deviceList.length) {
-                } else {
-                  setActive(index!);
-                }
-              });
-            }}>
-            <View style={styles.deviceIconCircle}>
-              <AntDesign name="swap" size={24} color="#FFFFFF" />
-            </View>
-            <Text
-              style={[styles.deviceName, {color: theme.colors.onBackground}]}>
-              {deviceList[active]?.name}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              showPopover(
-                ['扫一扫', 'SN序列号'],
-                [
-                  AntDesign.getImageSourceSync('scan1', 24, '#fff').uri,
-                  AntDesign.getImageSourceSync('edit', 24, '#fff').uri,
-                ],
-              ).then(index => {
-                if (index === 0) {
-                  navigation.navigate('Scan');
-                } else {
-                  navigation.navigate({
-                    name: 'SNCode',
-                    params: {},
-                  });
-                }
-              });
-            }}>
-            <AntDesign
-              name="plus"
-              ref={anchorRef}
-              size={24}
-              color={theme.colors.onBackground}
-            />
-          </TouchableOpacity>
-        </View>
-
         {/* 设备状态卡片 */}
         <Card style={[styles.card, {backgroundColor: theme.colors.surface}]}>
           <Card.Content>
