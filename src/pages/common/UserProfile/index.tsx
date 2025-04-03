@@ -5,13 +5,10 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  Alert,
+  Linking,
 } from 'react-native';
-import {
-  Text,
-  TextInput,
-  useTheme,
-  Avatar,
-} from 'react-native-paper';
+import {Text, TextInput, useTheme, Avatar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {ExtendedMD3Theme} from '@/theme';
 import SafeAreaLayout from '@/components/SafeAreaLayout';
@@ -29,6 +26,9 @@ import store from '@/store';
 import Picker from '@/components/Picker';
 import {userApi} from '@/services/api/userApi';
 import {showToast} from '@/store/slices/toastSlice';
+import {launchImageLibrary} from 'react-native-image-picker';
+import fs from 'react-native-fs';
+import {CDN_Url, VITE_API_BASE_URL} from '@/config/config';
 
 interface UserInfo {
   username?: string;
@@ -48,8 +48,10 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
   const {t} = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
   const dispatch = useDispatch();
-  const [userInfo] = useMMKVObject<UserInfo>('user_info', storage.getInstance()!);
-  
+  const [userInfo] = useMMKVObject<UserInfo>(
+    'user_info',
+    storage.getInstance()!,
+  );
   // 状态管理
   const [nickname, setNickname] = useState(userInfo?.nickname || '');
   const selectedCountry = useSelector(selectSelectedCountry);
@@ -57,7 +59,7 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
   const [timezoneList, setTimezoneList] = useState<CountryItem['zoneList']>([]);
   const [timezone, setTimezone] = useState<string>(userInfo?.timeZone || '');
   const [loading, setLoading] = useState(false);
-
+  const [avatar, setAvatar] = useState(userInfo?.avatar || '');
   // 监听用户信息变化，更新表单数据
   useEffect(() => {
     console.log('UserInfo changed:', userInfo);
@@ -91,7 +93,10 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
               );
               // 如果用户信息中有时区信息，则设置对应的时区
               if (userInfo.timeZone) {
-                console.log('Setting timezone from userInfo:', userInfo.timeZone);
+                console.log(
+                  'Setting timezone from userInfo:',
+                  userInfo.timeZone,
+                );
                 setTimezone(userInfo.timeZone);
               } else {
                 setTimezone(result.zoneList[0].value);
@@ -131,7 +136,10 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
 
   // 更新时区列表
   useEffect(() => {
-    console.log('Updating timezone list with selectedCountry:', selectedCountry);
+    console.log(
+      'Updating timezone list with selectedCountry:',
+      selectedCountry,
+    );
     if (selectedCountry) {
       const newTimezoneList = selectedCountry.zoneList.map(item => ({
         ...item,
@@ -139,7 +147,7 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
       }));
       console.log('New timezone list:', newTimezoneList);
       setTimezoneList(newTimezoneList);
-      
+
       // 只有在没有设置时区的情况下才设置默认时区
       if (!timezone) {
         setTimezone(selectedCountry.zoneList[0].value);
@@ -151,7 +159,12 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
   const getCurrentTimezoneName = () => {
     const tz = timezoneList.find(t => t.value === timezone);
     console.log('Getting timezone name for:', timezone, 'Found:', tz);
-    return tz?.code || t('userSetting.basicInfo.form.placeholder.timezone', {defaultValue: '请选择时区'});
+    return (
+      tz?.code ||
+      t('userSetting.basicInfo.form.placeholder.timezone', {
+        defaultValue: '请选择时区',
+      })
+    );
   };
 
   // 处理选择国家
@@ -174,7 +187,7 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
   const handleSave = async () => {
     try {
       setLoading(true);
-      
+
       // 准备更新参数
       const updateParams = {
         nickname: nickname || undefined,
@@ -182,7 +195,7 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
         timeZone: timezone || undefined,
         center: userInfo?.center || undefined,
         email: userInfo?.email || undefined,
-        avatar: userInfo?.avatar || undefined,
+        avatar,
         instCode: userInfo?.instCode || undefined,
       };
 
@@ -194,7 +207,9 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
         const userInfoResponse = await userApi.getUserInfo();
         if (userInfoResponse.code === 0 && userInfoResponse.data) {
           // 更新缓存中的用户信息
-          storage.getInstance()?.set('user_info', JSON.stringify(userInfoResponse.data));
+          storage
+            .getInstance()
+            ?.set('user_info', JSON.stringify(userInfoResponse.data));
         }
 
         // 显示成功提示
@@ -205,14 +220,16 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
             duration: 2000,
           }),
         );
-        
+
         // 返回上一页
         navigation.goBack();
       } else {
         // 显示错误信息
         dispatch(
           showToast({
-            message: response.message || t('common.saveFailed', {defaultValue: '保存失败'}),
+            message:
+              response.message ||
+              t('common.saveFailed', {defaultValue: '保存失败'}),
             type: 'error',
             duration: 2000,
           }),
@@ -222,7 +239,9 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
       console.error('Failed to save user info:', error);
       dispatch(
         showToast({
-          message: t('common.networkError', {defaultValue: '网络请求异常，请稍后重试'}),
+          message: t('common.networkError', {
+            defaultValue: '网络请求异常，请稍后重试',
+          }),
           type: 'error',
           duration: 2000,
         }),
@@ -234,17 +253,81 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
 
   return (
     <SafeAreaLayout>
-      <ScrollView style={[styles.container, {backgroundColor: theme.colors.background}]}>
+      <ScrollView
+        style={[styles.container, {backgroundColor: theme.colors.background}]}>
         {/* 头像部分 */}
         <View style={styles.avatarSection}>
           <View style={styles.avatarContainer}>
-            <Avatar.Icon 
-              size={100} 
-              icon="account"
-              style={{backgroundColor: theme.colors.surfaceVariant}}
-            />
-            <TouchableOpacity style={styles.editAvatarButton}>
-              <MaterialIcons name="photo-camera" size={24} color={theme.colors.onSurfaceVariant} />
+            {avatar ? (
+              <Image
+                source={{uri: avatar}}
+                className="rounded-full"
+                style={{width: 100, height: 100}}></Image>
+            ) : (
+              <Avatar.Icon
+                size={100}
+                icon="account"
+                style={{backgroundColor: theme.colors.surfaceVariant}}
+              />
+            )}
+            <TouchableOpacity
+              style={styles.editAvatarButton}
+              onPress={() => {
+                launchImageLibrary({
+                  mediaType: 'photo',
+                  quality: 0.8,
+                  includeBase64: false,
+                  includeExtra: true,
+                })
+                  .then(async value => {
+                    if (value?.errorCode === 'permission') {
+                      Alert.alert(
+                        'Permission Denied',
+                        'You need to enable permission to use this feature.',
+                        [
+                          {
+                            text: 'Cancel',
+                          },
+                          {
+                            text: 'Open Settings',
+                            onPress: () => {
+                              Linking.openSettings();
+                            },
+                          },
+                        ],
+                      );
+                    } else if ((value.assets?.length ?? 0) > 0) {
+                      fs.uploadFiles({
+                        files: (value.assets ?? []).map(item => {
+                          return {
+                            filename: item.fileName!,
+                            name: 'file',
+                            filepath: item.uri!.replace('file:///', ''),
+                            filetype: item.type!,
+                          };
+                        }),
+                        headers: {
+                          Authorization: `Bearer ${storage
+                            .getInstance()
+                            ?.getString('auth_token')}`,
+                        },
+                        toUrl: `${VITE_API_BASE_URL}/api/admin/sys-file/upload`,
+                      }).promise.then(({body}) => {
+                        const {data} = JSON.parse(body);
+                        const imageUrl = CDN_Url + data.url;
+                        setAvatar(imageUrl);
+                      });
+                    }
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  });
+              }}>
+              <MaterialIcons
+                name="photo-camera"
+                size={24}
+                color={theme.colors.onSurfaceVariant}
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -254,13 +337,17 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
           {/* 昵称 */}
           <View style={styles.inputGroup}>
             <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-              {t('userSetting.form.error.nickname.required', {defaultValue: '昵称'})}
+              {t('userSetting.form.error.nickname.required', {
+                defaultValue: '昵称',
+              })}
             </Text>
             <TextInput
               mode="outlined"
               value={nickname}
               onChangeText={setNickname}
-              placeholder={t('userSetting.form.error.nickname.required', {defaultValue: '请输入昵称'})}
+              placeholder={t('userSetting.form.error.nickname.required', {
+                defaultValue: '请输入昵称',
+              })}
               style={[styles.input, {backgroundColor: theme.colors.surface}]}
               outlineStyle={{borderRadius: 8}}
             />
@@ -269,17 +356,25 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
           {/* 国家或地区 */}
           <View style={styles.inputGroup}>
             <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-              {t('userSetting.basicInfo.form.label.countryRegion', {defaultValue: '国家/地区'})}
+              {t('userSetting.basicInfo.form.label.countryRegion', {
+                defaultValue: '国家/地区',
+              })}
             </Text>
             <TouchableOpacity
-              style={[styles.pickerButton, {backgroundColor: theme.colors.surface}]}
+              style={[
+                styles.pickerButton,
+                {backgroundColor: theme.colors.surface},
+              ]}
               onPress={handleSelectCountry}>
               <Text style={{color: theme.colors.onSurface}}>
-                {selectedCountry?.name || t('userSetting.basicInfo.form.placeholder.countryRegion', {defaultValue: '请选择国家/地区'})}
+                {selectedCountry?.name ||
+                  t('userSetting.basicInfo.form.placeholder.countryRegion', {
+                    defaultValue: '请选择国家/地区',
+                  })}
               </Text>
-              <MaterialIcons 
-                name="keyboard-arrow-right" 
-                size={24} 
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={24}
                 color={theme.colors.onSurfaceVariant}
               />
             </TouchableOpacity>
@@ -288,17 +383,22 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
           {/* 时区 */}
           <View style={styles.inputGroup}>
             <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-              {t('userSetting.basicInfo.form.label.timezone', {defaultValue: '时区'})}
+              {t('userSetting.basicInfo.form.label.timezone', {
+                defaultValue: '时区',
+              })}
             </Text>
             <TouchableOpacity
-              style={[styles.pickerButton, {backgroundColor: theme.colors.surface}]}
+              style={[
+                styles.pickerButton,
+                {backgroundColor: theme.colors.surface},
+              ]}
               onPress={() => setTimezonePickerVisible(true)}>
               <Text style={{color: theme.colors.onSurface}}>
                 {getCurrentTimezoneName()}
               </Text>
-              <MaterialIcons 
-                name="keyboard-arrow-right" 
-                size={24} 
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={24}
                 color={theme.colors.onSurfaceVariant}
               />
             </TouchableOpacity>
@@ -307,17 +407,22 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
           {/* 邮箱 - 只读 */}
           <View style={styles.inputGroup}>
             <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-              {t('userSetting.SecuritySettings.form.label.email', {defaultValue: '邮箱'})}
+              {t('userSetting.SecuritySettings.form.label.email', {
+                defaultValue: '邮箱',
+              })}
             </Text>
             <TouchableOpacity
-              style={[styles.pickerButton, {backgroundColor: theme.colors.surface}]}
+              style={[
+                styles.pickerButton,
+                {backgroundColor: theme.colors.surface},
+              ]}
               onPress={handleEmailChange}>
               <Text style={{color: theme.colors.onSurfaceVariant}}>
                 {userInfo?.email}
               </Text>
-              <MaterialIcons 
-                name="keyboard-arrow-right" 
-                size={24} 
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={24}
                 color={theme.colors.onSurfaceVariant}
               />
             </TouchableOpacity>
@@ -327,16 +432,21 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
           {userInfo?.userType === 2 && (
             <View style={styles.inputGroup}>
               <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-                {t('userSetting.basicInfo.form.label.installerCode', {defaultValue: '安装商代码'})}
+                {t('userSetting.basicInfo.form.label.installerCode', {
+                  defaultValue: '安装商代码',
+                })}
               </Text>
               <TouchableOpacity
-                style={[styles.pickerButton, {backgroundColor: theme.colors.surface}]}>
+                style={[
+                  styles.pickerButton,
+                  {backgroundColor: theme.colors.surface},
+                ]}>
                 <Text style={{color: theme.colors.onSurfaceVariant}}>
                   TTEC34
                 </Text>
-                <MaterialIcons 
-                  name="keyboard-arrow-right" 
-                  size={24} 
+                <MaterialIcons
+                  name="keyboard-arrow-right"
+                  size={24}
                   color={theme.colors.onSurfaceVariant}
                 />
               </TouchableOpacity>
@@ -347,9 +457,15 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
           {userInfo?.userType === 2 && (
             <View style={styles.inputGroup}>
               <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-                {t('userSetting.basicInfo.form.label.companyName', {defaultValue: '公司名称'})}
+                {t('userSetting.basicInfo.form.label.companyName', {
+                  defaultValue: '公司名称',
+                })}
               </Text>
-              <Text style={[styles.companyName, {color: theme.colors.onSurfaceVariant}]}>
+              <Text
+                style={[
+                  styles.companyName,
+                  {color: theme.colors.onSurfaceVariant},
+                ]}>
                 Leo新能源科技有限公司
               </Text>
             </View>
@@ -361,12 +477,15 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
           style={[
             styles.saveButton,
             {
-              backgroundColor: loading ? theme.colors.primary + '80' : theme.colors.primary,
+              backgroundColor: loading
+                ? theme.colors.primary + '80'
+                : theme.colors.primary,
             },
           ]}
           onPress={handleSave}
           disabled={loading}>
-          <Text style={[styles.saveButtonText, {color: theme.colors.onPrimary}]}>
+          <Text
+            style={[styles.saveButtonText, {color: theme.colors.onPrimary}]}>
             {loading
               ? t('common.saving', {defaultValue: '保存中...'})
               : t('common.confirm', {defaultValue: '确定'})}
@@ -379,7 +498,7 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
           data={timezoneList.map(item => item.code)}
           defaultValue={getCurrentTimezoneName()}
           onCancel={() => setTimezonePickerVisible(false)}
-          onConfirm={(value) => {
+          onConfirm={value => {
             const tz = timezoneList.find(t => t.code === value);
             if (tz) {
               handleSelectTimezone(tz.value);
@@ -450,4 +569,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserProfileScreen; 
+export default UserProfileScreen;

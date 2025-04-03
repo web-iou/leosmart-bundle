@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
+  Image,
 } from 'react-native';
 import {Text, List, Switch, Divider, useTheme, Avatar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
@@ -101,32 +102,48 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
       <ScrollView
         style={[styles.container, {backgroundColor: theme.colors.background}]}>
         {/* 顶部用户信息 */}
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.header}
           onPress={() => navigation.navigate('UserProfile')}>
           <View style={styles.headerContent}>
             <View style={styles.userInfoContainer}>
               <View style={styles.avatarContainer}>
-                <Avatar.Icon 
-                  size={80} 
-                  icon="account" 
-                  style={{backgroundColor: theme.colors.surfaceVariant}}
-                />
+                {userInfo?.avatar ? (
+                  <Image
+                    source={{uri: userInfo?.avatar}}
+                    className="rounded-full"
+                    style={{width: 100, height: 100}}></Image>
+                ) : (
+                  <Avatar.Icon
+                    size={100}
+                    icon="account"
+                    style={{backgroundColor: theme.colors.surfaceVariant}}
+                  />
+                )}
               </View>
               <View style={styles.userInfo}>
-                <Text style={[styles.userName, {color: theme.colors.onBackground}]}>
+                <Text
+                  style={[styles.userName, {color: theme.colors.onBackground}]}>
                   {userInfo?.nickname || 'Neo'}
                 </Text>
-                <Text style={[styles.userRole, {color: theme.colors.onSurfaceVariant}]}>
+                <Text
+                  style={[
+                    styles.userRole,
+                    {color: theme.colors.onSurfaceVariant},
+                  ]}>
                   {getUserRoleText(userInfo?.userType)}
                 </Text>
-                <Text style={[styles.userEmail, {color: theme.colors.onSurfaceVariant}]}>
+                <Text
+                  style={[
+                    styles.userEmail,
+                    {color: theme.colors.onSurfaceVariant},
+                  ]}>
                   {userInfo?.email || 'neo@tsun.com'}
                 </Text>
               </View>
             </View>
-            <List.Icon 
-              icon="chevron-right" 
+            <List.Icon
+              icon="chevron-right"
               color={theme.colors.onSurfaceVariant}
               style={styles.arrowIcon}
             />
