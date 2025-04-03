@@ -1,12 +1,14 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { VITE_API_BASE_URL, VITE_API_URL, VITE_OAUTH2_MOBILE_CLIENT } from '../config/config';
 import { storage } from '../utils/storage';
-import { Platform, Linking } from 'react-native';
+import { Platform, Linking, Alert } from 'react-native';
 import RNFS from 'react-native-fs';
 import store from '@/store';
 import { showToast } from '@/store/slices/toastSlice';
-import { navigationRef } from '@/navigation';
-var Buffer = require('buffer/').Buffer; // 添加这行
+import { navigateToLogin, isNavigationReady } from '@/navigation';
+
+var Buffer = require('buffer/').Buffer;
+
 // 定义响应数据的接口
 export interface ApiResponse<T = any> {
   code: number;
@@ -36,28 +38,6 @@ let isReady = false;
 let httpInstance: Http | null = null;
 let initPromise: Promise<Http> | null = null;
 
-// 添加Reactotron日志记录工具
-const log = (obj: any) => {
-  if (typeof __DEV__ !== 'undefined' && __DEV__ && typeof console !== 'undefined' && (console as any).tron) {
-    try {
-      (console as any).tron.log(obj);
-    } catch (e) {
-      console.warn('Reactotron log failed:', e);
-    }
-  }
-};
-
-// 添加Reactotron错误记录工具
-const error = (obj: any) => {
-  if (typeof __DEV__ !== 'undefined' && __DEV__ && typeof console !== 'undefined' && (console as any).tron) {
-    try {
-      (console as any).tron.error(obj);
-    } catch (e) {
-      console.warn('Reactotron error log failed:', e);
-    }
-  }
-};
-
 // 创建 HTTP 类
 class Http {
   // Axios 实例
@@ -68,6 +48,8 @@ class Http {
   private defaultHeaders: Record<string, string>;
   // 默认超时时间: 10秒
   private timeout: number = 10000;
+  private isRefreshing: boolean = false;
+  private refreshSubscribers: ((token: string) => void)[] = [];
 
   constructor() {
     this.baseURL = `${VITE_API_BASE_URL}${VITE_API_URL}`;
@@ -100,6 +82,15 @@ class Http {
         // 从请求选项中获取特殊配置
         const options = config as RequestOptions;
         
+        // 添加调试日志
+        if (__DEV__) {
+          console.log(`请求: ${config.method?.toUpperCase()} ${config.url}`);
+          console.log('请求选项:', { 
+            skipAuth: options.skipAuth, 
+            skipErrorHandler: options.skipErrorHandler 
+          });
+        }
+        
         try {
           // 如果不跳过认证，则添加 token
           if (!options.skipAuth) {
@@ -107,10 +98,18 @@ class Http {
             const token = await storage.getStringAsync('auth_token');
             if (token) {
               config.headers['Authorization'] = `Bearer ${token}`;
+              if (__DEV__) console.log('添加Bearer认证头');
             } else {
               // 如果没有 token，可以添加 Basic 认证
               const basicAuth =Buffer.from(VITE_OAUTH2_MOBILE_CLIENT).toString('base64');
               config.headers['Authorization'] = `Basic ${basicAuth}`;
+              if (__DEV__) console.log('添加Basic认证头');
+            }
+          } else {
+            if (__DEV__) console.log('跳过认证，不添加Authorization头');
+            // 如果明确设置了Authorization头，保留它
+            if (config.headers['Authorization']) {
+              if (__DEV__) console.log('使用已设置的Authorization头:', config.headers['Authorization']);
             }
           }
           
@@ -132,7 +131,7 @@ class Http {
         
         // 添加设备平台信息
         config.headers['X-Platform'] = Platform.OS;
-        
+
         return config;
       },
       (error) => {
@@ -141,21 +140,156 @@ class Http {
     );
   }
 
+  // 添加刷新 token 的方法
+  private async refreshToken(): Promise<boolean> {
+    try {
+      console.log('开始尝试刷新token...');
+      const refreshToken = await storage.getStringAsync('refresh_token');
+      if (!refreshToken) {
+        console.log('没有找到refresh_token，无法刷新');
+        return false;
+      }
+
+      console.log('找到refresh_token，准备发送刷新请求');
+      // 先删除旧的auth_token
+      await storage.deleteAsync('auth_token');
+      
+      // 直接使用axios而不是this.post，避免循环调用
+      const refreshTokenUrl = `${VITE_API_BASE_URL}${VITE_API_URL}/auth/oauth2/token`;
+      console.log('刷新token请求URL:', refreshTokenUrl);
+      
+      // 创建基本认证头
+      const basicAuth = Buffer.from(VITE_OAUTH2_MOBILE_CLIENT).toString('base64');
+      const authHeader = `Basic ${basicAuth}`;
+      
+      // 准备请求数据
+      const requestData = {
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken,
+      };
+      const lang = (await storage.getStringAsync('language')) || 'zh-CN';
+
+      // 使用axios直接发出请求
+      const response = await axios.post(refreshTokenUrl, requestData, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: authHeader,
+          Lng: lang,
+        },
+      });
+
+      console.log('刷新token响应:', response.data);
+      const responseData = response.data;
+      
+      if (responseData && responseData.access_token) {
+        console.log('刷新token成功，保存新token');
+        // 保存新的 token
+        await storage.set('auth_token', responseData.access_token);
+        await storage.set('refresh_token', responseData.refresh_token);
+        
+        // 通知所有等待的请求
+        this.refreshSubscribers.forEach(callback => callback(responseData.access_token));
+        this.refreshSubscribers = [];
+        
+        return true;
+      } else {
+        console.log('刷新token响应中没有access_token');
+        return false;
+      }
+    } catch (error) {
+      console.error('刷新token失败:', error);
+      return false;
+    }
+  }
+
+  // 添加导航到登录页面的方法
+  private async navigateToLogin() {
+    try {
+      console.log('处理登录过期情况');
+      
+      // 清除认证相关的存储
+      console.log('清除认证数据...');
+      await storage.deleteAsync('auth_token');
+      await storage.deleteAsync('refresh_token');
+      await storage.deleteAsync('user_info');
+      console.log('认证数据已清除');
+      
+      // 尝试使用导航API导航到登录页面
+      console.log('尝试导航到登录页面...');
+      
+      // 先尝试直接使用导航API
+      if (isNavigationReady()) {
+        console.log('导航API已就绪，执行导航');
+        navigateToLogin();
+        return;
+      }
+      
+      // 如果导航API未就绪，等待一段时间并重试
+      console.log('导航API未就绪，将等待并重试...');
+      let attempts = 0;
+      const maxAttempts = 5;
+
+      // 创建一个轮询函数来等待导航就绪
+      const waitForNavigation = () => {
+        return new Promise<void>((resolve, reject) => {
+          const checkNav = () => {
+            attempts++;
+            console.log(`检查导航状态 (尝试 ${attempts}/${maxAttempts})...`);
+            
+            if (isNavigationReady()) {
+              console.log('导航API已就绪');
+              navigateToLogin();
+              resolve();
+            } else if (attempts >= maxAttempts) {
+              console.log('达到最大尝试次数，显示警告');
+              // 显示Alert告知用户手动退出并重新登录
+              Alert.alert(
+                '登录已过期',
+                '您的登录信息已过期，请退出应用并重新登录',
+                [{ text: '确定', onPress: () => console.log('用户确认了登录过期提示') }],
+                { cancelable: false }
+              );
+              reject(new Error('导航API未能就绪'));
+            } else {
+              console.log('导航API仍未就绪，500ms后重试');
+              setTimeout(checkNav, 500);
+            }
+          };
+          
+          checkNav();
+        });
+      };
+      
+      await waitForNavigation();
+    } catch (e) {
+      console.error('处理登录过期过程中出错:', e);
+      // 如果导航失败，显示Alert
+      Alert.alert(
+        '登录已过期',
+        '您的登录信息已过期，请退出应用并重新登录',
+        [{ text: '确定', onPress: () => console.log('用户确认了登录过期提示') }],
+        { cancelable: false }
+      );
+    }
+  }
+
+  // 添加订阅刷新 token 的方法
+  private subscribeTokenRefresh(callback: (token: string) => void) {
+    this.refreshSubscribers.push(callback);
+  }
+
   // 设置响应拦截器
   private setupResponseInterceptor(): void {
     this.instance.interceptors.response.use(
       (response: AxiosResponse) => {
         const { data } = response;
-        
+
         // 检查业务状态码
         if (data.code === 1) {
-          // 业务处理失败
           const errorMessage = data.msg || '操作失败';
-          // 显示错误提示
           if (typeof __DEV__ !== 'undefined' && __DEV__) {
             console.error('Business Error:', errorMessage);
           }
-          // 使用 dispatch 触发 showToast action
           store.dispatch(showToast({
             message: errorMessage,
             type: 'error',
@@ -169,11 +303,11 @@ class Http {
           } as ApiErrorResponse);
         }
         
-        // 业务处理成功
         return data;
       },
       async (error: AxiosError) => {
         const options = error.config as RequestOptions;
+        const originalRequest = error.config;
 
         // 如果设置了跳过错误处理，则直接抛出错误
         if (options?.skipErrorHandler) {
@@ -186,7 +320,6 @@ class Http {
           if (typeof __DEV__ !== 'undefined' && __DEV__) {
             console.error('Network Error:', error.message);
           }
-          // 使用 store 的 showToast 显示错误消息
           store.dispatch(showToast({
             message: errorMessage,
             type: 'error',
@@ -206,31 +339,80 @@ class Http {
 
         // 处理 401 未授权错误和 424 依赖失败错误
         if (status === 401 || status === 424) {
-          const errorMessage = status === 401 ? '登录已过期，请重新登录' : '会话已失效，请重新登录';
-          if (typeof __DEV__ !== 'undefined' && __DEV__) {
-            console.error('Authentication Error:', errorMessage);
+          console.log(`收到${status}错误，准备处理token刷新...`);
+          
+          // 如果正在刷新 token，等待刷新完成
+          if (this.isRefreshing) {
+            console.log('正在刷新token中，将当前请求加入等待队列');
+            return new Promise((resolve, reject) => {
+              this.subscribeTokenRefresh((token: string) => {
+                console.log('收到刷新后的token，重试请求');
+                if (originalRequest) {
+                  originalRequest.headers['Authorization'] = `Bearer ${token}`;
+                  resolve(this.instance(originalRequest));
+                } else {
+                  reject(error);
+                }
+              });
+            });
           }
-          // 使用 store 的 showToast 显示错误消息
-          store.dispatch(showToast({
-            message: errorMessage,
-            type: 'error',
-            duration: 3000
-          }));
+
+          console.log('开始刷新token流程');
+          this.isRefreshing = true;
 
           try {
-            // 清除认证相关的存储
-            await storage.deleteAsync('auth_token');
-            await storage.deleteAsync('user_info');
+            // 尝试刷新 token
+            console.log('调用refreshToken方法');
+            const refreshSuccess = await this.refreshToken();
+            console.log('refreshToken结果:', refreshSuccess);
             
-            // 跳转到登录页面
-            if (navigationRef.current) {
-              navigationRef.current.reset({
-                index: 0,
-                routes: [{ name: 'Login' }],
-              });
+            if (refreshSuccess) {
+              console.log('刷新token成功，重试原始请求');
+              // 刷新成功，重试原始请求
+              if (originalRequest) {
+                const token = await storage.getStringAsync('auth_token');
+                originalRequest.headers['Authorization'] = `Bearer ${token}`;
+                return this.instance(originalRequest);
+              }
+            } else {
+              // 刷新失败，调用navigateToLogin显示登录过期提示
+              console.log('刷新token失败，导航到登录页面');
+              try {
+                await this.navigateToLogin();
+                console.log('导航到登录页面成功');
+              } catch (navError) {
+                console.error('导航到登录页面失败:', navError);
+              }
+              
+              // 无论导航是否成功，都返回统一的错误
+              return Promise.reject({
+                code: status,
+                message: '登录已过期，请重新登录',
+                success: false,
+                data: null
+              } as ApiErrorResponse);
             }
-          } catch (e) {
-            console.warn('Failed to handle authentication error:', e);
+          } catch (refreshError) {
+            console.error('刷新token过程中发生错误:', refreshError);
+            // 刷新失败，调用navigateToLogin显示登录过期提示
+            console.log('刷新token失败，导航到登录页面');
+            try {
+              await this.navigateToLogin();
+              console.log('导航到登录页面成功');
+            } catch (navError) {
+              console.error('导航到登录页面失败:', navError);
+            }
+            
+            // 无论导航是否成功，都返回统一的错误
+            return Promise.reject({
+              code: status,
+              message: '登录已过期，请重新登录',
+              success: false,
+              data: null
+            } as ApiErrorResponse);
+          } finally {
+            console.log('token刷新流程结束，重置isRefreshing标志');
+            this.isRefreshing = false;
           }
         }
 
@@ -490,4 +672,4 @@ export const http = {
   }
 };
 
-export default http; 
+export default http;

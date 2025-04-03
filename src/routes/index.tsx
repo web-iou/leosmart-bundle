@@ -8,6 +8,7 @@ import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import {storage} from '@/utils/storage';
 import {useTheme} from 'react-native-paper';
 import {ExtendedMD3Theme} from '@/theme';
+import {navigationRef} from '@/navigation';
 
 // 页面组件
 import LoginScreen from '../pages/Login';
@@ -141,8 +142,13 @@ const AppNavigator: React.FC = () => {
     );
   }
 
+  // 当导航容器准备就绪时的回调
+  const onNavigationReady = () => {
+    console.log('导航容器已就绪');
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef} onReady={onNavigationReady}>
       <Stack.Navigator
         initialRouteName={getInitialRoute()}
         screenOptions={{
