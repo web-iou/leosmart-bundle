@@ -106,26 +106,10 @@ const DeviceControl = ({
 
   // 打开功率调节页面
   const openPowerAdjustment = () => {
-    // TODO: 导航到功率调节页面
-    Alert.prompt(
-      t('device.powerAdjustment', {defaultValue: '功率调节'}),
-      t('common.comingSoon', {defaultValue: '请输入功率'}),
-      [
-        {
-          text: t('user.logOutCancel', {defaultValue: '取消'}),
-        },
-        {
-          text: t('dytable.submit'),
-          onPress(value) {
-            !!value &&
-              deviceApi.setEquipmentParams(deviceSn, {
-                cmdType: '功率调节',
-                value: value!,
-              });
-          },
-        },
-      ],
-    );
+    // 导航到功率调节页面
+    navigation.navigate('PowerSettings', {
+      deviceSn,
+    });
   };
 
   return (

@@ -23,6 +23,7 @@ import ThemeSettingsScreen from '../pages/common/ThemeSettings';
 import SiteSettingsScreen from '../pages/common/SiteSettings';
 import UserProfileScreen from '@/pages/common/UserProfile';
 import ChangeEmailScreen from '@/pages/common/ChangeEmail';
+import PowerSettingsScreen from '@/pages/OwnerMain/Device/PowerSettings';
 
 // 定义路由参数类型 - 只保留实际使用的路由
 export type RootStackParamList = {
@@ -58,6 +59,9 @@ export type RootStackParamList = {
   ThemeSettings: undefined;
   SiteSettings: undefined;
   UserProfile: undefined;
+  PowerSettings: {
+    deviceSn: string;
+  };
   [key: string]: any;
 };
 declare global {
@@ -315,6 +319,16 @@ const AppNavigator: React.FC = () => {
             headerBackButtonDisplayMode: 'minimal',
             headerShown: true,
             title: t('user.profile'),
+          }}
+        />
+
+        <Stack.Screen
+          name="PowerSettings"
+          component={PowerSettingsScreen}
+          options={{
+            headerBackButtonDisplayMode: 'minimal',
+            headerShown: true,
+            title: t('user.power_settings'),
           }}
         />
       </Stack.Navigator>
