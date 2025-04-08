@@ -1,11 +1,12 @@
-
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
-  darkMode: "media",
+  darkMode: 'media',
   content: [
-    "index.{tsx,jsx,ts,js}",
-    "src/**/*.{tsx,jsx,ts,js}",
-    "components/**/*.{tsx,jsx,ts,js}"
+    'index.{tsx,jsx,ts,js}',
+    'src/**/*.{tsx,jsx,ts,js}',
+    'components/**/*.{tsx,jsx,ts,js}',
   ],
   presets: [require('nativewind/preset')],
   safelist: [
@@ -197,4 +198,18 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    plugin(function ({addComponents}) {
+      addComponents({
+        '.flex-center': {
+          'align-items': 'center',
+          'justify-content': 'center',
+        },
+        '.flex-between': {
+          'align-items': 'center',
+          'justify-content': 'space-between',
+        },
+      });
+    }),
+  ],
 };

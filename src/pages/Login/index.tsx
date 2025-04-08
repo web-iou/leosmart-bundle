@@ -303,6 +303,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
                       .concat(t('common.cancel', {defaultValue: '取消'})),
                     cancelButtonIndex: moreOptions.length,
                     cancelButtonTintColor: paperTheme.colors.error,
+                    userInterfaceStyle: isDarkMode ? 'dark' : 'light',
                   },
                   index => {
                     moreOptions[index]?.onPress?.();
