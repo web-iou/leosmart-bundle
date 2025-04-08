@@ -68,6 +68,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
         text: t('user.logOutExit'),
         onPress: () => {
           storage.delete('auth_token');
+          storage.delete('refresh_token');
+          storage.delete('user_info');
           navigation.reset({
             index: 0,
             routes: [{name: 'Login'}],

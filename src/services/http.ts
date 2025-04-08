@@ -339,6 +339,11 @@ class Http {
 
         // 处理 401 未授权错误和 424 依赖失败错误
         if (status === 401 || status === 424) {
+          // 检查是否是登录接口，如果是则直接返回错误
+          if (originalRequest?.url?.includes('/auth/oauth2/token')) {
+            return Promise.reject(error);
+          }
+          
           console.log(`收到${status}错误，准备处理token刷新...`);
           
           // 如果正在刷新 token，等待刷新完成
