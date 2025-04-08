@@ -64,7 +64,7 @@ export default ({
                 {/* 这里放置设备图片，但在示例中使用颜色块替代 */}
                 <FastImageWithSkel
                   style={styles.deviceImage}
-                  fallback={true}
+                  defaultSource={require('@/assets/imgs/MP3000-1.png')}
                   source={{
                     uri: CDN_Url + deviceData.image,
                   }}></FastImageWithSkel>
