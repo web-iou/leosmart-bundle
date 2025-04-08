@@ -1,8 +1,8 @@
 <!--
  * @Author: wangjunwj wangjunwj@dinglicom.com
  * @Date: 2025-03-31 09:04:02
- * @LastEditors: wangjunwj wangjunwj@dinglicom.com
- * @LastEditTime: 2025-03-31 13:20:45
+ * @LastEditors: cx19940809 
+ * @LastEditTime: 2025-04-08 09:44:40
  * @FilePath: /leosmart/rules.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -44,3 +44,6 @@
 2. 图标尺寸应该统一，建议在16-24之间，根据用途选择合适大小
 3. 所有交互元素应垂直居中对齐，避免视觉不协调
 
+//页面规则
+1.务必只有routes的配置文件中设置了headershow为false的页面才嵌套safeareaview组件
+2.组件的style的尽量使用nativewind实现

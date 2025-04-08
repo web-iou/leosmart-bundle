@@ -4,11 +4,12 @@ import {
   NativeStackScreenProps,
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
-import {View, ActivityIndicator, StyleSheet} from 'react-native';
+import {View, ActivityIndicator, StyleSheet, TouchableOpacity} from 'react-native';
 import {storage} from '@/utils/storage';
 import {useTheme} from 'react-native-paper';
 import {ExtendedMD3Theme} from '@/theme';
 import {navigationRef} from '@/navigation';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 // 页面组件
 import LoginScreen from '../pages/Login';
@@ -23,7 +24,7 @@ import ThemeSettingsScreen from '../pages/common/ThemeSettings';
 import SiteSettingsScreen from '../pages/common/SiteSettings';
 import UserProfileScreen from '@/pages/common/UserProfile';
 import ChangeEmailScreen from '@/pages/common/ChangeEmail';
-import PowerSettingsScreen from '@/pages/OwnerMain/Device/PowerSettings';
+import { useNativePopover } from '@/hooks/usePopover';
 
 // 定义路由参数类型 - 只保留实际使用的路由
 export type RootStackParamList = {
@@ -51,6 +52,9 @@ export type RootStackParamList = {
     deviceId: number;
     deviceSn: string;
     deviceName?: string;
+  };
+  DeviceManage: {
+    setIndex: (index: number) => void;
   };
   LanguageSettings: undefined;
   CountryPicker: {
@@ -85,7 +89,7 @@ const AppNavigator: React.FC = () => {
   // 登录状态
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const [userType, setUserType] = useState<number | null>(null);
-
+  const [showPopover, anchorRef] = useNativePopover();
   useEffect(() => {
     checkLoginStatus();
   }, []);
@@ -184,6 +188,44 @@ const AppNavigator: React.FC = () => {
           }
         />
         <Stack.Screen
+          name="DeviceManage"
+          options={{
+            headerShown: true,
+            headerBackButtonDisplayMode: 'minimal',
+            headerRight:()=>{
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    showPopover(
+                      ['扫一扫', 'SN序列号'],
+                      [
+                        AntDesign.getImageSourceSync('scan1', 24, '#fff').uri,
+                        AntDesign.getImageSourceSync('edit', 24, '#fff').uri,
+                      ],
+                    ).then(index => {
+                      if (index === 0) {
+                        navigationRef.navigate('Scan');
+                      } else {
+                        navigationRef.navigate({
+                          name: 'SNCode',
+                          params: {},
+                        });
+                      }
+                    });
+                  }}>
+                  <AntDesign
+                    name="plus"
+                    ref={anchorRef}
+                    size={24}
+                    color={theme.colors.onBackground}
+                  />
+                </TouchableOpacity>
+              );
+            }
+          }}
+          component={require('../pages/OwnerMain/Device/DeviceManage').default}
+        />
+        <Stack.Screen
           name="General"
           options={{
             headerBackButtonDisplayMode: 'minimal',
@@ -270,7 +312,9 @@ const AppNavigator: React.FC = () => {
           }}
         />
         {/* 业主主页 */}
-        <Stack.Screen name="OwnerMain" component={OwnerMainScreen} />
+        <Stack.Screen name="OwnerMain" component={OwnerMainScreen} options={{
+          gestureEnabled:false
+        }} />
 
         {/* 安装商/运营商主页 */}
         <Stack.Screen name="InstallerMain" component={InstallerMainScreen} />

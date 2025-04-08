@@ -1,13 +1,13 @@
 /*
  * @Author: wangjunwj wangjunwj@dinglicom.com
  * @Date: 2025-04-03 09:15:38
- * @LastEditors: wangjunwj wangjunwj@dinglicom.com
- * @LastEditTime: 2025-04-03 14:35:46
+ * @LastEditors: cx19940809 
+ * @LastEditTime: 2025-04-08 13:34:57
  * @FilePath: /leosmart/src/navigation/index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
+import { type RootStackParamList } from '@/routes';
 import { createNavigationContainerRef } from '@react-navigation/native';
-import { RootStackParamList } from './types';
 
 export const navigationRef = createNavigationContainerRef<RootStackParamList>();
 

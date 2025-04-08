@@ -5,20 +5,27 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
-  Image,
 } from 'react-native';
-import {Text, List, Switch, Divider, useTheme, Avatar} from 'react-native-paper';
+import {
+  Text,
+  List,
+  Switch,
+  Divider,
+  useTheme,
+  Avatar,
+} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {storage} from '@/utils/storage';
 import {ExtendedMD3Theme} from '@/theme';
 import SafeAreaLayout from '@/components/SafeAreaLayout';
-import ThemePortal from '@/components/ThemePortal';
 import {useMMKVObject} from 'react-native-mmkv';
-
+import FastImageWithSkel from '@/components/FastImageWithSkel';
 interface UserInfo {
   username?: string;
   email?: string;
-  userType?: number;  // 修改为数字类型：1-业主，2-安装商/运营商
+  nickname: string;
+  avatar?: string;
+  userType?: number; // 修改为数字类型：1-业主，2-安装商/运营商
 }
 
 interface ProfilePageProps {
@@ -28,7 +35,10 @@ interface ProfilePageProps {
 const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
   const {t} = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
-  const [userInfo] = useMMKVObject<UserInfo>('user_info', storage.getInstance()!);
+  const [userInfo] = useMMKVObject<UserInfo>(
+    'user_info',
+    storage.getInstance()!,
+  );
 
   // 全场景模式开关状态
   const [globalMode, setGlobalMode] = useState<boolean>(false);
@@ -38,7 +48,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
   const getUserRoleText = (userType?: number) => {
     switch (userType) {
       case 2:
-        return t('settings.supplier.installer', {defaultValue: '安装商/运营商'});
+        return t('settings.supplier.installer', {
+          defaultValue: '安装商/运营商',
+        });
       case 1:
       default:
         return t('userSetting.device.settings', {defaultValue: '业主'});
@@ -47,26 +59,22 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
 
   // 处理用户退出登录
   const handleLogout = () => {
-    Alert.alert(
-      t('messageBox.logout'),
-      t('user.logOutMessage'),
-      [
-        {
-          text: t('user.logOutCancel'),
-          style: 'cancel',
+    Alert.alert(t('messageBox.logout'), t('user.logOutMessage'), [
+      {
+        text: t('user.logOutCancel'),
+        style: 'cancel',
+      },
+      {
+        text: t('user.logOutExit'),
+        onPress: () => {
+          storage.delete('auth_token');
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'Login'}],
+          });
         },
-        {
-          text: t('user.logOutExit'),
-          onPress: () => {
-            storage.delete('auth_token');
-            navigation.reset({
-              index: 0,
-              routes: [{name: 'Login'}],
-            });
-          },
-        },
-      ],
-    );
+      },
+    ]);
   };
 
   // 切换全场景模式
@@ -109,10 +117,13 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
             <View style={styles.userInfoContainer}>
               <View style={styles.avatarContainer}>
                 {userInfo?.avatar ? (
-                  <Image
-                    source={{uri: userInfo?.avatar}}
-                    className="rounded-full"
-                    style={{width: 100, height: 100}}></Image>
+                  <FastImageWithSkel
+                    source={{uri: userInfo.avatar}}
+                    style={{
+                      width: 100,
+                      height: 100,
+                      borderRadius: 100,
+                    }}></FastImageWithSkel>
                 ) : (
                   <Avatar.Icon
                     size={100}

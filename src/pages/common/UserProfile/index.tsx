@@ -4,19 +4,17 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Image,
   Alert,
   Linking,
 } from 'react-native';
 import {Text, TextInput, useTheme, Avatar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {ExtendedMD3Theme} from '@/theme';
-import SafeAreaLayout from '@/components/SafeAreaLayout';
 import {useMMKVObject} from 'react-native-mmkv';
 import {storage} from '@/utils/storage';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {CountryItem} from '@/pages/common/CountryPicker';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector,shallowEqual} from 'react-redux';
 import {
   fetchCountries,
   selectSelectedCountry,
@@ -29,7 +27,7 @@ import {showToast} from '@/store/slices/toastSlice';
 import {launchImageLibrary} from 'react-native-image-picker';
 import fs from 'react-native-fs';
 import {CDN_Url, VITE_API_BASE_URL} from '@/config/config';
-
+import FastImage from 'react-native-fast-image';
 interface UserInfo {
   username?: string;
   email?: string;
@@ -54,7 +52,7 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
   );
   // 状态管理
   const [nickname, setNickname] = useState(userInfo?.nickname || '');
-  const selectedCountry = useSelector(selectSelectedCountry);
+  const selectedCountry = useSelector(selectSelectedCountry, shallowEqual);
   const [timezonePickerVisible, setTimezonePickerVisible] = useState(false);
   const [timezoneList, setTimezoneList] = useState<CountryItem['zoneList']>([]);
   const [timezone, setTimezone] = useState<string>(userInfo?.timeZone || '');
@@ -237,261 +235,255 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
   };
 
   return (
-    <SafeAreaLayout>
-      <ScrollView
-        style={[styles.container, {backgroundColor: theme.colors.background}]}>
-        {/* 头像部分 */}
-        <View style={styles.avatarSection}>
-          <View style={styles.avatarContainer}>
-            {avatar ? (
-              <Image
-                source={{uri: avatar}}
-                className="rounded-full"
-                style={{width: 100, height: 100}}></Image>
-            ) : (
-              <Avatar.Icon
-                size={100}
-                icon="account"
-                style={{backgroundColor: theme.colors.surfaceVariant}}
-              />
-            )}
-            <TouchableOpacity
-              style={styles.editAvatarButton}
-              onPress={() => {
-                launchImageLibrary({
-                  mediaType: 'photo',
-                  quality: 0.8,
-                  includeBase64: false,
-                  includeExtra: true,
-                })
-                  .then(async value => {
-                    if (value?.errorCode === 'permission') {
-                      Alert.alert(
-                        'Permission Denied',
-                        'You need to enable permission to use this feature.',
-                        [
-                          {
-                            text: 'Cancel',
-                          },
-                          {
-                            text: 'Open Settings',
-                            onPress: () => {
-                              Linking.openSettings();
-                            },
-                          },
-                        ],
-                      );
-                    } else if ((value.assets?.length ?? 0) > 0) {
-                      fs.uploadFiles({
-                        files: (value.assets ?? []).map(item => {
-                          return {
-                            filename: item.fileName!,
-                            name: 'file',
-                            filepath: item.uri!.replace('file:///', ''),
-                            filetype: item.type!,
-                          };
-                        }),
-                        headers: {
-                          Authorization: `Bearer ${storage
-                            .getInstance()
-                            ?.getString('auth_token')}`,
-                        },
-                        toUrl: `${VITE_API_BASE_URL}/api/admin/sys-file/upload`,
-                      }).promise.then(({body}) => {
-                        const {data} = JSON.parse(body);
-                        const imageUrl = CDN_Url + data.url;
-                        setAvatar(imageUrl);
-                      });
-                    }
-                  })
-                  .catch(err => {
-                    console.log(err);
-                  });
-              }}>
-              <MaterialIcons
-                name="photo-camera"
-                size={24}
-                color={theme.colors.onSurfaceVariant}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* 表单部分 */}
-        <View style={styles.formSection}>
-          {/* 昵称 */}
-          <View style={styles.inputGroup}>
-            <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-              {t('userSetting.form.error.nickname.required', {
-                defaultValue: '昵称',
-              })}
-            </Text>
-            <TextInput
-              mode="outlined"
-              value={nickname}
-              onChangeText={setNickname}
-              placeholder={t('userSetting.form.error.nickname.required', {
-                defaultValue: '请输入昵称',
-              })}
-              style={[styles.input, {backgroundColor: theme.colors.surface}]}
-              outlineStyle={{borderRadius: 8}}
+    <ScrollView
+      style={[styles.container, {backgroundColor: theme.colors.background}]}>
+      {/* 头像部分 */}
+      <View style={styles.avatarSection}>
+        <View style={styles.avatarContainer}>
+          {avatar ? (
+            <FastImage
+              source={{uri: avatar}}
+              style={{width: 100, height: 100, borderRadius: 100}}></FastImage>
+          ) : (
+            <Avatar.Icon
+              size={100}
+              icon="account"
+              style={{backgroundColor: theme.colors.surfaceVariant}}
             />
-          </View>
-
-          {/* 国家或地区 */}
-          <View style={styles.inputGroup}>
-            <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-              {t('userSetting.basicInfo.form.label.countryRegion', {
-                defaultValue: '国家/地区',
-              })}
-            </Text>
-            <TouchableOpacity
-              style={[
-                styles.pickerButton,
-                {backgroundColor: theme.colors.surface},
-              ]}
-              onPress={handleSelectCountry}>
-              <Text style={{color: theme.colors.onSurface}}>
-                {selectedCountry?.name ||
-                  t('userSetting.basicInfo.form.placeholder.countryRegion', {
-                    defaultValue: '请选择国家/地区',
-                  })}
-              </Text>
-              <MaterialIcons
-                name="keyboard-arrow-right"
-                size={24}
-                color={theme.colors.onSurfaceVariant}
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/* 时区 */}
-          <View style={styles.inputGroup}>
-            <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-              {t('userSetting.basicInfo.form.label.timezone', {
-                defaultValue: '时区',
-              })}
-            </Text>
-            <TouchableOpacity
-              style={[
-                styles.pickerButton,
-                {backgroundColor: theme.colors.surface},
-              ]}
-              onPress={() => setTimezonePickerVisible(true)}>
-              <Text style={{color: theme.colors.onSurface}}>
-                {getCurrentTimezoneName()}
-              </Text>
-              <MaterialIcons
-                name="keyboard-arrow-right"
-                size={24}
-                color={theme.colors.onSurfaceVariant}
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/* 邮箱 - 只读 */}
-          <View style={styles.inputGroup}>
-            <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-              {t('userSetting.SecuritySettings.form.label.email', {
-                defaultValue: '邮箱',
-              })}
-            </Text>
-            <TouchableOpacity
-              style={[
-                styles.pickerButton,
-                {backgroundColor: theme.colors.surface},
-              ]}
-              onPress={handleEmailChange}>
-              <Text style={{color: theme.colors.onSurfaceVariant}}>
-                {userInfo?.email}
-              </Text>
-              <MaterialIcons
-                name="keyboard-arrow-right"
-                size={24}
-                color={theme.colors.onSurfaceVariant}
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/* 安装商运营商 - 如果是安装商角色才显示 */}
-          {userInfo?.userType === 2 && (
-            <View style={styles.inputGroup}>
-              <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-                {t('userSetting.basicInfo.form.label.installerCode', {
-                  defaultValue: '安装商代码',
-                })}
-              </Text>
-              <TouchableOpacity
-                style={[
-                  styles.pickerButton,
-                  {backgroundColor: theme.colors.surface},
-                ]}>
-                <Text style={{color: theme.colors.onSurfaceVariant}}>
-                  TTEC34
-                </Text>
-                <MaterialIcons
-                  name="keyboard-arrow-right"
-                  size={24}
-                  color={theme.colors.onSurfaceVariant}
-                />
-              </TouchableOpacity>
-            </View>
           )}
+          <TouchableOpacity
+            style={styles.editAvatarButton}
+            onPress={() => {
+              launchImageLibrary({
+                mediaType: 'photo',
+                quality: 0.8,
+                includeBase64: false,
+                includeExtra: true,
+              })
+                .then(async value => {
+                  if (value?.errorCode === 'permission') {
+                    Alert.alert(
+                      'Permission Denied',
+                      'You need to enable permission to use this feature.',
+                      [
+                        {
+                          text: 'Cancel',
+                        },
+                        {
+                          text: 'Open Settings',
+                          onPress: () => {
+                            Linking.openSettings();
+                          },
+                        },
+                      ],
+                    );
+                  } else if ((value.assets?.length ?? 0) > 0) {
+                    fs.uploadFiles({
+                      files: (value.assets ?? []).map(item => {
+                        return {
+                          filename: item.fileName!,
+                          name: 'file',
+                          filepath: item.uri!.replace('file:///', ''),
+                          filetype: item.type!,
+                        };
+                      }),
+                      headers: {
+                        Authorization: `Bearer ${storage
+                          .getInstance()
+                          ?.getString('auth_token')}`,
+                      },
+                      toUrl: `${VITE_API_BASE_URL}/api/admin/sys-file/upload`,
+                    }).promise.then(({body}) => {
+                      const {data} = JSON.parse(body);
+                      const imageUrl = CDN_Url + data.url;
+                      setAvatar(imageUrl);
+                    });
+                  }
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+            }}>
+            <MaterialIcons
+              name="photo-camera"
+              size={24}
+              color={theme.colors.onSurfaceVariant}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
 
-          {/* 公司名称 - 如果是安装商角色才显示 */}
-          {userInfo?.userType === 2 && (
-            <View style={styles.inputGroup}>
-              <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-                {t('userSetting.basicInfo.form.label.companyName', {
-                  defaultValue: '公司名称',
-                })}
-              </Text>
-              <Text
-                style={[
-                  styles.companyName,
-                  {color: theme.colors.onSurfaceVariant},
-                ]}>
-                Leo新能源科技有限公司
-              </Text>
-            </View>
-          )}
+      {/* 表单部分 */}
+      <View style={styles.formSection}>
+        {/* 昵称 */}
+        <View style={styles.inputGroup}>
+          <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+            {t('userSetting.form.error.nickname.required', {
+              defaultValue: '昵称',
+            })}
+          </Text>
+          <TextInput
+            mode="outlined"
+            value={nickname}
+            onChangeText={setNickname}
+            placeholder={t('userSetting.form.error.nickname.required', {
+              defaultValue: '请输入昵称',
+            })}
+            style={[styles.input, {backgroundColor: theme.colors.surface}]}
+            outlineStyle={{borderRadius: 8}}
+          />
         </View>
 
-        {/* 确定按钮 */}
-        <TouchableOpacity
-          style={[
-            styles.saveButton,
-            {
-              backgroundColor: loading
-                ? theme.colors.primary + '80'
-                : theme.colors.primary,
-            },
-          ]}
-          onPress={handleSave}
-          disabled={loading}>
-          <Text
-            style={[styles.saveButtonText, {color: theme.colors.onPrimary}]}>
-            {loading
-              ? t('common.saving', {defaultValue: '保存中...'})
-              : t('common.confirm', {defaultValue: '确定'})}
+        {/* 国家或地区 */}
+        <View style={styles.inputGroup}>
+          <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+            {t('userSetting.basicInfo.form.label.countryRegion', {
+              defaultValue: '国家/地区',
+            })}
           </Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.pickerButton,
+              {backgroundColor: theme.colors.surface},
+            ]}
+            onPress={handleSelectCountry}>
+            <Text style={{color: theme.colors.onSurface}}>
+              {selectedCountry?.name ||
+                t('userSetting.basicInfo.form.placeholder.countryRegion', {
+                  defaultValue: '请选择国家/地区',
+                })}
+            </Text>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={24}
+              color={theme.colors.onSurfaceVariant}
+            />
+          </TouchableOpacity>
+        </View>
 
-        {/* 时区选择器 */}
-        <Picker
-          visible={timezonePickerVisible}
-          data={timezoneList.map(item => item.code)}
-          defaultValue={getCurrentTimezoneName()}
-          onCancel={() => setTimezonePickerVisible(false)}
-          onConfirm={value => {
-            const tz = timezoneList.find(t => t.code === value);
-            if (tz) {
-              handleSelectTimezone(tz.value);
-            }
-          }}
-        />
-      </ScrollView>
-    </SafeAreaLayout>
+        {/* 时区 */}
+        <View style={styles.inputGroup}>
+          <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+            {t('userSetting.basicInfo.form.label.timezone', {
+              defaultValue: '时区',
+            })}
+          </Text>
+          <TouchableOpacity
+            style={[
+              styles.pickerButton,
+              {backgroundColor: theme.colors.surface},
+            ]}
+            onPress={() => setTimezonePickerVisible(true)}>
+            <Text style={{color: theme.colors.onSurface}}>
+              {getCurrentTimezoneName()}
+            </Text>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={24}
+              color={theme.colors.onSurfaceVariant}
+            />
+          </TouchableOpacity>
+        </View>
+
+        {/* 邮箱 - 只读 */}
+        <View style={styles.inputGroup}>
+          <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+            {t('userSetting.SecuritySettings.form.label.email', {
+              defaultValue: '邮箱',
+            })}
+          </Text>
+          <TouchableOpacity
+            style={[
+              styles.pickerButton,
+              {backgroundColor: theme.colors.surface},
+            ]}
+            onPress={handleEmailChange}>
+            <Text style={{color: theme.colors.onSurfaceVariant}}>
+              {userInfo?.email}
+            </Text>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={24}
+              color={theme.colors.onSurfaceVariant}
+            />
+          </TouchableOpacity>
+        </View>
+
+        {/* 安装商运营商 - 如果是安装商角色才显示 */}
+        {userInfo?.userType === 2 && (
+          <View style={styles.inputGroup}>
+            <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+              {t('userSetting.basicInfo.form.label.installerCode', {
+                defaultValue: '安装商代码',
+              })}
+            </Text>
+            <TouchableOpacity
+              style={[
+                styles.pickerButton,
+                {backgroundColor: theme.colors.surface},
+              ]}>
+              <Text style={{color: theme.colors.onSurfaceVariant}}>TTEC34</Text>
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={24}
+                color={theme.colors.onSurfaceVariant}
+              />
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {/* 公司名称 - 如果是安装商角色才显示 */}
+        {userInfo?.userType === 2 && (
+          <View style={styles.inputGroup}>
+            <Text style={[styles.label, {color: theme.colors.onSurface}]}>
+              {t('userSetting.basicInfo.form.label.companyName', {
+                defaultValue: '公司名称',
+              })}
+            </Text>
+            <Text
+              style={[
+                styles.companyName,
+                {color: theme.colors.onSurfaceVariant},
+              ]}>
+              Leo新能源科技有限公司
+            </Text>
+          </View>
+        )}
+      </View>
+
+      {/* 确定按钮 */}
+      <TouchableOpacity
+        style={[
+          styles.saveButton,
+          {
+            backgroundColor: loading
+              ? theme.colors.primary + '80'
+              : theme.colors.primary,
+          },
+        ]}
+        onPress={handleSave}
+        disabled={loading}>
+        <Text style={[styles.saveButtonText, {color: theme.colors.onPrimary}]}>
+          {loading
+            ? t('common.saving', {defaultValue: '保存中...'})
+            : t('common.confirm', {defaultValue: '确定'})}
+        </Text>
+      </TouchableOpacity>
+
+      {/* 时区选择器 */}
+      <Picker
+        visible={timezonePickerVisible}
+        data={timezoneList.map(item => item.code)}
+        defaultValue={getCurrentTimezoneName()}
+        onCancel={() => setTimezonePickerVisible(false)}
+        onConfirm={value => {
+          const tz = timezoneList.find(t => t.code === value);
+          if (tz) {
+            handleSelectTimezone(tz.value);
+          }
+        }}
+      />
+    </ScrollView>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   RefreshControl,
   ActivityIndicator,
-  Image,
   Pressable,
 } from 'react-native';
 import {Text, Card, useTheme} from 'react-native-paper';
@@ -21,6 +20,8 @@ import {
   StationDTO,
 } from '@/services/api/deviceApi';
 import {CDN_Url} from '@/config/config';
+import FastImageWithSkel from '@/components/FastImageWithSkel';
+import {useFocusEffect} from '@react-navigation/native';
 enum DeviceStatus {
   '离线' = 0,
   '运行中',
@@ -36,14 +37,17 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
   const [deviceList, setDeviceList] = useState<StationDTO['equipments']>([]);
   const [loading, setLoading] = useState(true);
   const [deviceData, setDeviceData] = useState<InverterFirstPageDTO>();
-  useEffect(() => {
-    deviceApi.getStationEquipment(1).then(({data}) => {
-      setDeviceList(data.equipments);
-    });
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      deviceApi.getStationEquipment(1).then(({data}) => {
+        setDeviceList(data.equipments);
+      });
+    }, []),
+  );
   useEffect(() => {
     const id = deviceList[active]?.id;
     if (id) {
+      setLoading(true);
       deviceApi.getInverterFirstPage(id).then(({data}) => {
         setDeviceData(data);
         setLoading(false);
@@ -129,12 +133,16 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                 AntDesign.getImageSourceSync('setting', 24, '#fff').uri,
               ),
               {
-                menuWidth: 150,
+                menuWidth: 160,
                 allowRoundedArrow: true,
                 menuTextMargin: 20,
+                menuRowHeight: 40,
               },
             ).then(index => {
               if (index === deviceList.length) {
+                navigation.navigate('DeviceManage', {
+                  setIndex: setActive,
+                });
               } else {
                 setActive(index!);
               }
@@ -177,8 +185,8 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
       <ScrollView
         style={[styles.container, {backgroundColor: theme.colors.background}]}
         refreshControl={
-          <RefreshControl 
-            refreshing={refreshing} 
+          <RefreshControl
+            refreshing={refreshing}
             onRefresh={onRefresh}
             colors={[theme.colors.primary]}
             tintColor={theme.colors.primary}
@@ -223,15 +231,19 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
               <View style={styles.deviceImageContainer}>
                 <View style={styles.deviceImage}>
                   {/* 这里放置设备图片，但在示例中使用颜色块替代 */}
-                  <Image
-                    className="flex-1"
-                    source={{uri: CDN_Url + deviceList[active].image}}></Image>
+                  <FastImageWithSkel
+                    style={styles.deviceImage}
+                    fallback={true}
+                    source={{
+                      uri: CDN_Url + deviceList[active].image,
+                    }}></FastImageWithSkel>
                 </View>
               </View>
 
               <View style={styles.deviceInfoContainer}>
                 <View style={styles.infoRow}>
                   <View style={styles.infoItem}>
+                    <Text className='mb-2'>{deviceList[active].sn}</Text>
                     <Text
                       style={[
                         styles.infoLabel,
@@ -665,8 +677,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   card: {
-    marginHorizontal: 16,
-    marginBottom: 16,
+    margin: 16,
     borderRadius: 12,
     elevation: 1,
   },
