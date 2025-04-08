@@ -8,31 +8,18 @@ import {
   Platform,
   useColorScheme,
   ActivityIndicator,
+  ActionSheetIOS,
 } from 'react-native';
-import {
-  Text,
-  TextInput,
-  Button,
-  Portal,
-  Dialog,
-  RadioButton,
-  Menu,
-  useTheme,
-} from 'react-native-paper';
+import {Text, TextInput, useTheme} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {userApi, LoginParams} from '@/services/api/userApi';
 import {storage} from '@/utils/storage';
-import {APP_SETTINGS} from '@/config/config';
 import {useDispatch, useSelector} from 'react-redux';
-import {setLanguageAsync} from '@/store/slices/languageSlice';
 import {setTheme} from '@/store/slices/themeSlice';
-import {showToast} from '@/store/slices/toastSlice';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {ThemeType, ExtendedMD3Theme} from '@/theme';
 import Checkbox from '@/components/Checkbox';
-import Action from '@/components/Action';
 import {useNavigation} from '@react-navigation/native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 interface LoginScreenProps {
   navigation?: any;
@@ -64,14 +51,9 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState<string>(
-    APP_SETTINGS.defaultLanguage,
-  );
   const [isInitializing, setIsInitializing] = useState(true);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [showMore, setShowMore] = useState(false);
-
-  const insets = useSafeAreaInsets();
 
   // 初始化
   useEffect(() => {
@@ -81,12 +63,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
 
         // 等待存储系统准备好
         await storage.waitForReady();
-
-        // 获取保存的语言
-        const savedLanguage = await storage.getStringAsync('language');
-        if (savedLanguage) {
-          setSelectedLanguage(savedLanguage);
-        }
 
         // 加载保存的用户名和密码（如果启用了记住账号）
         const savedUsername = await storage.getStringAsync('username');
@@ -165,10 +141,9 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
       };
 
       const response = await userApi.login(loginParams);
-
       // 检查返回的数据是否有效
       if (response) {
-        const loginData = response as LoginResult;
+        const loginData = response as unknown as LoginResult;
 
         // 保存授权信息
         await storage.setAsync('auth_token', loginData.access_token);
@@ -235,32 +210,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
       setLoading(false);
     }
   };
-
-  // 语言切换处理
-  const handleLanguageChange = async (lang: string) => {
-    try {
-      setLanguageDialogVisible(false);
-
-      if (lang === selectedLanguage) return;
-
-      setSelectedLanguage(lang);
-      await dispatch(setLanguageAsync(lang) as any);
-      await storage.setAsync('language', lang);
-
-      dispatch(
-        showToast({
-          message: t('common.languageChangedSuccess', {
-            defaultValue: '语言切换成功',
-          }),
-          type: 'success',
-          duration: 2000,
-        }),
-      );
-    } catch (error) {
-      console.error('Failed to change language:', error);
-    }
-  };
-
   // 处理服务条款点击
   const handleTermsPress = () => {
     const url = `http://114.55.0.234/private/agreement_${i18n.language}.html`;
@@ -345,7 +294,22 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
           <View />
           <TouchableOpacity
             style={styles.moreButton}
-            onPress={() => setShowMore(true)}>
+            onPress={() => {
+              if (Platform.OS === 'ios') {
+                ActionSheetIOS.showActionSheetWithOptions(
+                  {
+                    options: moreOptions
+                      .map(item => item.title)
+                      .concat(t('common.cancel', {defaultValue: '取消'})),
+                    cancelButtonIndex: moreOptions.length,
+                    cancelButtonTintColor: paperTheme.colors.error,
+                  },
+                  index => {
+                    moreOptions[index]?.onPress?.();
+                  },
+                );
+              }
+            }}>
             <Text style={{opacity: 0, width: 0, height: 0}}>{''}</Text>
             <AntDesign
               name="ellipsis1"
@@ -554,89 +518,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
-
-      {/* 底部弹出菜单和遮罩 */}
-      {showMore && (
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            zIndex: 999,
-          }}>
-          <TouchableOpacity
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-            activeOpacity={1}
-            onPress={() => setShowMore(false)}>
-            <Text style={{width: 0, height: 0}}>{''}</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-      <Action
-        show={showMore}
-        height={280 + insets.bottom}
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          borderTopLeftRadius: 16,
-          borderTopRightRadius: 16,
-          padding: 20,
-          paddingBottom: 32 + insets.bottom,
-          backgroundColor: paperTheme.colors.surface,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: -2,
-          },
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-          elevation: 5,
-          zIndex: 1000,
-        }}>
-        <View style={[styles.optionsContainer, {paddingBottom: 8}]}>
-          {moreOptions.map(option => (
-            <TouchableOpacity
-              key={option.id}
-              style={[
-                styles.optionItem,
-                {
-                  paddingVertical: 16,
-                },
-              ]}
-              onPress={option.onPress}>
-              <Text
-                style={[
-                  styles.optionText,
-                  {color: paperTheme.colors.onSurface},
-                ]}>
-                {option.title}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-
-        {/* 取消按钮 */}
-        <TouchableOpacity
-          onPress={() => setShowMore(false)}
-          style={[
-            styles.cancelButton,
-            {
-              marginTop: 24,
-            },
-          ]}>
-          <Text style={[styles.cancelText, {color: paperTheme.colors.primary}]}>
-            {t('common.cancel', {defaultValue: '取消'})}
-          </Text>
-        </TouchableOpacity>
-      </Action>
     </View>
   );
 };
@@ -745,27 +626,6 @@ const styles = StyleSheet.create({
   },
   otherLoginText: {
     fontSize: 14,
-    fontWeight: '500',
-  },
-  optionsContainer: {
-    gap: 16,
-  },
-  optionItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 16,
-  },
-  optionText: {
-    fontSize: 16,
-    fontWeight: '500',
-    textAlign: 'center',
-  },
-  cancelButton: {
-    paddingVertical: 16,
-    alignItems: 'center',
-  },
-  cancelText: {
-    fontSize: 16,
     fontWeight: '500',
   },
 });

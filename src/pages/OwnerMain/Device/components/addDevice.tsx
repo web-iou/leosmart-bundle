@@ -256,7 +256,6 @@ export const SNCode = ({
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top', 'bottom']}>
       <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
         <View style={[styles.formContainer, { backgroundColor: theme.colors.background, paddingHorizontal: 32, marginTop: 16 }]}>
           {/* SN码输入框 */}
@@ -309,7 +308,6 @@ export const SNCode = ({
           </Button>
         </View>
       </View>
-    </SafeAreaView>
   );
 };
 
