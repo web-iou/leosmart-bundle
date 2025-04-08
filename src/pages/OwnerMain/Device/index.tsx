@@ -22,6 +22,7 @@ import {
 import {CDN_Url} from '@/config/config';
 import FastImageWithSkel from '@/components/FastImageWithSkel';
 import {useFocusEffect} from '@react-navigation/native';
+import {formatRelativeTime} from '../../../utils/timeUtils';
 enum DeviceStatus {
   '离线' = 0,
   '运行中',
@@ -256,7 +257,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                         styles.infoValue,
                         {color: theme.colors.onSurface},
                       ]}>
-                      {deviceData?.state.lastTime}
+                      {formatRelativeTime(deviceData?.state.lastTime)}
                     </Text>
                   </View>
                 </View>

@@ -25,6 +25,7 @@ import SiteSettingsScreen from '../pages/common/SiteSettings';
 import UserProfileScreen from '@/pages/common/UserProfile';
 import ChangeEmailScreen from '@/pages/common/ChangeEmail';
 import { useNativePopover } from '@/hooks/usePopover';
+import PowerSettingsScreen from '@/pages/OwnerMain/Device/PowerSettings'
 
 // 定义路由参数类型 - 只保留实际使用的路由
 export type RootStackParamList = {
