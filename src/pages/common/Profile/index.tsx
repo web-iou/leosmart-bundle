@@ -53,7 +53,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({navigation}) => {
         });
       case 1:
       default:
-        return t('userSetting.device.settings', {defaultValue: '业主'});
+        return t('personal.Owner', {defaultValue: '业主'});
     }
   };
 
