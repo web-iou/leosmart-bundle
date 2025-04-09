@@ -8,24 +8,19 @@ import {ExtendedMD3Theme} from '@/theme';
 import React, {useMemo} from 'react';
 import {navigationRef} from '@/navigation';
 import {formatRelativeTime} from '@/utils/timeUtils';
-import DeviceSkeleton from './DeviceSkeleton';
 
 enum DeviceStatus {
   '离线' = 0,
   '运行中',
   '告警',
 }
-export default ({deviceData, loading}: {deviceData: any; loading: boolean}) => {
+export default ({deviceData}: {deviceData: any}) => {
   const theme = useTheme() as ExtendedMD3Theme;
   const {t} = useTranslation();
   const formatTime = useMemo(() => {
     return formatRelativeTime(deviceData?.state.lastTime);
   }, [deviceData]);
   // 如果正在加载，显示骨架屏
-  if (loading) {
-    return <DeviceSkeleton />;
-  }
-
   return (
     <>
       {/* 设备状态卡片 */}

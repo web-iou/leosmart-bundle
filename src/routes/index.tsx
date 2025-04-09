@@ -1,10 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   NativeStackScreenProps,
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
-import {View, ActivityIndicator, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  ActivityIndicator,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {storage} from '@/utils/storage';
 import {useTheme} from 'react-native-paper';
 import {ExtendedMD3Theme} from '@/theme';
@@ -24,9 +29,16 @@ import ThemeSettingsScreen from '../pages/common/ThemeSettings';
 import SiteSettingsScreen from '../pages/common/SiteSettings';
 import UserProfileScreen from '@/pages/common/UserProfile';
 import ChangeEmailScreen from '@/pages/common/ChangeEmail';
-import { useNativePopover } from '@/hooks/usePopover';
-import PowerSettingsScreen from '@/pages/OwnerMain/Device/PowerSettings'
-
+import {useNativePopover} from '@/hooks/usePopover';
+import PowerSettingsScreen from '@/pages/OwnerMain/Device/PowerSettings';
+import {useDispatch} from 'react-redux';
+import {AppDispatch} from '@/store';
+import {initializeI18n} from '@/i18n';
+import {
+  initializeLanguage,
+  fetchSupportedLanguages,
+  fetchAllTranslationsAsync,
+} from '@/store/slices/languageSlice';
 // 定义路由参数类型 - 只保留实际使用的路由
 export type RootStackParamList = {
   Login: undefined;
@@ -59,7 +71,7 @@ export type RootStackParamList = {
   };
   LanguageSettings: undefined;
   CountryPicker: {
-    onSelectCountry: (value:any) => void;
+    onSelectCountry: (value: any) => void;
   };
   ThemeSettings: undefined;
   SiteSettings: undefined;
@@ -87,47 +99,48 @@ const USER_ROLE = {
 const AppNavigator: React.FC = () => {
   const theme = useTheme() as ExtendedMD3Theme;
   const {t} = useTranslation();
+  const dispatch = useDispatch<AppDispatch>();
   // 登录状态
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [userType, setUserType] = useState<number | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showPopover, anchorRef] = useNativePopover();
-  useEffect(() => {
-    checkLoginStatus();
-  }, []);
-
-  // 检查登录状态
-  const checkLoginStatus = async () => {
-    try {
-      // 等待存储系统准备就绪
-      await storage.waitForReady();
-
-      // 检查用户是否已登录
-      const authToken = await storage.getStringAsync('auth_token');
-
-      if (!authToken) {
-        setIsLoggedIn(false);
-        return;
-      }
-
-      // 用户已登录，检查用户类型
-      const userInfoStr = await storage.getStringAsync('user_info');
-      if (!userInfoStr) {
-        setIsLoggedIn(true);
-        return;
-      }
-
+  // Initialize i18n
+  useLayoutEffect(() => {
+    setLoading(true);
+    const init = () => {
       try {
-        const userInfo = JSON.parse(userInfoStr);
-        setIsLoggedIn(true);
-        setUserType(userInfo.userType);
-      } catch (e) {
-        console.error('Failed to parse user info:', e);
-        setIsLoggedIn(false);
+        // 初始化国际化
+        // 获取支持的语言列表
+        dispatch(fetchSupportedLanguages())
+          .unwrap()
+          .then(async lngs => {
+            await initializeI18n(lngs);
+            checkLoginStatus();
+            // dispatch(initializeLanguage() as any);
+            dispatch(fetchAllTranslationsAsync() as any);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+
+        // 获取所有翻译
+      } catch (error) {
+        console.error('Failed to initialize i18n:', error);
       }
-    } catch (error) {
-      console.error('Failed to check login status:', error);
-      setIsLoggedIn(false);
+    };
+
+    init();
+  }, []);
+  // 检查登录状态
+  const checkLoginStatus = () => {
+    const authToken = storage.getString('auth_token');
+    const userInfoStr = storage.getString('user_info');
+    if (userInfoStr) {
+      const userInfo = JSON.parse(userInfoStr);
+      setUserType(userInfo.userType);
     }
+    setIsLoggedIn(!!authToken);
   };
 
   // 获取初始路由
@@ -139,7 +152,7 @@ const AppNavigator: React.FC = () => {
   };
 
   // 如果登录状态尚未确定，显示加载指示器
-  if (isLoggedIn === null) {
+  if (loading) {
     return (
       <View
         style={[
@@ -193,7 +206,7 @@ const AppNavigator: React.FC = () => {
           options={{
             headerShown: true,
             headerBackButtonDisplayMode: 'minimal',
-            headerRight:()=>{
+            headerRight: () => {
               return (
                 <TouchableOpacity
                   onPress={() => {
@@ -222,7 +235,7 @@ const AppNavigator: React.FC = () => {
                   />
                 </TouchableOpacity>
               );
-            }
+            },
           }}
           component={require('../pages/OwnerMain/Device/DeviceManage').default}
         />
@@ -313,9 +326,13 @@ const AppNavigator: React.FC = () => {
           }}
         />
         {/* 业主主页 */}
-        <Stack.Screen name="OwnerMain" component={OwnerMainScreen} options={{
-          gestureEnabled:false
-        }} />
+        <Stack.Screen
+          name="OwnerMain"
+          component={OwnerMainScreen}
+          options={{
+            gestureEnabled: false,
+          }}
+        />
 
         {/* 安装商/运营商主页 */}
         <Stack.Screen name="InstallerMain" component={InstallerMainScreen} />

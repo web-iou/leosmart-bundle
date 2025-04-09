@@ -11,7 +11,6 @@ export interface CountryItem {
     code: string;
     value: string;
   }[];
-  name: string;
 }
 
 // 国家状态接口
@@ -86,12 +85,7 @@ const countrySlice = createSlice({
       })
       .addCase(fetchCountries.fulfilled, (state, action) => {
         state.loading = false;
-        state.countries = action.payload.map(item => {
-          return {
-            ...item,
-            name: t(item.code),
-          };
-        });
+        state.countries=action.payload
 
       })
       .addCase(fetchCountries.rejected, (state, action) => {

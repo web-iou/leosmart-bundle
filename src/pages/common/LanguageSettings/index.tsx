@@ -4,6 +4,8 @@ import {List, RadioButton, useTheme, Divider} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
 import {RootState} from '@/store';
+import {useMMKVString} from 'react-native-mmkv';
+import storage from '@/utils/storage';
 
 interface Language {
   value: string;
@@ -13,8 +15,7 @@ interface Language {
 const LanguageSettingsScreen: React.FC<{navigation: any}> = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const theme = useTheme();
-  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
-
+  const [selectedLanguage, setSelectedLanguage] = useMMKVString('language',storage.getInstance()!);
   // 可用语言列表
   const languages = useSelector<RootState, Language[]>(
     state => state.language.supportedLanguages,
@@ -36,7 +37,7 @@ const LanguageSettingsScreen: React.FC<{navigation: any}> = ({navigation}) => {
         style={{backgroundColor: theme.colors.surface}}>
         <RadioButton.Group
           onValueChange={handleLanguageChange}
-          value={selectedLanguage}>
+          value={selectedLanguage!}>
           {languages.map((lang, index) => (
             <React.Fragment key={lang.value}>
               <List.Item
