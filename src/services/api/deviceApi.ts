@@ -194,4 +194,7 @@ export const deviceApi = {
       name: params.name,
     });
   },
+  unbindDevice: (id: number | string) => {
+    return http.put<UserEquipmentDTO>('/biz/v1/biz/equipments/unbind/' + id);
+  },
 };
