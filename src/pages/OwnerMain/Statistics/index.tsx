@@ -371,7 +371,7 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
                 </Text>
               </View>
             ) : (
-              <View style={styles.chartContainer}>
+              <View style={[styles.chartContainer, {overflow: 'hidden'}]}>
                 {/* 固定的Y轴 */}
                 <View style={[styles.yAxisContainer, {width: yAxisWidth}]}>
                   <VictoryAxis
@@ -433,13 +433,15 @@ const StatisticsPage: React.FC<StatisticsPageProps> = ({
 
         <Card
           style={[styles.summaryCard, {backgroundColor: theme.colors.surface}]}>
-          <StatisticsSummaryCard
-            monthlyData={monthlyData}
-            loading={loading}
-            formatTime={formatTime}
-            theme={theme}
-            t={t}
-          />
+          <View style={{overflow: 'hidden'}}>
+            <StatisticsSummaryCard
+              monthlyData={monthlyData}
+              loading={loading}
+              formatTime={formatTime}
+              theme={theme}
+              t={t}
+            />
+          </View>
         </Card>
       </ScrollView>
     </SafeAreaLayout>
@@ -469,7 +471,6 @@ const styles = StyleSheet.create({
     margin: 16,
     marginTop: 0,
     borderRadius: 12,
-    overflow: 'hidden',
     paddingVertical: 16,
     paddingHorizontal: 0,
   },
@@ -499,7 +500,6 @@ const styles = StyleSheet.create({
     margin: 16,
     marginTop: 0,
     borderRadius: 12,
-    overflow: 'hidden',
     paddingVertical: 16,
   },
   summaryTitle: {
