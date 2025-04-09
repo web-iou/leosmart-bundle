@@ -134,6 +134,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
       <ScrollView
         className="flex-1"
         ref={scrollRef}
+        contentContainerStyle={{flex:1}}
         style={[{backgroundColor: theme.colors.background}]}
         refreshControl={
           <RefreshControl
@@ -144,7 +145,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
             progressBackgroundColor={theme.colors.surface}
           />
         }>
-        {deviceData &&
+        {deviceData ? (
           React.createElement(
             //@ts-ignore
             ComponentMap[deviceData.state.equipType ?? '4G'],
@@ -152,7 +153,12 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
               deviceData,
               loading,
             },
-          )}
+          )
+        ) : (
+          <View className='flex-center flex-1'>
+            <Text>暂时设备～～请添加</Text>
+          </View>
+        )}
       </ScrollView>
     </SafeAreaLayout>
   );
