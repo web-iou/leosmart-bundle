@@ -1,5 +1,11 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {View, StyleSheet, TouchableOpacity, ScrollView, RefreshControl} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  RefreshControl,
+} from 'react-native';
 import {Text, useTheme} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -10,7 +16,9 @@ import {deviceApi, StationDTO} from '@/services/api/deviceApi';
 import {useFocusEffect} from '@react-navigation/native';
 import Device4G from '@/components/DeviceList/4G';
 import {useRequest} from 'ahooks';
-
+const ComponentMap = {
+  '4G': Device4G,
+};
 const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
   const {t} = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
@@ -22,7 +30,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
     run,
   } = useRequest(deviceApi.getInverterFirstPage, {
     manual: true,
-    loadingDelay: 100,
+    loadingDelay: 200,
     onSuccess: ({data}) => {
       //@ts-ignore
 
@@ -58,6 +66,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
       run(id);
     }
   }, [active, deviceList]);
+
   return (
     <SafeAreaLayout>
       {/* 设备标题 */}
@@ -136,12 +145,15 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
             progressBackgroundColor={theme.colors.surface}
           />
         }>
-        {deviceData && (
-          <Device4G
-            deviceData={deviceData}
-            onRefresh={onRefresh}
-            refreshing={loading}></Device4G>
-        )}
+        {deviceData &&
+          React.createElement(
+            //@ts-ignore
+            ComponentMap[deviceData.state.equipType],
+            {
+              deviceData,
+              loading,
+            },
+          )}
       </ScrollView>
     </SafeAreaLayout>
   );

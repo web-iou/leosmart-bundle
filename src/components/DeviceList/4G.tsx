@@ -5,23 +5,27 @@ import FastImageWithSkel from '@/components/FastImageWithSkel';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useTranslation} from 'react-i18next';
 import {ExtendedMD3Theme} from '@/theme';
-import React from 'react';
+import React, {useMemo} from 'react';
 import {navigationRef} from '@/navigation';
-import { formatRelativeTime } from '@/utils/timeUtils';
+import {formatRelativeTime} from '@/utils/timeUtils';
+import DeviceSkeleton from './DeviceSkeleton';
+
 enum DeviceStatus {
   '离线' = 0,
   '运行中',
   '告警',
 }
-export default ({
-  deviceData,
-}: {
-  deviceData: any;
-  onRefresh: () => void;
-  refreshing: boolean;
-}) => {
+export default ({deviceData, loading}: {deviceData: any; loading: boolean}) => {
   const theme = useTheme() as ExtendedMD3Theme;
   const {t} = useTranslation();
+  const formatTime = useMemo(() => {
+    return formatRelativeTime(deviceData?.state.lastTime);
+  }, [deviceData]);
+  // 如果正在加载，显示骨架屏
+  if (loading) {
+    return <DeviceSkeleton />;
+  }
+
   return (
     <>
       {/* 设备状态卡片 */}
@@ -84,7 +88,7 @@ export default ({
                   </Text>
                   <Text
                     style={[styles.infoValue, {color: theme.colors.onSurface}]}>
-                    {formatRelativeTime(deviceData?.state.lastTime)}
+                    {formatTime}
                   </Text>
                 </View>
               </View>
@@ -103,18 +107,18 @@ export default ({
                     {'168小时'}
                   </Text>
                 </View>
-                {/* <View style={styles.infoItem}>
-                    <Text
-                      style={[
-                        styles.infoLabel,
-                        {color: theme.colors.onSurfaceVariant},
-                      ]}>
-                      {t('device.communication', {defaultValue: '通信状态'})}
-                    </Text>
-                    <Text style={[styles.infoValue, {color: '#4CAF50'}]}>
-                      {deviceData.status.communicationStatus}
-                    </Text>
-                  </View> */}
+                <View style={styles.infoItem}>
+                  <Text
+                    style={[
+                      styles.infoLabel,
+                      {color: theme.colors.onSurfaceVariant},
+                    ]}>
+                    {t('device.communication', {defaultValue: '通信状态'})}
+                  </Text>
+                  <Text style={[styles.infoValue, {color: '#4CAF50'}]}>
+                    正常
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -168,7 +172,7 @@ export default ({
                           styles.pvValue,
                           {color: theme.colors.onSurfaceVariant},
                         ]}>
-                        {value.toFixed(1)}W
+                        {(value as number).toFixed(1)}W
                       </Text>
                     </Pressable>
                   );

@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Alert, Pressable} from 'react-native';
 import {Text, useTheme} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
@@ -32,7 +32,10 @@ const DeviceManage = ({
   const [loading, setLoading] = useState(true);
 
   // 获取设备列表
-  useLayoutEffect(() => {
+  useEffect(() => {
+    refresh();
+  }, []);
+  const refresh = () => {
     setLoading(true);
     deviceApi
       .getStationEquipment(1)
@@ -47,8 +50,7 @@ const DeviceManage = ({
       .finally(() => {
         setLoading(false);
       });
-  }, []);
-
+  };
   // 处理删除设备
   const handleDeleteDevice = (device: UserEquipmentDTO) => {
     Alert.alert(
@@ -64,19 +66,22 @@ const DeviceManage = ({
           style: 'destructive',
           onPress: () => {
             // 这里应该调用删除设备的API
-            // 模拟删除操作
-            setDevices(prevDevices =>
-              prevDevices.filter(item => item.id !== device.id),
-            );
-
-            dispatch(
-              showToast({
-                message: t('device.deleteSuccess', {
-                  defaultValue: '设备已删除',
+            deviceApi.unbindDevice(device.id!).then(({data}) => {
+              if (data) {
+                refresh();
+              }
+              dispatch(
+                showToast({
+                  message: t(
+                    data ? 'device.deleteSuccess' : '',
+                    {
+                      defaultValue: '删除失败',
+                    },
+                  ),
+                  type: data ? 'success' : 'error',
                 }),
-                type: 'success',
-              }),
-            );
+              );
+            });
           },
         },
       ],
@@ -103,8 +108,11 @@ const DeviceManage = ({
     // 渲染右侧滑动操作
     const renderRightActions = () => {
       return (
-        <View
+        <Pressable
           className="h-full justify-center items-end rounded-xl overflow-hidden"
+          onPress={() => {
+            handleDeleteDevice(item);
+          }}
           style={{backgroundColor: theme.colors.error}}>
           <View
             className="h-full w-20 justify-center items-center"
@@ -113,7 +121,7 @@ const DeviceManage = ({
               {t('common.delete', {defaultValue: '删除'})}
             </Text>
           </View>
-        </View>
+        </Pressable>
       );
     };
 
