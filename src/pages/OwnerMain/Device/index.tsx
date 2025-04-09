@@ -66,7 +66,6 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
       run(id);
     }
   }, [active, deviceList]);
-
   return (
     <SafeAreaLayout>
       {/* 设备标题 */}
@@ -148,7 +147,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
         {deviceData &&
           React.createElement(
             //@ts-ignore
-            ComponentMap[deviceData.state.equipType],
+            ComponentMap[deviceData.state.equipType ?? '4G'],
             {
               deviceData,
               loading,
