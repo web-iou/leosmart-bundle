@@ -62,14 +62,14 @@ enum RegisterStep {
   REGISTER_SUCCESS = 2,
 }
 
-const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
+const RegisterScreen = ({navigation}: RegisterScreenProps): React.ReactElement => {
   const {t, i18n} = useTranslation();
   const theme = useTheme() as ExtendedMD3Theme;
   const dispatch = useDispatch<AppDispatch>();
   // 站点选择
   const [selectedSite, setSelectedSite] = useState<string>('CN'); // 默认中国站
   const [sitePickerVisible, setSitePickerVisible] = useState<boolean>(false);
-  const [siteNames, setSiteNames] = useState<string[]>(
+  const [siteNames] = useState<string[]>(
     SITES.map(site => site.name),
   );
   // 注册步骤状态
@@ -97,13 +97,13 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
   // 状态控制
   const [loading, setLoading] = useState(false);
   const [sending, setSending] = useState(false);
-  const [countdown, setCountdown] = useState(0);
+  const [countdown, setCountdown] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // 第三步：自动跳转登录倒计时
-  const [redirectCountdown, setRedirectCountdown] = useState(3);
+  const [redirectCountdown, setRedirectCountdown] = useState<number>(3);
   useEffect(() => {
     if (store.getState().country.countries.length === 0) {
       dispatch(fetchCountries())
@@ -122,7 +122,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
           setTimezone(result.zoneList[0].value);
         });
     }
-  }, []);
+  }, [dispatch, t]);
+
   // 尝试获取用户的国家和设置默认值
   useEffect(() => {
     if (selectedCountry) {
@@ -136,7 +137,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
       );
       setTimezone(selectedCountry.zoneList[0].value);
     }
-  }, [selectedCountry]);
+  }, [selectedCountry, t]);
 
   // 验证码倒计时逻辑
   useEffect(() => {
@@ -172,15 +173,6 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
       if (timer) clearTimeout(timer);
     };
   }, [currentStep, redirectCountdown, navigation]);
-
-  const handleBackPress = () => {
-    if (currentStep === RegisterStep.ROLE_SELECTION) {
-      navigation.goBack();
-    } else {
-      setCurrentStep(currentStep - 1);
-      setErrorMessage('');
-    }
-  };
 
   // 处理下一步
   const handleNext = () => {
@@ -386,7 +378,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
             {/* 站点选择 */}
             <View style={styles.inputGroup}>
               <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-                {t('register.site', {defaultValue: '站点'})}
+                {t('user.current_site', {defaultValue: '当前站点'})}
               </Text>
               <View style={styles.inputContainer}>
                 <AntDesign
@@ -444,7 +436,9 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                 styles.sectionTitle,
                 {color: theme.colors.onSurface, marginTop: 12},
               ]}>
-              {t('register.selectRole', {defaultValue: '请选择您的角色'})}
+              {t('message.userswhoOwnOrAlreadyOwnapowerStation', {
+                defaultValue: '即将拥有电站或已拥有电站的用户',
+              })}
             </Text>
 
             <View style={styles.roleContainer}>
@@ -467,15 +461,15 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                 </View>
                 <Text
                   style={[styles.roleTitle, {color: theme.colors.onSurface}]}>
-                  {t('register.owner', {defaultValue: '业主'})}
+                  {t('personal.Owner', {defaultValue: '业主'})}
                 </Text>
                 <Text
                   style={[
                     styles.roleDescription,
                     {color: theme.colors.onSurfaceVariant},
                   ]}>
-                  {t('register.ownerDesc', {
-                    defaultValue: '即将拥有电站或已有电站的用户',
+                  {t('message.userswhoOwnOrAlreadyOwnapowerStation', {
+                    defaultValue: '即将拥有电站或已拥有电站的用户',
                   })}
                 </Text>
               </TouchableOpacity>
@@ -506,8 +500,8 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
                     styles.roleDescription,
                     {color: theme.colors.onSurfaceVariant},
                   ]}>
-                  {t('register.installerDesc', {
-                    defaultValue: '为业主提供设备和服务的用户',
+                  {t('message.userswhoProvideServicesforPropertyOwners', {
+                    defaultValue: '为业主提供服务的用户',
                   })}
                 </Text>
               </TouchableOpacity>
@@ -557,7 +551,9 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
             {/* 国家/地区选择 */}
             <View style={styles.inputGroup}>
               <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-                {t('register.country', {defaultValue: '国家/地区'})}
+                {t('userSetting.basicInfo.form.label.countryRegion', {
+                  defaultValue: '国家/地区',
+                })}
               </Text>
               <View style={styles.inputContainer}>
                 <AntDesign
@@ -600,7 +596,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation}) => {
             {/* 时区选择 */}
             <View style={styles.inputGroup}>
               <Text style={[styles.label, {color: theme.colors.onSurface}]}>
-                {t('register.timezone', {defaultValue: '时区'})}
+                {t('sys.app.time.zone', {defaultValue: '时区'})}
               </Text>
               <View style={styles.inputContainer}>
                 <AntDesign

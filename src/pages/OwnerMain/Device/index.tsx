@@ -51,9 +51,9 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
   useFocusEffect(
     useCallback(() => {
       scrollRef.current?.scrollTo({y: 0, animated: false});
-      deviceApi.getStationEquipment(1).then(({data}) => {
-        setDeviceList(data.equipments);
-      });
+    deviceApi.getStationEquipment(1).then(({data}) => {
+      setDeviceList(data.equipments);
+    });
     }, []),
   );
   useEffect(() => {
@@ -68,13 +68,13 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
   }, [active, deviceList]);
   return (
     <SafeAreaLayout>
-      {/* 设备标题 */}
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.deviceTitleContainer}
-          ref={devicesRef}
-          onPress={() => {
-            show(
+        {/* 设备标题 */}
+        <View style={styles.header}>
+          <TouchableOpacity
+            style={styles.deviceTitleContainer}
+            ref={devicesRef}
+            onPress={() => {
+              show(
               deviceList
                 .map(item => item.name)
                 .concat(t('device.equipment_management')),
@@ -87,7 +87,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
                 menuTextMargin: 20,
                 menuRowHeight: 40,
               },
-            ).then(index => {
+              ).then(index => {
               if (index === deviceList.length) {
                 navigation.navigate('DeviceManage', {
                   setIndex: setActive,
@@ -95,44 +95,44 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
               } else {
                 setActive(index!);
               }
-            });
-          }}>
-          <View style={styles.deviceIconCircle}>
-            <AntDesign name="swap" size={24} color="#FFFFFF" />
-          </View>
+              });
+            }}>
+            <View style={styles.deviceIconCircle}>
+              <AntDesign name="swap" size={24} color="#FFFFFF" />
+            </View>
           <Text style={[styles.deviceName, {color: theme.colors.onBackground}]}>
-            {deviceList[active]?.name}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            showPopover(
-              ['扫一扫', 'SN序列号'],
-              [
-                AntDesign.getImageSourceSync('scan1', 24, '#fff').uri,
-                AntDesign.getImageSourceSync('edit', 24, '#fff').uri,
-              ],
-            ).then(index => {
-              if (index === 0) {
-                navigation.navigate('Scan');
-              } else {
-                navigation.navigate({
-                  name: 'SNCode',
-                  params: {},
-                });
-              }
-            });
-          }}>
-          <AntDesign
-            name="plus"
-            ref={anchorRef}
-            size={24}
-            color={theme.colors.onBackground}
-          />
-        </TouchableOpacity>
-      </View>
+              {deviceList[active]?.name}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              showPopover(
+                ['扫一扫', 'SN序列号'],
+                [
+                  AntDesign.getImageSourceSync('scan1', 24, '#fff').uri,
+                  AntDesign.getImageSourceSync('edit', 24, '#fff').uri,
+                ],
+              ).then(index => {
+                if (index === 0) {
+                  navigation.navigate('Scan');
+                } else {
+                  navigation.navigate({
+                    name: 'SNCode',
+                    params: {},
+                  });
+                }
+              });
+            }}>
+            <AntDesign
+              name="plus"
+              ref={anchorRef}
+              size={24}
+              color={theme.colors.onBackground}
+            />
+          </TouchableOpacity>
+        </View>
       <ScrollView
-        className="flex-1"
+                    className="flex-1"
         ref={scrollRef}
         contentContainerStyle={{flex:1}}
         style={[{backgroundColor: theme.colors.background}]}
@@ -157,7 +157,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
         ) : (
           <View className='flex-center flex-1'>
             <Text>暂时设备～～请添加</Text>
-          </View>
+                </View>
         )}
       </ScrollView>
     </SafeAreaLayout>

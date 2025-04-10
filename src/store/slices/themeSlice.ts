@@ -9,7 +9,7 @@ interface ThemeState {
 // Initialize the state
 const initialState: ThemeState = {
   themeType: getStoredThemeType(),
-  isDarkMode: false, // This will be updated in app components
+  isDarkMode: true, // This will be updated in app components
 };
 
 export const themeSlice = createSlice({
