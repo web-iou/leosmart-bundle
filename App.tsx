@@ -8,7 +8,7 @@ import './src/utils/ReactotronConfig';
 import './src/utils/ReactotronAxiosConfig';
 
 import React, {useEffect, useState} from 'react';
-import {View, useColorScheme} from 'react-native';
+import {ActivityIndicator, Alert, Platform, View, useColorScheme} from 'react-native';
 import {Provider as ReduxProvider} from 'react-redux';
 import {PaperProvider} from 'react-native-paper';
 import {useSelector, useDispatch} from 'react-redux';
@@ -23,7 +23,7 @@ import './src/i18n';
 import {setDarkMode} from './src/store/slices/themeSlice';
 
 import Toast from '@/components/Toast';
-
+import hotUpdate from 'react-native-ota-hot-update';
 // Reactotron类型声明扩展
 declare global {
   interface Console {
@@ -87,6 +87,77 @@ const ThemedApp = () => {
 
 // Root App component with Redux Provider
 function App(): React.JSX.Element {
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    if (!__DEV__) {
+      setLoading(true);
+      onCheckGitVersion()
+    }
+  }, []);
+  const onCheckGitVersion = () => {
+    hotUpdate.git.checkForGitUpdate({
+      branch: 'main',
+      bundlePath:
+        Platform.OS === 'ios'
+          ? '/ios/output/main.jsbundle'
+          : '/android/output/index.android.bundle',
+      url: 'https://github.com/web-iou/leosmart-bundle.git',
+      onCloneFailed(msg: string) {
+        Alert.alert('Clone project failed!', msg, [
+          {
+            text: 'Cancel',
+            onPress: () => {},
+            style: 'cancel',
+          },
+        ]);
+      },
+      onCloneSuccess() {
+        Alert.alert('Clone project success!', 'Restart to apply the changes', [
+          {
+            text: 'OK',
+            onPress: () => hotUpdate.resetApp(),
+          },
+          {
+            text: 'Cancel',
+            onPress: () => {},
+            style: 'cancel',
+          },
+        ]);
+      },
+      onPullFailed(msg: string) {
+        Alert.alert('Pull project failed!', msg, [
+          {
+            text: 'Cancel',
+            onPress: () => {},
+            style: 'cancel',
+          },
+        ]);
+      },
+      onPullSuccess() {
+        Alert.alert('Pull project success!', 'Restart to apply the changes', [
+          {
+            text: 'OK',
+            onPress: () => hotUpdate.resetApp(),
+          },
+          {
+            text: 'Cancel',
+            onPress: () => {},
+            style: 'cancel',
+          },
+        ]);
+      },
+      onFinishProgress() {
+        setLoading(false);
+      },
+    });
+  };
+  if (loading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
   return (
     <ReduxProvider store={store}>
       <ThemedApp />
