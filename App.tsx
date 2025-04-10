@@ -7,7 +7,7 @@ import './src/utils/ReactotronConfig';
 // 导入Reactotron的axios配置
 import './src/utils/ReactotronAxiosConfig';
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, useColorScheme} from 'react-native';
 import {Provider as ReduxProvider} from 'react-redux';
 import {PaperProvider} from 'react-native-paper';
@@ -16,18 +16,13 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import './global.css';
 import {config} from './config';
 // App specific imports
-import store, {RootState} from './src/store';
+import store, {AppDispatch, RootState} from './src/store';
 import AppNavigator from './src/routes';
 import {LightAppTheme, DarkAppTheme} from './src/theme';
 import './src/i18n';
-import {initializeI18n} from './src/i18n';
 import {setDarkMode} from './src/store/slices/themeSlice';
-import {
-  initializeLanguage,
-  fetchSupportedLanguages,
-  fetchAllTranslationsAsync,
-} from './src/store/slices/languageSlice';
-import Toast from "@/components/Toast";
+
+import Toast from '@/components/Toast';
 
 // Reactotron类型声明扩展
 declare global {
@@ -39,8 +34,7 @@ declare global {
 // Wrapped App component with theme support
 const ThemedApp = () => {
   const systemColorScheme = useColorScheme();
-  const dispatch = useDispatch();
-
+  const dispatch = useDispatch<AppDispatch>();
   // Select theme from Redux store
   const {themeType, isDarkMode} = useSelector(
     (state: RootState) => state.theme,
@@ -59,28 +53,7 @@ const ThemedApp = () => {
     dispatch(setDarkMode(newDarkMode));
   }, [themeType, systemColorScheme, dispatch]);
 
-  // Initialize i18n
-  useEffect(() => {
-    const init = async () => {
-      try {
-        // 初始化国际化
-        await initializeI18n();
 
-        // 初始化Redux中的语言状态
-        dispatch(initializeLanguage() as any);
-
-        // 获取支持的语言列表
-        dispatch(fetchSupportedLanguages() as any);
-
-        // 获取所有翻译
-        dispatch(fetchAllTranslationsAsync() as any);
-      } catch (error) {
-        console.error('Failed to initialize i18n:', error);
-      }
-    };
-
-    init();
-  }, [dispatch]);
 
   // Select the appropriate theme based on dark mode setting
   const theme = isDarkMode ? DarkAppTheme : LightAppTheme;

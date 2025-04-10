@@ -15,7 +15,6 @@ export type CountryItem = {
     code: string;
     value: string;
   }[];
-  name: string;
 };
 
 type AlphabetSection = {
@@ -107,7 +106,7 @@ const CountryPicker = ({
     setSearchQuery(query);
     if (!!query) {
       const filtered = countries.filter(country =>
-        country.name.toLowerCase().includes(query.toLowerCase()),
+        t(country.code).toLowerCase().includes(query.toLowerCase()),
       );
       setFilteredCountries(filtered);
     } else {
@@ -159,7 +158,7 @@ const CountryPicker = ({
         navigation.goBack();
       }}>
       <List.Item
-        title={item.name}
+        title={t(item.code)}
         right={props => <List.Icon {...props} icon="chevron-right" />}
         className="py-1"
         titleStyle={{fontWeight: '500'}}

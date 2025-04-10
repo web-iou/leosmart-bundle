@@ -14,7 +14,7 @@ import {useMMKVObject} from 'react-native-mmkv';
 import {storage} from '@/utils/storage';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {CountryItem} from '@/pages/common/CountryPicker';
-import {useDispatch, useSelector,shallowEqual} from 'react-redux';
+import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 import {
   fetchCountries,
   selectSelectedCountry,
@@ -111,7 +111,7 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
           dispatch(
             setSelectedCountry({
               ...result,
-              name: t(result.code),
+              // name: t(result.code),
             }),
           );
           requestAnimationFrame(() => {
@@ -348,7 +348,7 @@ const UserProfileScreen: React.FC<{navigation: any}> = ({navigation}) => {
             ]}
             onPress={handleSelectCountry}>
             <Text style={{color: theme.colors.onSurface}}>
-              {selectedCountry?.name ||
+              {t(selectedCountry?.code!) ||
                 t('userSetting.basicInfo.form.placeholder.countryRegion', {
                   defaultValue: '请选择国家/地区',
                 })}

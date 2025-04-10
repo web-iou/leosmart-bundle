@@ -16,6 +16,7 @@ import {deviceApi, StationDTO} from '@/services/api/deviceApi';
 import {useFocusEffect} from '@react-navigation/native';
 import Device4G from '@/components/DeviceList/4G';
 import {useRequest} from 'ahooks';
+import DeviceSkeleton from '@/components/DeviceList/DeviceSkeleton';
 const ComponentMap = {
   '4G': Device4G,
 };
@@ -30,7 +31,7 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
     run,
   } = useRequest(deviceApi.getInverterFirstPage, {
     manual: true,
-    loadingDelay: 200,
+    loadingDelay: 100,
     onSuccess: ({data}) => {
       //@ts-ignore
 
@@ -51,21 +52,22 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
   useFocusEffect(
     useCallback(() => {
       scrollRef.current?.scrollTo({y: 0, animated: false});
-    deviceApi.getStationEquipment(1).then(({data}) => {
-      setDeviceList(data.equipments);
-    });
+      deviceApi.getStationEquipment(1).then(({data}) => {        
+        setDeviceList(data.equipments);
+      });
     }, []),
   );
   useEffect(() => {
     onRefresh();
   }, [active, deviceList]);
-  const onRefresh = useCallback(() => {
+  const onRefresh = useCallback(() => {    
     const id = deviceList[active]?.id;
     if (id) {
       setRefreshing(true);
       run(id);
     }
   }, [active, deviceList]);
+
   return (
     <SafeAreaLayout>
         {/* 设备标题 */}
@@ -132,10 +134,12 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
           </TouchableOpacity>
         </View>
       <ScrollView
-                    className="flex-1"
         ref={scrollRef}
-        contentContainerStyle={{flex:1}}
-        style={[{backgroundColor: theme.colors.background}]}
+        style={[
+          {
+            backgroundColor: theme.colors.background,
+          },
+        ]}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -145,19 +149,20 @@ const DevicePage = ({navigation}: ReactNavigation.Navigation<'OwnerMain'>) => {
             progressBackgroundColor={theme.colors.surface}
           />
         }>
-        {deviceData ? (
+        {loading ? (
+          <DeviceSkeleton></DeviceSkeleton>
+        ) : deviceData ? (
           React.createElement(
             //@ts-ignore
-            ComponentMap[deviceData.state.equipType ?? '4G'],
+            ComponentMap[deviceData.state.equipType ?? '4G'] ?? Device4G,
             {
               deviceData,
-              loading,
             },
           )
         ) : (
-          <View className='flex-center flex-1'>
-            <Text>暂时设备～～请添加</Text>
-                </View>
+          <View className="flex-center flex-1">
+            <Text>暂无设备～～请添加</Text>
+          </View>
         )}
       </ScrollView>
     </SafeAreaLayout>
